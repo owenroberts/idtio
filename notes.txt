@@ -1,0 +1,8 @@
+4.25.2018
+- have i been thinking/doing nothing for long enough?
+- looking at node/sockets tuts
+	- https://rainingchain.com/tutorial/nodejs (2016 video series)
+		- db
+	- https://hackernoon.com/how-to-build-a-multiplayer-browser-game-4a793818c29b (2016 article)
+		- https://github.com/penumbragames/tankanarchy
+	- https://modernweb.com/building-multiplayer-games-with-node-js-and-socket-io/ (2013 article)
