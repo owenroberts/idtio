@@ -6,3 +6,7 @@
 	- https://hackernoon.com/how-to-build-a-multiplayer-browser-game-4a793818c29b (2016 article)
 		- https://github.com/penumbragames/tankanarchy
 	- https://modernweb.com/building-multiplayer-games-with-node-js-and-socket-io/ (2013 article)
+
+4.26.2018
+- uku bg music
+- http://www.abbamoses.com/fiddledo/fiddlepage
