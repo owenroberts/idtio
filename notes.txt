@@ -10,3 +10,15 @@
 4.26.2018
 - uku bg music
 - http://www.abbamoses.com/fiddledo/fiddlepage
+
+5.1.2018
+- need to clean up back and forth w server and client
+- need to add a new character to test
+- response when character is not available ...
+
+5.3.2018
+- multiple players from raining chain
+5.7.2018
+	- list of sockets and players
+	- seems pointless but see where it goes
+	- update position

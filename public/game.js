@@ -12,8 +12,9 @@ const scenes = {
 		characters: {}
 	}
 };
-
 let currentScene = 'splash';
+
+/* user character and info */
 let userCharacter;
 const movement = {
 	up: false,
@@ -21,67 +22,12 @@ const movement = {
 	left: false,
 	right: false
 }
-
-function UI(x, y, src, debug) {
-	this.sprite = new Sprite(x, y);
-	this.sprite.debug = debug;
-	this.sprite.addAnimation(src, function() {
-		this.sprite.center();
-	}.bind(this));
-	this.sprite.animation.states = {
-		idle: { start: 0, end: 0 },
-		over: { start: 1, end: 1 },
-		active: { start: 2, end: 2 }
-	};
-	this.sprite.animation.state = 'idle';
-	this.display = function() {
-		this.sprite.display();
-	};
-	this.over = function(x, y) {
-		if (this.sprite.tap(x,y)) {
-			this.sprite.animation.changeState('over');
-			document.body.style.cursor = 'pointer';
-		} else {
-			this.sprite.animation.changeState('idle');
-			document.body.style.cursor = 'default';
-		}
-	}
-	this.down = function(x, y) {
-		if (this.sprite.tap(x,y)) {
-			this.sprite.animation.changeState('active');
-			document.body.style.cursor = 'pointer';
-		}
-	}
-	this.up = function(x, y) {
-		if (this.sprite.tap(x,y)) {
-			this.sprite.animation.changeState('over');
-			document.body.style.cursor = 'pointer';
-		}
-	}
-	this.event = function(x, y) {
-		if (this.sprite.tap(x, y)) {
-			if (this.callback) 
-				this.callback();
-		}
-	}
-}
-
-function createCharacter(character) {
-	userCharacter = new Sprite(Game.width/2, Game.height/2);
-	userCharacter.addAnimation('/public/drawings/ui/scratch_ui.json');
-	userCharacter.debug = true;
-	scenes.game.characters[character] = userCharacter;
-	userCharacter.animation.states = {
-		idle: { start: 0, end: 0},
-		walk: { start: 1, end: 1}
-	};
-	userCharacter.animation.state = 'idle';
-}
+let updateInterval;
 
 function start() {
 	const joinGame = new UI(Game.width/2, Game.height/2, '/public/drawings/ui/join_game.json');
 	joinGame.callback = function() {
-		socket.emit('scene', 'game');
+		socket.emit('join');
 	};
 	const scratchUI = new UI(120, 250, '/public/drawings/ui/scratch_ui.json');
 	scratchUI.sprite.animation.states = {
@@ -92,8 +38,19 @@ function start() {
 	scratchUI.callback = function() {
 		socket.emit('character selection', 'scratch');
 	};
+	const catUI = new UI(300, 250, '/public/drawings/ui/cat_ui.json');
+	catUI.sprite.animation.states = {
+		idle: { start: 0, end: 0 },
+		over: { start: 1, end: 1 },
+		active: { start: 2, end: 2 }
+	}
+	catUI.callback = function() {
+		socket.emit('character selection', 'cat');
+	};
+
 	scenes.splash.ui.push(joinGame);
 	scenes.splash.ui.push(scratchUI);
+	scenes.splash.ui.push(catUI);
 }
 
 function draw() {
@@ -108,15 +65,12 @@ function draw() {
 		sprite.display();
 	}
 }
-
+/* update happens on the server */
 function update() {
-/*	scenes[currentScene].sprites.forEach(function(sprite) {
-		sprite.update();
-	});*/
+	// for stats 
 }
-
+/* events */
 function keyDown(key) {
-	
 	switch (key) {
 		case 'a':
 			movement.left = true;
@@ -178,39 +132,61 @@ function mouseUp(x, y) {
 	just no start function? */
 Game.init(window.innerWidth, window.innerHeight, 10);
 
-/* send data to server */
-
+/* new user 
+	x,y set here for now, not really the best */
 socket.emit('new', { x: Game.width/2, y: Game.height/2 });
 
+/* this is the update "loop" sending user input to server */
 function serverUpdate() {
 	socket.emit('update', {
 		movement: movement
 	});
 }
 
-/* recieve data from server */
 socket.on('scene', function(scene) {
-	console.log(scene);
 	currentScene = scene;
+})
+
+// receive character selection response from server 
+socket.on('character selection', function(character) {
+	/* create the character and start updating the game 
+		x,y has to match new user x,y */
+	userCharacter = new Sprite(Game.width/2, Game.height/2);
+	// prob need sprite data object
+	userCharacter.addAnimation('/public/drawings/ui/' + character + '_ui.json');
+	// userCharacter.debug = true;
+	scenes.game.characters[character] = userCharacter;
+	userCharacter.animation.states = {
+		idle: { start: 0, end: 0},
+		walk: { start: 1, end: 1}
+	};
+	userCharacter.animation.state = 'idle';
+	updateInterval = setInterval(serverUpdate, 1000 / 60);
 });
 
-socket.on('character selection', function(character){
-	if (character == 'none') {
-		console.log(character);
-	} else {
-		createCharacter(character);
-		setInterval(serverUpdate, 1000 / 60);
+/* recieve player position from server */
+socket.on('players', function(players) {
+	if (currentScene == 'game') {
+		for (const id in players) {
+			const player = players[id];
+			if (scenes.game.characters[player.character]) {
+				scenes.game.characters[player.character].position.x = player.x;
+				scenes.game.characters[player.character].position.y = player.y;
+			} else {
+				// if the character isn't in scene, load it
+				const newCharacter = new Sprite(player.x, player.y);
+				newCharacter.addAnimation('/public/drawings/ui/' + player.character + '_ui.json');
+				newCharacter.animation.states = {
+					idle: { start: 0, end: 0},
+					walk: { start: 1, end: 1}
+				};
+				newCharacter.animation.state = 'idle';
+				scenes.game.characters[player.character] = newCharacter;
+			}
+		}
 	}
 });
 
 socket.on('msg', function(msg) {
 	console.log(msg);
-});
-
-socket.on('players', function(players) {
-	for (const id in players) {
-		const player = players[id];
-		scenes.game.characters[player.character].position.x = player.x;
-		scenes.game.characters[player.character].position.y = player.y;
-	}
 });

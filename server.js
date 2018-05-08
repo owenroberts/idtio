@@ -22,33 +22,34 @@ const Game = {};
 Game.currentScene = 'intro';
 io.sockets.emit('state', Game.currentScene);
 const characters = {
-	scratch: {
-		isInUse: false
-	}
+	scratch: { isInUse: false },
+	cat: { isInUse: false }
 }
 const players = {};
 let gameInterval;
 
+/* all game updates  go here */
 function gameUpdate() {
 	for (const id in players) {
 		const player = players[id];
 		if (player.movement.up)
-			player.y -= 5;
+			player.y -= player.speed;
 		if (player.movement.down)
-			player.y += 5;
+			player.y += player.speed;
 		if (player.movement.right)
-			player.x += 5;
+			player.x += player.speed;
 		if (player.movement.left)
-			player.x -= 5;
+			player.x -= player.speed;
 	}
 	io.sockets.emit('players', players);
 }
 
-io.on('connection', function(socket){
+
+io.on('connection', function(socket) {
+	/* new connection, create a player */
 	socket.on('new', function(playerPosition) {
 		console.log('new', socket.id);
-		players[socket.id] = {};
-		players[socket.id].character = 'none';
+		players[socket.id] = {}; // constructor 
 		players[socket.id].x = playerPosition.x;
 		players[socket.id].y = playerPosition.y;
 		players[socket.id].movement = {
@@ -56,43 +57,45 @@ io.on('connection', function(socket){
 			up: false,
 			left: false,
 			down: false
-		}
+		};
+		players[socket.id].speed = 5;
 	});
 
-	socket.on('scene', function(scene) {
-		if (scene == 'game') {
-			console.log(scene);
-			if (players[socket.id].character != 'none') {
-				Game.currentScene = scene;
-				socket.emit('scene', scene);
-				gameInterval = setInterval(gameUpdate, 1000 / 60);
-			} else {
-				socket.emit('msg', 'Please select a character');
-			}
-		}
-	});
-
-	socket.on('update', function(data) {
-		players[socket.id].movement = data.movement;
-	});
-
+	/* player should select character */
 	socket.on('character selection', function(character) {
-		console.log(character);
+		/* assign if character not being used */
 		if (!characters[character].isInUse) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
 			socket.emit('character selection', character);
-			
 		} else {
-			socket.emit('character selection', 'nah');
+			/* else need to message them */
+			socket.emit('msg', 'character not available');
+		}
+	});
+
+	/* when player clicks join game */
+	socket.on('join', function() {
+		if (players[socket.id].character) {
+			Game.currentScene = 'game';
+			socket.emit('scene', 'game');
+			gameInterval = setInterval(gameUpdate, 1000 / 60);
+		} else {
+			socket.emit('msg', 'Please select a character');
 		}
 	});
 	
+	/*  regular update with player input */
+	socket.on('update', function(data) {
+		players[socket.id].movement = data.movement;
+	});
+
+	/* player leaves */
 	socket.on('disconnect', function() {
-    	console.log('remove', socket.id);
+		console.log('remove', socket.id);
     	clearInterval(gameInterval);
     	if (players[socket.id]) {
-    		if (players[socket.id].character != 'none') {
+    		if (players[socket.id].character) {
     			characters[players[socket.id].character].isInUse = false;
     			delete players[socket.id];
     		}
