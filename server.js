@@ -18,47 +18,52 @@ server.listen(5000, function() {
 	console.log('Starting server on port 5000');
 });
 
+const DEBUG = true;
 const Game = {};
 Game.currentScene = 'intro';
 io.sockets.emit('state', Game.currentScene);
 const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false }
-}
+};
 const players = {};
+function Player(x, y) {
+	this.x = x;
+	this.y = y;
+	this.movement = {
+		right: false,
+		up: false,
+		left: false,
+		down: false
+	};
+	this.speed = 5;
+	this.update = function() {
+		if (this.movement.up)
+			this.y -= this.speed;
+		if (this.movement.down)
+			this.y += this.speed;
+		if (this.movement.right)
+			this.x += this.speed;
+		if (this.movement.left)
+			this.x -= this.speed;
+	};
+}
 let gameInterval;
 
 /* all game updates  go here */
 function gameUpdate() {
 	for (const id in players) {
 		const player = players[id];
-		if (player.movement.up)
-			player.y -= player.speed;
-		if (player.movement.down)
-			player.y += player.speed;
-		if (player.movement.right)
-			player.x += player.speed;
-		if (player.movement.left)
-			player.x -= player.speed;
+		player.update();
 	}
 	io.sockets.emit('players', players);
 }
 
-
 io.on('connection', function(socket) {
 	/* new connection, create a player */
-	socket.on('new', function(playerPosition) {
+	socket.on('new', function(pos) {
 		console.log('new', socket.id);
-		players[socket.id] = {}; // constructor 
-		players[socket.id].x = playerPosition.x;
-		players[socket.id].y = playerPosition.y;
-		players[socket.id].movement = {
-			right: false,
-			up: false,
-			left: false,
-			down: false
-		};
-		players[socket.id].speed = 5;
+		players[socket.id] = new Player(pos.x, pos.y);
 	});
 
 	/* player should select character */
@@ -68,6 +73,8 @@ io.on('connection', function(socket) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
 			socket.emit('character selection', character);
+		} else if (players[socket.id].character == character) {
+			socket.emit('msg', 'you have selected that character');
 		} else {
 			/* else need to message them */
 			socket.emit('msg', 'character not available');
@@ -79,13 +86,15 @@ io.on('connection', function(socket) {
 		if (players[socket.id].character) {
 			Game.currentScene = 'game';
 			socket.emit('scene', 'game');
-			gameInterval = setInterval(gameUpdate, 1000 / 60);
+			/* if this is the first player to join start gameInterval */
+			if (Object.keys(players).length == 1)
+				gameInterval = setInterval(gameUpdate, 1000 / 60);
 		} else {
 			socket.emit('msg', 'Please select a character');
 		}
 	});
 	
-	/*  regular update with player input */
+	/*  regular update with player input from client */
 	socket.on('update', function(data) {
 		players[socket.id].movement = data.movement;
 	});
@@ -93,12 +102,27 @@ io.on('connection', function(socket) {
 	/* player leaves */
 	socket.on('disconnect', function() {
 		console.log('remove', socket.id);
-    	clearInterval(gameInterval);
     	if (players[socket.id]) {
     		if (players[socket.id].character) {
     			characters[players[socket.id].character].isInUse = false;
     			delete players[socket.id];
     		}
     	}
+    	/* if all players are gone stop gameInterval */
+    	if (Object.keys(players).length == 0)
+	    	clearInterval(gameInterval);
   	});
+
+	/* chat */
+	socket.on('send-chat', function(msg) {
+		io.sockets.emit('get-chat', players[socket.id].character + ": " + msg);
+	});
+
+	/* debug */
+	socket.on('send-eval', function(msg) {
+		if (!DEBUG)
+			return;
+		const res = eval(msg);
+		socket.emit('get-eval', res);
+	});
 });

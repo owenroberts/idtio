@@ -22,3 +22,16 @@
 	- list of sockets and players
 	- seems pointless but see where it goes
 	- update position
+- ep 5 - oop and bullets
+	- entity object for player and bullets
+	- i prob dont have other moving things but maybe?
+	- extending player object with functions from socket events
+	- need to oop my code
+- maybe if you satisfy some parameters than you can chat in lines font
+- change animation state 
+	- either in backend on movement
+	- or in front using x/y speed
+
+5.8.2018
+- can't set game interval multiple times
+- intro screen msg if characters aren't available, only show available characters

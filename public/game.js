@@ -69,6 +69,7 @@ function draw() {
 function update() {
 	// for stats 
 }
+
 /* events */
 function keyDown(key) {
 	switch (key) {
@@ -189,4 +190,38 @@ socket.on('players', function(players) {
 
 socket.on('msg', function(msg) {
 	console.log(msg);
+});
+
+socket.on('disconnect', function() {
+	console.log('goodbye');
+	clearInterval(updateInterval);
+
+});
+
+/* chat */
+const chat = document.getElementById('chat');
+const chatInput = document.getElementById('chat-input');
+
+socket.on('get-chat', function(msg) {
+	const newChat = document.createElement('div');
+	newChat.textContent = msg;
+	chat.appendChild(newChat);
+	if (chat.children.length > 25) {
+		chat.children[1].remove();
+	}
+});
+
+/* debug messages */
+socket.on('get-eval', function(msg) {
+	console.log(msg);
+});
+
+chatInput.addEventListener('keydown', function(ev) {
+	if (ev.which == 13) {
+		if (chatInput.value[0] == '/') 
+			socket.emit('send-eval', chatInput.value.slice(1));
+		else
+			socket.emit('send-chat', chatInput.value);
+		chatInput.value = '';
+	}
 });
