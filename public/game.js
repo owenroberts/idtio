@@ -74,16 +74,16 @@ function update() {
 function keyDown(key) {
 	switch (key) {
 		case 'a':
-			movement.left = true;
+			socket.emit('key', {input:'left', state: true});
 			break;
 		case 'w':
-			movement.up = true;
+			socket.emit('key', {input:'up', state: true});
 			break;
 		case 'd':
-			movement.right = true;
+			socket.emit('key', {input:'right', state: true});
 			break;
 		case 's':
-			movement.down = true;
+			socket.emit('key', {input:'down', state: true});
 			break;
 	}
 }
@@ -91,16 +91,16 @@ function keyDown(key) {
 function keyUp(key) {
 	switch (key) {
 		case 'a':
-			movement.left = false;
+			socket.emit('key', {input:'left', state: false});
 			break;
 		case 'w':
-			movement.up = false;
+			socket.emit('key', {input:'up', state: false});
 			break;
 		case 'd':
-			movement.right = false;
+			socket.emit('key', {input:'right', state: false});
 			break;
 		case 's':
-			movement.down = false;
+			socket.emit('key', {input:'down', state: false});
 			break;
 	}
 }
@@ -137,17 +137,6 @@ Game.init(window.innerWidth, window.innerHeight, 10);
 	x,y set here for now, not really the best */
 socket.emit('new', { x: Game.width/2, y: Game.height/2 });
 
-/* this is the update "loop" sending user input to server */
-/*function serverUpdate() {
-	socket.emit('update', {
-		movement: movement
-	});
-}*/
-
-socket.on('scene', function(scene) {
-	currentScene = scene;
-})
-
 // receive character selection response from server 
 socket.on('character selection', function(character) {
 	/* create the character and start updating the game 
@@ -162,7 +151,10 @@ socket.on('character selection', function(character) {
 		walk: { start: 1, end: 1}
 	};
 	userCharacter.animation.state = 'idle';
-	updateInterval = setInterval(serverUpdate, 1000 / 60);
+});
+
+socket.on('join game', function() {
+	currentScene = 'game';
 });
 
 /* recieve player position from server */
@@ -173,19 +165,21 @@ socket.on('players', function(players) {
 			if (scenes.game.characters[player.character]) {
 				scenes.game.characters[player.character].position.x = player.x;
 				scenes.game.characters[player.character].position.y = player.y;
-			} else if (player.character) {
-				// if the character isn't in scene, load it
-				const newCharacter = new Sprite(player.x, player.y);
-				newCharacter.addAnimation('/public/drawings/ui/' + player.character + '_ui.json');
-				newCharacter.animation.states = {
-					idle: { start: 0, end: 0},
-					walk: { start: 1, end: 1}
-				};
-				newCharacter.animation.state = 'idle';
-				scenes.game.characters[player.character] = newCharacter;
 			}
 		}
 	}
+});
+
+socket.on('add character', function(player) {
+	// if the character isn't in scene, load it
+	const newCharacter = new Sprite(player.x, player.y);
+	newCharacter.addAnimation('/public/drawings/ui/' + player.character + '_ui.json');
+	newCharacter.animation.states = {
+		idle: { start: 0, end: 0},
+		walk: { start: 1, end: 1}
+	};
+	newCharacter.animation.state = 'idle';
+	scenes.game.characters[player.character] = newCharacter;
 });
 
 socket.on('msg', function(msg) {

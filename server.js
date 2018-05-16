@@ -19,13 +19,12 @@ server.listen(5000, function() {
 });
 
 const DEBUG = true;
-const Game = {};
-Game.currentScene = 'intro';
-io.sockets.emit('state', Game.currentScene);
+
 const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false }
 };
+
 class Player {
 	constructor(x, y) {
 		this.x = x;
@@ -37,6 +36,53 @@ class Player {
 			down: false
 		};
 		this.speed = 5;
+	}
+
+	connect(socket) {
+		/* player should select character */
+		socket.on('character selection', function(character) {
+			/* assign if character not being used */
+			if (!characters[character].isInUse) {
+				players[socket.id].character = character;
+				characters[character].isInUse = true;
+				
+				socket.emit('character selection', character);
+				// add character to all of the other sockets
+				io.sockets.emit('add character', players[socket.id]);
+			} else if (players[socket.id].character == character) {
+				socket.emit('msg', 'you have selected that character');
+			} else {
+				/* else need to message them */
+				socket.emit('msg', 'character not available');
+			}
+		});
+
+		/* when player clicks join game */
+		socket.on('join', () => {
+			if (players[socket.id].character) {
+				socket.emit('join game');
+				this.init(socket);
+				/* if this is the first player to join start gameInterval */
+				if (Object.keys(players).length == 1)
+					gameInterval = setInterval(gameUpdate, 1000 / 60);
+				/* if not add the other players */
+				else 
+					for (const id in players) {
+						if (id != socket.id) 
+							socket.emit('add character', players[id]);
+					}
+
+			} else {
+				socket.emit('msg', 'Please select a character');
+			}
+		});
+	}
+
+	init(socket) {
+		/* handle key input from player */
+		socket.on('key', (key) => {
+			this.movement[key.input] = key.state;			
+		});
 	}
 	
 	update() {
@@ -67,39 +113,7 @@ io.on('connection', function(socket) {
 	socket.on('new', function(pos) {
 		console.log('new', socket.id);
 		players[socket.id] = new Player(pos.x, pos.y);
-	});
-
-	/* player should select character */
-	socket.on('character selection', function(character) {
-		/* assign if character not being used */
-		if (!characters[character].isInUse) {
-			players[socket.id].character = character;
-			characters[character].isInUse = true;
-			socket.emit('character selection', character);
-		} else if (players[socket.id].character == character) {
-			socket.emit('msg', 'you have selected that character');
-		} else {
-			/* else need to message them */
-			socket.emit('msg', 'character not available');
-		}
-	});
-
-	/* when player clicks join game */
-	socket.on('join', function() {
-		if (players[socket.id].character) {
-			Game.currentScene = 'game';
-			socket.emit('scene', 'game');
-			/* if this is the first player to join start gameInterval */
-			if (Object.keys(players).length == 1)
-				gameInterval = setInterval(gameUpdate, 1000 / 60);
-		} else {
-			socket.emit('msg', 'Please select a character');
-		}
-	});
-	
-	/*  regular update with player input from client */
-	socket.on('update', function(data) {
-		players[socket.id].movement = data.movement;
+		players[socket.id].connect(socket);
 	});
 
 	/* player leaves */
