@@ -138,11 +138,11 @@ Game.init(window.innerWidth, window.innerHeight, 10);
 socket.emit('new', { x: Game.width/2, y: Game.height/2 });
 
 /* this is the update "loop" sending user input to server */
-function serverUpdate() {
+/*function serverUpdate() {
 	socket.emit('update', {
 		movement: movement
 	});
-}
+}*/
 
 socket.on('scene', function(scene) {
 	currentScene = scene;
@@ -173,7 +173,7 @@ socket.on('players', function(players) {
 			if (scenes.game.characters[player.character]) {
 				scenes.game.characters[player.character].position.x = player.x;
 				scenes.game.characters[player.character].position.y = player.y;
-			} else {
+			} else if (player.character) {
 				// if the character isn't in scene, load it
 				const newCharacter = new Sprite(player.x, player.y);
 				newCharacter.addAnimation('/public/drawings/ui/' + player.character + '_ui.json');

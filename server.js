@@ -26,18 +26,20 @@ const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false }
 };
-const players = {};
-function Player(x, y) {
-	this.x = x;
-	this.y = y;
-	this.movement = {
-		right: false,
-		up: false,
-		left: false,
-		down: false
-	};
-	this.speed = 5;
-	this.update = function() {
+class Player {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+		this.movement = {
+			right: false,
+			up: false,
+			left: false,
+			down: false
+		};
+		this.speed = 5;
+	}
+	
+	update() {
 		if (this.movement.up)
 			this.y -= this.speed;
 		if (this.movement.down)
@@ -46,8 +48,9 @@ function Player(x, y) {
 			this.x += this.speed;
 		if (this.movement.left)
 			this.x -= this.speed;
-	};
+	}
 }
+const players = {};
 let gameInterval;
 
 /* all game updates  go here */

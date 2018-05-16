@@ -35,3 +35,18 @@
 5.8.2018
 - can't set game interval multiple times
 - intro screen msg if characters aren't available, only show available characters
+- player attacks vid
+	- mouse events (not for shooting bullets)
+	- distance 
+
+5.9.2018
+- login system
+	- uses mongo, maybe dont need this
+	- maybe use firebase instead?
+
+5.11.2018
+- client state
+	- // init - all data on player
+	- // update - only changed data
+	- // remove - if player is removed
+	- 
