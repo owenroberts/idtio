@@ -1,5 +1,20 @@
 const socket = io();
-/* game graphics stuff */
+
+const characterData = {
+	scratch: {
+		walk: {
+			file: '/public/drawings/characters/scratch_walk.json',
+			states: {
+				idle: { start: 0, end: 2 },
+				right: { start: 3, end: 6 },
+				left: { start: 7, end: 10 },
+				down: { start: 11, end: 12 },
+				up: { start: 13, end: 14 }
+			}
+		}
+	}
+};
+
 const scenes = {
 	'splash': {
 		ui: [],
@@ -16,12 +31,6 @@ let currentScene = 'splash';
 
 /* user character and info */
 let userCharacter;
-const movement = {
-	up: false,
-	down: false,
-	left: false,
-	right: false
-}
 let updateInterval;
 
 function start() {
@@ -137,20 +146,14 @@ Game.init(window.innerWidth, window.innerHeight, 10);
 	x,y set here for now, not really the best */
 socket.emit('new', { x: Game.width/2, y: Game.height/2 });
 
-// receive character selection response from server 
-socket.on('character selection', function(character) {
-	/* create the character and start updating the game 
-		x,y has to match new user x,y */
-	userCharacter = new Sprite(Game.width/2, Game.height/2);
-	// prob need sprite data object
-	userCharacter.addAnimation('/public/drawings/ui/' + character + '_ui.json');
-	// userCharacter.debug = true;
-	scenes.game.characters[character] = userCharacter;
-	userCharacter.animation.states = {
-		idle: { start: 0, end: 0},
-		walk: { start: 1, end: 1}
-	};
-	userCharacter.animation.state = 'idle';
+/* add character to scene, both user and others */
+socket.on('add character', function(player) {
+	console.log(player);
+	const char = new Sprite(player.x, player.y);
+	char.addAnimation(characterData[player.character].walk.file);
+	char.animation.states = characterData[player.character].walk.states;
+	char.animation.state = 'idle';
+	scenes.game.characters[player.character] = char;
 });
 
 socket.on('join game', function() {
@@ -165,21 +168,10 @@ socket.on('players', function(players) {
 			if (scenes.game.characters[player.character]) {
 				scenes.game.characters[player.character].position.x = player.x;
 				scenes.game.characters[player.character].position.y = player.y;
+				scenes.game.characters[player.character].animation.state = player.animationState;
 			}
 		}
 	}
-});
-
-socket.on('add character', function(player) {
-	// if the character isn't in scene, load it
-	const newCharacter = new Sprite(player.x, player.y);
-	newCharacter.addAnimation('/public/drawings/ui/' + player.character + '_ui.json');
-	newCharacter.animation.states = {
-		idle: { start: 0, end: 0},
-		walk: { start: 1, end: 1}
-	};
-	newCharacter.animation.state = 'idle';
-	scenes.game.characters[player.character] = newCharacter;
 });
 
 socket.on('msg', function(msg) {

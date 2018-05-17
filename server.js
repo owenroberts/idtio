@@ -36,20 +36,18 @@ class Player {
 			down: false
 		};
 		this.speed = 5;
+		this.animationState = 'idle';
 	}
 
 	connect(socket) {
 		/* player should select character */
-		socket.on('character selection', function(character) {
+		socket.on('character selection', (character) => {
 			/* assign if character not being used */
 			if (!characters[character].isInUse) {
-				players[socket.id].character = character;
+				this.character = character;
 				characters[character].isInUse = true;
-				
-				socket.emit('character selection', character);
-				// add character to all of the other sockets
-				io.sockets.emit('add character', players[socket.id]);
-			} else if (players[socket.id].character == character) {
+				io.sockets.emit('add character', this);
+			} else if (this.character == character) {
 				socket.emit('msg', 'you have selected that character');
 			} else {
 				/* else need to message them */
@@ -68,7 +66,7 @@ class Player {
 				/* if not add the other players */
 				else 
 					for (const id in players) {
-						if (id != socket.id) 
+						if (id != socket.id) 	
 							socket.emit('add character', players[id]);
 					}
 
@@ -86,14 +84,25 @@ class Player {
 	}
 	
 	update() {
-		if (this.movement.up)
+
+		this.animationState = 'idle';
+
+		if (this.movement.up) {
 			this.y -= this.speed;
-		if (this.movement.down)
+			this.animationState = 'up';
+		}
+		if (this.movement.down) {
 			this.y += this.speed;
-		if (this.movement.right)
+			this.animationState = 'down';
+		}
+		if (this.movement.right) {
 			this.x += this.speed;
-		if (this.movement.left)
+			this.animationState = 'right';
+		}
+		if (this.movement.left) {
 			this.x -= this.speed;
+			this.animationState = 'left';
+		}
 	}
 }
 const players = {};
