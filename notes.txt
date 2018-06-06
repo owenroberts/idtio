@@ -48,5 +48,30 @@
 - client state
 	- // init - all data on player
 	- // update - only changed data
+		- sending all data for players ....
+		- he sort of does too
 	- // remove - if player is removed
+
+5.18.2018
+- player v player
+	- get init pack and get update pack
+	- only send changed values (eventually) how to see if they changed
+- polishing and map
+	- player stays in center, map moves relative
+	- client takes position and subtracts from player position
+- hosting
+	- heroku
+- map system
+	- using 2 different maps
 	- 
+
+6.5.2019
+- oops
+- figure out player movement
+	- now figure out interactives
+
+
+- only send necessary package info
+- map borders
+
+

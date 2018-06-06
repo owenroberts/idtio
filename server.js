@@ -26,9 +26,10 @@ const characters = {
 };
 
 class Player {
-	constructor(x, y) {
-		this.x = x;
-		this.y = y;
+	constructor() {
+		this.x = 0;
+		this.y = 0;
+		this.joinedGame = false;
 		this.movement = {
 			right: false,
 			up: false,
@@ -40,13 +41,13 @@ class Player {
 	}
 
 	connect(socket) {
+		socket.emit('id', socket.id);
 		/* player should select character */
 		socket.on('character selection', (character) => {
 			/* assign if character not being used */
-			if (!characters[character].isInUse) {
+			if (!characters[character].isInUse && !this.character) {
 				this.character = character;
 				characters[character].isInUse = true;
-				io.sockets.emit('add character', this);
 			} else if (this.character == character) {
 				socket.emit('msg', 'you have selected that character');
 			} else {
@@ -60,13 +61,15 @@ class Player {
 			if (players[socket.id].character) {
 				socket.emit('join game');
 				this.init(socket);
+				io.sockets.emit('add character', this, socket.id);
+				this.joinedGame = true;
 				/* if this is the first player to join start gameInterval */
 				if (Object.keys(players).length == 1)
 					gameInterval = setInterval(gameUpdate, 1000 / 60);
 				/* if not add the other players */
 				else 
 					for (const id in players) {
-						if (id != socket.id) 	
+						if (id != socket.id && players[id].joinedGame)
 							socket.emit('add character', players[id]);
 					}
 
@@ -84,9 +87,7 @@ class Player {
 	}
 	
 	update() {
-
 		this.animationState = 'idle';
-
 		if (this.movement.up) {
 			this.y -= this.speed;
 			this.animationState = 'up';
@@ -119,9 +120,9 @@ function gameUpdate() {
 
 io.on('connection', function(socket) {
 	/* new connection, create a player */
-	socket.on('new', function(pos) {
+	socket.on('new', function() {
 		console.log('new', socket.id);
-		players[socket.id] = new Player(pos.x, pos.y);
+		players[socket.id] = new Player();
 		players[socket.id].connect(socket);
 	});
 
@@ -131,8 +132,9 @@ io.on('connection', function(socket) {
     	if (players[socket.id]) {
     		if (players[socket.id].character) {
     			characters[players[socket.id].character].isInUse = false;
-    			delete players[socket.id];
+    			io.sockets.emit('remove character', players[socket.id].character);
     		}
+    		delete players[socket.id];
     	}
     	/* if all players are gone stop gameInterval */
     	if (Object.keys(players).length == 0)
