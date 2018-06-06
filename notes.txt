@@ -68,7 +68,27 @@
 6.5.2019
 - oops
 - figure out player movement
+6.6.2018
 	- now figure out interactives
+- performance profiling
+	- text very expensive (not using text except for stats)
+	- this could be useful for bc
+	- adds a canvas for the score (this doesn't help me because lines always need to be redrawn)
+	- server profiling
+		- npm install v8-profiler
+		- const profiler = require('v8-profiler');
+		const fs = require('fs');
+- user interface and player commands
+	- adding html buttons - dont need this
+- chat and private message - skip for now
+- inventory and multi files
+	- ./Entity.js
+	- player and interactive and bkg could all be entities
+	- inventory from HTML5 game example
+	- what items a player has i guess
+	- come back when adding flowers etc
+- item system
+	- 
 
 
 - only send necessary package info

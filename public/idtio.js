@@ -169,22 +169,20 @@ function mouseUp(x, y) {
 	just no start function? */
 Game.init(window.innerWidth, window.innerHeight, 10);
 
-/* new user 
-	x,y set here for now, not really the best */
-socket.emit('new');
-socket.on('id', function(id){
+/* new user */
+socket.on('id', function(id) {
 	userId = id;
 });
 
 /* add character to scene, both user and others */
-socket.on('add character', function(player, id) {
+socket.on('add character', function(player) {
 	const char = new Sprite(player.x, player.y);
-	if (id = userId) {
+	if (player.id = userId) {
 		char.position.x = Game.width/2;
 		char.position.y = Game.height/2;
 	}
 	char.addAnimation(characterData[player.character].walk.file, () => {
-		if (id = userId) 
+		if (player.id = userId) 
 			char.center();
 	});
 	char.animation.states = characterData[player.character].walk.states;
