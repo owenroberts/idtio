@@ -1,0 +1,19 @@
+{
+	"interactives": [
+		{
+			"label": "tree of introduction",
+			"file": "/public/drawings/interactives/palm-0.json",
+			"x": 500,
+			"y": 100,
+			"distance": 300,
+			"msg": "E to interact"
+		}
+	],
+	"scenery": [
+		{
+			"file": "/public/drawings/scenery/grass-0.json",
+			"x": -200,
+			"y": -400
+		}
+	]
+}

@@ -7,6 +7,8 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
+const mapData = require('./public/map-data.json');
+const Entity = require('./Entity.js');
 const Player = require('./Player.js');
 
 app.set('port', 5000);
@@ -21,18 +23,32 @@ server.listen(5000, function() {
 });
 
 const DEBUG = true;
+let gameInterval;
 const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false }
 };
 const players = {};
-let gameInterval;
+const interactives = [];
+for (const i in mapData.interactives) {
+	const item = new Entity(mapData.interactives[i]);
+	interactives.push(item);
+}
+
 
 /* all game updates  go here */
 function gameUpdate() {
 	for (const id in players) {
 		const player = players[id];
 		player.update();
+		for (const i in interactives) {
+			const item = interactives[i];
+			item.get(player, (msg) => {
+				// how to get socket .... 
+				// can this go in on connection? 
+				// player.sendText(msg, item.x, item.y);
+			});
+		}
 	}
 	io.sockets.emit('players', players);
 }
@@ -47,6 +63,7 @@ io.on('connection', function(socket) {
 		if (!characters[character].isInUse && !this.character) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
+			socket.emit('character chosen', character);
 		} else if (players[socket.id].character == character) {
 			socket.emit('msg', 'you have selected that character');
 		} else {

@@ -25,18 +25,9 @@ const characterData = {
 		}
 	}
 };
-const mapData = {
-	interactives: [
-		{
-			file: '/public/drawings/interactives/palm-0.json',
-			x: 100,
-			y: 100
-		}
-	]
-};
 const scenes = {
-	splash: { ui: [], sprites: [], characters: {} },
-	game:  { ui: [], characters: {}, interactives: [] }
+	splash: { ui: {}, texts: {} },
+	game:  { ui: {}, characters: {}, texts: {}, interactives: [], scenery: [] }
 };
 let currentScene = 'splash';
 let userId;
@@ -51,6 +42,7 @@ function loadSplashScene() {
 	scratchUI.sprite.animation.states = {
 		idle: { start: 0, end: 2 + 1 },
 		over: { start: 3, end: 5 + 1 },
+		selected: { start: 3, end: 5 + 1 },
 		active: { start: 6, end: 8 + 1 }
 	}
 	scratchUI.callback = function() {
@@ -60,45 +52,70 @@ function loadSplashScene() {
 	catUI.sprite.animation.states = {
 		idle: { start: 0, end: 0 + 1 },
 		over: { start: 1, end: 1 + 1 },
+		selected: { start: 1, end: 1 + 1 },
 		active: { start: 2, end: 2 + 1 }
 	}
 	catUI.callback = function() {
 		socket.emit('character selection', 'cat');
 	};
 
-	scenes.splash.ui.push(joinGame);
-	scenes.splash.ui.push(scratchUI);
-	scenes.splash.ui.push(catUI);
+	scenes.splash.ui['join'] = joinGame;
+	scenes.splash.ui['scratch'] = scratchUI;
+	scenes.splash.ui['cat'] = catUI;
+
+	Game.letters = new Animation('/public/drawings/ui/letters.json');
+	Game.letters.debug = true;
+	Game.letters.load(true);
+
+	const choose = new Text(10, 10, "choose a character:", 20);
+	scenes.splash.texts['choose'] = choose;
 }
 
-function loadMap() {
-	for (let i = 0; i < mapData.interactives.length; i++) {
-		const data = mapData.interactives[i];		
-		const interactive = new Sprite(data.x, data.y);
-		// interactive.debug = true;
-		interactive.addAnimation(data.file, () => {
-			interactive.center();
-		});
+function loadMap(data) {
+	for (let i = 0; i < data.interactives.length; i++) {
+		const item = data.interactives[i];		
+		const interactive = new Item(item.x, item.y, item.file, false);
 		scenes.game.interactives.push(interactive);
+	}
+
+	for (let i = 0; i < data.scenery.length; i++) {
+		const item = data.scenery[i];		
+		const interactive = new Item(item.x, item.y, item.file, false);
+		scenes.game.scenery.push(interactive);
 	}
 }
 
 function start() {
 	loadSplashScene();
+	fetch('/public/map-data.json')
+		.then(response =>  { return response.json()})
+		.then(json => loadMap(json));
 }
 
 function draw() {
-	scenes[currentScene].ui.forEach(function(ui) {
-		ui.display();
-	});
-	for (const character in scenes[currentScene].characters) {
-		const sprite = scenes[currentScene].characters[character];
-		sprite.display();
+
+	for (const ui in scenes[currentScene].ui) {
+		const s = scenes[currentScene].ui[ui];
+		s.display();
 	}
+
+	for (const text in scenes[currentScene].texts) {
+		const t = scenes[currentScene].texts[text];
+		t.display();
+	}
+
 	if (currentScene == 'game') {
-		scenes[currentScene].interactives.forEach(function(interactive) {
-			interactive.display();
-		});
+		for (const character in scenes[currentScene].characters) {
+			const s = scenes[currentScene].characters[character];
+			s.display();
+		}
+		for (let i = 0; i < scenes[currentScene].interactives.length; i++) {
+			scenes[currentScene].interactives[i].display();
+		}
+		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
+			scenes[currentScene].scenery[i].display();
+		}
+
 	}
 }
 /* update happens on the server */
@@ -110,15 +127,19 @@ function update() {
 function keyDown(key) {
 	switch (key) {
 		case 'a':
+		case 'left':
 			socket.emit('key', {input:'left', state: true});
 			break;
 		case 'w':
+		case 'up':
 			socket.emit('key', {input:'up', state: true});
 			break;
 		case 'd':
+		case 'right':
 			socket.emit('key', {input:'right', state: true});
 			break;
 		case 's':
+		case 'down':
 			socket.emit('key', {input:'down', state: true});
 			break;
 	}
@@ -127,42 +148,50 @@ function keyDown(key) {
 function keyUp(key) {
 	switch (key) {
 		case 'a':
+		case 'left':
 			socket.emit('key', {input:'left', state: false});
 			break;
 		case 'w':
+		case 'up':
 			socket.emit('key', {input:'up', state: false});
 			break;
 		case 'd':
+		case 'right':
 			socket.emit('key', {input:'right', state: false});
 			break;
 		case 's':
+		case 'down':
 			socket.emit('key', {input:'down', state: false});
 			break;
 	}
 }
 
 function mouseClicked(x, y) {
-	scenes[currentScene].ui.forEach(function(ui) {
-		ui.event(x, y);
-	});
+	for (const ui in scenes[currentScene].ui) {
+		const sprite = scenes[currentScene].ui[ui];
+		sprite.event(x, y);
+	}
 }
 
 function mouseMoved(x, y) {
-	scenes[currentScene].ui.forEach(function(ui) {
-		ui.over(x, y);
-	});
+	for (const ui in scenes[currentScene].ui) {
+		const sprite = scenes[currentScene].ui[ui];
+		sprite.over(x, y);
+	}
 }
 
 function mouseDown(x, y) {
-	scenes[currentScene].ui.forEach(function(ui) {
-		ui.down(x, y);
-	});
+	for (const ui in scenes[currentScene].ui) {
+		const sprite = scenes[currentScene].ui[ui];
+		sprite.down(x, y);
+	}
 }
 
 function mouseUp(x, y) {
-	scenes[currentScene].ui.forEach(function(ui) {
-		ui.up(x, y);
-	});
+	for (const ui in scenes[currentScene].ui) {
+		const sprite = scenes[currentScene].ui[ui];
+		sprite.down(x, y);
+	}
 }
 
 /* init game last bc it calls the start function .... better way to do this?
@@ -172,6 +201,10 @@ Game.init(window.innerWidth, window.innerHeight, 10);
 /* new user */
 socket.on('id', function(id) {
 	userId = id;
+});
+
+socket.on('character chosen', function(character){
+	scenes.splash.ui[character].select();
 });
 
 /* add character to scene, both user and others */
@@ -196,7 +229,6 @@ socket.on('remove character', function(character) {
 
 socket.on('join game', function() {
 	currentScene = 'game';
-	loadMap();
 });
 
 /* recieve player position from server */
@@ -223,9 +255,16 @@ socket.on('players', function(players) {
 			}
 		}
 		scenes[currentScene].interactives.forEach(function(interactive) {
-			// interactive.position.add(offset);
+			interactive.update(offset);
+		});
+		scenes[currentScene].scenery.forEach(function(item) {
+			item.update(offset);
 		});
 	}
+});
+
+socket.on('interactive text', function(msg) {
+	scenes.game.texts[msg.text] = new Text(msg.x, msg.y, msg.text, 20);
 });
 
 socket.on('msg', function(msg) {

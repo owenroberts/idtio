@@ -15,6 +15,15 @@ class Player {
 		socket.emit('id', socket.id);
 	}
 
+	sendText(text, x, y) {
+		
+		// this.socket.emit('interactive text', {
+		// 	text: text,
+		// 	x: x,
+		// 	y: y
+		// });
+	}
+
 	join(socket) {
 		if (this.character) {
 			socket.emit('join game');

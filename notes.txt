@@ -88,10 +88,33 @@
 	- what items a player has i guess
 	- come back when adding flowers etc
 - item system
-	- 
+	- didn't really address where items go on the canvas ...
+
+6.7.2018
+- save player progress
+	- i guess i probably should save the user progress....
+	- firebase vs mongo 
+- scenery in scene
+- letter system/ui
+	- actually not too hard!	
+	- text should go in game lib?
+
+- interactives in scene
+	- collision change
+6.8.2018
+	- send to socket
+	- clear up msg/text names
 
 
+- map edges
+- stop player controls when interacting
+- skip drawing if sprite isn't in scene
+- fix reload errors
+- something to kick player off when they stop doing stuff
 - only send necessary package info
 - map borders
-
-
+- ui data
+- figure out center without calling it over and over
+	- for ui, interactive classes, could just center the perm x
+	- for sprite could introduce origin or offest value
+- player interactions
