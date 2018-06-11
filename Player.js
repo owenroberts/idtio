@@ -15,13 +15,9 @@ class Player {
 		socket.emit('id', socket.id);
 	}
 
-	sendText(text, x, y) {
-		
-		// this.socket.emit('interactive text', {
-		// 	text: text,
-		// 	x: x,
-		// 	y: y
-		// });
+	setText(label, state, socket) {
+		console.log(label, state);
+		socket.emit('interactive text', { label: label, state: state });
 	}
 
 	join(socket) {

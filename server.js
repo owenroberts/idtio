@@ -44,9 +44,10 @@ function gameUpdate() {
 		for (const i in interactives) {
 			const item = interactives[i];
 			item.get(player, (msg) => {
-				// how to get socket .... 
-				// can this go in on connection? 
-				// player.sendText(msg, item.x, item.y);
+				if (msg == 'exit')
+					player.setText(item.label, false, io.sockets.connected[id]);
+				else
+					player.setText(item.label, true, io.sockets.connected[id]);
 			});
 		}
 	}

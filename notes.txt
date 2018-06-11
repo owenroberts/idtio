@@ -102,9 +102,11 @@
 - interactives in scene
 	- collision change
 6.8.2018
+6.11.2018
 	- send to socket
 	- clear up msg/text names
 
+- clear up naming entity, item, interactive etc server/client
 
 - map edges
 - stop player controls when interacting

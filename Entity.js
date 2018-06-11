@@ -4,6 +4,7 @@ class Entity {
 		this.y = params.y;
 		this.distance = params.distance;
 		this.msg = params.msg;
+		this.label = params.label;
 		this.players = []; // player is currently in range
 	}
 	get(player, callback) {

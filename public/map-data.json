@@ -6,7 +6,8 @@
 			"x": 500,
 			"y": 100,
 			"distance": 300,
-			"msg": "E to interact"
+			"msg": "E to interact",
+			"wrap": 22
 		}
 	],
 	"scenery": [

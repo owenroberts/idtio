@@ -27,7 +27,7 @@ const characterData = {
 };
 const scenes = {
 	splash: { ui: {}, texts: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: [], scenery: [] }
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
 };
 let currentScene = 'splash';
 let userId;
@@ -73,9 +73,10 @@ function loadSplashScene() {
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		const item = data.interactives[i];		
-		const interactive = new Item(item.x, item.y, item.file, false);
-		scenes.game.interactives.push(interactive);
+		const item = data.interactives[i];	
+		const text = new Text(item.x, item.y, item.msg, item.wrap);
+		const interactive = new Interactive(item.x, item.y, item.file, false, text);
+		scenes.game.interactives[item.label] = interactive;
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -95,22 +96,19 @@ function start() {
 function draw() {
 
 	for (const ui in scenes[currentScene].ui) {
-		const s = scenes[currentScene].ui[ui];
-		s.display();
+		scenes[currentScene].ui[ui].display();
 	}
 
 	for (const text in scenes[currentScene].texts) {
-		const t = scenes[currentScene].texts[text];
-		t.display();
+		scenes[currentScene].texts[text].display();
 	}
 
 	if (currentScene == 'game') {
 		for (const character in scenes[currentScene].characters) {
-			const s = scenes[currentScene].characters[character];
-			s.display();
+			scenes[currentScene].characters[character].display();
 		}
-		for (let i = 0; i < scenes[currentScene].interactives.length; i++) {
-			scenes[currentScene].interactives[i].display();
+		for (const interactive in scenes[currentScene].interactives) {
+			scenes[currentScene].interactives[interactive].display();
 		}
 		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
 			scenes[currentScene].scenery[i].display();
@@ -254,17 +252,17 @@ socket.on('players', function(players) {
 				}
 			}
 		}
-		scenes[currentScene].interactives.forEach(function(interactive) {
-			interactive.update(offset);
-		});
-		scenes[currentScene].scenery.forEach(function(item) {
-			item.update(offset);
-		});
+		for (const interactive in scenes[currentScene].interactives) {
+			scenes[currentScene].interactives[interactive].update(offset);
+		}
+		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
+			scenes[currentScene].scenery[i].update(offset);
+		}
 	}
 });
 
-socket.on('interactive text', function(msg) {
-	scenes.game.texts[msg.text] = new Text(msg.x, msg.y, msg.text, 20);
+socket.on('interactive text', function(params) {
+	scenes.game.interactives[params.label].displayText = params.state;
 });
 
 socket.on('msg', function(msg) {
