@@ -32,6 +32,10 @@ const scenes = {
 let currentScene = 'splash';
 let userId;
 let updateInterval;
+let userInteracting = {
+	type: 'none',
+	label: 'none'
+};
 
 function loadSplashScene() {
 	const joinGame = new UI(Game.width/2, Game.height/2, '/public/drawings/ui/join_game.json');
@@ -64,7 +68,6 @@ function loadSplashScene() {
 	scenes.splash.ui['cat'] = catUI;
 
 	Game.letters = new Animation('/public/drawings/ui/letters.json');
-	Game.letters.debug = true;
 	Game.letters.load(true);
 
 	const choose = new Text(10, 10, "choose a character:", 20);
@@ -73,15 +76,14 @@ function loadSplashScene() {
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		const item = data.interactives[i];	
-		const text = new Text(item.x, item.y, item.msg, item.wrap);
-		const interactive = new Interactive(item.x, item.y, item.file, false, text);
+		const item = data.interactives[i];
+		const interactive = new Interactive(item, false);
 		scenes.game.interactives[item.label] = interactive;
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
 		const item = data.scenery[i];		
-		const interactive = new Item(item.x, item.y, item.file, false);
+		const interactive = new Item(item, false);
 		scenes.game.scenery.push(interactive);
 	}
 }
@@ -113,7 +115,6 @@ function draw() {
 		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
 			scenes[currentScene].scenery[i].display();
 		}
-
 	}
 }
 /* update happens on the server */
@@ -126,19 +127,25 @@ function keyDown(key) {
 	switch (key) {
 		case 'a':
 		case 'left':
-			socket.emit('key', {input:'left', state: true});
+			socket.emit('key', { input:'left', state: true} );
 			break;
 		case 'w':
 		case 'up':
-			socket.emit('key', {input:'up', state: true});
+			socket.emit('key', { input:'up', state: true} );
 			break;
 		case 'd':
 		case 'right':
-			socket.emit('key', {input:'right', state: true});
+			socket.emit('key', { input:'right', state: true} );
 			break;
 		case 's':
 		case 'down':
-			socket.emit('key', {input:'down', state: true});
+			socket.emit('key', { input:'down', state: true} );
+			break;
+
+		case 'e':
+			if (userInteracting.type == 'interactive') {
+				scenes[currentScene].interactives[userInteracting.label].playInteractState();
+			}
 			break;
 	}
 }
@@ -262,7 +269,15 @@ socket.on('players', function(players) {
 });
 
 socket.on('interactive text', function(params) {
-	scenes.game.interactives[params.label].displayText = params.state;
+	if (!scenes.game.interactives[params.label].interacting)
+		scenes.game.interactives[params.label].displayText = params.state;
+	if (params.state) {
+		userInteracting.type = 'interactive';
+		userInteracting.label = params.label;
+	} else {
+		userInteracting.type = 'none';
+		userInteracting.label = 'none';
+	}
 });
 
 socket.on('msg', function(msg) {

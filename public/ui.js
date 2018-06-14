@@ -18,7 +18,6 @@ class UI {
 		this.sprite.display();
 	}
 	select() {
-		console.log('select');
 		this.sprite.animation.state = 'selected';
 		this.selected = true;
 	}

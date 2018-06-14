@@ -104,17 +104,22 @@
 6.8.2018
 6.11.2018
 	- send to socket
+6.12.201=
 	- clear up msg/text names
-
 - clear up naming entity, item, interactive etc server/client
 
-- map edges
+- trigger animation state after interactive text
+	- interactive trigger state
+	- capture player input
+
+- more map assets
 - stop player controls when interacting
+	- with pick ups
 - skip drawing if sprite isn't in scene
 - fix reload errors
 - something to kick player off when they stop doing stuff
 - only send necessary package info
-- map borders
+- map borders - map edges
 - ui data
 - figure out center without calling it over and over
 	- for ui, interactive classes, could just center the perm x

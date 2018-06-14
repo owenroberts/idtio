@@ -17,6 +17,7 @@ class Text {
 		if (this.active) {
 			let _x = this.x;
 			let _y = this.y;
+
 			for (let i = 0; i < this.msg.length; i++) {
 				var letter = this.msg[i];
 				if (letter == ' ') {

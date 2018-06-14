@@ -16,7 +16,6 @@ class Player {
 	}
 
 	setText(label, state, socket) {
-		console.log(label, state);
 		socket.emit('interactive text', { label: label, state: state });
 	}
 
@@ -37,6 +36,10 @@ class Player {
 		socket.on('key', (key) => {
 			this.movement[key.input] = key.state;			
 		});
+
+/*		socket.on('interact', () => {
+			
+		});*/
 	}
 	
 	update() {
