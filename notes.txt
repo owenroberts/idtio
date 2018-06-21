@@ -104,17 +104,65 @@
 6.8.2018
 6.11.2018
 	- send to socket
-6.12.201=
+6.12.2018
 	- clear up msg/text names
 - clear up naming entity, item, interactive etc server/client
-
 - trigger animation state after interactive text
 	- interactive trigger state
 	- capture player input
 
-- more map assets
+6.18.2018
+- beach asset
+	- prob don't need states for scenery
+	- make default no state
+
+- pick ups
+	- not playing first frame
+	- disappears after interact ... this what i want but now how i want it
+
+6.19.2018
+	- no should leave broken stem ding dong ...
+	- tell server its been picked
+		- issues here
+		- is flower on one players map same as flower on another?
+		- once that flower is picked can other players not pick it?
+		- if not, how do we keep track of which players have which items?
+		- and if that's the case, how are items repopulated?
+			- when players leaves (dies)?
+		- how does this effect game mechanics?
+			- same items
+				- players need to share resources
+				- can player share resources?
+				- grow back animation?
+				- finite number of conversation to be had in any one session
+			- diff items
+				- players are viewing different versions of the same world
+				- don't worry about sharing resources
+				- if they want to talk can go to the same place and both pick same flower
+				- that's not that interesting
+				- but easier
+		- other game mechanic issues
+			- limit number of resources players can own at one time
+			- players "drop" resources?
+	- send pickup states for new players
+	- only show available players
+
+6.20.2018
+- cant trigger animations on client bc have to happen on all sockets
+	- animation interactions are part of main update
+- should all interactives be display to all users, or just the pickups
+	- go with all for now
 - stop player controls when interacting
-	- with pick ups
+
+6.21.2018
+- front end should just worry about front end, turn of change state momentarily
+- animation state change vs position change
+- entity basically is interactive 	
+- need better name for interactive
+- play once should end itself ... 
+
+
+
 - skip drawing if sprite isn't in scene
 - fix reload errors
 - something to kick player off when they stop doing stuff
@@ -125,3 +173,5 @@
 	- for ui, interactive classes, could just center the perm x
 	- for sprite could introduce origin or offest value
 - player interactions
+- window resize
+- more map assets

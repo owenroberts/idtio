@@ -7,8 +7,10 @@ class Item {
 		this.sprite.addAnimation(params.file, function() {
 			this.sprite.center();
 		}.bind(this));
-		this.sprite.animation.states = params.states;
-		this.sprite.animation.state = 'idle';
+		if (params.states) {
+			this.sprite.animation.states = params.states;
+			this.sprite.animation.state = 'idle';
+		}
 	}
 	display() {
 		this.sprite.display();
@@ -36,17 +38,25 @@ class Interactive extends Item {
 			this.text.display();
 		}
 	}
-	playInteractState() {
-		this.sprite.animation.changeState('interact');
-		this.sprite.animation.playOnce = true;
-		this.sprite.animation.frameCount = 0;
-		this.sprite.animation.playOnceCallback = function() {
-			this.sprite.animation.playOnce = false;
-			this.sprite.animation.frameCount = -1;  // not sure what the point of this is
-			this.sprite.animation.changeState('idle');
-			this.interacting = false;
-		}.bind(this);
-		this.displayText = false;
-		this.interacting = true;
+	playInteractState(callback) {
+		if (!this.interacting) {
+			this.sprite.animation.setState('interact');
+			this.displayText = false;
+			this.interacting = true;
+			this.sprite.animation.playOnce(() => {
+				this.sprite.animation.setState(this.pickup ? 'end' : 'idle');
+				this.interacting = false;
+				if (this.pickup)
+					this.picked = true;
+			});
+		}
+	}
+}
+
+class Pickup extends Interactive {
+	constructor(params, debug) {
+		super(params, debug);
+		this.pickup = true;
+		this.picked = false;
 	}
 }

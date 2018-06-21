@@ -16,14 +16,14 @@ class Text {
 	display() {
 		if (this.active) {
 			let _x = this.x;
-			let _y = this.y;
+			let _y = this.y - Math.floor((this.msg.length - 1) / this.wrap) * 35;
 
 			for (let i = 0; i < this.msg.length; i++) {
 				var letter = this.msg[i];
 				if (letter == ' ') {
 					_x += 30;
 				} else {
-					Game.letters.setNewState(letter, map[letter], map[letter]);
+					Game.letters.createNewState(letter, map[letter], map[letter]);
 					Game.letters.draw(_x, _y);
 					_x += 18;
 				}

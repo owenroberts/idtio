@@ -5,8 +5,13 @@ class Entity {
 		this.distance = params.distance;
 		this.msg = params.msg;
 		this.label = params.label;
-		this.players = []; // player is currently in range
+		this.players = []; // player is currently in range // do i need to know this?
+		this.type = params.type;
+		this.triggered = false;
+		this.isPickup = false;
+		this.picked = false;
 	}
+
 	get(player, callback) {
 		const _x = player.x - this.x;
 		const _y = player.y - this.y;
@@ -24,5 +29,21 @@ class Entity {
 			}
 		}
 	}
+
+	displayInteractMessage(state, socket) {
+		socket.emit('interactive text', { label: this.label, type: this.type, state: state });
+	}
 }
-module.exports = Entity;
+
+class Pickup extends Entity {
+	constructor(params) {
+		super(params);
+		this.picked = false;
+		this.isPickup = true;
+	}
+}
+
+module.exports = {
+	Entity: Entity,
+	Pickup: Pickup
+};

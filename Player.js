@@ -11,12 +11,12 @@ class Player {
 		};
 		this.speed = 5;
 		this.animationState = 'idle';
+		this.interacting = false;
 		this.id = socket.id;
 		socket.emit('id', socket.id);
-	}
-
-	setText(label, state, socket) {
-		socket.emit('interactive text', { label: label, state: state });
+		this.resources = {
+			flower: []
+		}
 	}
 
 	join(socket) {
@@ -37,28 +37,30 @@ class Player {
 			this.movement[key.input] = key.state;			
 		});
 
-/*		socket.on('interact', () => {
-			
-		});*/
+		socket.on('done interacting', () => {
+			this.interacting = false;
+		});
 	}
 	
 	update() {
-		this.animationState = 'idle';
-		if (this.movement.up) {
-			this.y -= this.speed;
-			this.animationState = 'up';
-		}
-		if (this.movement.down) {
-			this.y += this.speed;
-			this.animationState = 'down';
-		}
-		if (this.movement.right) {
-			this.x += this.speed;
-			this.animationState = 'right';
-		}
-		if (this.movement.left) {
-			this.x -= this.speed;
-			this.animationState = 'left';
+		if (!this.interacting) {
+			this.animationState = 'idle';
+			if (this.movement.up) {
+				this.y -= this.speed;
+				this.animationState = 'up';
+			}
+			if (this.movement.down) {
+				this.y += this.speed;
+				this.animationState = 'down';
+			}
+			if (this.movement.right) {
+				this.x += this.speed;
+				this.animationState = 'right';
+			}
+			if (this.movement.left) {
+				this.x -= this.speed;
+				this.animationState = 'left';
+			}
 		}
 	}
 }

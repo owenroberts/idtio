@@ -8,7 +8,7 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 const mapData = require('./public/map-data.json');
-const Entity = require('./Entity.js');
+const Entities = require('./Entity.js'); // don't love this var name
 const Player = require('./Player.js');
 
 app.set('port', 5000);
@@ -29,29 +29,32 @@ const characters = {
 	cat: { isInUse: false }
 };
 const players = {};
-const interactives = [];
+const interactives = {};
 for (const i in mapData.interactives) {
-	const item = new Entity(mapData.interactives[i]);
-	interactives.push(item);
+	interactives[mapData.interactives[i].label] = new Entities.Entity(mapData.interactives[i]);
+}
+for (const i in mapData.pickups) {
+	interactives[mapData.pickups[i].label] = new Entities.Pickup(mapData.pickups[i]);
 }
 
-
-/* all game updates  go here */
 function gameUpdate() {
 	for (const id in players) {
 		const player = players[id];
 		player.update();
 		for (const i in interactives) {
-			const item = interactives[i];
-			item.get(player, (msg) => {
-				if (msg == 'exit')
-					player.setText(item.label, false, io.sockets.connected[id]);
-				else
-					player.setText(item.label, true, io.sockets.connected[id]);
-			});
+			const interactive = interactives[i];
+			if (!interactive.picked) {
+				interactive.get(player, (msg) => {
+					const state = msg == 'exit' ? false : true;
+					interactive.displayInteractMessage(state, io.sockets.connected[id], player);
+				});
+			}
 		}
 	}
-	io.sockets.emit('players', players);
+	io.sockets.emit('update', {
+		players: players,
+		interactives: interactives
+	});
 }
 
 io.on('connection', function(socket) {
@@ -90,20 +93,51 @@ io.on('connection', function(socket) {
 		}
 	});
 
+	socket.on('trigger', (label) => {
+		const i = interactives[label];
+		if (i.isPickup) {
+			if (!i.picked) {
+				i.picked = true;
+				io.sockets.emit('play interact', label);
+				players[socket.id].interacting = true;
+				players[socket.id].resources[interactives[label].type].push(label);
+				socket.emit('item interact', players[socket.id].character, i.type);
+			}
+		} else {
+			io.sockets.emit('play interact', label);
+		}
+	});
+
+	socket.on('done interacting', () => {
+		players[socket.id].interacting = false;
+	});
 
 	/* player leaves */
 	socket.on('disconnect', function() {
 		console.log('remove', socket.id);
     	if (players[socket.id]) {
-    		if (players[socket.id].character) {
-    			characters[players[socket.id].character].isInUse = false;
-    			io.sockets.emit('remove character', players[socket.id].character);
+    		const p = players[socket.id];
+    		if (p.character) {
+    			characters[p.character].isInUse = false;
+    			io.sockets.emit('remove character', p.character);
     		}
+
+    		/* restore playres resources */
+    		for (var r in p.resources) {
+    			const resourceList = p.resources[r];
+    			for (let i = 0; i < resourceList.length; i++) {
+    				interactives[resourceList[i]].picked = false;
+    			}
+    		}
+
     		delete players[socket.id];
     	}
     	/* if all players are gone stop gameInterval */
     	if (Object.keys(players).length == 0)
 	    	clearInterval(gameInterval);
+
+	   
+
   	});
 
 	/* chat */

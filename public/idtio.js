@@ -1,41 +1,19 @@
 const socket = io();
-const characterData = {
-	scratch: {
-		walk: {
-			file: '/public/drawings/characters/scratch_walk.json',
-			states: {
-				idle: { start: 0, end: 3 },
-				right: { start: 3, end: 7 },
-				left: { start: 7, end: 11 },
-				down: { start: 11, end: 13 },
-				up: { start: 13, end: 15 }
-			}
-		}
-	},
-	cat: {
-		walk: {
-			file: '/public/drawings/characters/cat_walk.json',
-			states: {
-				idle: { start: 0, end: 3 + 1 },
-				right: { start: 4, end: 7 + 1 },
-				left: { start: 8, end: 11 + 1 },
-				down: { start: 12, end: 13 + 1 },
-				up: { start: 14, end: 15 + 1 }
-			}
-		}
-	}
-};
 const scenes = {
 	splash: { ui: {}, texts: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, pickups: {}, scenery: [] }
 };
 let currentScene = 'splash';
-let userId;
+let characterData;
 let updateInterval;
-let userInteracting = {
-	type: 'none',
-	label: 'none'
-};
+let user = {
+	interacting: {
+		state: false,
+		label: 'none',
+		type: 'none'
+	}
+}
+
 
 function loadSplashScene() {
 	const joinGame = new UI(Game.width/2, Game.height/2, '/public/drawings/ui/join_game.json');
@@ -70,29 +48,36 @@ function loadSplashScene() {
 	Game.letters = new Animation('/public/drawings/ui/letters.json');
 	Game.letters.load(true);
 
-	const choose = new Text(10, 10, "choose a character:", 20);
+	const choose = new Text(10, 10, "choose a character:", 19);
 	scenes.splash.texts['choose'] = choose;
 }
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		const item = data.interactives[i];
-		const interactive = new Interactive(item, false);
-		scenes.game.interactives[item.label] = interactive;
+		scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
+	}
+
+	for (let i = 0; i < data.pickups.length; i++) {
+		scenes.game.interactives[data.pickups[i].label] = new Pickup(data.pickups[i], false);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		const item = data.scenery[i];		
-		const interactive = new Item(item, false);
-		scenes.game.scenery.push(interactive);
+		scenes.game.scenery.push( new Item(data.scenery[i], false) );
 	}
 }
 
 function start() {
 	loadSplashScene();
+
 	fetch('/public/map-data.json')
-		.then(response =>  { return response.json()})
+		.then(response =>  { return response.json() })
 		.then(json => loadMap(json));
+
+	fetch('/public/character-data.json')
+		.then(response => { return response.json() })
+		.then(json => {
+			characterData = json;
+		});
 }
 
 function draw() {
@@ -143,8 +128,8 @@ function keyDown(key) {
 			break;
 
 		case 'e':
-			if (userInteracting.type == 'interactive') {
-				scenes[currentScene].interactives[userInteracting.label].playInteractState();
+			if (user.interacting.state) {
+				socket.emit('trigger', user.interacting.label);
 			}
 			break;
 	}
@@ -204,23 +189,24 @@ function mouseUp(x, y) {
 Game.init(window.innerWidth, window.innerHeight, 10);
 
 /* new user */
-socket.on('id', function(id) {
-	userId = id;
+socket.on('id', (id) => {
+	user.id = id;
 });
 
-socket.on('character chosen', function(character){
+socket.on('character chosen', (character) => {
 	scenes.splash.ui[character].select();
 });
 
 /* add character to scene, both user and others */
-socket.on('add character', function(player) {
+socket.on('add character', (player) => {
 	const char = new Sprite(player.x, player.y);
-	if (player.id = userId) {
+	char.debug = true;
+	if (player.id = user.id) {
 		char.position.x = Game.width/2;
 		char.position.y = Game.height/2;
 	}
 	char.addAnimation(characterData[player.character].walk.file, () => {
-		if (player.id = userId) 
+		if (player.id = user.id) 
 			char.center();
 	});
 	char.animation.states = characterData[player.character].walk.states;
@@ -228,7 +214,7 @@ socket.on('add character', function(player) {
 	scenes.game.characters[player.character] = char;
 });
 
-socket.on('remove character', function(character) {
+socket.on('remove character', (character) => {
 	delete scenes.game.characters[character];
 });
 
@@ -237,19 +223,21 @@ socket.on('join game', function() {
 });
 
 /* recieve player position from server */
-socket.on('players', function(players) {
+socket.on('update', (data) => {
 	if (currentScene == 'game') {
 		const offset = {
-			x: Game.width/2 - players[userId].x,
-			y: Game.height/2 - players[userId].y
+			x: Game.width/2 - data.players[user.id].x,
+			y: Game.height/2 - data.players[user.id].y
 		}
-		for (const id in players) {
-			const player = players[id];
+		for (const id in data.players) {
+			const player = data.players[id];
 			if (player.joinedGame) {
-				/* change animation state */
-				scenes.game.characters[player.character].animation.state = player.animationState;
-				/* move no character players */
-				if (id != userId) {
+				
+				if (!scenes.game.characters[player.character].interacting)
+					scenes.game.characters[player.character].animation.setState(player.animationState);
+
+				/* move non character players */
+				if (id != user.id) {
 					if (scenes.game.characters[player.character]) {
 						scenes.game.characters[player.character].position.x = player.x;
 						scenes.game.characters[player.character].position.y = player.y;
@@ -268,23 +256,39 @@ socket.on('players', function(players) {
 	}
 });
 
-socket.on('interactive text', function(params) {
+socket.on('interactive text', (params) => {
 	if (!scenes.game.interactives[params.label].interacting)
 		scenes.game.interactives[params.label].displayText = params.state;
 	if (params.state) {
-		userInteracting.type = 'interactive';
-		userInteracting.label = params.label;
+		user.interacting.type = params.type;
+		user.interacting.label = params.label;
+		user.interacting.state = true;
 	} else {
-		userInteracting.type = 'none';
-		userInteracting.label = 'none';
+		user.interacting.type = 'none';
+		user.interacting.label = 'none';
+		user.interacting.state = false;
 	}
 });
 
-socket.on('msg', function(msg) {
+socket.on('play interact', (label) => {
+	scenes[currentScene].interactives[label].playInteractState();
+});
+
+socket.on('item interact', (character, type) => {
+	scenes.game.characters[character].interacting = true;
+	scenes.game.characters[character].animation.setState(type);
+	scenes.game.characters[character].animation.playOnce(() => {
+		scenes.game.characters[character].animation.setState('idle');
+		socket.emit('done interacting');
+		scenes.game.characters[character].interacting = false;
+	});
+});
+
+socket.on('msg', (msg) => {
 	console.log(msg);
 });
 
-socket.on('disconnect', function() {
+socket.on('disconnect', () => {
 	console.log('goodbye');
 	setTimeout(location.reload.bind(location), 1000);
 	clearInterval(updateInterval);
@@ -294,7 +298,7 @@ socket.on('disconnect', function() {
 const chat = document.getElementById('chat');
 const chatInput = document.getElementById('chat-input');
 
-socket.on('get-chat', function(msg) {
+socket.on('get-chat', (msg) => {
 	const newChat = document.createElement('div');
 	newChat.textContent = msg;
 	chat.appendChild(newChat);
@@ -304,11 +308,11 @@ socket.on('get-chat', function(msg) {
 });
 
 /* debug messages */
-socket.on('get-eval', function(msg) {
+socket.on('get-eval', (msg) => {
 	console.log(msg);
 });
 
-chatInput.addEventListener('keydown', function(ev) {
+chatInput.addEventListener('keydown', (ev) => {
 	if (ev.which == 13) {
 		if (chatInput.value[0] == '/') 
 			socket.emit('send-eval', chatInput.value.slice(1));

@@ -1,7 +1,25 @@
 {
+	"pickups": [
+		{
+			"label": "flower 0",
+			"type": "flower",
+			"file": "/public/drawings/pickups/flower-0.json",
+			"x": -200, 
+			"y": -300,
+			"distance": 200,
+			"msg": "E to pick up flower",
+			"wrap": 11,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3},
+				"end": {"start": 3, "end": 4}
+			}
+		}
+	],
 	"interactives": [
 		{
 			"label": "tree of introduction",
+			"type": "interactive",
 			"file": "/public/drawings/interactives/palm-0.json",
 			"x": 500,
 			"y": 100,
@@ -9,8 +27,8 @@
 			"msg": "E to interact",
 			"wrap": 22,
 			"states": {
-				"idle": { "start": 0, "end": 1},
-				"interact": { "start": 1, "end": 98}
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 20}
 			}
 		}
 	],
@@ -18,10 +36,12 @@
 		{
 			"file": "/public/drawings/scenery/grass-0.json",
 			"x": -200,
-			"y": -400,
-			"states": {
-				"idle": { "start": 0, "end": 1}
-			}
+			"y": -400
+		},
+		{
+			"file": "/public/drawings/scenery/beach-0.json",
+			"x": -500,
+			"y": 500
 		}
 	]
 }

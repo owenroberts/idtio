@@ -24,10 +24,10 @@ class UI {
 	over(x, y) {
 		if (!this.selected) {
 			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.changeState('over');
+				this.sprite.animation.setState('over');
 				document.body.style.cursor = 'pointer';
 			} else {
-				this.sprite.animation.changeState('idle');
+				this.sprite.animation.setState('idle');
 				document.body.style.cursor = 'default';
 			}
 		}
@@ -35,7 +35,7 @@ class UI {
 	down(x, y) {
 		if (!this.selected) {
 			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.changeState('active');
+				this.sprite.animation.setState('active');
 				document.body.style.cursor = 'pointer';
 			}
 		}
@@ -43,7 +43,7 @@ class UI {
 	up(x, y) {
 		if (!this.selected) {
 			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.changeState('over');
+				this.sprite.animation.setState('over');
 				document.body.style.cursor = 'pointer';
 			}
 		}
