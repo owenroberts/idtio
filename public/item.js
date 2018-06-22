@@ -44,9 +44,11 @@ class Interactive extends Item {
 			this.displayText = false;
 			this.isActive = true;
 			this.sprite.animation.playOnce(() => {
+
 				this.sprite.animation.setState(this.pickup ? 'end' : 'idle');
+				console.log('end');
 				this.isActive = false;
-				if (this.pickup)
+				if (this.isPickup)
 					this.picked = true;
 			});
 		}

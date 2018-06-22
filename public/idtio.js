@@ -127,10 +127,7 @@ function keyDown(key) {
 			break;
 
 		case 'e':
-
-			if (user.interacting.state) {
-				socket.emit('trigger', user.interacting.label);
-			}
+			socket.emit('key', { input: 'interact', state: true} );
 			break;
 	}
 }
@@ -152,6 +149,9 @@ function keyUp(key) {
 		case 's':
 		case 'down':
 			socket.emit('key', {input:'down', state: false});
+			break;
+		case 'e':
+			socket.emit('key', { input: 'interact', state: false} );
 			break;
 	}
 }
@@ -257,9 +257,6 @@ socket.on('update', (data) => {
 socket.on('display interact message', (params) => {
 	if (!scenes.game.interactives[params.label].isActive)
 		scenes.game.interactives[params.label].displayText = params.state;
-	user.interacting.state = params.state;
-	user.interacting.type = params.type;
-	user.interacting.label = params.label;
 });
 
 socket.on('play interact animation', (label) => {

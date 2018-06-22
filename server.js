@@ -47,16 +47,39 @@ function gameUpdate() {
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
 
-
 			for (const i in interactives) {
 				const interactive = interactives[i];
 				if (!interactive.picked) {
-					interactive.get(player, (msg) => {
-						const state = msg == 'exit' ? false : true;
-						/* is it possible to do this in entity class? 
-							no access to io.sockets 
-							if player.socket works */
-						interactive.displayInteractMessage(state, io.sockets.connected[id]);
+					interactive.checkInRange(player, (msg) => {
+
+						if (msg == 'exited') {
+							io.sockets.connected[id].emit('display interact message', {
+								label: interactive.label, 
+								type: interactive.type, 
+								state: false 
+							});
+						} else if (msg == 'entered') {
+							io.sockets.connected[id].emit('display interact message', { 
+								label: interactive.label, 
+								type: interactive.type, 
+								state: true 
+							});
+						} else if (msg == 'inrange') {
+							if (player.isInteracting) {
+								player.isInteracting = false;
+								if (interactive.isPickup) {
+									if (!interactive.picked) {
+										player.resources[interactive.type].push(interactive.label);
+										io.sockets.emit('play interact animation', interactive.label);
+										io.sockets.emit('play character animation', player.character, interactive.type);
+										interactive.picked = true;
+
+									}
+								} else {
+									io.sockets.emit('play interact animation', interactive.label);
+								}
+							}
+						}
 					});
 				}
 			}

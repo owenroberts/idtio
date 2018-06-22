@@ -5,7 +5,7 @@ class Entity {
 		this.distance = params.distance;
 		this.msg = params.msg;
 		this.label = params.label;
-		this.players = []; // player is currently in range // do i need to know this?
+		this.playersInRange = []; // player is currently in range // do i need to know this?
 		this.type = params.type;
 		this.triggered = false;
 
@@ -14,20 +14,23 @@ class Entity {
 		this.picked = false;
 	}
 
-	get(player, callback) {
+	checkInRange(player, callback) {
 		const _x = player.x - this.x;
 		const _y = player.y - this.y;
-		const d = Math.sqrt(_x * _x + _y * _y) < this.distance;
-		const i = this.players.indexOf(player.id);
-		if (i != -1) {
-			if (!d) {
-				this.players.splice(i, 1);
-				callback('exit');
+		const isInRange = Math.sqrt(_x * _x + _y * _y) < this.distance;
+		const playerIndex = this.playersInRange.indexOf(player.id);
+		const wasInRange = playerIndex != -1;
+		if (wasInRange) {
+			if (!isInRange) {
+				this.playersInRange.splice(playerIndex, 1);
+				callback('exited');
+			} else {
+				callback('inrange');
 			}
 		} else {
-			if (d) {
-				this.players.push(player.id);
-				callback(this.msg);
+			if (isInRange) {
+				this.playersInRange.push(player.id);
+				callback('entered');
 			}
 		}
 	}

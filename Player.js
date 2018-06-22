@@ -3,11 +3,12 @@ class Player {
 		this.x = 0;
 		this.y = 0;
 		this.joinedGame = false;
-		this.movement = {
+		this.input = {
 			right: false,
 			up: false,
 			left: false,
-			down: false
+			down: false,
+			interact: false
 		};
 		this.speed = 5;
 		this.animationState = 'idle';
@@ -37,7 +38,7 @@ class Player {
 	init(socket) {
 		/* handle key input from player */
 		socket.on('key', (key) => {
-			this.movement[key.input] = key.state;			
+			this.input[key.input] = key.state;			
 		});
 
 		socket.on('done interacting', () => {
@@ -46,25 +47,28 @@ class Player {
 	}
 	
 	update() {
-		if (!this.isInteracting) {
+		// if (!this.isInteracting) {
 			this.animationState = 'idle';
-			if (this.movement.up) {
+			if (this.input.up) {
 				this.y -= this.speed;
 				this.animationState = 'up';
 			}
-			if (this.movement.down) {
+			if (this.input.down) {
 				this.y += this.speed;
 				this.animationState = 'down';
 			}
-			if (this.movement.right) {
+			if (this.input.right) {
 				this.x += this.speed;
 				this.animationState = 'right';
 			}
-			if (this.movement.left) {
+			if (this.input.left) {
 				this.x -= this.speed;
 				this.animationState = 'left';
 			}
-		}
+			if (this.input.interact) {
+				this.isInteracting = true;
+			}
+		// }
 	}
 
 	getUpdate() {
