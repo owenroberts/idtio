@@ -25,7 +25,18 @@ class Entity {
 				this.playersInRange.splice(playerIndex, 1);
 				callback('exited');
 			} else {
-				callback('inrange');
+				if (player.isInteracting) {
+					player.isInteracting = false;
+					if (this.isPickup) {
+						if (!this.picked) {
+							player.resources[this.type].push( this.label );
+							this.picked = true;
+							callback('picked up');
+						}
+					} else {
+						callback('interacted');
+					}
+				}
 			}
 		} else {
 			if (isInRange) {

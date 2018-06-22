@@ -51,7 +51,6 @@ function gameUpdate() {
 				const interactive = interactives[i];
 				if (!interactive.picked) {
 					interactive.checkInRange(player, (msg) => {
-
 						if (msg == 'exited') {
 							io.sockets.connected[id].emit('display interact message', {
 								label: interactive.label, 
@@ -64,21 +63,11 @@ function gameUpdate() {
 								type: interactive.type, 
 								state: true 
 							});
-						} else if (msg == 'inrange') {
-							if (player.isInteracting) {
-								player.isInteracting = false;
-								if (interactive.isPickup) {
-									if (!interactive.picked) {
-										player.resources[interactive.type].push(interactive.label);
-										io.sockets.emit('play interact animation', interactive.label);
-										io.sockets.emit('play character animation', player.character, interactive.type);
-										interactive.picked = true;
-
-									}
-								} else {
-									io.sockets.emit('play interact animation', interactive.label);
-								}
-							}
+						}  else if (msg == 'picked up') {
+							io.sockets.emit('play interact animation', interactive.label);
+							io.sockets.emit('play character animation', player.character, interactive.type);
+						} else if (msg == 'interacted') {
+							io.sockets.emit('play interact animation', interactive.label);
 						}
 					});
 				}
