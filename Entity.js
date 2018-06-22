@@ -8,6 +8,8 @@ class Entity {
 		this.players = []; // player is currently in range // do i need to know this?
 		this.type = params.type;
 		this.triggered = false;
+
+		/* not sure this is the best way to do it */
 		this.isPickup = false;
 		this.picked = false;
 	}
@@ -31,7 +33,7 @@ class Entity {
 	}
 
 	displayInteractMessage(state, socket) {
-		socket.emit('interactive text', { label: this.label, type: this.type, state: state });
+		socket.emit('display interact message', { label: this.label, type: this.type, state: state });
 	}
 }
 

@@ -11,12 +11,15 @@ class Player {
 		};
 		this.speed = 5;
 		this.animationState = 'idle';
-		this.interacting = false;
+		this.isInteracting = false;
 		this.id = socket.id;
+		// this.socket = socket; /* test this again */
 		socket.emit('id', socket.id);
 		this.resources = {
 			flower: []
 		}
+		this.updateAnimation = false;
+		this.updatePosition = false;
 	}
 
 	join(socket) {
@@ -38,12 +41,12 @@ class Player {
 		});
 
 		socket.on('done interacting', () => {
-			this.interacting = false;
+			this.isInteracting = false;
 		});
 	}
 	
 	update() {
-		if (!this.interacting) {
+		if (!this.isInteracting) {
 			this.animationState = 'idle';
 			if (this.movement.up) {
 				this.y -= this.speed;
@@ -62,6 +65,16 @@ class Player {
 				this.animationState = 'left';
 			}
 		}
+	}
+
+	getUpdate() {
+		this.update();
+		return {
+			id: this.id,
+			animationState: this.animationState,
+			x: this.x,
+			y: this.y
+		};
 	}
 }
 module.exports = Player;

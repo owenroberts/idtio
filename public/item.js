@@ -28,7 +28,7 @@ class Interactive extends Item {
 		this.text = params.text;
 		this.displayText = false;
 		this.text = new Text(params.x, params.y, params.msg, params.wrap);
-		this.interacting = false;
+		this.isActive = false;
 		this.sprite.animation.loop = false;
 	}
 	display() {
@@ -39,13 +39,13 @@ class Interactive extends Item {
 		}
 	}
 	playInteractState(callback) {
-		if (!this.interacting) {
+		if (!this.isActive) {
 			this.sprite.animation.setState('interact');
 			this.displayText = false;
-			this.interacting = true;
+			this.isActive = true;
 			this.sprite.animation.playOnce(() => {
 				this.sprite.animation.setState(this.pickup ? 'end' : 'idle');
-				this.interacting = false;
+				this.isActive = false;
 				if (this.pickup)
 					this.picked = true;
 			});

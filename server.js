@@ -38,22 +38,32 @@ for (const i in mapData.pickups) {
 }
 
 function gameUpdate() {
+	var data = {
+		players: {},
+		interactives: {}
+	}
 	for (const id in players) {
 		const player = players[id];
-		player.update();
-		for (const i in interactives) {
-			const interactive = interactives[i];
-			if (!interactive.picked) {
-				interactive.get(player, (msg) => {
-					const state = msg == 'exit' ? false : true;
-					interactive.displayInteractMessage(state, io.sockets.connected[id], player);
-				});
+		if (player.joinedGame) {
+			data.players[id] = player.getUpdate();
+
+
+			for (const i in interactives) {
+				const interactive = interactives[i];
+				if (!interactive.picked) {
+					interactive.get(player, (msg) => {
+						const state = msg == 'exit' ? false : true;
+						/* is it possible to do this in entity class? 
+							no access to io.sockets 
+							if player.socket works */
+						interactive.displayInteractMessage(state, io.sockets.connected[id]);
+					});
+				}
 			}
 		}
 	}
 	io.sockets.emit('update', {
-		players: players,
-		interactives: interactives
+		players: players
 	});
 }
 
@@ -93,23 +103,21 @@ io.on('connection', function(socket) {
 		}
 	});
 
+	/* here bc needs access to players and interactives */
 	socket.on('trigger', (label) => {
+		console.log(label);
 		const i = interactives[label];
 		if (i.isPickup) {
 			if (!i.picked) {
 				i.picked = true;
-				io.sockets.emit('play interact', label);
-				players[socket.id].interacting = true;
+				io.sockets.emit('play interact animation', label);
+				players[socket.id].isInteracting = true;
 				players[socket.id].resources[interactives[label].type].push(label);
-				socket.emit('item interact', players[socket.id].character, i.type);
+				socket.emit('play character animation', players[socket.id].character, i.type);
 			}
 		} else {
-			io.sockets.emit('play interact', label);
+			io.sockets.emit('play interact animation', label);
 		}
-	});
-
-	socket.on('done interacting', () => {
-		players[socket.id].interacting = false;
 	});
 
 	/* player leaves */
@@ -135,9 +143,6 @@ io.on('connection', function(socket) {
     	/* if all players are gone stop gameInterval */
     	if (Object.keys(players).length == 0)
 	    	clearInterval(gameInterval);
-
-	   
-
   	});
 
 	/* chat */

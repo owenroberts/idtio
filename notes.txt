@@ -156,22 +156,32 @@
 
 6.21.2018
 - front end should just worry about front end, turn of change state momentarily
-- animation state change vs position change
-- entity basically is interactive 	
-- need better name for interactive
 - play once should end itself ... 
 
+6.22.2018
+- animation state change vs position change
+- only send necessary package info
+	- raining change send player id + position every time
+
+	- can player keep reference to socket?
+- Game.width is really window.width .... 
+	- also don't really need to know Game.width on the client
+- move interact input to server .... 
 
 
+- need better name for interactive
+- entity basically is interactive since scenery doesnt exist on back end
+- front end, sprite and animation classes, interactive, etc, extend
+- less anonymous functions
+
+- more map assets
+- player interactions
 - skip drawing if sprite isn't in scene
 - fix reload errors
 - something to kick player off when they stop doing stuff
-- only send necessary package info
 - map borders - map edges
 - ui data
 - figure out center without calling it over and over
 	- for ui, interactive classes, could just center the perm x
 	- for sprite could introduce origin or offest value
-- player interactions
 - window resize
-- more map assets

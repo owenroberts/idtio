@@ -14,7 +14,6 @@ let user = {
 	}
 }
 
-
 function loadSplashScene() {
 	const joinGame = new UI(Game.width/2, Game.height/2, '/public/drawings/ui/join_game.json');
 	joinGame.callback = function() {
@@ -128,6 +127,7 @@ function keyDown(key) {
 			break;
 
 		case 'e':
+
 			if (user.interacting.state) {
 				socket.emit('trigger', user.interacting.label);
 			}
@@ -200,7 +200,7 @@ socket.on('character chosen', (character) => {
 /* add character to scene, both user and others */
 socket.on('add character', (player) => {
 	const char = new Sprite(player.x, player.y);
-	char.debug = true;
+	// char.debug = true;
 	if (player.id = user.id) {
 		char.position.x = Game.width/2;
 		char.position.y = Game.height/2;
@@ -231,19 +231,17 @@ socket.on('update', (data) => {
 		}
 		for (const id in data.players) {
 			const player = data.players[id];
-			if (player.joinedGame) {
 				
-				if (!scenes.game.characters[player.character].interacting)
-					scenes.game.characters[player.character].animation.setState(player.animationState);
+			if (!scenes.game.characters[player.character].isInteracting)
+				scenes.game.characters[player.character].animation.setState(player.animationState);
 
-				/* move non character players */
-				if (id != user.id) {
-					if (scenes.game.characters[player.character]) {
-						scenes.game.characters[player.character].position.x = player.x;
-						scenes.game.characters[player.character].position.y = player.y;
-						scenes.game.characters[player.character].position.add(offset);
-						scenes.game.characters[player.character].center();
-					}
+			/* move non character players */
+			if (id != user.id) {
+				if (scenes.game.characters[player.character]) {
+					scenes.game.characters[player.character].position.x = player.x;
+					scenes.game.characters[player.character].position.y = player.y;
+					scenes.game.characters[player.character].position.add(offset);
+					scenes.game.characters[player.character].center();
 				}
 			}
 		}
@@ -256,31 +254,25 @@ socket.on('update', (data) => {
 	}
 });
 
-socket.on('interactive text', (params) => {
-	if (!scenes.game.interactives[params.label].interacting)
+socket.on('display interact message', (params) => {
+	if (!scenes.game.interactives[params.label].isActive)
 		scenes.game.interactives[params.label].displayText = params.state;
-	if (params.state) {
-		user.interacting.type = params.type;
-		user.interacting.label = params.label;
-		user.interacting.state = true;
-	} else {
-		user.interacting.type = 'none';
-		user.interacting.label = 'none';
-		user.interacting.state = false;
-	}
+	user.interacting.state = params.state;
+	user.interacting.type = params.type;
+	user.interacting.label = params.label;
 });
 
-socket.on('play interact', (label) => {
+socket.on('play interact animation', (label) => {
 	scenes[currentScene].interactives[label].playInteractState();
 });
 
-socket.on('item interact', (character, type) => {
-	scenes.game.characters[character].interacting = true;
+socket.on('play character animation', (character, type) => {
+	scenes.game.characters[character].isInteracting = true;
 	scenes.game.characters[character].animation.setState(type);
 	scenes.game.characters[character].animation.playOnce(() => {
 		scenes.game.characters[character].animation.setState('idle');
 		socket.emit('done interacting');
-		scenes.game.characters[character].interacting = false;
+		scenes.game.characters[character].isInteracting = false;
 	});
 });
 
