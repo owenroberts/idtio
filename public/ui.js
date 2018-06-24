@@ -1,55 +1,48 @@
-class UI {
-	constructor(x, y, src, debug) {
-		this.sprite = new Sprite(x, y);
-		this.sprite.debug = debug;
-		this.sprite.addAnimation(src, function() {
-			this.sprite.center();
-		}.bind(this));
-		this.sprite.animation.states = {
-			idle: { start: 0, end: 0 },
-			over: { start: 1, end: 1 },
-			active: { start: 2, end: 2 },
-			selected: { start: 2, end: 2 }
-		};
-		this.sprite.animation.state = 'idle';
+class UI extends Sprite {
+	constructor(params, debug) {
+		super(Game.width/2 + params.x, Game.height/2 + params.y);
+		this.debug = debug;
+		this.addAnimation(params.src, () => {
+			this.center();
+		});
 		this.selected = false;
+		this.animation.states = params.states;
+		this.animation.state = 'idle';
 	}
-	display() {
-		this.sprite.display();
-	}
+
 	select() {
-		this.sprite.animation.state = 'selected';
+		this.animation.setState('selected');
 		this.selected = true;
 	}
 	over(x, y) {
 		if (!this.selected) {
-			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.setState('over');
-				document.body.style.cursor = 'pointer';
+			if (this.tap(x,y)) {
+				this.animation.setState('over');
+				document.body.style.cursor = 'pointer'; /* maybe make this a game or UI method? */
 			} else {
-				this.sprite.animation.setState('idle');
+				this.animation.setState('idle');
 				document.body.style.cursor = 'default';
 			}
 		}
 	}
 	down(x, y) {
 		if (!this.selected) {
-			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.setState('active');
+			if (this.tap(x,y)) {
+				this.animation.setState('active');
 				document.body.style.cursor = 'pointer';
 			}
 		}
 	}
 	up(x, y) {
 		if (!this.selected) {
-			if (this.sprite.tap(x,y)) {
-				this.sprite.animation.setState('over');
+			if (this.tap(x,y)) {
+				this.animation.setState('over');
 				document.body.style.cursor = 'pointer';
 			}
 		}
 	}
 	event(x, y) {
-		if (this.sprite.tap(x, y)) {
+		if (this.tap(x, y)) {
 			if (this.callback) 
 				this.callback();
 		}

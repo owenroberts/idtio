@@ -5,24 +5,24 @@ class Interactive extends Item {
 		this.displayText = false;
 		this.text = new Text(params.x, params.y, params.msg, params.wrap);
 		this.isActive = false;
-		this.sprite.animation.loop = false;
+		this.animation.loop = false;
+		this.isPickup = false;
+		this.picked = true;
 	}
 	display() {
-		this.sprite.display();
+		super.display();
 		if (this.displayText) {
-			this.text.setPosition(this.sprite.position.x, this.sprite.position.y - 40);
+			this.text.setPosition(this.position.x, this	.position.y - 40);
 			this.text.display();
 		}
 	}
 	playInteractState(callback) {
 		if (!this.isActive) {
-			this.sprite.animation.setState('interact');
+			this.animation.setState('interact');
 			this.displayText = false;
 			this.isActive = true;
-			this.sprite.animation.playOnce(() => {
-
-				this.sprite.animation.setState(this.pickup ? 'end' : 'idle');
-				console.log('end');
+			this.animation.playOnce(() => {
+				this.animation.setState(this.isPickup ? 'end' : 'idle');
 				this.isActive = false;
 				if (this.isPickup)
 					this.picked = true;

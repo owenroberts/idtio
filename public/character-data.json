@@ -1,7 +1,7 @@
 {
 	"scratch": {
 		"walk": {
-			"file": "/public/drawings/characters/scratch_walk.json",
+			"src": "/public/drawings/characters/scratch_walk.json",
 			"states": {
 				"idle": { "start": 0, "end": 3 },
 				"right": { "start": 3, "end": 7 },
@@ -13,7 +13,7 @@
 	},
 	"cat": {
 		"walk": {
-			"file": "/public/drawings/characters/cat.json",
+			"src": "/public/drawings/characters/cat.json",
 			"states": {
 				"idle": { "start": 0, "end": 4 },
 				"right": { "start": 4, "end": 8 },

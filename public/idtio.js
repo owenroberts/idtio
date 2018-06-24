@@ -1,7 +1,7 @@
 const socket = io();
 const scenes = {
 	splash: { ui: {}, texts: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, pickups: {}, scenery: [] }
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
 };
 let currentScene = 'splash';
 let characterData;
@@ -14,41 +14,20 @@ let user = {
 	}
 }
 
-function loadSplashScene() {
-	const joinGame = new UI(Game.width/2, Game.height/2, '/public/drawings/ui/join_game.json');
-	joinGame.callback = function() {
-		socket.emit('join');
-	};
-	const scratchUI = new UI(120, 250, '/public/drawings/ui/scratch_ui.json');
-	scratchUI.sprite.animation.states = {
-		idle: { start: 0, end: 2 + 1 },
-		over: { start: 3, end: 5 + 1 },
-		selected: { start: 3, end: 5 + 1 },
-		active: { start: 6, end: 8 + 1 }
+function loadSplashScene(data) {
+	for (const key in data) {
+		const ui = data[key];
+		scenes.splash.ui[key] = new UI(ui, false);
+		scenes.splash.ui[key].callback = function() {
+			socket.emit(ui.callback.route, ui.callback.message);
+		}
 	}
-	scratchUI.callback = function() {
-		socket.emit('character selection', 'scratch');
-	};
-	const catUI = new UI(300, 250, '/public/drawings/ui/cat_ui.json');
-	catUI.sprite.animation.states = {
-		idle: { start: 0, end: 0 + 1 },
-		over: { start: 1, end: 1 + 1 },
-		selected: { start: 1, end: 1 + 1 },
-		active: { start: 2, end: 2 + 1 }
-	}
-	catUI.callback = function() {
-		socket.emit('character selection', 'cat');
-	};
-
-	scenes.splash.ui['join'] = joinGame;
-	scenes.splash.ui['scratch'] = scratchUI;
-	scenes.splash.ui['cat'] = catUI;
 
 	Game.letters = new Animation('/public/drawings/ui/letters.json');
-	Game.letters.load(true);
+	// Game.letters.debug = true;
+	Game.letters.load(false);
 
-	const choose = new Text(10, 10, "choose a character:", 19);
-	scenes.splash.texts['choose'] = choose;
+	scenes.splash.texts['choose'] = new Text(10, 10, "choose a character:", 19);
 }
 
 function loadMap(data) {
@@ -58,6 +37,7 @@ function loadMap(data) {
 
 	for (let i = 0; i < data.pickups.length; i++) {
 		scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
+		scenes.game.interactives[data.pickups[i].label].isPickup = true;
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -67,6 +47,10 @@ function loadMap(data) {
 
 function start() {
 	loadSplashScene();
+
+	fetch('/public/ui-data.json')
+		.then(response =>  { return response.json() })
+		.then(json => loadSplashScene(json));
 
 	fetch('/public/map-data.json')
 		.then(response =>  { return response.json() })
@@ -206,7 +190,7 @@ socket.on('add character', (player) => {
 		char.position.x = Game.width/2;
 		char.position.y = Game.height/2;
 	}
-	char.addAnimation(characterData[player.character].walk.file, () => {
+	char.addAnimation(characterData[player.character].walk.src, () => {
 		if (player.id = user.id) 
 			char.center();
 	});

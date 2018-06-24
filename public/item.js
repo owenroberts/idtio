@@ -1,23 +1,21 @@
-class Item {
+class Item extends Sprite {
 	constructor(params, debug) {
+		super(params.x, params.y);
 		this.x = params.x;
 		this.y = params.y;
-		this.sprite = new Sprite(params.x, params.y);
-		this.sprite.debug = debug;
-		this.sprite.addAnimation(params.file, function() {
-			this.sprite.center();
-		}.bind(this));
+		this.debug = debug;
+		this.addAnimation(params.src, () => {
+			this.center();
+		});
 		if (params.states) {
-			this.sprite.animation.states = params.states;
-			this.sprite.animation.state = 'idle';
+			this.animation.states = params.states;
+			this.animation.state = 'idle';
 		}
 	}
-	display() {
-		this.sprite.display();
-	}
+
 	update(offset) {
-		this.sprite.position.x = this.x + offset.x;
-		this.sprite.position.y = this.y + offset.y;
-		this.sprite.center();
+		this.position.x = this.x + offset.x;
+		this.position.y = this.y + offset.y;
+		this.center();
 	}
 }

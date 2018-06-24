@@ -3,7 +3,7 @@
 		{
 			"label": "flower 0",
 			"type": "flower",
-			"file": "/public/drawings/pickups/flower-0.json",
+			"src": "/public/drawings/pickups/flower-0.json",
 			"x": -200, 
 			"y": -300,
 			"distance": 200,
@@ -20,7 +20,7 @@
 		{
 			"label": "tree of introduction",
 			"type": "interactive",
-			"file": "/public/drawings/interactives/palm-0.json",
+			"src": "/public/drawings/interactives/palm-0.json",
 			"x": 500,
 			"y": 100,
 			"distance": 300,
@@ -34,12 +34,12 @@
 	],
 	"scenery": [
 		{
-			"file": "/public/drawings/scenery/grass-0.json",
+			"src": "/public/drawings/scenery/grass-0.json",
 			"x": -200,
 			"y": -400
 		},
 		{
-			"file": "/public/drawings/scenery/beach-0.json",
+			"src": "/public/drawings/scenery/beach-0.json",
 			"x": -500,
 			"y": 500
 		}

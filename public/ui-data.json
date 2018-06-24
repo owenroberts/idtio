@@ -1,0 +1,46 @@
+{
+	"join-game": {
+		"src": "/public/drawings/ui/join_game.json",
+		"x": 0,
+		"y": 0,
+		"states" : {
+			"idle": { "start": 0, "end": 0 },
+			"over": { "start": 1, "end": 2 },
+			"selected": { "start": 1, "end": 2 },
+			"active": { "start": 2, "end": 3 }
+		},
+		"callback": {
+			"route": "join"
+		}
+	},
+	"scratch": {
+		"src": "/public/drawings/ui/scratch-ui.json",
+		"x": -120,
+		"y": -250,
+		"states": {
+			"idle": { "start": 0, "end": 3 },
+			"over": { "start": 3, "end": 6 },
+			"selected": { "start": 3, "end": 6 },
+			"active": { "start": 6, "end": 9 }
+		},
+		"callback" : {
+			"route": "character selection",
+			"message": "scratch"
+		}
+	},
+	"cat": {
+		"src": "/public/drawings/ui/cat-ui.json",
+		"x": -300,
+		"y": -250,
+		"states": {
+			"idle": { "start": 0, "end": 1 },
+			"over": { "start": 1, "end": 2 },
+			"selected": { "start": 1, "end": 2 },
+			"active": { "start": 2, "end": 3 }
+		},
+		"callback" : {
+			"route": "character selection",
+			"message": "cat"
+		}
+	}
+}
