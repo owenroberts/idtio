@@ -57,7 +57,7 @@ function loadMap(data) {
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
-		scenes.game.interactives[data.pickups[i].label] = new Pickup(data.pickups[i], false);
+		scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -101,6 +101,7 @@ function draw() {
 		}
 	}
 }
+
 /* update happens on the server */
 function update() {
 	// for stats 

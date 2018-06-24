@@ -5,7 +5,7 @@ class Entity {
 		this.distance = params.distance;
 		this.msg = params.msg;
 		this.label = params.label;
-		this.playersInRange = []; // player is currently in range // do i need to know this?
+		this.playersInRange = []; 
 		this.type = params.type;
 		this.triggered = false;
 
@@ -45,12 +45,10 @@ class Entity {
 			}
 		}
 	}
-
-	displayInteractMessage(state, socket) {
-		socket.emit('display interact message', { label: this.label, type: this.type, state: state });
-	}
 }
 
+/* this shouldn't exist for one value also in super class 
+	leave for now if there's other stuff to add */
 class Pickup extends Entity {
 	constructor(params) {
 		super(params);

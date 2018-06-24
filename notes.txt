@@ -152,7 +152,6 @@
 	- animation interactions are part of main update
 - should all interactives be display to all users, or just the pickups
 	- go with all for now
-- stop player controls when interacting
 
 6.21.2018
 - front end should just worry about front end, turn of change state momentarily
@@ -162,20 +161,23 @@
 - animation state change vs position change
 - only send necessary package info
 	- raining change send player id + position every time
-
-	- can player keep reference to socket?
-- Game.width is really window.width .... 
-	- also don't really need to know Game.width on the client
 - move interact input to server .... 
-
+- entity basically is interactive since scenery doesnt exist on back end
 
 - need better name for interactive
-- entity basically is interactive since scenery doesnt exist on back end
+	- client - item - interactive - scenery
+
 - front end, sprite and animation classes, interactive, etc, extend
 - less anonymous functions
 
-- more map assets
 - player interactions
+
+- stop player controls when interacting
+	- not sure i care at this point
+- can player keep reference to socket?
+- Game.width is really window.width .... 
+	- also don't really need to know Game.width on the client
+- more map assets
 - skip drawing if sprite isn't in scene
 - fix reload errors
 - something to kick player off when they stop doing stuff
