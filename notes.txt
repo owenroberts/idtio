@@ -168,9 +168,20 @@
 	- client - item - interactive - scenery
 
 - front end, sprite and animation classes, interactive, etc, extend
+
+6.26.2018
+- using lines branch classy, merge to master at some point
 - less anonymous functions
 
+6.28.2018
+- hide the character interface
+- init pack
+
 - player interactions
+	- new flower
+	- flower animation for scratch
+	- player dialog options
+	- player animation to trigger
 
 - stop player controls when interacting
 	- not sure i care at this point
@@ -178,6 +189,7 @@
 - Game.width is really window.width .... 
 	- also don't really need to know Game.width on the client
 - more map assets
+- instructions
 - skip drawing if sprite isn't in scene
 - fix reload errors
 - something to kick player off when they stop doing stuff

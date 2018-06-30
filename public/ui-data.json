@@ -14,7 +14,7 @@
 		}
 	},
 	"scratch": {
-		"src": "/public/drawings/ui/scratch-ui.json",
+		"src": "/public/drawings/ui/scratch-selection.json",
 		"x": -120,
 		"y": -250,
 		"states": {
@@ -29,7 +29,7 @@
 		}
 	},
 	"cat": {
-		"src": "/public/drawings/ui/cat-ui.json",
+		"src": "/public/drawings/ui/cat-selection.json",
 		"x": -300,
 		"y": -250,
 		"states": {

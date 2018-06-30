@@ -7,8 +7,12 @@
 				"right": { "start": 3, "end": 7 },
 				"left": { "start": 7, "end": 11 },
 				"down": { "start": 11, "end": 13 },
-				"up": { "start": 13, "end": 15 }
+				"up": { "start": 13, "end": 15 },
+				"flower": { "start": 15, "end":  18 }
 			}
+		},
+		"bubble": {
+			"src": "/public/drawings/ui/scratch-interface.json"
 		}
 	},
 	"cat": {
@@ -22,6 +26,9 @@
 				"up": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 }
 			}
+		},
+		"bubble": {
+			"src": "/public/drawings/ui/cat-interface.json"
 		}
 	}
 }

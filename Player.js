@@ -1,7 +1,12 @@
-class Player {
+const Entity = require('./Entity');
+
+class Player extends Entity {
 	constructor(socket) {
-		this.x = 0;
-		this.y = 0;
+		super({
+			x: 0,
+			y: 0,
+			distance: 300
+		});
 		this.joinedGame = false;
 		this.input = {
 			right: false,
@@ -19,15 +24,17 @@ class Player {
 		this.resources = {
 			flower: []
 		}
+
+		/* not implemented */
 		this.updateAnimation = false;
 		this.updatePosition = false;
 	}
 
 	join(socket) {
 		if (this.character) {
+			this.joinedGame = true;
 			socket.emit('join game');
 			this.init(socket);
-			this.joinedGame = true;
 			return true;
 		} else {
 			socket.emit('msg', 'Please select a character');
@@ -75,6 +82,7 @@ class Player {
 		this.update();
 		return {
 			id: this.id,
+			character: this.character,
 			animationState: this.animationState,
 			x: this.x,
 			y: this.y

@@ -8,7 +8,8 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 const mapData = require('./public/map-data.json');
-const Entities = require('./Entity.js'); // don't love this var name
+const Interactive = require('./Interactive.js'); 
+const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
 
 app.set('port', 5000);
@@ -23,6 +24,7 @@ server.listen(5000, function() {
 });
 
 const DEBUG = true;
+let gameIsPlaying = false;
 let gameInterval;
 const characters = {
 	scratch: { isInUse: false },
@@ -31,10 +33,10 @@ const characters = {
 const players = {};
 const interactives = {};
 for (const i in mapData.interactives) {
-	interactives[mapData.interactives[i].label] = new Entities.Entity(mapData.interactives[i]);
+	interactives[mapData.interactives[i].label] = new Interactive(mapData.interactives[i]);
 }
 for (const i in mapData.pickups) {
-	interactives[mapData.pickups[i].label] = new Entities.Pickup(mapData.pickups[i]);
+	interactives[mapData.pickups[i].label] = new Pickup(mapData.pickups[i]);
 }
 
 function gameUpdate() {
@@ -46,6 +48,27 @@ function gameUpdate() {
 		const player = players[id];
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
+
+			for (const o in players) {
+				const other = players[o];
+				if (other.id != id && other.joinedGame) {
+					other.checkInRange(player, (msg) => {
+						const data = [
+							{
+								id: id,
+								character: player.character
+							},
+							{
+								id: other.id,
+								character: other.character
+							}
+						];
+						io.sockets.connected[id].emit('character interface',  data);
+					});
+				}
+			}
+
+			
 
 			for (const i in interactives) {
 				const interactive = interactives[i];
@@ -74,26 +97,43 @@ function gameUpdate() {
 			}
 		}
 	}
-	io.sockets.emit('update', {
-		players: players
-	});
+	console.log('game');
+	io.sockets.emit('update', data);
+}
+
+function initData() {
+	var data = {
+		players: {},
+		interactives: {}
+	}
+	for (const id in players) {
+		if (players[id].character) {
+			data.players[id] = players[id].getUpdate();
+			data.players[id].character = players[id].character;
+		}
+	}
+	for (const label in interactives) {
+		if (interactives[label].isPickup)
+			data.interactives[label] = interactives[label].getUpdate();
+	}
+	return data;
 }
 
 io.on('connection', function(socket) {
-	console.log('new', socket.id);
+	// console.log('new', socket.id);
 	players[socket.id] = new Player(socket);
+
+	socket.emit('init', initData());
 
 	/* select a character (need access to characters obj) */
 	socket.on('character selection', (character) => {
-		/* assign if character not being used */
-		if (!characters[character].isInUse && !this.character) {
+		if (!characters[character].isInUse) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
 			socket.emit('character chosen', character);
 		} else if (players[socket.id].character == character) {
 			socket.emit('msg', 'you have selected that character');
 		} else {
-			/* else need to message them */
 			socket.emit('msg', 'character not available');
 		}
 	});
@@ -104,20 +144,15 @@ io.on('connection', function(socket) {
 		if (joined) {
 			io.sockets.emit('add character', players[socket.id]);
 			/* if this is the first player to join start gameInterval */
-			if (Object.keys(players).length == 1) {
+			if (!gameIsPlaying) {
+				gameIsPlaying = true;
 				gameInterval = setInterval(gameUpdate, 1000 / 60);
-			} else { /* if not add the other players */
-				for (const id in players) {
-					if (id != socket.id && players[id].joinedGame)
-						socket.emit('add character', players[id]);
-				}
 			}
 		}
 	});
 
 	/* here bc needs access to players and interactives */
 	socket.on('trigger', (label) => {
-		console.log(label);
 		const i = interactives[label];
 		if (i.isPickup) {
 			if (!i.picked) {
@@ -134,7 +169,7 @@ io.on('connection', function(socket) {
 
 	/* player leaves */
 	socket.on('disconnect', function() {
-		console.log('remove', socket.id);
+		// console.log('remove', socket.id);
     	if (players[socket.id]) {
     		const p = players[socket.id];
     		if (p.character) {
@@ -153,8 +188,10 @@ io.on('connection', function(socket) {
     		delete players[socket.id];
     	}
     	/* if all players are gone stop gameInterval */
-    	if (Object.keys(players).length == 0)
+    	if (Object.keys(players).length == 0) {
 	    	clearInterval(gameInterval);
+	    	gameIsPlaying = false;
+    	}
   	});
 
 	/* chat */

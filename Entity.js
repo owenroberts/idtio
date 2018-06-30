@@ -3,11 +3,7 @@ class Entity {
 		this.x = params.x;
 		this.y = params.y;
 		this.distance = params.distance;
-		this.msg = params.msg;
-		this.label = params.label;
 		this.playersInRange = []; 
-		this.type = params.type;
-		this.triggered = false;
 
 		/* not sure this is the best way to do it */
 		this.isPickup = false;
@@ -47,17 +43,4 @@ class Entity {
 	}
 }
 
-/* this shouldn't exist for one value also in super class 
-	leave for now if there's other stuff to add */
-class Pickup extends Entity {
-	constructor(params) {
-		super(params);
-		this.picked = false;
-		this.isPickup = true;
-	}
-}
-
-module.exports = {
-	Entity: Entity,
-	Pickup: Pickup
-};
+module.exports = Entity;

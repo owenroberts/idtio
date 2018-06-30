@@ -23,9 +23,39 @@ function loadSplashScene(data) {
 		}
 	}
 
-	Game.letters = new Animation('/public/drawings/ui/letters.json');
+	Game.letters = new Animation("/public/drawings/ui/letters.json");
 	// Game.letters.debug = true;
 	Game.letters.load(false);
+
+	const map = { "a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25, "0":26, "1":27, "2":28, "3":29, "4":30, "5":31, "6":32, "7":33, "8":34, "9":35, ".":36, ",":37, ":":38, "?":39, "E":40, "F":41, "A":42, "S":43, "D":44, "W":45, "_left" :46, "_right": 47, "_up": 48, "_down": 49, "M": 50, "J": 51, "K": 52, "L": 53 }
+
+	for (const key in map) {
+		Game.letters.createNewState(key, map[key], map[key]);
+	}
+
+	Game.icons = {
+		flower: {
+			animation: new Animation("/public/drawings/ui/icon-flower.json", false),
+			key: "J"
+		},
+		skull: {
+			animation: new Animation("/public/drawings/ui/icon-skull.json", false),
+			key: "K"
+		}
+	};
+
+
+	for (const i in Game.icons) {
+		Game.icons[i].animation.load(false);
+		Game.icons[i].animation.states = {
+			"idle": { start: 0, end: 4 },
+			"over": { start: 4, end: 8 },
+			"select": { start: 8, end: 12 },
+			"unavailable": { start: 12, end: 16 },
+		}
+		Game.icons[i].animation.state = "idle";
+	}
+	
 
 	scenes.splash.texts['choose'] = new Text(10, 10, "choose a character:", 19);
 }
@@ -46,7 +76,6 @@ function loadMap(data) {
 }
 
 function start() {
-	loadSplashScene();
 
 	fetch('/public/ui-data.json')
 		.then(response =>  { return response.json() })
@@ -178,25 +207,28 @@ socket.on('id', (id) => {
 	user.id = id;
 });
 
+/* load init data */
+socket.on('init', (data) => {
+	for (const id in data.players) {
+		const player = data.players[id];
+		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
+		scenes.splash.ui[player.character].setChosen();
+	}
+	for (const label in data.interactives) {
+		if (data.interactives[label].picked)
+			scenes.game.interactives[label].animation.setState('end');
+	}
+});
+
+/* does this do anything? */
 socket.on('character chosen', (character) => {
 	scenes.splash.ui[character].select();
 });
 
 /* add character to scene, both user and others */
 socket.on('add character', (player) => {
-	const char = new Sprite(player.x, player.y);
-	// char.debug = true;
-	if (player.id = user.id) {
-		char.position.x = Game.width/2;
-		char.position.y = Game.height/2;
-	}
-	char.addAnimation(characterData[player.character].walk.src, () => {
-		if (player.id = user.id) 
-			char.center();
-	});
-	char.animation.states = characterData[player.character].walk.states;
-	char.animation.state = 'idle';
-	scenes.game.characters[player.character] = char;
+	var isPlayer = player.id == user.id;
+	scenes.game.characters[player.character] = new Character(player, characterData[player.character], isPlayer, false); 
 });
 
 socket.on('remove character', (character) => {
@@ -209,6 +241,7 @@ socket.on('join game', function() {
 
 /* recieve player position from server */
 socket.on('update', (data) => {
+	console.log(data);
 	if (currentScene == 'game') {
 		const offset = {
 			x: Game.width/2 - data.players[user.id].x,
@@ -216,7 +249,6 @@ socket.on('update', (data) => {
 		}
 		for (const id in data.players) {
 			const player = data.players[id];
-				
 			if (!scenes.game.characters[player.character].isInteracting)
 				scenes.game.characters[player.character].animation.setState(player.animationState);
 
@@ -258,6 +290,17 @@ socket.on('play character animation', (character, type) => {
 	});
 });
 
+socket.on('character interface', (players) => {
+	console.log(players);
+	for (let i = 0; i < players.length; i++) {
+		const p = players[i];
+		if (p.id == user.id)
+			user.interacting.state = true;
+		console.log(p.character);
+		scenes.game.characters[p.character].displayInterface = true;
+	}
+});
+
 socket.on('msg', (msg) => {
 	console.log(msg);
 });
@@ -294,4 +337,6 @@ chatInput.addEventListener('keydown', (ev) => {
 			socket.emit('send-chat', chatInput.value);
 		chatInput.value = '';
 	}
+	if (ev.which == 27)
+		chatInput.blur();
 });

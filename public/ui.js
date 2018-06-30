@@ -9,9 +9,13 @@ class UI extends Sprite {
 		this.animation.states = params.states;
 		this.animation.state = 'idle';
 	}
-
 	select() {
 		this.animation.setState('selected');
+		this.selected = true;
+
+	}
+	setChosen() {
+		this.animation.setState('active');
 		this.selected = true;
 	}
 	over(x, y) {

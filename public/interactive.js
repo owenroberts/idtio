@@ -29,4 +29,5 @@ class Interactive extends Item {
 			});
 		}
 	}
+	
 }

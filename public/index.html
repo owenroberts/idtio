@@ -21,6 +21,19 @@
 	<canvas id="lines">
 		How old is your dang computer???
 	</canvas>
+
+	<script>
+		/* fucked up debugging */
+		function logger(thing) {
+			if (thing.debug) {
+				for (let i = 1; i < arguments.length; i++){
+					console.log(arguments[i]);
+				}
+			}
+		}
+		window.LOG = logger;
+	</script>
+
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/public/lines/lib/cool/cool.js"></script>
 	<script src="/public/lines/game/game.js"></script>
@@ -28,6 +41,7 @@
 	<script src="/public/lines/game/animation.js"></script>
 	<script src="/public/lines/game/events.js"></script>
 	<script src="/public/item.js"></script>
+	<script src="/public/character.js"></script>
 	<script src="/public/interactive.js"></script>
 	<script src="/public/ui.js"></script>
 	<script src="/public/text.js"></script>

@@ -4,8 +4,23 @@
 			"label": "flower 0",
 			"type": "flower",
 			"src": "/public/drawings/pickups/flower-0.json",
-			"x": -200, 
+			"x": 500, 
 			"y": -300,
+			"distance": 200,
+			"msg": "E to pick up flower",
+			"wrap": 11,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3},
+				"end": {"start": 3, "end": 4}
+			}
+		},
+		{
+			"label": "flower 1",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-1.json",
+			"x": 800, 
+			"y": -400,
 			"distance": 200,
 			"msg": "E to pick up flower",
 			"wrap": 11,
@@ -36,7 +51,7 @@
 		{
 			"src": "/public/drawings/scenery/grass-0.json",
 			"x": -200,
-			"y": -400
+			"y": 100
 		},
 		{
 			"src": "/public/drawings/scenery/beach-0.json",
