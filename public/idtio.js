@@ -5,7 +5,6 @@ const scenes = {
 };
 let currentScene = 'splash';
 let characterData;
-let updateInterval;
 let user = {
 	interacting: {
 		state: false,
@@ -35,7 +34,7 @@ function loadSplashScene(data) {
 
 	Game.icons = {
 		flower: {
-			animation: new Animation("/public/drawings/ui/icon-flower.json", false),
+			animation: new Animation("/public/drawings/ui/icon-flower.json", true),
 			key: "J"
 		},
 		skull: {
@@ -235,13 +234,12 @@ socket.on('remove character', (character) => {
 	delete scenes.game.characters[character];
 });
 
-socket.on('join game', function() {
+socket.on('join game', () => {
 	currentScene = 'game';
 });
 
 /* recieve player position from server */
 socket.on('update', (data) => {
-	console.log(data);
 	if (currentScene == 'game') {
 		const offset = {
 			x: Game.width/2 - data.players[user.id].x,
@@ -249,6 +247,7 @@ socket.on('update', (data) => {
 		}
 		for (const id in data.players) {
 			const player = data.players[id];
+			// console.log(player.character);
 			if (!scenes.game.characters[player.character].isInteracting)
 				scenes.game.characters[player.character].animation.setState(player.animationState);
 
@@ -290,14 +289,24 @@ socket.on('play character animation', (character, type) => {
 	});
 });
 
-socket.on('character interface', (players) => {
-	console.log(players);
-	for (let i = 0; i < players.length; i++) {
-		const p = players[i];
+socket.on('update resources', (player) => {
+	scenes.game.characters[player.character].resources = player.resources;
+});
+
+socket.on('character interface', (data) => {
+	for (let i = 0; i < data.players.length; i++) {
+		const p = data.players[i];
 		if (p.id == user.id)
-			user.interacting.state = true;
-		console.log(p.character);
-		scenes.game.characters[p.character].displayInterface = true;
+			user.interacting.state = data.state;
+		if (data.state) {
+			scenes.game.characters[p.character].displayInterface = data.state;
+			scenes.game.characters[p.character].interfaceBubble.setState('forward');
+		} else {
+			scenes.game.characters[p.character].interfaceBubble.setState('reverse');
+			scenes.game.characters[p.character].interfaceBubble.playOnce(() => {
+				scenes.game.characters[p.character].displayInterface = data.state;
+			});
+		}
 	}
 });
 
@@ -307,8 +316,8 @@ socket.on('msg', (msg) => {
 
 socket.on('disconnect', () => {
 	console.log('goodbye');
-	setTimeout(location.reload.bind(location), 1000);
-	clearInterval(updateInterval);
+	socket.disconnect(); /* fuck me  */
+	setTimeout(location.reload.bind(location), 1); // can be longer for debugging
 });
 
 /* chat */

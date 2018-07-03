@@ -181,7 +181,17 @@
 	- new flower
 	- flower animation for scratch
 	- player dialog options
+
+6.29.2018
+- fix reload errors
+
+7.2.2018
 	- player animation to trigger
+	- can't play full state for icons because it switches between multiple ones ...
+		- either fix with new wiggle version
+		- or write some code to make this work ...
+
+
 
 - stop player controls when interacting
 	- not sure i care at this point
@@ -191,7 +201,6 @@
 - more map assets
 - instructions
 - skip drawing if sprite isn't in scene
-- fix reload errors
 - something to kick player off when they stop doing stuff
 - map borders - map edges
 - ui data

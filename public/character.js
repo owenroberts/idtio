@@ -11,45 +11,43 @@ class Character extends Sprite {
 		this.addAnimation(data.walk.src, () => {
 			if (isPlayer)
 				this.center();
-
 			this.animation.states = data.walk.states;
 			this.animation.state = 'idle';
-
-			const bubble = new Sprite(this.position.x, this.position.y);
-			// bubble.debug = true;
-			bubble.addAnimation(data.bubble.src, () => {
-				// bubble.center();
-				bubble.position.x -= this.width/2;
-				bubble.position.y -= this.height/3;
-				// bubble.animation.isPlaying = false;
-				bubble.animation.loop = false;
-			});
-			this.interfaceBubble = bubble;
-			this.displayInterface = false;
 		});
+
+		this.interfaceBubble = new Animation(data.bubble.src, false);
+		this.interfaceBubble.load(false, () => {
+			this.interfaceBubble.loop = false;
+			this.interfaceBubble.states = data.bubble.states;
+		});
+
+		this.resources = params.resources;
 	}
 
 	display() {
 		super.display();
 		if (this.interfaceBubble && this.displayInterface) {
-			this.interfaceBubble.display();
+			let x = this.position.x - this.width / 4;
+			let y = this.position.y - this.height / 4;
+			this.interfaceBubble.draw(x, y);
 			let i = 0;
+			x += 20;
+			y += 20;
 			for (const key in Game.icons) {
-				let x = 20 + i * 60;
-				let y = 20;
-				Game.icons[key].animation.draw(
-					this.interfaceBubble.position.x + x, 
-					this.interfaceBubble.position.y + y
-				);
 				x += 40;
-				y += 100;
+				
+				if (this.resources[key].length > 0)
+					Game.icons[key].animation.setState('idle')
+				else
+					Game.icons[key].animation.setState('unavailable')
+				Game.icons[key].animation.draw(x, y);
+				
 				Game.letters.setState(Game.icons[key].key);
-				Game.letters.draw(
-					this.interfaceBubble.position.x + x, 
-					this.interfaceBubble.position.y + y
-				);
+				Game.letters.draw(x, y + 100);
 				i++;
 			}
 		}
 	}
+
+
 }

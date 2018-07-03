@@ -12,7 +12,11 @@
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/scratch-interface.json"
+			"src": "/public/drawings/ui/scratch-interface.json",
+			"states": {
+				"forward": { "start": 0, "end": 19 },
+				"reverse": { "start": 19, "end": 33 }
+			}
 		}
 	},
 	"cat": {
@@ -28,7 +32,11 @@
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/cat-interface.json"
+			"src": "/public/drawings/ui/cat-interface.json",
+			"states": {
+				"forward": { "start": 0, "end": 16 },
+				"reverse": { "start": 17, "end": 28 }
+			}
 		}
 	}
 }

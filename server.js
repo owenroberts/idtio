@@ -53,22 +53,23 @@ function gameUpdate() {
 				const other = players[o];
 				if (other.id != id && other.joinedGame) {
 					other.checkInRange(player, (msg) => {
-						const data = [
-							{
-								id: id,
-								character: player.character
-							},
-							{
-								id: other.id,
-								character: other.character
-							}
-						];
+						const data = {
+							players: [
+								{
+									id: id,
+									character: player.character
+								},
+								{
+									id: other.id,
+									character: other.character
+								}
+							],
+							state: msg == 'entered' ? true : false
+						};
 						io.sockets.connected[id].emit('character interface',  data);
 					});
 				}
 			}
-
-			
 
 			for (const i in interactives) {
 				const interactive = interactives[i];
@@ -89,6 +90,7 @@ function gameUpdate() {
 						}  else if (msg == 'picked up') {
 							io.sockets.emit('play interact animation', interactive.label);
 							io.sockets.emit('play character animation', player.character, interactive.type);
+							io.sockets.emit('update resources', player);
 						} else if (msg == 'interacted') {
 							io.sockets.emit('play interact animation', interactive.label);
 						}
@@ -97,7 +99,6 @@ function gameUpdate() {
 			}
 		}
 	}
-	console.log('game');
 	io.sockets.emit('update', data);
 }
 
@@ -109,7 +110,8 @@ function initData() {
 	for (const id in players) {
 		if (players[id].character) {
 			data.players[id] = players[id].getUpdate();
-			data.players[id].character = players[id].character;
+			// data.players[id].character = players[id].character;
+			data.players[id].resources = players[id].resources;
 		}
 	}
 	for (const label in interactives) {
@@ -120,7 +122,7 @@ function initData() {
 }
 
 io.on('connection', function(socket) {
-	// console.log('new', socket.id);
+	console.log('new', socket.id);
 	players[socket.id] = new Player(socket);
 
 	socket.emit('init', initData());
@@ -160,6 +162,8 @@ io.on('connection', function(socket) {
 				io.sockets.emit('play interact animation', label);
 				players[socket.id].isInteracting = true;
 				players[socket.id].resources[interactives[label].type].push(label);
+
+				io.sockets.emit('update resources', players[socket.id]);
 				socket.emit('play character animation', players[socket.id].character, i.type);
 			}
 		} else {

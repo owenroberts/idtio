@@ -12,7 +12,6 @@ class UI extends Sprite {
 	select() {
 		this.animation.setState('selected');
 		this.selected = true;
-
 	}
 	setChosen() {
 		this.animation.setState('active');

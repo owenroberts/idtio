@@ -22,7 +22,8 @@ class Player extends Entity {
 		// this.socket = socket; /* test this again */
 		socket.emit('id', socket.id);
 		this.resources = {
-			flower: []
+			flower: [],
+			skull: []
 		}
 
 		/* not implemented */
