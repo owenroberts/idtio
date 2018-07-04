@@ -76,6 +76,7 @@ function gameUpdate() {
 				if (!interactive.picked) {
 					interactive.checkInRange(player, (msg) => {
 						if (msg == 'exited') {
+							player.isInteracting = false;
 							io.sockets.connected[id].emit('display interact message', {
 								label: interactive.label, 
 								type: interactive.type, 

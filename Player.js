@@ -75,6 +75,8 @@ class Player extends Entity {
 			}
 			if (this.input.interact) {
 				this.isInteracting = true;
+			} else {
+				this.isInteracting = false;
 			}
 		// }
 	}

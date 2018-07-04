@@ -138,7 +138,6 @@ function keyDown(key) {
 		case 'down':
 			socket.emit('key', { input:'down', state: true} );
 			break;
-
 		case 'e':
 			socket.emit('key', { input: 'interact', state: true} );
 			break;

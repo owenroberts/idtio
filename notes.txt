@@ -191,6 +191,9 @@
 		- either fix with new wiggle version
 		- or write some code to make this work ...
 
+7.3.2018
+- picks up two flowers at once
+- picks up flower before entering
 
 
 - stop player controls when interacting
