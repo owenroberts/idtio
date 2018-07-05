@@ -22,6 +22,8 @@ class Character extends Sprite {
 		});
 
 		this.resources = params.resources;
+		this.displayStory = false;
+		this.stories = {};
 	}
 
 	display() {
@@ -36,18 +38,40 @@ class Character extends Sprite {
 			for (const key in Game.icons) {
 				x += 40;
 				
-				if (this.resources[key].length > 0)
+				if (this.resources[key].length > 0) {
 					Game.icons[key].animation.setState('idle')
+					Game.letters.setState(Game.icons[key].key);
+					Game.letters.draw(x, y + 100);
+				}
 				else
 					Game.icons[key].animation.setState('unavailable')
 				Game.icons[key].animation.draw(x, y);
 				
-				Game.letters.setState(Game.icons[key].key);
-				Game.letters.draw(x, y + 100);
+				
 				i++;
 			}
 		}
+		if (this.displayStory) {
+			this.stories[this.currentStory].draw(this.position.x, this.position.y);
+		}
 	}
 
-
+	playStory(src) {
+		if (this.stories[src]) {
+			this.displayStory = true;
+			this.currentStory = src;
+			this.stories[src].playOnce(() => {
+				this.displayStory = false;
+			});
+		} else {
+			this.stories[src] = new Animation('/public/drawings/story/' + src + '.json', false);
+			this.stories[src].load(false, () => {
+				this.displayStory = true;
+				this.currentStory = src;
+				this.stories[src].playOnce(() => {
+					this.displayStory = false;
+				});
+			});
+		}
+	}
 }

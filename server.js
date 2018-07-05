@@ -7,7 +7,7 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
-const mapData = require('./public/map-data.json');
+const mapData = require('./public/data/map-data.json');
 const Interactive = require('./Interactive.js'); 
 const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
@@ -17,6 +17,10 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.get('/map', function(request, response){
+	response.sendFile(path.join(__dirname, 'public/map/index.html'));
 });
 
 server.listen(5000, function() {
@@ -55,18 +59,31 @@ function gameUpdate() {
 					other.checkInRange(player, (msg) => {
 						const data = {
 							players: [
-								{
-									id: id,
-									character: player.character
-								},
-								{
-									id: other.id,
-									character: other.character
-								}
-							],
-							state: msg == 'entered' ? true : false
+								{ id: id, character: player.character },
+								{ id: other.id, character: other.character }
+							]
 						};
-						io.sockets.connected[id].emit('character interface',  data);
+						if (msg == 'entered' || msg == 'exited') {
+							data.state = msg == 'entered' ? true : false
+							player.isInteracting = 'entered' ? true : false;
+							other.isInteracting = 'entered' ? true : false;
+							player.talking = false;
+							other.talking = false;
+							io.sockets.emit('character interface',  data);
+						} else if (msg == 'talking') {
+							if (player.talking && other.talking) {
+								data.state = {};
+								data.state[id] = player.character + '-' + other.character + '-' + player.	talking + '-' + other.talking;
+								data.state[other.id] = other.character + '-' + player.character + '-' + other	.talking + '-' + player.talking;
+								/* is this crazy?? */
+								io.sockets.emit('character talk', data);
+								player.resources[player.talking].shift();
+								other.resources[other.talking].shift();
+								player.talking = false;
+								other.talking = false;
+
+							}
+						}
 					});
 				}
 			}
@@ -145,6 +162,7 @@ io.on('connection', function(socket) {
 	socket.on('join', () => {
 		const joined = players[socket.id].join(socket);
 		if (joined) {
+			socket.emit('init', initData()); /* for flowers */
 			io.sockets.emit('add character', players[socket.id]);
 			/* if this is the first player to join start gameInterval */
 			if (!gameIsPlaying) {
@@ -154,23 +172,6 @@ io.on('connection', function(socket) {
 		}
 	});
 
-	/* here bc needs access to players and interactives */
-	socket.on('trigger', (label) => {
-		const i = interactives[label];
-		if (i.isPickup) {
-			if (!i.picked) {
-				i.picked = true;
-				io.sockets.emit('play interact animation', label);
-				players[socket.id].isInteracting = true;
-				players[socket.id].resources[interactives[label].type].push(label);
-
-				io.sockets.emit('update resources', players[socket.id]);
-				socket.emit('play character animation', players[socket.id].character, i.type);
-			}
-		} else {
-			io.sockets.emit('play interact animation', label);
-		}
-	});
 
 	/* player leaves */
 	socket.on('disconnect', function() {

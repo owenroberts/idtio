@@ -24,11 +24,17 @@ class Player extends Entity {
 		this.resources = {
 			flower: [],
 			skull: []
+		};
+		this.talking = false;
+		this.resourceKey = {
+			j: "flower",
+			k: "skull"
 		}
 
 		/* not implemented */
 		this.updateAnimation = false;
 		this.updatePosition = false;
+
 	}
 
 	join(socket) {
@@ -52,6 +58,14 @@ class Player extends Entity {
 		socket.on('done interacting', () => {
 			this.isInteracting = false;
 		});
+	}
+
+	hasResource(key) {
+		return this.resources[this.resourceKey[key]].length > 0;
+	}
+
+	getResource(key) {
+		return this.resourceKey[key];
 	}
 	
 	update() {
@@ -78,6 +92,9 @@ class Player extends Entity {
 			} else {
 				this.isInteracting = false;
 			}
+			if (this.input.talk && this.hasResource(this.input.talk))
+				this.talking = this.getResource(this.input.talk);
+
 		// }
 	}
 

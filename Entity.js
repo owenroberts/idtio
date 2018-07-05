@@ -32,6 +32,8 @@ class Entity {
 					} else {
 						callback('interacted');
 					}
+				} else if (player.talking) {
+					callback('talking'); /* problem for interactives ? */
 				}
 			}
 		} else {

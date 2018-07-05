@@ -172,6 +172,7 @@
 6.26.2018
 - using lines branch classy, merge to master at some point
 - less anonymous functions
+- ui data
 
 6.28.2018
 - hide the character interface
@@ -192,22 +193,26 @@
 		- or write some code to make this work ...
 
 7.3.2018
-- picks up two flowers at once
 - picks up flower before entering
 
+
+7.5.2018
+- more map assets
+- skip drawing if sprite isn't in scene
+
+- instructions
+- map borders - map edges
+
+- is interacting conflicting with char and pickup 
 
 - stop player controls when interacting
 	- not sure i care at this point
 - can player keep reference to socket?
 - Game.width is really window.width .... 
 	- also don't really need to know Game.width on the client
-- more map assets
-- instructions
-- skip drawing if sprite isn't in scene
 - something to kick player off when they stop doing stuff
-- map borders - map edges
-- ui data
+- window resize
+- picks up two flowers at once
 - figure out center without calling it over and over
 	- for ui, interactive classes, could just center the perm x
 	- for sprite could introduce origin or offest value
-- window resize

@@ -141,6 +141,11 @@ function keyDown(key) {
 		case 'e':
 			socket.emit('key', { input: 'interact', state: true} );
 			break;
+		case 'j':
+		case 'k':
+		case 'l':
+			socket.emit('key', { input: 'talk', state: key });
+			break;
 	}
 }
 
@@ -164,6 +169,11 @@ function keyUp(key) {
 			break;
 		case 'e':
 			socket.emit('key', { input: 'interact', state: false} );
+			break;
+		case 'j':
+		case 'k':
+		case 'l':
+			socket.emit('key', { input: 'talk', state: false });
 			break;
 	}
 }
@@ -275,7 +285,8 @@ socket.on('display interact message', (params) => {
 });
 
 socket.on('play interact animation', (label) => {
-	scenes[currentScene].interactives[label].playInteractState();
+	if (currentScene == 'game')
+		scenes[currentScene].interactives[label].playInteractState();
 });
 
 socket.on('play character animation', (character, type) => {
@@ -306,6 +317,13 @@ socket.on('character interface', (data) => {
 				scenes.game.characters[p.character].displayInterface = data.state;
 			});
 		}
+	}
+});
+
+socket.on('character talk', (data) => {
+	for (let i = 0; i < data.players.length; i++) {
+		const p = data.players[i];
+		scenes.game.characters[p.character].playStory(data.state[p.id]);
 	}
 });
 

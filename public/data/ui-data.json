@@ -15,7 +15,7 @@
 	},
 	"scratch": {
 		"src": "/public/drawings/ui/scratch-selection.json",
-		"x": 300,
+		"x": 100,
 		"y": -250,
 		"states": {
 			"idle": { "start": 0, "end": 3 },
@@ -30,7 +30,7 @@
 	},
 	"cat": {
 		"src": "/public/drawings/ui/cat-selection.json",
-		"x": 0,
+		"x": -100,
 		"y": -250,
 		"states": {
 			"idle": { "start": 0, "end": 1 },
