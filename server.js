@@ -36,6 +36,7 @@ const characters = {
 };
 const players = {};
 const interactives = {};
+
 for (const i in mapData.interactives) {
 	interactives[mapData.interactives[i].label] = new Interactive(mapData.interactives[i]);
 }

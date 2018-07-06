@@ -72,19 +72,22 @@ function loadMap(data) {
 	for (let i = 0; i < data.scenery.length; i++) {
 		scenes.game.scenery.push( new Item(data.scenery[i], false) );
 	}
+
+	scenes.game.scenery[0].debug = true;
+	scenes.game.scenery[0].animation.debug = true;
 }
 
 function start() {
 
-	fetch('/public/ui-data.json')
+	fetch('/public/data/ui-data.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadSplashScene(json));
 
-	fetch('/public/map-data.json')
+	fetch('/public/data/map-data.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadMap(json));
 
-	fetch('/public/character-data.json')
+	fetch('/public/data/character-data.json')
 		.then(response => { return response.json() })
 		.then(json => {
 			characterData = json;

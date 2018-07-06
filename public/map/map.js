@@ -52,7 +52,7 @@ function draw() {
 }
 
 function mouseClicked(x, y) {
-	console.log('"x:"'+x+'",y:""'+y+'"');
+	console.log('"x":'+x+', "y":'+y);
 }
 
 const offset = {
@@ -61,8 +61,6 @@ const offset = {
 	dragged: false,
 	dragStart: null
 }
-
-
 
 function mouseMoved(x, y) {
 	offset.px = x;
@@ -84,20 +82,19 @@ function mouseDown(x, y) {
 
 function mouseUp(x, y) {
 	offset.dragStart = null;
-	// if (!offset.dragged)
-		// zoom(ev.)
 }
 
 Game.init(window.innerWidth, window.innerHeight, 10, false);
 
 trackTransforms(Game.ctx);
-const scaleFactor = 1.1;
+const scaleFactor = 1.05;
 function zoom(clicks) {
 	const pt = Game.ctx.transformedPoint(offset.px, offset.py);
 	Game.ctx.translate(pt.x,pt.y);
 	const factor = Math.pow(scaleFactor, clicks);
 	Game.ctx.scale(factor, factor);
 	Game.ctx.translate(-pt.x, -pt.y);
+	Game.ctx.miterLimit = 1;
 	draw();
 }
 

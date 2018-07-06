@@ -2,11 +2,7 @@ const Entity = require('./Entity');
 
 class Player extends Entity {
 	constructor(socket) {
-		super({
-			x: 0,
-			y: 0,
-			distance: 300
-		});
+		super({ x: 0, y: 0, distance: 300 });
 		this.joinedGame = false;
 		this.input = {
 			right: false,
@@ -14,6 +10,12 @@ class Player extends Entity {
 			left: false,
 			down: false,
 			interact: false
+		};
+		this.bounds = {
+			top: -4096,
+			bottom: 4096,
+			left: -8192,
+			right: 8192
 		};
 		this.speed = 5;
 		this.animationState = 'idle';
@@ -29,12 +31,11 @@ class Player extends Entity {
 		this.resourceKey = {
 			j: "flower",
 			k: "skull"
-		}
+		};
 
 		/* not implemented */
 		this.updateAnimation = false;
 		this.updatePosition = false;
-
 	}
 
 	join(socket) {
@@ -69,22 +70,27 @@ class Player extends Entity {
 	}
 	
 	update() {
+
 		// if (!this.isInteracting) {
 			this.animationState = 'idle';
 			if (this.input.up) {
-				this.y -= this.speed;
+				if (this.y > this.bounds.top)
+					this.y -= this.speed;
 				this.animationState = 'up';
 			}
 			if (this.input.down) {
-				this.y += this.speed;
+				if (this.y < this.bounds.bottom)
+					this.y += this.speed;
 				this.animationState = 'down';
 			}
 			if (this.input.right) {
-				this.x += this.speed;
+				if (this.x < this.bounds.right)
+					this.x += this.speed;
 				this.animationState = 'right';
 			}
 			if (this.input.left) {
-				this.x -= this.speed;
+				if (this.x > this.bounds.left)
+					this.x -= this.speed;
 				this.animationState = 'left';
 			}
 			if (this.input.interact) {

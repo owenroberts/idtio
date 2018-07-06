@@ -27,32 +27,37 @@ class Character extends Sprite {
 	}
 
 	display() {
-		super.display();
-		if (this.interfaceBubble && this.displayInterface) {
-			let x = this.position.x - this.width / 4;
-			let y = this.position.y - this.height / 4;
-			this.interfaceBubble.draw(x, y);
-			let i = 0;
-			x += 20;
-			y += 20;
-			for (const key in Game.icons) {
-				x += 40;
-				
-				if (this.resources[key].length > 0) {
-					Game.icons[key].animation.setState('idle')
-					Game.letters.setState(Game.icons[key].key);
-					Game.letters.draw(x, y + 100);
+		if (this.position.x + this.width > 0 && 
+			this.position.y + this.height > 0 &&
+			this.position.x < Game.width &&
+			this.position.y < Game.height) {
+			super.display();
+			if (this.interfaceBubble && this.displayInterface) {
+				let x = this.position.x - this.width / 4;
+				let y = this.position.y - this.height / 4;
+				this.interfaceBubble.draw(x, y);
+				let i = 0;
+				x += 20;
+				y += 20;
+				for (const key in Game.icons) {
+					x += 40;
+					
+					if (this.resources[key].length > 0) {
+						Game.icons[key].animation.setState('idle')
+						Game.letters.setState(Game.icons[key].key);
+						Game.letters.draw(x, y + 100);
+					}
+					else
+						Game.icons[key].animation.setState('unavailable')
+					Game.icons[key].animation.draw(x, y);
+					
+					
+					i++;
 				}
-				else
-					Game.icons[key].animation.setState('unavailable')
-				Game.icons[key].animation.draw(x, y);
-				
-				
-				i++;
 			}
-		}
-		if (this.displayStory) {
-			this.stories[this.currentStory].draw(this.position.x, this.position.y);
+			if (this.displayStory) {
+				this.stories[this.currentStory].draw(this.position.x, this.position.y);
+			}
 		}
 	}
 

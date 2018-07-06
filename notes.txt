@@ -197,11 +197,21 @@
 
 
 7.5.2018
-- more map assets
+7.6.2018
+- map borders - map edges
+
 - skip drawing if sprite isn't in scene
 
+
+- wiggle should be smaller increments
+- possible separate x and y wiggle
+- experiment with speed and effects
+
+- more map assets
+
+
+
 - instructions
-- map borders - map edges
 
 - is interacting conflicting with char and pickup 
 

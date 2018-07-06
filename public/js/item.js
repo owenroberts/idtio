@@ -13,6 +13,14 @@ class Item extends Sprite {
 		}
 	}
 
+	display() {
+		if (this.position.x + this.width > 0 && 
+			this.position.y + this.height > 0 &&
+			this.position.x < Game.width &&
+			this.position.y < Game.height)
+			super.display();
+	}
+
 	update(offset) {
 		this.position.x = this.x + offset.x;
 		this.position.y = this.y + offset.y;

@@ -29,13 +29,59 @@
 				"interact": { "start": 1, "end": 3},
 				"end": {"start": 3, "end": 4}
 			}
+		},
+		{
+			"label": "flower 2",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-2.json",
+			"x": 200, 
+			"y": -600,
+			"distance": 200,
+			"msg": "E to pick up flower",
+			"wrap": 11,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3 },
+				"end": {"start": 3, "end": 4 }
+			}
+		},
+		{
+			"label": "flower 3",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-3.json",
+			"x": 600, 
+			"y": -200,
+			"distance": 200,
+			"msg": "E to pick up flower",
+			"wrap": 11,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3},
+				"end": {"start": 3, "end": 4}
+			}
+		},
+		{
+			"label": "flower 4",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-4.json",
+			"x": 100, 
+			"y": -400,
+			"distance": 200,
+			"msg": "E to pick up flower",
+			"wrap": 11,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3 },
+				"end": {"start": 3, "end": 4 }
+			}
 		}
+
 	],
 	"interactives": [
 		{
 			"label": "tree of introduction",
 			"type": "interactive",
-			"src": "/public/drawings/interactives/palm-0.json",
+			"src": "/public/drawings/interactives/palm-intro.json",
 			"x": 500,
 			"y": 100,
 			"distance": 300,
@@ -48,15 +94,15 @@
 		}
 	],
 	"scenery": [
-		{
-			"src": "/public/drawings/scenery/grass-0.json",
-			"x": -200,
-			"y": 100
-		},
-		{
-			"src": "/public/drawings/scenery/beach-0.json",
-			"x": -500,
-			"y": 500
-		}
+
+		{ "src": "/public/drawings/scenery/grass-0.json", "x": -200, "y": 100 },
+		{ "src": "/public/drawings/scenery/grass-1.json", "x": -300, "y": 200 },
+		{ "src": "/public/drawings/scenery/grass-2.json", "x": 100, "y": 300 },
+		{ "src": "/public/drawings/scenery/grass-3.json", "x": 200, "y": 400 },
+		{ "src": "/public/drawings/scenery/grass-4.json", "x": 700, "y": 100 },
+
+		{ "src": "/public/drawings/scenery/ocean-0.json", "x": -1000, "y": -4096 },
+		{ "src": "/public/drawings/scenery/ocean-1.json", "x": 0, "y": -4096 },
+		{ "src": "/public/drawings/scenery/ocean-2.json", "x": 1000, "y": -4096 }
 	]
 }
