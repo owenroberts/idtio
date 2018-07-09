@@ -14,10 +14,13 @@ class Item extends Sprite {
 	}
 
 	display() {
+		/* could this be permanent to sprite.js in Game ? */
 		if (this.position.x + this.width > 0 && 
 			this.position.y + this.height > 0 &&
 			this.position.x < Game.width &&
 			this.position.y < Game.height)
+			super.display();
+		else if (Game.map) // temp fix
 			super.display();
 	}
 

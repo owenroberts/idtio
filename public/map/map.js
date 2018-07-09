@@ -3,6 +3,7 @@ const map = {
 	pickups: {},
 	scenery: []
 };
+Game.map = true;
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
