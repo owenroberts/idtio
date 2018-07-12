@@ -199,11 +199,34 @@
 7.5.2018
 7.6.2018
 - map borders - map edges
-
 - skip drawing if sprite isn't in scene
-
-
 - wiggle should be smaller increments
+
+7.9.2018
+- need ocean coverage
+- ocean would be better at the bottom maybe
+
+7.10.2018
+- starting first interaction
+- need spreadsheet of dialogs
+- ui join, instructions, sound, weather
+- lines - focus the canvas - shift c - different fix, only ignoring key for text type
+- lines - missing key commands
+- lines - pop lines from selected drawings - integrate with regular remove segment ? 
+- lines - see all drawings - add and subtract
+- lines - better wiggling
+- lines - change layer color
+- lines - maybe a better method is appending the drawing to Lines.lines
+	- end up with two copies of the drawing ... 
+	- need a better way of using panels
+	- will worry about it later !
+
+7.11.2018
+- get rid of bubbles when talking
+- problems with sync
+- need a system to do dialog, too crasy to have 1000 frame dialogs
+- maybe use text as back up .... 
+
 - possible separate x and y wiggle
 - experiment with speed and effects
 

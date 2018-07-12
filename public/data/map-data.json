@@ -101,7 +101,14 @@
 		{ "src": "/public/drawings/scenery/grass-3.json", "x": 200, "y": 400 },
 		{ "src": "/public/drawings/scenery/grass-4.json", "x": 700, "y": 100 },
 
-		{ "src": "/public/drawings/scenery/beach-0.json", "x": -1000, "y": -3600 },
-		{ "src": "/public/drawings/scenery/ocean-0.json", "x": -1000, "y": -4096 }
+		{ "src": "/public/drawings/scenery/beach-0.json", "x": 0, "y": -3600 },
+		{ "src": "/public/drawings/scenery/beach-1.json", "x": -1012, "y": -3600 },
+		
+		{ "src": "/public/drawings/scenery/ocean-0.json", "x": 0, "y": -4296 },
+		{ "src": "/public/drawings/scenery/ocean-1.json", "x": 500, "y": -3896 },
+		{ "src": "/public/drawings/scenery/ocean-2.json", "x": -1000, "y": -4096 }
+		
+
+
 	]
 }

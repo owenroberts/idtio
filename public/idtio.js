@@ -19,7 +19,7 @@ function loadSplashScene(data) {
 		scenes.splash.ui[key] = new UI(ui, false);
 		scenes.splash.ui[key].callback = function() {
 			socket.emit(ui.callback.route, ui.callback.message);
-		}
+		};
 	}
 
 	Game.letters = new Animation("/public/drawings/ui/letters.json");
@@ -56,7 +56,7 @@ function loadSplashScene(data) {
 	}
 	
 
-	scenes.splash.texts['choose'] = new Text(10, 10, "choose a character:", 19);
+	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19);
 }
 
 function loadMap(data) {
@@ -72,9 +72,6 @@ function loadMap(data) {
 	for (let i = 0; i < data.scenery.length; i++) {
 		scenes.game.scenery.push( new Item(data.scenery[i], false) );
 	}
-
-	scenes.game.scenery[0].debug = true;
-	scenes.game.scenery[0].animation.debug = true;
 }
 
 function start() {
@@ -184,7 +181,7 @@ function keyUp(key) {
 function mouseClicked(x, y) {
 	for (const ui in scenes[currentScene].ui) {
 		const sprite = scenes[currentScene].ui[ui];
-		sprite.event(x, y);
+		// sprite.event(x, y);
 	}
 }
 
@@ -205,7 +202,7 @@ function mouseDown(x, y) {
 function mouseUp(x, y) {
 	for (const ui in scenes[currentScene].ui) {
 		const sprite = scenes[currentScene].ui[ui];
-		sprite.down(x, y);
+		sprite.up(x, y);
 	}
 }
 

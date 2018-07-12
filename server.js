@@ -32,7 +32,8 @@ let gameIsPlaying = false;
 let gameInterval;
 const characters = {
 	scratch: { isInUse: false },
-	cat: { isInUse: false }
+	cat: { isInUse: false },
+	pig: { isInUse: false }
 };
 const players = {};
 const interactives = {};
@@ -143,7 +144,6 @@ function initData() {
 io.on('connection', function(socket) {
 	console.log('new', socket.id);
 	players[socket.id] = new Player(socket);
-
 	socket.emit('init', initData());
 
 	/* select a character (need access to characters obj) */
