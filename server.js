@@ -54,6 +54,12 @@ function gameUpdate() {
 		const player = players[id];
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
+			if (player.storyInput) {
+				io.sockets.emit('story input', {
+					character: player.character, 
+					type: player.storyInput
+				});
+			}
 
 			for (const o in players) {
 				const other = players[o];
@@ -66,25 +72,27 @@ function gameUpdate() {
 							]
 						};
 						if (msg == 'entered' || msg == 'exited') {
-							data.state = msg == 'entered' ? true : false
-							player.isInteracting = 'entered' ? true : false;
-							other.isInteracting = 'entered' ? true : false;
-							player.talking = false;
-							other.talking = false;
-							io.sockets.emit('character interface',  data);
+							if (!player.storyInput && !other.storyInput) {
+								data.state = msg == 'entered' ? true : false
+								// player.isInteracting = 'entered' ? true : false;
+								// other.isInteracting = 'entered' ? true : false;
+								player.storyInput = false;
+								other.storyInput = false;
+								io.sockets.emit('character interface',  data);
+							}
 						} else if (msg == 'talking') {
-							if (player.talking && other.talking) {
+							if (player.storyInput && other.storyInput) {
 								data.state = {};
-								data.state[id] = player.character + '-' + other.character + '-' + player.	talking + '-' + other.talking;
-								data.state[other.id] = other.character + '-' + player.character + '-' + other	.talking + '-' + player.talking;
+								data.state[id] = player.character + '-' + other.character + '-' + player.	storyInput + '-' + other.storyInput;
+								data.state[other.id] = other.character + '-' + player.character + '-' + other.storyInput + '-' + player.storyInput;
 								/* is this crazy?? */
 								io.sockets.emit('character talk', data);
-								player.resources[player.talking].shift();
-								other.resources[other.talking].shift();
+								player.resources[player.storyInput].shift();
+								other.resources[other.storyInput].shift();
 								io.sockets.emit('update resources', player);
 								io.sockets.emit('update resources', other);
-								player.talking = false;
-								other.talking = false;
+								player.storyInput = false;
+								other.storyInput = false;
 							}
 						}
 					});
@@ -151,7 +159,6 @@ io.on('connection', function(socket) {
 
 	/* select a character (need access to characters obj) */
 	socket.on('character selection', (character) => {
-		console.log(character);
 		if (!characters[character].isInUse) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;

@@ -32,7 +32,7 @@ class Entity {
 					} else {
 						callback('interacted');
 					}
-				} else if (player.talking) {
+				} else if (player.storyInput) {
 					callback('talking'); /* problem for interactives ? */
 				}
 			}

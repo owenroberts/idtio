@@ -46,10 +46,10 @@ function loadSplashScene(data) {
 	for (const i in Game.icons) {
 		Game.icons[i].animation.load(false);
 		Game.icons[i].animation.states = {
-			"idle": { start: 0, end: 4 },
-			"over": { start: 4, end: 8 },
-			"select": { start: 8, end: 12 },
-			"unavailable": { start: 12, end: 16 },
+			"idle": { start: 0, end: 0 },
+			"over": { start: 1, end: 1 },
+			"select": { start: 2, end: 2 },
+			"unavailable": { start: 3, end: 3 },
 		}
 		Game.icons[i].animation.state = "idle";
 	}
@@ -123,28 +123,25 @@ function keyDown(key) {
 	switch (key) {
 		case 'a':
 		case 'left':
-			socket.emit('key', { input:'left', state: true} );
+			socket.emit('key movement', { input:'left', state: true} );
 			break;
 		case 'w':
 		case 'up':
-			socket.emit('key', { input:'up', state: true} );
+			socket.emit('key movement', { input:'up', state: true} );
 			break;
 		case 'd':
 		case 'right':
-			socket.emit('key', { input:'right', state: true} );
+			socket.emit('key movement', { input:'right', state: true} );
 			break;
 		case 's':
 		case 'down':
-			socket.emit('key', { input:'down', state: true} );
+			socket.emit('key movement', { input:'down', state: true} );
 			break;
+
 		case 'e':
-			socket.emit('key', { input: 'interact', state: true} );
+			socket.emit('key interact', true);
 			break;
-		case 'j':
-		case 'k':
-		case 'l':
-			socket.emit('key', { input: 'talk', state: key });
-			break;
+
 	}
 }
 
@@ -152,27 +149,29 @@ function keyUp(key) {
 	switch (key) {
 		case 'a':
 		case 'left':
-			socket.emit('key', {input:'left', state: false});
+			socket.emit('key movement', {input:'left', state: false});
 			break;
 		case 'w':
 		case 'up':
-			socket.emit('key', {input:'up', state: false});
+			socket.emit('key movement', {input:'up', state: false});
 			break;
 		case 'd':
 		case 'right':
-			socket.emit('key', {input:'right', state: false});
+			socket.emit('key movement', {input:'right', state: false});
 			break;
 		case 's':
 		case 'down':
-			socket.emit('key', {input:'down', state: false});
+			socket.emit('key movement', {input:'down', state: false});
 			break;
+
 		case 'e':
-			socket.emit('key', { input: 'interact', state: false} );
+			socket.emit('key interact', false);
 			break;
+
 		case 'j':
 		case 'k':
 		case 'l':
-			socket.emit('key', { input: 'talk', state: false });
+			socket.emit('key choose dialog', key);
 			break;
 	}
 }
@@ -221,7 +220,7 @@ socket.on('init', (data) => {
 	for (const id in data.players) {
 		const player = data.players[id];
 
-		console.log(characterData);
+		console.log('character data', characterData);
 
 		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
 		scenes.splash.ui[player.character].setChosen();
@@ -261,7 +260,6 @@ socket.on('update', (data) => {
 		}
 		for (const id in data.players) {
 			const player = data.players[id];
-			// console.log(player.character);
 			if (!scenes.game.characters[player.character].isInteracting)
 				scenes.game.characters[player.character].animation.setState(player.animationState);
 
@@ -313,17 +311,12 @@ socket.on('character interface', (data) => {
 		const p = data.players[i];
 		if (p.id == user.id)
 			user.interacting.state = data.state;
-		if (data.state) {
-			scenes.game.characters[p.character].displayInterface = data.state;
-			scenes.game.characters[p.character].interfaceBubble.setState('forward');
-		} else {
-			scenes.game.characters[p.character].interfaceBubble.setState('reverse');
-			scenes.game.characters[p.character].displayIcons = false;
-			scenes.game.characters[p.character].interfaceBubble.playOnce(() => {
-				scenes.game.characters[p.character].displayInterface = data.state;
-			});
-		}
+		scenes.game.characters[p.character].toggleInterface(data.state);
 	}
+});
+
+socket.on('story input', (data) => {
+	scenes.game.characters[data.character].setStoryType(data.type);
 });
 
 socket.on('character talk', (data) => {

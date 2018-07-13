@@ -8,8 +8,7 @@ class Player extends Entity {
 			right: false,
 			up: false,
 			left: false,
-			down: false,
-			interact: false
+			down: false
 		};
 		this.bounds = {
 			top: -4096,
@@ -27,7 +26,7 @@ class Player extends Entity {
 			flower: [],
 			skull: []
 		};
-		this.talking = false;
+		this.storyInput = false;
 		this.resourceKey = {
 			j: "flower",
 			k: "skull"
@@ -52,9 +51,18 @@ class Player extends Entity {
 
 	init(socket) {
 		/* handle key input from player */
-		socket.on('key', (key) => {
-			this.input[key.input] = key.state;			
+		socket.on('key movement', (key) => {
+			this.input[key.input] = key.state;	
 		});
+
+		socket.on('key interact', (state) => {
+			this.isInteracting = state;
+		});
+
+		socket.on('key choose dialog', (key) => {
+			if (this.hasResource(key))
+				this.storyInput = this.getResourceType(key);
+		})
 
 		socket.on('done interacting', () => {
 			this.isInteracting = false;
@@ -65,12 +73,11 @@ class Player extends Entity {
 		return this.resources[this.resourceKey[key]].length > 0;
 	}
 
-	getResource(key) {
+	getResourceType(key) {
 		return this.resourceKey[key];
 	}
 	
 	update() {
-
 		// if (!this.isInteracting) {
 			this.animationState = 'idle';
 			if (this.input.up) {
@@ -93,14 +100,6 @@ class Player extends Entity {
 					this.x -= this.speed;
 				this.animationState = 'left';
 			}
-			if (this.input.interact) {
-				this.isInteracting = true;
-			} else {
-				this.isInteracting = false;
-			}
-			if (this.input.talk && this.hasResource(this.input.talk))
-				this.talking = this.getResource(this.input.talk);
-
 		// }
 	}
 
