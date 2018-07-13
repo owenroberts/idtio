@@ -21,7 +21,7 @@ class Character extends Sprite {
 			this.interfaceBubble.states = data.bubble.states;
 		});
 		this.displayIcons = false;
-		this.interfaceBubble.playStateCallback = function() {
+		this.interfaceBubble.onPlayedState = function() {
 			this.displayIcons = true;
 		}.bind(this); /* fuck */
 

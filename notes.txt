@@ -231,7 +231,7 @@
 - fixing story interaction
 	- redraw interfaces to work at -width/4 -height/2
 	- fix icon alignment
-	
+	- playedOnceCallback should be onPlayedOnce & onPlayedState
 
 - possible separate x and y wiggle
 - experiment with speed and effects
