@@ -43,7 +43,6 @@ function loadSplashScene(data) {
 		}
 	};
 
-
 	for (const i in Game.icons) {
 		Game.icons[i].animation.load(false);
 		Game.icons[i].animation.states = {
@@ -54,9 +53,9 @@ function loadSplashScene(data) {
 		}
 		Game.icons[i].animation.state = "idle";
 	}
-	
 
 	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19);
+	socket.emit('splash loaded');
 }
 
 function loadMap(data) {
@@ -219,6 +218,9 @@ socket.on('id', (id) => {
 socket.on('init', (data) => {
 	for (const id in data.players) {
 		const player = data.players[id];
+
+		console.log(characterData);
+
 		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
 		scenes.splash.ui[player.character].setChosen();
 	}
@@ -230,7 +232,7 @@ socket.on('init', (data) => {
 
 /* does this do anything? */
 socket.on('character chosen', (character) => {
-	scenes.splash.ui[character].select();
+	scenes.splash.ui[character].setChosen();
 });
 
 /* add character to scene, both user and others */
@@ -240,6 +242,7 @@ socket.on('add character', (player) => {
 });
 
 socket.on('remove character', (character) => {
+	scenes.splash.ui[character].setUnchosen();
 	delete scenes.game.characters[character];
 });
 
@@ -313,6 +316,7 @@ socket.on('character interface', (data) => {
 			scenes.game.characters[p.character].interfaceBubble.setState('forward');
 		} else {
 			scenes.game.characters[p.character].interfaceBubble.setState('reverse');
+			scenes.game.characters[p.character].displayIcons = false;
 			scenes.game.characters[p.character].interfaceBubble.playOnce(() => {
 				scenes.game.characters[p.character].displayInterface = data.state;
 			});

@@ -227,6 +227,12 @@
 - need a system to do dialog, too crasy to have 1000 frame dialogs
 - maybe use text as back up .... 
 
+7.12.2018
+- fixing story interaction
+	- redraw interfaces to work at -width/4 -height/2
+	- fix icon alignment
+	
+
 - possible separate x and y wiggle
 - experiment with speed and effects
 

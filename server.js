@@ -144,14 +144,16 @@ function initData() {
 io.on('connection', function(socket) {
 	console.log('new', socket.id);
 	players[socket.id] = new Player(socket);
-	socket.emit('init', initData());
+	socket.on('splash loaded', () => {
+		socket.emit('init', initData());
+	});
 
 	/* select a character (need access to characters obj) */
 	socket.on('character selection', (character) => {
 		if (!characters[character].isInUse) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
-			socket.emit('character chosen', character);
+			io.sockets.emit('character chosen', character);
 		} else if (players[socket.id].character == character) {
 			socket.emit('msg', 'you have selected that character');
 		} else {
@@ -172,7 +174,6 @@ io.on('connection', function(socket) {
 			}
 		}
 	});
-
 
 	/* player leaves */
 	socket.on('disconnect', function() {

@@ -46,16 +46,16 @@
 				"idle": { "start": 0, "end": 4 },
 				"right": { "start": 4, "end": 8 },
 				"left": { "start": 8, "end": 12 },
-				"down": { "start": 12, "end": 14 },
-				"up": { "start": 14, "end": 16 },
+				"up": { "start": 12, "end": 14 },
+				"down": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 }
 			}
 		},
 		"bubble": {
 			"src": "/public/drawings/ui/pig-interface.json",
 			"states": {
-				"forward": { "start": 0, "end": 16 },
-				"reverse": { "start": 17, "end": 28 }
+				"forward": { "start": 0, "end": 12 },
+				"reverse": { "start": 12, "end": 20 }
 			}
 		}
 	}
