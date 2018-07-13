@@ -201,8 +201,10 @@ function mouseDown(x, y) {
 function mouseUp(x, y) {
 	for (const ui in scenes[currentScene].ui) {
 		const sprite = scenes[currentScene].ui[ui];
-		sprite.up(x, y);
+		if (sprite.up(x, y))
+			return;
 	}
+
 }
 
 /* init game last bc it calls the start function .... better way to do this?

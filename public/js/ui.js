@@ -40,14 +40,17 @@ class UI extends Sprite {
 		}
 	}
 	up(x, y) {
+		let callbacked = false;
 		if (!this.selected) {
 			if (this.tap(x,y) && this.clickStart) {
 				this.animation.setState('over');
 				document.body.style.cursor = 'pointer';
 				this.callback();
+				callbacked = true;
 			}
 		}
 		this.clickStart = false;
+		return callbacked;
 	}
 	event(x, y) {
 		if (this.tap(x, y)) {

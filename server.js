@@ -81,9 +81,10 @@ function gameUpdate() {
 								io.sockets.emit('character talk', data);
 								player.resources[player.talking].shift();
 								other.resources[other.talking].shift();
+								io.sockets.emit('update resources', player);
+								io.sockets.emit('update resources', other);
 								player.talking = false;
 								other.talking = false;
-
 							}
 						}
 					});
@@ -150,6 +151,7 @@ io.on('connection', function(socket) {
 
 	/* select a character (need access to characters obj) */
 	socket.on('character selection', (character) => {
+		console.log(character);
 		if (!characters[character].isInUse) {
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
