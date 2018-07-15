@@ -228,6 +228,7 @@
 - maybe use text as back up .... 
 
 7.12.2018
+- experiment with speed and effects
 - fixing story interaction
 	- redraw interfaces to work at -width/4 -height/2
 	- fix icon alignment
@@ -237,10 +238,11 @@
 - after resources are used should they reappear?
 	- if player uses a resource, they don't have it anymore so doesn't get returned when they leave
 	- maybe a time out?
+7.14.2018
 - fuckinnnn reduce? and map? nahhh
+- saving files with wrong number of points
 
 - possible separate x and y wiggle
-- experiment with speed and effects
 
 - more map assets
 - flowers grow back

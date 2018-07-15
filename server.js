@@ -33,7 +33,8 @@ let gameInterval;
 const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false },
-	pig: { isInUse: false }
+	pig: { isInUse: false },
+	birds: { isInUse: false }
 };
 const players = {};
 const interactives = {};

@@ -14,7 +14,7 @@ let user = {
 }
 
 function loadSplashScene(data) {
-	console.log('splash loaded');
+	console.log('%c splash loaded', 'color:white;background:lightblue;');
 	for (const key in data) {
 		const ui = data[key];
 		scenes.splash.ui[key] = new UI(ui, false);
@@ -60,7 +60,7 @@ function loadSplashScene(data) {
 }
 
 function loadMap(data) {
-	console.log('map loaded');
+	console.log('%c map loaded', 'color:white;background:pink;');
 	for (let i = 0; i < data.interactives.length; i++) {
 		scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
 	}
@@ -87,14 +87,14 @@ function start() {
 	fetch('/public/data/character-data.json')
 		.then(response => { return response.json() })
 		.then(json => {
-			console.log('characters loaded');
+			console.log('%c characters loaded', 'color:white;background:lightgreen;');
 			characterData = json;
 		});
 
 	fetch('/public/data/story-data.json')
 		.then(response => { return response.json() })
 		.then(json => {
-			console.log('stories loaded');
+			console.log('%c stories loaded', 'color:white;background:gold;');
 			storyData = json;
 		});
 }
