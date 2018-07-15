@@ -54,11 +54,12 @@ function gameUpdate() {
 		const player = players[id];
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
-			if (player.storyInput) {
+			if (player.storyInput && !player.inputSent) {
 				io.sockets.emit('story input', {
 					character: player.character, 
 					type: player.storyInput
 				});
+				player.inputSent = true;
 			}
 
 			for (const o in players) {
@@ -74,25 +75,38 @@ function gameUpdate() {
 						if (msg == 'entered' || msg == 'exited') {
 							if (!player.storyInput && !other.storyInput) {
 								data.state = msg == 'entered' ? true : false
-								// player.isInteracting = 'entered' ? true : false;
-								// other.isInteracting = 'entered' ? true : false;
+								io.sockets.emit('character interface',  data);
+							} else if (msg == 'exited') {
 								player.storyInput = false;
 								other.storyInput = false;
-								io.sockets.emit('character interface',  data);
+								player.inputSent = false;
+								other.inputSent = false;
+								io.sockets.emit('story input', {
+									character: player.character, 
+									type: false
+								});
 							}
 						} else if (msg == 'talking') {
-							if (player.storyInput && other.storyInput) {
-								data.state = {};
-								data.state[id] = player.character + '-' + other.character + '-' + player.	storyInput + '-' + other.storyInput;
-								data.state[other.id] = other.character + '-' + player.character + '-' + other.storyInput + '-' + player.storyInput;
+							if (player.storyInput && other.storyInput && !player.storyStarted && !other.storyStarted) {
+								var story = [
+									{
+										character: player.character,
+										type: player.storyInput
+									},
+									{
+										character: other.character,
+										type: other.storyInput
+									}
+								];
+
 								/* is this crazy?? */
-								io.sockets.emit('character talk', data);
-								player.resources[player.storyInput].shift();
-								other.resources[other.storyInput].shift();
+								io.sockets.emit('character talk', story);
+								player.usedResources[player.storyInput].push( player.resources[player.storyInput].shift() );
+								other.usedResources[other.storyInput].push( other.resources[other.storyInput].shift() );
 								io.sockets.emit('update resources', player);
 								io.sockets.emit('update resources', other);
-								player.storyInput = false;
-								other.storyInput = false;
+								player.storyStarted = true;
+								other.storyStarted = true;
 							}
 						}
 					});
@@ -186,21 +200,19 @@ io.on('connection', function(socket) {
 
 	/* player leaves */
 	socket.on('disconnect', function() {
-		// console.log('remove', socket.id);
     	if (players[socket.id]) {
     		const p = players[socket.id];
     		if (p.character) {
     			characters[p.character].isInUse = false;
     			io.sockets.emit('remove character', p.character);
     		}
-
-    		/* restore playres resources */
-    		for (var r in p.resources) {
-    			const resourceList = p.resources[r];
-    			for (let i = 0; i < resourceList.length; i++) {
-    				interactives[resourceList[i]].picked = false;
-    			}
-    		}
+			/* restore players resources */
+			const resources = p.returnResources();
+			for (var i = 0; i < resources.length; i++) {
+				const item = resources[i];
+				interactives[item].picked = false;
+				io.sockets.emit('return resource', interactives[item].label);
+			}
 
     		delete players[socket.id];
     	}

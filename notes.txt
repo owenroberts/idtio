@@ -232,6 +232,12 @@
 	- redraw interfaces to work at -width/4 -height/2
 	- fix icon alignment
 	- playedOnceCallback should be onPlayedOnce & onPlayedState
+	- if one character does not have a resource?
+	- exit just clear everything .... 
+- after resources are used should they reappear?
+	- if player uses a resource, they don't have it anymore so doesn't get returned when they leave
+	- maybe a time out?
+- fuckinnnn reduce? and map? nahhh
 
 - possible separate x and y wiggle
 - experiment with speed and effects

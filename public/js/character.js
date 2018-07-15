@@ -89,23 +89,23 @@ class Character extends Sprite {
 		this.toggleInterface(false);
 	}
 
-	playStory(src) {
-		this.iconType = false;
-		this.toggleInterface(false);
-		if (this.stories[src]) {
-			this.displayStory = true;
-			this.currentStory = src;
-			this.stories[src].playOnce(() => {
-				this.displayStory = false;
+	playStory(src, callback) {
+		const self = this;
+		function playReady() {
+			self.iconType = false;
+			self.displayStory = true;
+			self.currentStory = src;
+			self.stories[src].playOnce(() => {
+				self.displayStory = false;
+				callback();
 			});
-		} else {
-			this.stories[src] = new Animation('/public/drawings/story/' + src + '.json', false);
+		}
+		if (this.stories[src]) {
+			playReady();
+		} else {	
+			this.stories[src] = new Animation(src, false);
 			this.stories[src].load(false, () => {
-				this.displayStory = true;
-				this.currentStory = src;
-				this.stories[src].playOnce(() => {
-					this.displayStory = false;
-				});
+				playReady();
 			});
 		}
 	}

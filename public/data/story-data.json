@@ -1,0 +1,15 @@
+{
+	"cat-pig": {
+		"flower-flower": {
+			"length": 4,
+			"first": "pig",
+			"second": "cat",
+			"srcs": [
+				"/public/drawings/story/pig-cat-flower-flower.json",
+				"/public/drawings/story/cat-pig-flower-flower.json",
+				"/public/drawings/story/pig-cat-flower-flower.json",
+				"/public/drawings/story/cat-pig-flower-flower.json"
+			]
+		}
+	}
+}

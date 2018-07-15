@@ -4,7 +4,7 @@ const scenes = {
 	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
 };
 let currentScene = 'splash';
-let characterData;
+let characterData, storyData;
 let user = {
 	interacting: {
 		state: false,
@@ -14,6 +14,7 @@ let user = {
 }
 
 function loadSplashScene(data) {
+	console.log('splash loaded');
 	for (const key in data) {
 		const ui = data[key];
 		scenes.splash.ui[key] = new UI(ui, false);
@@ -59,6 +60,7 @@ function loadSplashScene(data) {
 }
 
 function loadMap(data) {
+	console.log('map loaded');
 	for (let i = 0; i < data.interactives.length; i++) {
 		scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
 	}
@@ -74,7 +76,6 @@ function loadMap(data) {
 }
 
 function start() {
-
 	fetch('/public/data/ui-data.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadSplashScene(json));
@@ -86,7 +87,15 @@ function start() {
 	fetch('/public/data/character-data.json')
 		.then(response => { return response.json() })
 		.then(json => {
+			console.log('characters loaded');
 			characterData = json;
+		});
+
+	fetch('/public/data/story-data.json')
+		.then(response => { return response.json() })
+		.then(json => {
+			console.log('stories loaded');
+			storyData = json;
 		});
 }
 
@@ -234,6 +243,7 @@ socket.on('init', (data) => {
 /* does this do anything? */
 socket.on('character chosen', (character) => {
 	scenes.splash.ui[character].setChosen();
+	user.character = character;
 });
 
 /* add character to scene, both user and others */
@@ -306,6 +316,10 @@ socket.on('update resources', (player) => {
 	scenes.game.characters[player.character].resources = player.resources;
 });
 
+socket.on('return resource', (resource) => {
+	scenes.game.interactives[resource].animation.setState('idle'); // animate back
+});
+
 socket.on('character interface', (data) => {
 	for (let i = 0; i < data.players.length; i++) {
 		const p = data.players[i];
@@ -320,10 +334,29 @@ socket.on('story input', (data) => {
 });
 
 socket.on('character talk', (data) => {
-	for (let i = 0; i < data.players.length; i++) {
-		const p = data.players[i];
-		scenes.game.characters[p.character].playStory(data.state[p.id]);
-	}
+	const p = data[0].character; // player
+	const o = data[1].character; // other
+	const pt = data[0].type; // player story type
+	const ot = data[1].type; // other story type
+	const charData = storyData[p + '-' + o] ? storyData[p + '-' + o] : storyData[o + '-' + p];
+	const story = charData[pt + '-' + ot] ? charData[pt + '-' + ot] : charData[ot + '-' + pt];
+
+	setTimeout(() => {
+		scenes.game.characters[p].iconType = false;
+		scenes.game.characters[o].iconType = false;
+		function playNextStory(index) {
+			const char = index % 2 == 0 ? story.first : story.second;
+			scenes.game.characters[char].playStory(story.srcs[index], () => {
+				index++;
+				if (index < story.length) {
+					playNextStory(index);
+				} else {
+					socket.emit('done talking');
+				}
+			});
+		}
+		playNextStory(0);
+	}, 1200);
 });
 
 socket.on('msg', (msg) => {

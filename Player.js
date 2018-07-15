@@ -24,17 +24,35 @@ class Player extends Entity {
 		socket.emit('id', socket.id);
 		this.resources = {
 			flower: [],
-			skull: []
+			skull: [],
+			apple: []
+		};
+		this.usedResources = {
+			flower: [],
+			skull: [],
+			apple: []
 		};
 		this.storyInput = false;
+		this.inputSent = false;
+		this.storyStarted = false;
 		this.resourceKey = {
 			j: "flower",
-			k: "skull"
+			k: "skull",
+			l: "apple"
 		};
 
 		/* not implemented */
 		this.updateAnimation = false;
 		this.updatePosition = false;
+	}
+
+	returnResources() {
+		let resources = [];
+		for (var r in this.resources) {
+			resources = resources.concat( this.resources[r] );
+			resources = resources.concat( this.usedResources[r] );
+		}
+		return resources;
 	}
 
 	join(socket) {
@@ -66,6 +84,13 @@ class Player extends Entity {
 
 		socket.on('done interacting', () => {
 			this.isInteracting = false;
+		});
+
+		socket.on('done talking', () => {
+			console.log('done talking');
+			this.storyInput = false;
+			this.inputSent = false;
+			this.storyStarted = false;
 		});
 	}
 
