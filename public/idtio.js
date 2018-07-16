@@ -338,17 +338,20 @@ socket.on('character talk', (data) => {
 	const o = data[1].character; // other
 	const pt = data[0].type; // player story type
 	const ot = data[1].type; // other story type
-	const charData = storyData[p + '-' + o] ? storyData[p + '-' + o] : storyData[o + '-' + p];
-	const story = charData[pt + '-' + ot] ? charData[pt + '-' + ot] : charData[ot + '-' + pt];
+	const charKey = storyData[p + '-' + o] ? p + '-' + o : o + '-' + p;
+	const charData = storyData[charKey];
+	const storyKey = charData[pt + '-' + ot] ? pt + '-' + ot : ot + '-' + pt;
+	const story = charData[storyKey];
 
 	setTimeout(() => {
 		scenes.game.characters[p].iconType = false;
 		scenes.game.characters[o].iconType = false;
 		function playNextStory(index) {
 			const char = index % 2 == 0 ? story.first : story.second;
-			scenes.game.characters[char].playStory(story.srcs[index], () => {
+			const src = 'public/drawings/story/' + charKey + '-' + storyKey + '-' + index + '.json';
+			scenes.game.characters[char].playStory(src, () => {
 				index++;
-				if (index < story.length) {
+				if (index <= story.length) {
 					playNextStory(index);
 				} else {
 					socket.emit('done talking');

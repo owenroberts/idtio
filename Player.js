@@ -87,7 +87,6 @@ class Player extends Entity {
 		});
 
 		socket.on('done talking', () => {
-			console.log('done talking');
 			this.storyInput = false;
 			this.inputSent = false;
 			this.storyStarted = false;

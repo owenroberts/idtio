@@ -78,14 +78,16 @@ function gameUpdate() {
 								data.state = msg == 'entered' ? true : false
 								io.sockets.emit('character interface',  data);
 							} else if (msg == 'exited') {
-								player.storyInput = false;
-								other.storyInput = false;
-								player.inputSent = false;
-								other.inputSent = false;
-								io.sockets.emit('story input', {
-									character: player.character, 
-									type: false
-								});
+								if (!player.storyStarted && !other.storyStarted) {
+									player.storyInput = false;
+									other.storyInput = false;
+									player.inputSent = false;
+									other.inputSent = false;
+									io.sockets.emit('story input', {
+										character: player.character, 
+										type: false
+									});
+								}
 							}
 						} else if (msg == 'talking') {
 							if (player.storyInput && other.storyInput && !player.storyStarted && !other.storyStarted) {
