@@ -28,7 +28,8 @@
 				"left": { "start": 8, "end": 12 },
 				"down": { "start": 12, "end": 14 },
 				"up": { "start": 14, "end": 16 },
-				"flower": { "start": 16, "end": 19 }
+				"flower": { "start": 16, "end": 19 },
+				"skull": { "start": 19, "end": 22 }
 			}
 		},
 		"bubble": {
@@ -48,7 +49,8 @@
 				"left": { "start": 8, "end": 12 },
 				"up": { "start": 12, "end": 14 },
 				"down": { "start": 14, "end": 16 },
-				"flower": { "start": 16, "end": 19 }
+				"flower": { "start": 16, "end": 19 },
+				"skull": { "start": 19, "end": 23 }
 			}
 		},
 		"bubble": {
@@ -68,7 +70,8 @@
 				"left": { "start": 6, "end": 8 },
 				"up": { "start": 8, "end": 10 },
 				"down": { "start": 10, "end": 12 },
-				"flower": { "start": 12, "end": 15 }
+				"flower": { "start": 12, "end": 15 },
+				"skull": { "start": 15, "end": 19 }
 			}
 		},
 		"bubble": {

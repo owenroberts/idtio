@@ -242,6 +242,13 @@
 - fuckinnnn reduce? and map? nahhh
 - saving files with wrong number of points
 
+7.16.2018 
+- lines - range interface input in the display box
+- flowers growing back
+- 5 graves - grave yard scenery
+- 2 apple trees
+- 5 apples
+
 - possible separate x and y wiggle
 
 - more map assets
