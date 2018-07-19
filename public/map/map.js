@@ -4,6 +4,14 @@ const map = {
 	scenery: []
 };
 Game.map = true;
+const m = {
+	display: false,
+	x: 0,
+	y: 0,
+	w: 0,
+	h: 0
+
+}
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
@@ -15,7 +23,9 @@ function loadMap(data) {
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		map.scenery.push( new Item(data.scenery[i], false) );
+		const item = new Item(data.scenery[i], false);
+		item.label = data.scenery[i].src.split('/').pop().split('.')[0]
+		map.scenery.push(item);
 	}
 }
 
@@ -46,14 +56,27 @@ function draw() {
 
 	for (const interactive in map.interactives) {
 		map.interactives[interactive].display();
+		Game.ctx.fillStyle = '#bb11ff';
+		Game.ctx.fillText(interactive, map.interactives[interactive].position.x, map.interactives[interactive].position.y);
 	}
 	for (let i = 0; i < map.scenery.length; i++) {
 		map.scenery[i].display();
+		Game.ctx.fillText(map.scenery[i].label, map.scenery[i].position.x, map.scenery[i].position.y);
+	}
+
+	/* measurement */
+	if (m.display) {
+		Game.ctx.rect(m.x, m.y, m.w, m.h);
+		Game.ctx.strokeStyle = '#bb11ff';
+		Game.ctx.stroke();
+		Game.ctx.fillText(Math.floor(m.w), m.x + m.w/2, m.y - 10);
+		Game.ctx.fillText(Math.floor(m.h), m.x - 20, m.y + m.h/2);
 	}
 }
 
 function mouseClicked(x, y) {
-	console.log('"x":'+x+', "y":'+y);
+	const p = Game.ctx.transformedPoint(x, y);
+	console.log('"x": ' + Math.floor(p.x) + ', "y": ' + Math.floor(p.y) + ',');
 }
 
 const offset = {
@@ -63,29 +86,58 @@ const offset = {
 	dragStart: null
 }
 
-function mouseMoved(x, y) {
-	offset.px = x;
-	offset.py = y;
-	offset.dragged = true;
-	if (offset.dragStart) {
-		const pt = Game.ctx.transformedPoint(offset.px, offset.py);
-		Game.ctx.translate(pt.x - offset.dragStart.x, pt.y - offset.dragStart.y);
-		draw();
+function mouseMoved(x, y, button) {
+	if (button == 1) {
+		offset.px = x;
+		offset.py = y;
+		offset.dragged = true;
+		if (offset.dragStart) {
+			const pt = Game.ctx.transformedPoint(offset.px, offset.py);
+			Game.ctx.translate(pt.x - offset.dragStart.x, pt.y - offset.dragStart.y);
+			draw();
+		}
+	}
+
+	if (button == 3) {
+		const p = Game.ctx.transformedPoint(x, y);
+		m.w = p.x - m.x;
+		m.h = p.y - m.y;
 	}
 }
 
-function mouseDown(x, y) {
-	offset.px = x;
-	offset.py = y;
-	offset.dragged = false;
-	offset.dragStart = Game.ctx.transformedPoint(offset.px, offset.py);
+function mouseDown(x, y, button) {
+	if (button == 1) {
+		offset.px = x;
+		offset.py = y;
+		offset.dragged = false;
+		offset.dragStart = Game.ctx.transformedPoint(offset.px, offset.py);
+	}
+	if (button == 3) {
+		const p = Game.ctx.transformedPoint(x, y);
+		m.x = p.x;
+		m.y = p.y;
+		m.display = true;
+	}
+	
 }
 
-function mouseUp(x, y) {
-	offset.dragStart = null;
+function mouseUp(x, y, button) {
+	if (button == 1)
+		offset.dragStart = null;
+	
+	if (button == 3) 
+		m.display = false;
 }
 
 Game.init(window.innerWidth, window.innerHeight, 10, false);
+
+document.addEventListener('mousedown', function(ev) {
+	if (ev.which == 3) {
+
+	}
+});
+
+document.oncontextmenu = function() { return false; }
 
 trackTransforms(Game.ctx);
 const scaleFactor = 1.05;
