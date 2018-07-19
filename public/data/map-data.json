@@ -112,8 +112,86 @@
 				"end": {"start": 6, "end": 6 },
 				"reborn": {"start": 7, "end": 7 }
 			}
+		},
+
+		{
+			"label": "apple 0",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-0.json",
+			"x": 4400, 
+			"y": -2320,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 1",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-1.json",
+			"x": 4000, 
+			"y": -2270,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 9 }
+			}
+		},
+		{
+			"label": "apple 2",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-2.json",
+			"x": 4500, 
+			"y": -2380,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 3",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-3.json",
+			"x": 4315, "y": 2567,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 4",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-4.json",
+			"x": 4105, "y": 2531,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
 		}
-		
 	],
 	"interactives": [
 		{
@@ -147,6 +225,14 @@
 		{ "src": "/public/drawings/scenery/ocean-2.json", "x": -1000, "y": -4096 },
 
 		{ "src": "/public/drawings/scenery/graveyard-0.json", "x": 1200, "y": 400 },
-		{ "src": "/public/drawings/scenery/graveyard-1.json", "x": 1500, "y": 1200 }
+		{ "src": "/public/drawings/scenery/graveyard-1.json", "x": 1500, "y": 1200 },
+
+		{ "src": "/public/drawings/scenery/appletree-0.json", "x": 4200, "y": -2400 },
+		{ "src": "/public/drawings/scenery/appletree-1.json", "x": 4200, "y": 2400 },
+
+		{ "src": "/public/drawings/scenery/spine-0.json", "x": 0, 		"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-1.json", "x": -1024, 	"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-2.json", "x": 1024, 	"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-3.json", "x": -2048, 	"y": -1024 }
 	]
 }

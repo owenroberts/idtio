@@ -29,7 +29,8 @@
 				"down": { "start": 12, "end": 14 },
 				"up": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 },
-				"skull": { "start": 19, "end": 22 }
+				"skull": { "start": 19, "end": 23 },
+				"apple": { "start": 23, "end": 26 }
 			}
 		},
 		"bubble": {
@@ -50,7 +51,8 @@
 				"up": { "start": 12, "end": 14 },
 				"down": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 },
-				"skull": { "start": 19, "end": 23 }
+				"skull": { "start": 19, "end": 23 },
+				"apple": { "start": 23, "end": 28 }
 			}
 		},
 		"bubble": {
@@ -71,7 +73,8 @@
 				"up": { "start": 8, "end": 10 },
 				"down": { "start": 10, "end": 12 },
 				"flower": { "start": 12, "end": 15 },
-				"skull": { "start": 15, "end": 19 }
+				"skull": { "start": 15, "end": 19 },
+				"apple": { "start": 19, "end": 22 }
 			}
 		},
 		"bubble": {
