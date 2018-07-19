@@ -41,6 +41,10 @@ function loadSplashScene(data) {
 		skull: {
 			animation: new Animation("/public/drawings/ui/icon-skull.json", false),
 			key: "K"
+		},
+		apple: {
+			animation: new Animation("/public/drawings/ui/icon-apple.json", false),
+			key: "L"
 		}
 	};
 
@@ -293,6 +297,7 @@ socket.on('update', (data) => {
 });
 
 socket.on('display interact message', (params) => {
+	console.log('display', params);
 	if (!scenes.game.interactives[params.label].isActive)
 		scenes.game.interactives[params.label].displayText = params.state;
 });
@@ -317,7 +322,10 @@ socket.on('update resources', (player) => {
 });
 
 socket.on('return resource', (resource) => {
-	scenes.game.interactives[resource].animation.setState('idle'); // animate back
+	scenes.game.interactives[resource].animation.setState('reborn'); // animate back
+	scenes.game.interactives[resource].animation.playOnce(() => {
+		scenes.game.interactives[resource].animation.setState('idle');
+	});
 });
 
 socket.on('character interface', (data) => {
