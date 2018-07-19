@@ -3,43 +3,26 @@ const Entity = require('./Entity');
 class Player extends Entity {
 	constructor(socket) {
 		super({ x: 0, y: 0, distance: 300 });
+		this.id = socket.id;
+		socket.emit('id', socket.id);
 		this.joinedGame = false;
-		this.input = {
-			right: false,
-			up: false,
-			left: false,
-			down: false
-		};
-		this.bounds = {
-			top: -4096,
-			bottom: 4096,
-			left: -8192,
-			right: 8192
-		};
+		this.input = { right: false, up: false, left: false, down: false };
+		this.bounds = { top: -4096, bottom: 4096, left: -8192, right: 8192 };
 		this.speed = 5;
 		this.animationState = 'idle';
-		this.isInteracting = false;
-		this.id = socket.id;
-		// this.socket = socket; /* test this again */
-		socket.emit('id', socket.id);
-		this.resources = {
-			flower: [],
-			skull: [],
-			apple: []
+
+		this.act = {
+			inItemRange: false,
+			withItem: false,
+			inPlayerRange: false,
+			inputStoryType: false,
+			storyTypeSent: false,
+			storyStarted: false
 		};
-		this.usedResources = {
-			flower: [],
-			skull: [],
-			apple: []
-		};
-		this.storyInput = false;
-		this.inputSent = false;
-		this.storyStarted = false;
-		this.resourceKey = {
-			j: "flower",
-			k: "skull",
-			l: "apple"
-		};
+
+		this.resources = { flower: [], skull: [], apple: [] };
+		this.usedResources = { flower: [], skull: [], apple: [] };
+		this.resourceKey = { j: "flower", k: "skull", l: "apple" };
 
 		/* not implemented */
 		this.updateAnimation = false;
@@ -74,22 +57,23 @@ class Player extends Entity {
 		});
 
 		socket.on('key interact', (state) => {
-			this.isInteracting = state;
+			this.act.withItem = state;
 		});
 
 		socket.on('key choose dialog', (key) => {
 			if (this.hasResource(key))
-				this.storyInput = this.getResourceType(key);
+				this.act.inputStoryType = this.getResourceType(key);
 		})
 
 		socket.on('done interacting', () => {
-			this.isInteracting = false;
+			this.act.withItem = false;
 		});
 
 		socket.on('done talking', () => {
-			this.storyInput = false;
-			this.inputSent = false;
-			this.storyStarted = false;
+			this.act.inPlayerRange = false;
+			this.act.inputStoryType = false;
+			this.act.storyTypeSent = false;
+			this.act.storyStarted = false;
 		});
 	}
 

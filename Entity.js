@@ -16,32 +16,12 @@ class Entity {
 		const isInRange = Math.sqrt(_x * _x + _y * _y) < this.distance;
 		const playerIndex = this.playersInRange.indexOf(player.id);
 		const wasInRange = playerIndex != -1;
-		if (wasInRange) {
-			if (!isInRange) {
-				this.playersInRange.splice(playerIndex, 1);
-				callback('exited');
-			} else {
-				if (player.isInteracting) {
-					player.isInteracting = false;
-					if (this.isPickup) {
-						if (!this.picked) {
-							player.resources[this.type].push( this.label );
-							this.picked = true;
-							callback('picked up');
-						}
-					} else {
-						callback('interacted');
-					}
-				} else if (player.storyInput) {
-					callback('talking'); /* problem for interactives ? */
-				}
-			}
-		} else {
-			if (isInRange) {
-				this.playersInRange.push(player.id);
-				callback('entered');
-			}
-		}
+		if (isInRange && !wasInRange)
+			this.playersInRange.push(player.id);
+		if (wasInRange && !isInRange)
+			this.playersInRange.splice(playerIndex, 1);
+		callback(isInRange, wasInRange);
+
 	}
 }
 

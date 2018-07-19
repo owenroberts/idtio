@@ -55,90 +55,134 @@ function gameUpdate() {
 		const player = players[id];
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
-			if (player.storyInput && !player.inputSent) {
+
+			/* if story type is input show it on client, and flag that it is being shown */
+			if (player.act.inputStoryType && !player.act.storyTypeSent) {
 				io.sockets.emit('story input', {
 					character: player.character, 
-					type: player.storyInput
+					type: player.act.inputStoryType
 				});
-				player.inputSent = true;
+				player.act.storyTypeSent = true;
 			}
 
 			for (const o in players) {
 				const other = players[o];
 				if (other.id != id && other.joinedGame) {
-					other.checkInRange(player, (msg) => {
-						const data = {
-							players: [
-								{ id: id, character: player.character },
-								{ id: other.id, character: other.character }
-							]
-						};
-						if (msg == 'entered' || msg == 'exited') {
-							if (!player.storyInput && !other.storyInput) {
-								data.state = msg == 'entered' ? true : false
-								io.sockets.emit('character interface',  data);
-							} else if (msg == 'exited') {
-								if (!player.storyStarted && !other.storyStarted) {
-									player.storyInput = false;
-									other.storyInput = false;
-									player.inputSent = false;
-									other.inputSent = false;
-									io.sockets.emit('story input', {
-										character: player.character, 
-										type: false
-									});
+					if (!player.act.storyStarted && !other.act.storyStarted) {
+						other.checkInRange(player, (isInRange, wasInRange) => {
+							const data = {
+								players: [
+									{ id: id, character: player.character },
+									{ id: other.id, character: other.character }
+								]
+							}; /* this is silly */
+							if (isInRange) {
+								/* entered */
+								if (!wasInRange) {
+									player.act.inPlayerRange = true;
+									other.act.inPlayerRange = true; 
+									/* is this going to happen twice?
+										can i not to that? */
+									data.state = true;
+									io.sockets.emit('character interface',  data);
+									/* could just do this twice and not use data */
+								}
+								if (player.act.inputStoryType && other.act.inputStoryType) {
+									var story = [
+										{ character: player.character, type: player.act.inputStoryType },
+										{ character: other.character, type: other.act.inputStoryType }
+									];
+									io.sockets.emit('start story', story); /* also silly */
+									player.usedResources[player.act.inputStoryType].push( player.resources[player.act.inputStoryType].shift() );
+									other.usedResources[other.act.inputStoryType].push( other.resources[other.act.inputStoryType].shift() );
+									io.sockets.emit('update resources', player);
+									io.sockets.emit('update resources', other);
+									player.act.storyStarted = true;
+									other.act.storyStarted = true;
+								}
+							} else {
+								/* exited */
+								if (wasInRange) {
+									if (player.act.inPlayerRange) {
+										player.act.inPlayerRange = false;
+										other.act.inPlayerRange = false;
+										data.state = false;
+										io.sockets.emit('character interface',  data);
+									}
+									if (player.act.inputStoryType) {
+										io.sockets.emit('story input', {
+											character: player.character, 
+											type: false
+										});
+										player.act.inputStoryType = false;
+										player.act.storyTypeSent = false;
+									}
+									if (other.act.inputStoryType) {
+										io.sockets.emit('story input', {
+											character: other.character, 
+											type: false
+										});
+										other.act.inputStoryType = false;
+										other.act.storyTypeSent = false;
+									} /* more repetition */
 								}
 							}
-						} else if (msg == 'talking') {
-							if (player.storyInput && other.storyInput && !player.storyStarted && !other.storyStarted) {
-								var story = [
-									{
-										character: player.character,
-										type: player.storyInput
-									},
-									{
-										character: other.character,
-										type: other.storyInput
-									}
-								];
-
-								/* is this crazy?? */
-								io.sockets.emit('character talk', story);
-								player.usedResources[player.storyInput].push( player.resources[player.storyInput].shift() );
-								other.usedResources[other.storyInput].push( other.resources[other.storyInput].shift() );
-								io.sockets.emit('update resources', player);
-								io.sockets.emit('update resources', other);
-								player.storyStarted = true;
-								other.storyStarted = true;
-							}
-						}
-					});
+						});
+					}
 				}
 			}
 
 			for (const i in interactives) {
 				const interactive = interactives[i];
-				if (!interactive.picked) {
-					interactive.checkInRange(player, (msg) => {
-						if (msg == 'exited') {
-							player.isInteracting = false;
-							io.sockets.connected[id].emit('display interact message', {
-								label: interactive.label, 
-								type: interactive.type, 
-								state: false 
-							});
-						} else if (msg == 'entered') {
-							io.sockets.connected[id].emit('display interact message', { 
-								label: interactive.label, 
-								type: interactive.type, 
-								state: true 
-							});
-						}  else if (msg == 'picked up') {
-							io.sockets.emit('play interact animation', interactive.label);
-							io.sockets.emit('play character animation', player.character, interactive.type);
-							io.sockets.emit('update resources', player);
-						} else if (msg == 'interacted') {
-							io.sockets.emit('play interact animation', interactive.label);
+				if (!interactive.picked) { 
+					interactive.checkInRange(player, (isInRange, wasInRange) => {
+
+						/* first check if another player has entered the scene */
+						if (player.act.inPlayerRange) {
+							if (player.act.inItemRange == interactive.label) {
+								io.sockets.connected[id].emit('display interact message', {
+									label: interactive.label, 
+									type: interactive.type, 
+									state: false 
+								});
+								player.act.inItemRange = false;
+							}
+						} else {
+							if (isInRange) {
+								if (!player.act.inItemRange) {
+									/* entered */
+									player.act.inItemRange = interactive.label;
+									io.sockets.connected[id].emit('display interact message', { 
+										label: interactive.label, 
+										type: interactive.type, 
+										state: true 
+									});
+								}
+								if (player.act.withItem) {
+									player.act.withItem = false;
+									player.act.inItemRange = false;
+									if (interactive.isPickup && !interactive.picked) {
+										io.sockets.emit('play character animation', player.character, interactive.type);
+										io.sockets.emit('play interact animation', interactive.label);
+										player.resources[interactive.type].push( interactive.label );
+										io.sockets.emit('update resources', player);
+										interactive.picked = true;
+									} else {
+										io.sockets.emit('play interact animation', interactive.label);
+									}
+								}
+							} else {
+								if (wasInRange) {
+									console.log('wasInRange', wasInRange);
+									/* exited */
+									io.sockets.connected[id].emit('display interact message', {
+										label: interactive.label, 
+										type: interactive.type, 
+										state: false 
+									});
+									player.act.inItemRange = false;
+								}
+							}
 						}
 					});
 				}

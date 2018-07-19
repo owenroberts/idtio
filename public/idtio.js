@@ -296,8 +296,9 @@ socket.on('update', (data) => {
 	}
 });
 
+
+/* player interacting with map interactives */
 socket.on('display interact message', (params) => {
-	console.log('display', params);
 	if (!scenes.game.interactives[params.label].isActive)
 		scenes.game.interactives[params.label].displayText = params.state;
 });
@@ -322,12 +323,15 @@ socket.on('update resources', (player) => {
 });
 
 socket.on('return resource', (resource) => {
+	console.log('return resource');
 	scenes.game.interactives[resource].animation.setState('reborn'); // animate back
 	scenes.game.interactives[resource].animation.playOnce(() => {
 		scenes.game.interactives[resource].animation.setState('idle');
 	});
 });
 
+
+/* interacting with another player */
 socket.on('character interface', (data) => {
 	for (let i = 0; i < data.players.length; i++) {
 		const p = data.players[i];
@@ -341,7 +345,8 @@ socket.on('story input', (data) => {
 	scenes.game.characters[data.character].setStoryType(data.type);
 });
 
-socket.on('character talk', (data) => {
+socket.on('start story', (data) => {
+	console.log('start story', data);
 	const p = data[0].character; // player
 	const o = data[1].character; // other
 	const pt = data[0].type; // player story type
@@ -398,12 +403,13 @@ socket.on('get-eval', (msg) => {
 	console.log(msg);
 });
 
+function servLog(statement) {
+	socket.emit('send-eval', statement);
+}
+
 chatInput.addEventListener('keydown', (ev) => {
 	if (ev.which == 13) {
-		if (chatInput.value[0] == '/') 
-			socket.emit('send-eval', chatInput.value.slice(1));
-		else
-			socket.emit('send-chat', chatInput.value);
+		socket.emit('send-eval', chatInput.value);
 		chatInput.value = '';
 	}
 	if (ev.which == 27)

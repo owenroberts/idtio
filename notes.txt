@@ -249,11 +249,23 @@
 - 2 apple trees
 - 5 apples
 
+7.17.2018
+- map tools and labels
+- spine 
+- flowers grow back
+
+- interact states for player, entity
+	- player
+		- in range of item
+		- interacting with item
+		- in range of player
+		- chose a story
+		- telling the story
+
+- lowdb?
 - possible separate x and y wiggle
 
 - more map assets
-- flowers grow back
-
 
 - instructions
 

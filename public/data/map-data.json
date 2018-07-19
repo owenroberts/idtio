@@ -233,6 +233,10 @@
 		{ "src": "/public/drawings/scenery/spine-0.json", "x": 0, 		"y": -1024 },
 		{ "src": "/public/drawings/scenery/spine-1.json", "x": -1024, 	"y": -1024 },
 		{ "src": "/public/drawings/scenery/spine-2.json", "x": 1024, 	"y": -1024 },
-		{ "src": "/public/drawings/scenery/spine-3.json", "x": -2048, 	"y": -1024 }
+		{ "src": "/public/drawings/scenery/spine-3.json", "x": -2048, 	"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-4.json", "x": 2048, 		"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-5.json", "x": 3072, 	"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-6.json", "x": -3072, 	"y": -1024 },
+		{ "src": "/public/drawings/scenery/spine-7.json", "x": -4096, 	"y": -1024 }
 	]
 }
