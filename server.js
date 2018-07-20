@@ -81,11 +81,10 @@ function gameUpdate() {
 									io.sockets.emit('character interface', player.id, player.character, true);
 								}
 								if (player.act.inputStoryType && other.act.inputStoryType) {
-									const story = [
+									io.sockets.emit('start story', [
 										{ character: player.character, type: player.act.inputStoryType },
 										{ character: other.character, type: other.act.inputStoryType }
-									];
-									io.sockets.emit('start story', story); /* also silly */
+									]); 
 									player.usedResources[player.act.inputStoryType].push( player.resources[player.act.inputStoryType].shift() );
 									other.usedResources[other.act.inputStoryType].push( other.resources[other.act.inputStoryType].shift() );
 									io.sockets.emit('update resources', player);
@@ -131,8 +130,7 @@ function gameUpdate() {
 							}
 						} else {
 							if (isInRange) {
-								if (!player.act.inItemRange) {
-									/* entered */
+								if (!player.act.inItemRange) { /* entered */
 									player.act.inItemRange = interactive.label;
 									io.sockets.connected[id].emit('display interact message', { 
 										label: interactive.label, 
@@ -154,8 +152,7 @@ function gameUpdate() {
 									}
 								}
 							} else {
-								if (wasInRange) {
-									/* exited */
+								if (wasInRange) { /* exited */
 									io.sockets.connected[id].emit('display interact message', {
 										label: interactive.label, 
 										type: interactive.type, 
