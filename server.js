@@ -70,25 +70,18 @@ function gameUpdate() {
 				if (other.id != id && other.joinedGame) {
 					if (!player.act.storyStarted && !other.act.storyStarted) {
 						other.checkInRange(player, (isInRange, wasInRange) => {
-							const data = {
-								players: [
-									{ id: id, character: player.character },
-									{ id: other.id, character: other.character }
-								]
-							}; /* this is silly */
-							if (isInRange) {
-								/* entered */
-								if (!wasInRange) {
+							const players =[
+								{ id: id, character: player.character },
+								{ id: other.id, character: other.character }
+							];
+							
+							if (isInRange) { 
+								if (!wasInRange) { /* entered */
 									player.act.inPlayerRange = true;
-									other.act.inPlayerRange = true; 
-									/* is this going to happen twice?
-										can i not to that? */
-									data.state = true;
-									io.sockets.emit('character interface',  data);
-									/* could just do this twice and not use data */
+									io.sockets.emit('character interface', player.id, player.character, true);
 								}
 								if (player.act.inputStoryType && other.act.inputStoryType) {
-									var story = [
+									const story = [
 										{ character: player.character, type: player.act.inputStoryType },
 										{ character: other.character, type: other.act.inputStoryType }
 									];
@@ -101,13 +94,10 @@ function gameUpdate() {
 									other.act.storyStarted = true;
 								}
 							} else {
-								/* exited */
-								if (wasInRange) {
+								if (wasInRange) { /* exited */
 									if (player.act.inPlayerRange) {
 										player.act.inPlayerRange = false;
-										other.act.inPlayerRange = false;
-										data.state = false;
-										io.sockets.emit('character interface',  data);
+										io.sockets.emit('character interface',  player.id, player.character, false);
 									}
 									if (player.act.inputStoryType) {
 										io.sockets.emit('story input', {
@@ -117,14 +107,6 @@ function gameUpdate() {
 										player.act.inputStoryType = false;
 										player.act.storyTypeSent = false;
 									}
-									if (other.act.inputStoryType) {
-										io.sockets.emit('story input', {
-											character: other.character, 
-											type: false
-										});
-										other.act.inputStoryType = false;
-										other.act.storyTypeSent = false;
-									} /* more repetition */
 								}
 							}
 						});

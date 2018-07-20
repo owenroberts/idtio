@@ -332,13 +332,10 @@ socket.on('return resource', (resource) => {
 
 
 /* interacting with another player */
-socket.on('character interface', (data) => {
-	for (let i = 0; i < data.players.length; i++) {
-		const p = data.players[i];
-		if (p.id == user.id)
-			user.interacting.state = data.state;
-		scenes.game.characters[p.character].toggleInterface(data.state);
-	}
+socket.on('character interface', (id, character, state) => {
+	if (id == user.id)
+		user.interacting.state = state;
+	scenes.game.characters[character].toggleInterface(state);
 });
 
 socket.on('story input', (data) => {

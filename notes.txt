@@ -263,9 +263,21 @@
 		- telling the story
 
 7.19.2018
+7.20.2018
+- player interactions
+	- either
+		- do everything at once and prevent second time through
+	- or
+		- let everything happen twice ... 
+		- this might be the answer
+		- but story starter has to happen at the same time
+
+
 - lines explode order with multiple layers
 - drawings - indicate what drawings are in frames
 - error with fit canvas to frame
+
+
 
 - lowdb?
 - possible separate x and y wiggle
