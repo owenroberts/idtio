@@ -173,7 +173,6 @@ function gameUpdate() {
 								}
 							} else {
 								if (wasInRange) {
-									console.log('wasInRange', wasInRange);
 									/* exited */
 									io.sockets.connected[id].emit('display interact message', {
 										label: interactive.label, 

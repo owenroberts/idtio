@@ -262,6 +262,11 @@
 		- chose a story
 		- telling the story
 
+7.19.2018
+- lines explode order with multiple layers
+- drawings - indicate what drawings are in frames
+- error with fit canvas to frame
+
 - lowdb?
 - possible separate x and y wiggle
 

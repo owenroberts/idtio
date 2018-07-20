@@ -7,8 +7,8 @@
 			"x": 500, 
 			"y": -300,
 			"distance": 200,
-			"msg": "E to pick up flower",
-			"wrap": 11,
+			"msg": "E to pick flower",
+			"wrap": 9,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 3 },
@@ -23,8 +23,8 @@
 			"x": 800, 
 			"y": -400,
 			"distance": 200,
-			"msg": "E to pick up flower",
-			"wrap": 11,
+			"msg": "E to pick flower",
+			"wrap": 9,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 3},
@@ -39,8 +39,8 @@
 			"x": 200, 
 			"y": -600,
 			"distance": 200,
-			"msg": "E to pick up flower",
-			"wrap": 11,
+			"msg": "E to pick flower",
+			"wrap": 9,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 3 },
@@ -55,8 +55,8 @@
 			"x": 600, 
 			"y": -200,
 			"distance": 200,
-			"msg": "E to pick up flower",
-			"wrap": 11,
+			"msg": "E to pick flower",
+			"wrap": 9,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 3},
@@ -71,8 +71,8 @@
 			"x": 100, 
 			"y": -400,
 			"distance": 200,
-			"msg": "E to pick up flower",
-			"wrap": 11,
+			"msg": "E to pick flower",
+			"wrap": 9,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 3 },
@@ -85,7 +85,7 @@
 			"label": "skull 0",
 			"type": "skull",
 			"src": "/public/drawings/pickups/grave-0.json",
-			"x": 1700, 
+			"x": 4200, 
 			"y": 600,
 			"distance": 100,
 			"msg": "E to dig up skull",
@@ -101,7 +101,7 @@
 			"label": "skull 1",
 			"type": "skull",
 			"src": "/public/drawings/pickups/grave-1.json",
-			"x": 1200, 
+			"x": 3700, 
 			"y": 1000,
 			"distance": 100,
 			"msg": "E to dig up skull",
@@ -193,6 +193,7 @@
 			}
 		}
 	],
+
 	"interactives": [
 		{
 			"label": "tree of introduction",
@@ -205,10 +206,39 @@
 			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 20}
+				"interact": { "start": 1, "end": 133 }
+			}
+		},
+		{
+			"label": "tree of waiting",
+			"type": "interactive",
+			"src": "/public/drawings/interactives/palm-1.json",
+			"x": 800,
+			"y": -3400,
+			"distance": 300,
+			"msg": "E to interact",
+			"wrap": 22,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 34 }
+			}
+		},
+		{
+			"label": "tree of age",
+			"type": "interactive",
+			"src": "/public/drawings/interactives/palm-2.json",
+			"x": 1500,
+			"y": -3000,
+			"distance": 300,
+			"msg": "E to interact",
+			"wrap": 22,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 83 }
 			}
 		}
 	],
+
 	"scenery": [
 
 		{ "src": "/public/drawings/scenery/grass-0.json", "x": -200, "y": 100 },
@@ -224,8 +254,8 @@
 		{ "src": "/public/drawings/scenery/ocean-1.json", "x": 500, "y": -3896 },
 		{ "src": "/public/drawings/scenery/ocean-2.json", "x": -1000, "y": -4096 },
 
-		{ "src": "/public/drawings/scenery/graveyard-0.json", "x": 1200, "y": 400 },
-		{ "src": "/public/drawings/scenery/graveyard-1.json", "x": 1500, "y": 1200 },
+		{ "src": "/public/drawings/scenery/graveyard-0.json", "x": 4270, "y": 400 },
+		{ "src": "/public/drawings/scenery/graveyard-1.json", "x": 4000, "y": 1200 },
 
 		{ "src": "/public/drawings/scenery/appletree-0.json", "x": 4200, "y": -2400 },
 		{ "src": "/public/drawings/scenery/appletree-1.json", "x": 4200, "y": 2400 },

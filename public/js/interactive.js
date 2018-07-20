@@ -12,7 +12,7 @@ class Interactive extends Item {
 	display() {
 		super.display();
 		if (this.displayText) {
-			this.text.setPosition(this.position.x, this	.position.y - 40);
+			this.text.setPosition(this.position.x, this.position.y);
 			this.text.display();
 		}
 	}
