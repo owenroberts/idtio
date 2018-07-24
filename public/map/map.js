@@ -15,11 +15,11 @@ const m = {
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		map.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
+		map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
-		map.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
+		map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -38,14 +38,7 @@ function start() {
 	offset.py = Game.canvas.height/2;
 }
 
-function update() {
-	for (const interactive in map.interactives) {
-		// map.interactives[interactive].update(offset);
-	}
-	for (let i = 0; i < map.scenery.length; i++) {
-		// map.scenery[i].update(offset);
-	}
-}
+function update() { /* for stats */}
 
 function draw() {
 
@@ -76,7 +69,7 @@ function draw() {
 
 function mouseClicked(x, y) {
 	const p = Game.ctx.transformedPoint(x, y);
-	console.log('"x": ' + Math.floor(p.x) + ', "y": ' + Math.floor(p.y) + ',');
+	console.log('"x": ' + Math.floor(p.x) + ', "y": ' + Math.floor(p.y));
 }
 
 const offset = {
@@ -129,7 +122,7 @@ function mouseUp(x, y, button) {
 		m.display = false;
 }
 
-Game.init(window.innerWidth, window.innerHeight, 10, false);
+Game.init(window.innerWidth, window.innerHeight, 2, false);
 
 document.addEventListener('mousedown', function(ev) {
 	if (ev.which == 3) {

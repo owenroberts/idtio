@@ -192,6 +192,11 @@ function initData() {
 io.on('connection', function(socket) {
 	console.log('new', socket.id);
 	players[socket.id] = new Player(socket);
+
+	socket.on('set bounds', (width, height) => {
+		players[socket.id].setBounds(width, height);
+	});
+
 	socket.on('splash loaded', () => {
 		socket.emit('init', initData());
 	});

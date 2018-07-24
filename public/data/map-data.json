@@ -6,7 +6,7 @@
 			"src": "/public/drawings/pickups/flower-0.json",
 			"x": 500, 
 			"y": 400,
-			"distance": 200,
+			"distance": 100,
 			"msg": "E to pick flower",
 			"wrap": 9,
 			"states": {
@@ -22,7 +22,7 @@
 			"src": "/public/drawings/pickups/flower-1.json",
 			"x": 800, 
 			"y": 400,
-			"distance": 200,
+			"distance": 100,
 			"msg": "E to pick flower",
 			"wrap": 9,
 			"states": {
@@ -38,7 +38,7 @@
 			"src": "/public/drawings/pickups/flower-2.json",
 			"x": 200, 
 			"y": 412,
-			"distance": 200,
+			"distance": 100,
 			"msg": "E to pick flower",
 			"wrap": 9,
 			"states": {
@@ -54,7 +54,7 @@
 			"src": "/public/drawings/pickups/flower-3.json",
 			"x": 600, 
 			"y": 256,
-			"distance": 200,
+			"distance": 100,
 			"msg": "E to pick flower",
 			"wrap": 9,
 			"states": {
@@ -70,7 +70,38 @@
 			"src": "/public/drawings/pickups/flower-4.json",
 			"x": 100, 
 			"y": 512,
-			"distance": 200,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3 },
+				"end": {"start": 3, "end": 4 },
+				"reborn": {"start": 4, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 5",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-5.json",
+			"x": 300, 
+			"y": 150,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 3 },
+				"end": {"start": 3, "end": 4 },
+				"reborn": {"start": 4, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 6",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-6.json",
+			"x": 960, "y": 179,
+			"distance": 100,
 			"msg": "E to pick flower",
 			"wrap": 9,
 			"states": {
@@ -236,7 +267,21 @@
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 83 }
 			}
+		},
+		{
+			"label": "the void",
+			"type": "interactive",
+			"src": "/public/drawings/interactives/the_void.json",
+			"x": -7144, "y": 0,
+			"distance": 300,
+			"msg": "E enter the void",
+			"wrap": 22,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 47 }
+			}
 		}
+
 	],
 
 	"scenery": [
@@ -269,6 +314,26 @@
 		{ "src": "/public/drawings/scenery/spine-6.json", "x": -3072, 	"y": 0 },
 		{ "src": "/public/drawings/scenery/spine-7.json", "x": -4096, 	"y": 0 },
 
-		{ "src": "/public/drawings/scenery/hill-south.json", "x": -6144, 	"y": 256 }
+		{ "src": "/public/drawings/scenery/hill-south.json", "x": -6144, 	"y": 256 },
+		{ "src": "/public/drawings/scenery/hill-north.json", "x": -6144, 	"y": -1024 },
+
+		{ "src": "/public/drawings/scenery/river-delta.json", "x": -8100, 	"y": 0 },
+		{ "src": "/public/drawings/scenery/river-middle.json", "x": -9124, 	"y": 0 },
+		{ "src": "/public/drawings/scenery/river-top.json", "x": -9124, 	"y": -768 },
+		{ "src": "/public/drawings/scenery/river-bottom.json", "x": -9124, 	"y": 768 },
+
+		{ "src": "/public/drawings/scenery/forrest-0.json", "x": 5744, "y": -400 },
+		{ "src": "/public/drawings/scenery/forrest-1.json", "x": 5906, "y": -292 },
+		{ "src": "/public/drawings/scenery/forrest-2.json", "x": 6003, "y": -89 },
+		{ "src": "/public/drawings/scenery/forrest-3.json", "x": 6090, "y": -473 },
+		{ "src": "/public/drawings/scenery/forrest-4.json", "x": 6322, "y": -37 },
+		{ "src": "/public/drawings/scenery/forrest-5.json","x": 6909, "y": -57 },
+		{ "src": "/public/drawings/scenery/forrest-6.json", "x": 6429, "y": -731 },
+		{ "src": "/public/drawings/scenery/forrest-7.json", "x": 6932, "y": -803 },
+		{ "src": "/public/drawings/scenery/forrest-8.json", "x": 7038, "y": -337 },
+		{ "src": "/public/drawings/scenery/forrest-9.json", "x": 6726, "y": -466 },
+
+
+		{ "src": "/public/drawings/scenery/windmill-0.json", "x": -3476, "y": 1654 }
 	]
 }

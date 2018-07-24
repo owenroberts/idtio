@@ -272,6 +272,19 @@
 		- this might be the answer
 		- but story starter has to happen at the same time
 
+7.22.2018
+- starting to drag with void + river delta + two hills
+	- too much detail in these drawings prob
+	- hills are not fit to canvas
+	- neither river
+	- void is
+	- u is like 10 d is still like 10
+	- need stats smoothing to actually read it
+	- read this someday: https://stackoverflow.com/questions/46300964/requestanimationframe-javascript-constant-frame-rate-smooth-graphics#
+	
+7.23.2018
+- showing one interactive but triggering another ...
+	- shortest distance?  fuck that ... 
 
 - lines explode order with multiple layers
 - drawings - indicate what drawings are in frames

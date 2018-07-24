@@ -126,10 +126,7 @@ function draw() {
 	}
 }
 
-/* update happens on the server */
-function update() {
-	// for stats 
-}
+function update() { /* for stats */ }
 
 /* events */
 function keyDown(key) {
@@ -221,7 +218,9 @@ function mouseUp(x, y) {
 
 /* init game last bc it calls the start function .... better way to do this?
 	just no start function? */
-Game.init(window.innerWidth, window.innerHeight, 10);
+Game.init(window.innerWidth, window.innerHeight, 10, true);
+socket.emit('set bounds', window.innerWidth/2, window.innerHeight/2); 
+	/* need to account for player width/height*/
 
 /* new user */
 socket.on('id', (id) => {
