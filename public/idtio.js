@@ -76,7 +76,12 @@ function loadMap(data) {
 
 	for (let i = 0; i < data.scenery.length; i++) {
 		scenes.game.scenery.push( new Item(data.scenery[i], false) );
+		// if (data.scenery[i].src == '/public/drawings/scenery/south-beach-0.json') {
+		// 	scenes.game.scenery[scenes.game.scenery.length - 1].debug = true;
+		// 	scenes.game.scenery[scenes.game.scenery.length - 1].animation.debug = true;
+		// }
 	}
+
 }
 
 function start() {
@@ -191,6 +196,7 @@ function mouseClicked(x, y) {
 		const sprite = scenes[currentScene].ui[ui];
 		// sprite.event(x, y);
 	}
+	// console.log('"x": ' + x + ', "y": ' + y); // not the right coords
 }
 
 function mouseMoved(x, y) {
@@ -231,9 +237,7 @@ socket.on('id', (id) => {
 socket.on('init', (data) => {
 	for (const id in data.players) {
 		const player = data.players[id];
-
-		console.log('character data', characterData);
-
+		// console.log('character data', characterData);
 		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
 		scenes.splash.ui[player.character].setChosen();
 	}

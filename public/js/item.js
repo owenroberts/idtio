@@ -11,6 +11,8 @@ class Item extends Sprite {
 			this.animation.states = params.states;
 			this.animation.state = 'idle';
 		}
+		if (params.r)
+			this.animation.randomFrames = true;
 	}
 
 	display() {

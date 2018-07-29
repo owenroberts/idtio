@@ -290,12 +290,25 @@
 - drawings - indicate what drawings are in frames
 - error with fit canvas to frame
 
+7.25.2018
+- sand tool ??
+	- yeaah
 
+
+7.26.2018
+
+7.29.2018
+- random frame animation function?
+- lines setups - defaults ... 
+- save frames option to fit to canvas
+- loading screen
 
 - lowdb?
 - possible separate x and y wiggle
 
 - more map assets
+- move map stuff?
+	- https://github.com/typicode/lowdb
 
 - instructions
 
@@ -312,3 +325,9 @@
 - figure out center without calling it over and over
 	- for ui, interactive classes, could just center the perm x
 	- for sprite could introduce origin or offest value
+
+- ukulele stuff
+	- https://www.elderly.com/fiddle-tunes-for-ukulele.htm
+	- http://www.abbamoses.com/fiddledo/fiddlepage
+	- http://www.kenmiddleton.co.uk/free-tabs/
+	- https://gumroad.com/l/minstrel-uke

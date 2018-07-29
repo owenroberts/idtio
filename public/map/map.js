@@ -15,17 +15,19 @@ const m = {
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
+		// map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
-		map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
+		// map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		const item = new Item(data.scenery[i], false);
-		item.label = data.scenery[i].src.split('/').pop().split('.')[0]
-		map.scenery.push(item);
+		if (data.scenery[i].m) {
+			const item = new Item(data.scenery[i], false);
+			item.label = data.scenery[i].src.split('/').pop().split('.')[0]
+			map.scenery.push(item);
+		}
 	}
 }
 
@@ -47,9 +49,15 @@ function draw() {
 	const p2 = Game.ctx.transformedPoint(Game.canvas.width, Game.canvas.height);
 	Game.ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
 
+	Game.ctx.strokeStyle = '#bb11ff';
+	Game.ctx.lineWidth = 10;
+	Game.ctx.strokeRect(-9728, -4096, 17408, 8192);
+	Game.ctx.lineWidth = 1;
+
+	Game.ctx.font = '16px monaco';
+	Game.ctx.fillStyle = '#bb11ff';
 	for (const interactive in map.interactives) {
 		map.interactives[interactive].display();
-		Game.ctx.fillStyle = '#bb11ff';
 		Game.ctx.fillText(interactive, map.interactives[interactive].position.x, map.interactives[interactive].position.y);
 	}
 	for (let i = 0; i < map.scenery.length; i++) {
@@ -59,9 +67,10 @@ function draw() {
 
 	/* measurement */
 	if (m.display) {
-		Game.ctx.rect(m.x, m.y, m.w, m.h);
 		Game.ctx.strokeStyle = '#bb11ff';
-		Game.ctx.stroke();
+		Game.ctx.strokeRect(m.x, m.y, m.w, m.h);
+		
+		Game.ctx.font = '48px monaco';
 		Game.ctx.fillText(Math.floor(m.w), m.x + m.w/2, m.y - 10);
 		Game.ctx.fillText(Math.floor(m.h), m.x - 20, m.y + m.h/2);
 	}
@@ -122,7 +131,7 @@ function mouseUp(x, y, button) {
 		m.display = false;
 }
 
-Game.init(window.innerWidth, window.innerHeight, 2, false);
+Game.init(window.innerWidth, window.innerHeight, 10, false);
 
 document.addEventListener('mousedown', function(ev) {
 	if (ev.which == 3) {

@@ -40,7 +40,7 @@ class Player extends Entity {
 
 	setBounds(width, height) {
 		this.bounds.top -= height;
-		this.bounds.bottom += height;
+		this.bounds.bottom -= height;
 		this.bounds.left -= width;
 		this.bounds.right -= width;
 	}
