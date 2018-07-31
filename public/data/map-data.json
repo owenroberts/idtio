@@ -144,6 +144,38 @@
 				"reborn": {"start": 7, "end": 7 }
 			}
 		},
+		{
+			"label": "skull 2",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-2.json",
+			"x": -200, 
+			"y": 200,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 6 },
+				"end": {"start": 6, "end": 6 },
+				"reborn": {"start": 7, "end": 9 }
+			}
+		},
+		{
+			"label": "skull 3",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-3.json",
+			"x": -500, 
+			"y": 200,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 6 },
+				"end": {"start": 6, "end": 6 },
+				"reborn": {"start": 7, "end": 8 }
+			}
+		},
 
 		{
 			"label": "apple 0",
@@ -221,6 +253,36 @@
 				"interact": { "start": 1, "end": 5 },
 				"end": {"start": 4, "end": 4 },
 				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "heart 0",
+			"type": "apple",
+			"src": "/public/drawings/pickups/heart-0.json",
+			"x": -200, "y": 600,
+			"distance": 200,
+			"msg": "E to remove heart",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 6 },
+				"end": {"start": 6, "end": 6 },
+				"reborn": {"start": 7, "end": 9 }
+			}
+		},
+		{
+			"label": "heart 1",
+			"type": "apple",
+			"src": "/public/drawings/pickups/heart-1.json",
+			"x": -600, "y": 600,
+			"distance": 200,
+			"msg": "E to remove heart",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 6 },
+				"end": {"start": 6, "end": 6 },
+				"reborn": {"start": 7, "end": 9 }
 			}
 		}
 	],

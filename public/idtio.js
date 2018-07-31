@@ -15,13 +15,6 @@ let user = {
 
 function loadSplashScene(data) {
 	console.log('%c splash loaded', 'color:white;background:lightblue;');
-	for (const key in data) {
-		const ui = data[key];
-		scenes.splash.ui[key] = new UI(ui, false);
-		scenes.splash.ui[key].callback = function() {
-			socket.emit(ui.callback.route, ui.callback.message);
-		};
-	}
 
 	Game.letters = new Animation("/public/drawings/ui/letters.json");
 	// Game.letters.debug = true;
@@ -31,6 +24,14 @@ function loadSplashScene(data) {
 
 	for (const key in map) {
 		Game.letters.createNewState(key, map[key], map[key]);
+	}
+
+	for (const key in data) {
+		const ui = data[key];
+		scenes.splash.ui[key] = new UI(ui, false);
+		scenes.splash.ui[key].callback = function() {
+			socket.emit(ui.callback.route, ui.callback.message);
+		};
 	}
 
 	Game.icons = {
@@ -59,7 +60,7 @@ function loadSplashScene(data) {
 		Game.icons[i].animation.state = "idle";
 	}
 
-	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19);
+	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19, Game.letters);
 	socket.emit('splash loaded');
 }
 
@@ -75,13 +76,12 @@ function loadMap(data) {
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		scenes.game.scenery.push( new Item(data.scenery[i], false) );
+		// scenes.game.scenery.push( new Item(data.scenery[i], false) );
 		// if (data.scenery[i].src == '/public/drawings/scenery/south-beach-0.json') {
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].debug = true;
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].animation.debug = true;
 		// }
 	}
-
 }
 
 function start() {
@@ -346,7 +346,6 @@ socket.on('story input', (data) => {
 });
 
 socket.on('start story', (data) => {
-	console.log('start story', data);
 	const p = data[0].character; // player
 	const o = data[1].character; // other
 	const pt = data[0].type; // player story type
@@ -360,11 +359,13 @@ socket.on('start story', (data) => {
 		scenes.game.characters[p].iconType = false;
 		scenes.game.characters[o].iconType = false;
 		function playNextStory(index) {
-			const char = index % 2 == 0 ? story.first : story.second;
-			const src = 'public/drawings/story/' + charKey + '-' + storyKey + '-' + index + '.json';
-			scenes.game.characters[char].playStory(src, () => {
+			const char = story[index][0];
+			const dialog = story[index][1];
+			scenes.game.characters[char].toggleBox(true);
+			scenes.game.characters[char].playStory(dialog, () => {
 				index++;
-				if (index <= story.length) {
+				if (index < story.length) {
+					scenes.game.characters[char].toggleBox(false);
 					playNextStory(index);
 				} else {
 					socket.emit('done talking');

@@ -39,6 +39,16 @@
 				"forward": { "start": 0, "end": 16 },
 				"reverse": { "start": 17, "end": 28 }
 			}
+		},
+		"box": {
+			"src": "/public/drawings/ui/cat-box.json",
+			"states": {
+				"forward": { "start": 0, "end": 8 },
+				"reverse": { "start": 8, "end": 15 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/ui/cat-letters.json"
 		}
 	},
 	"pig": {
@@ -61,6 +71,16 @@
 				"forward": { "start": 0, "end": 12 },
 				"reverse": { "start": 12, "end": 20 }
 			}
+		},
+		"box": {
+			"src": "/public/drawings/ui/pig-box.json",
+			"states": {
+				"forward": { "start": 0, "end": 9 },
+				"reverse": { "start": 9, "end": 15 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/ui/pig-letters.json"
 		}
 	},
 	"birds": {
@@ -83,6 +103,16 @@
 				"forward": { "start": 0, "end": 13 },
 				"reverse": { "start": 14, "end": 25 }
 			}
+		},
+		"box": {
+			"src": "/public/drawings/ui/birds-box.json",
+			"states": {
+				"forward": { "start": 0, "end": 9 },
+				"reverse": { "start": 9, "end": 18 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/ui/birds-letters.json"
 		}
 	}
 }

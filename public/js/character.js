@@ -15,7 +15,7 @@ class Character extends Sprite {
 			this.animation.state = 'idle';
 		});
 
-		this.interface = new Animation(data.bubble.src, true);
+		this.interface = new Animation(data.bubble.src, false);
 		this.interface.load(false, () => {
 			this.interface.loop = false;
 			this.interface.states = data.bubble.states;
@@ -29,7 +29,30 @@ class Character extends Sprite {
 
 		this.resources = params.resources;
 		this.displayStory = false;
-		this.stories = {};
+		
+		// this.stories = {};
+
+		this.letters = new Animation(data.letters.src, false);
+		this.letters.load(false);
+		const map = { "a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25, "?": 26, ".": 27, ",": 28, "'": 29 };
+		for (const key in map) {
+			this.letters.createNewState(key, map[key], map[key]);
+		}
+
+		// dialog box 
+		this.story = new Text(this.position.x, this.position.y, "", 10, this.letters);
+		this.storyCount = 0;
+		this.storyLength = 0;
+		this.storyEnd = 0;
+		this.storyFrameCount = 0;
+		this.storyCallback;
+		this.box = new Animation(data.box.src, false);
+		this.box.load(false, () => {
+			this.box.loop = false;
+			this.box.states = data.box.states;
+		});
+		this.displayBox = false;
+		
 	}
 
 	display() {
@@ -65,8 +88,23 @@ class Character extends Sprite {
 					i++;
 				}
 			}
+			if (this.displayBox)
+				this.box.draw(x, this.position.y);
 			if (this.displayStory) {
-				this.stories[this.currentStory].draw(x, y);
+				this.story.display(this.storyCount, x, this.position.y - 35);
+				this.storyFrameCount++;
+				if (this.storyFrameCount == 2) {
+					this.storyFrameCount = 0;
+					if (this.storyEnd > 3) {
+						this.displayStory = false;	
+						this.toggleBox(false);
+						this.storyCallback();
+					} if (this.storyCount == this.storyLength) {
+						this.storyEnd++;						
+					} else {
+						this.storyCount++;
+					}
+				}
 			}
 		}
 	}
@@ -76,10 +114,23 @@ class Character extends Sprite {
 			this.displayInterface = true;
 			this.interface.setState('forward');
 		} else {
-			this.interface.setState('reverse');
 			this.displayIcons = false;
+			this.interface.setState('reverse');
 			this.interface.playOnce(() => {
 				this.displayInterface = false;
+			});
+		}
+	}
+
+	toggleBox(state) {
+		if (state) {
+			this.displayBox = true;
+			this.box.setState('forward');
+		} else {
+			this.displayBox = false;
+			this.box.setState('reverse');
+			this.box.playOnce(() => {
+				this.displayBox = false;
 			});
 		}
 	}
@@ -89,24 +140,13 @@ class Character extends Sprite {
 		this.toggleInterface(false);
 	}
 
-	playStory(src, callback) {
-		const self = this;
-		function playReady() {
-			self.iconType = false;
-			self.displayStory = true;
-			self.currentStory = src;
-			self.stories[src].playOnce(() => {
-				self.displayStory = false;
-				callback();
-			});
-		}
-		if (this.stories[src]) {
-			playReady();
-		} else {	
-			this.stories[src] = new Animation(src, false);
-			this.stories[src].load(false, () => {
-				playReady();
-			});
-		}
+	playStory(dialog, callback) {
+		this.iconType = false;
+		this.displayStory = true;
+		this.story.setMsg(dialog);
+		this.storyCount = 0;
+		this.storyEnd = 0;
+		this.storyLength = dialog.length;
+		this.storyCallback = callback;
 	}
 }

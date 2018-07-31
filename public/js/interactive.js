@@ -3,7 +3,7 @@ class Interactive extends Item {
 		super(params, debug);
 		this.text = params.text;
 		this.displayText = false;
-		this.text = new Text(params.x, params.y, params.msg, params.wrap);
+		this.text = new Text(params.x, params.y, params.msg, params.wrap, Game.letters);
 		this.isActive = false;
 		this.animation.loop = false;
 		this.isPickup = false;

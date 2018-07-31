@@ -1,32 +1,64 @@
 class Text {
-	constructor(x, y, msg, wrap) {
+	constructor(x, y, msg, wrap, letters) {
 		this.x = x;
 		this.y = y;
 		this.msg = msg;
 		this.wrap = wrap;
 		this.active = true;
+		this.letters = letters;
+		this.breaks = [];
+		this.setBreaks();
 	}
+
 	setPosition(x, y) {
 		this.x = x;
 		this.y = y;
 	}
-	display() {
-		if (this.active) {
-			let x = this.x;
-			let y = this.y - Math.floor((this.msg.length - 1) / this.wrap) * 35;
+	
+	setMsg(msg) {
+		this.msg = msg;
+		this.setBreaks();
+	}
 
-			for (let i = 0; i < this.msg.length; i++) {
+	setBreaks() {
+		let nextSpace = false;
+		let offset = 0;
+		this.breaks = [];
+		for (let i = 0; i < this.msg.length; i++) {
+			if (i != 0) {
+				if (i % this.wrap  == offset && this.msg[i] == ' ' && !nextSpace) {
+					this.breaks.push(i);
+				} else if (i % this.wrap == offset && this.msg[i] != ' ' && !nextSpace) {
+					nextSpace = true;
+				} else if (nextSpace && this.msg[i] == ' ') {
+					this.breaks.push(i);
+					offset = i % this.wrap;
+					nextSpace = false;
+				}
+			}
+		}
+	}
+	
+	display(len, _x, _y) {
+		if (len === undefined)
+			len = this.msg.length;
+		if (this.active) {
+			let x = _x || this.x;
+			let y = _y || this.y;
+			y -= this.breaks.length * 35;
+
+			for (let i = 0; i < len; i++) {
 				var letter = this.msg[i];
 				if (letter == ' ') {
 					x += 30;
 				} else {
-					Game.letters.setState(letter);
-					Game.letters.draw(x, y);
+					this.letters.setState(letter);
+					this.letters.draw(x, y);
 					x += 18;
 				}
-				if (i != 0 && i % this.wrap == 0) {
+				if (this.breaks.indexOf(i) != -1) {
 					y += 35;
-					x = this.x;
+					x = _x || this.x;
 				}
 			}
 		}

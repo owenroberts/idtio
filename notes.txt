@@ -299,9 +299,36 @@
 
 7.29.2018
 - random frame animation function?
-- lines setups - defaults ... 
 - save frames option to fit to canvas
+
+- https://en.wikipedia.org/wiki/Rabbits_and_hares_in_art#D%C3%BCrer's_Young_Hare
+- https://www.youtube.com/watch?v=Ood3teygwh8 // animal cartoon
+- https://en.wikipedia.org/wiki/Rabbit_plagues_in_Australia
+- http://jefsbio.blogspot.com/2012/01/vertebrate-comparitve-study.html
+- https://en.wikipedia.org/wiki/Plagues_of_Egypt#4._Mixture_of_wild_animals_(%D7%A2%D6%B8%D7%A8%D7%95%D6%B9%D7%91):_Ex._8:20-32
+- https://news.nationalgeographic.com/news/2009/05/photogalleries/mothers-day-worst-animal-moms-pictures/photo4.html
+
+7.30.2018
+- need dialog system - at least for the conference and realistically this is the only way to go
+- alphabets for each character
+- use the text class
+- make a default speech bubble that not closed
+- start with just one letter at a time
+	- maybe add explode animation to animate ... useful for other stuff probably
+- have to set up timing as well
+- use csv? story data gets much bigger
+- loading is slow
+	- move map load to on init ?
+	- shouldn't really be waiting for data so it must be building everything in load functions
+- exit button
+
+- lines change layer order
+- lines setups - defaults ... 
 - loading screen
+- resources timeout
+- player timeout
+- will there be an error when one player leaves a story or turns off tab for a while?
+
 
 - lowdb?
 - possible separate x and y wiggle
