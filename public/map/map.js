@@ -23,11 +23,11 @@ function loadMap(data) {
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		if (data.scenery[i].m) {
+		// if (data.scenery[i].m) {
 			const item = new Item(data.scenery[i], false);
 			item.label = data.scenery[i].src.split('/').pop().split('.')[0]
 			map.scenery.push(item);
-		}
+		// }
 	}
 }
 
@@ -131,7 +131,7 @@ function mouseUp(x, y, button) {
 		m.display = false;
 }
 
-Game.init(window.innerWidth, window.innerHeight, 10, false);
+Game.init(window.innerWidth, window.innerHeight, 1, false);
 
 document.addEventListener('mousedown', function(ev) {
 	if (ev.which == 3) {

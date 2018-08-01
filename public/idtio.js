@@ -1,9 +1,17 @@
 const socket = io();
 const scenes = {
+	loading: { sprites: {} },
 	splash: { ui: {}, texts: {} },
 	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
 };
-let currentScene = 'splash';
+const assetsLoaded = {
+	splash: false,
+	map: false,
+	characters: false,
+	stories: false,
+	loading: false
+}
+let currentScene = 'loading';
 let characterData, storyData;
 let user = {
 	interacting: {
@@ -62,17 +70,21 @@ function loadSplashScene(data) {
 
 	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19, Game.letters);
 	socket.emit('splash loaded');
+
+	assetsLoaded.splash = true;
 }
 
 function loadMap(data) {
 	console.log('%c map loaded', 'color:white;background:pink;');
 	for (let i = 0; i < data.interactives.length; i++) {
 		scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
+		// draw(); // loading
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
 		scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
 		scenes.game.interactives[data.pickups[i].label].isPickup = true;
+		// draw(); // loading
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -81,10 +93,22 @@ function loadMap(data) {
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].debug = true;
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].animation.debug = true;
 		// }
+		// draw(); // loading
 	}
+	assetsLoaded.map = true;
 }
 
 function start() {
+
+	scenes.loading.sprites.loading = new Sprite(window.innerWidth/2, window.innerHeight/2);
+	scenes.loading.sprites.loading.addAnimation('/public/drawings/ui/loading.json', () => {
+		scenes.loading.sprites.loading.center();
+		scenes.loading.sprites.loading.animation.onPlayedState = function() {
+			assetsLoaded.loading = true;
+		}
+	});
+
+
 	fetch('/public/data/ui-data.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadSplashScene(json));
@@ -98,6 +122,7 @@ function start() {
 		.then(json => {
 			console.log('%c characters loaded', 'color:white;background:lightgreen;');
 			characterData = json;
+			assetsLoaded.characters = true;
 		});
 
 	fetch('/public/data/story-data.json')
@@ -105,10 +130,20 @@ function start() {
 		.then(json => {
 			console.log('%c stories loaded', 'color:white;background:gold;');
 			storyData = json;
+			assetsLoaded.stories = true;
 		});
 }
 
 function draw() {
+
+	if (currentScene == 'loading') {
+		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading)
+			currentScene = 'splash';
+	}
+
+	for (const sprite in scenes[currentScene].sprites) {
+		scenes[currentScene].sprites[sprite].display();
+	}
 
 	for (const ui in scenes[currentScene].ui) {
 		scenes[currentScene].ui[ui].display();

@@ -1,4 +1,63 @@
 {
+	"ui": {
+		"instructions": {
+			"src": "/public/drawings/ui/instructions.json",
+			"x": 280,
+			"y": 20,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"callback": {
+				"route": "instructions"
+			}
+		},
+		"sound": {
+			"src": "/public/drawings/ui/sound.json",
+			"x": 0,
+			"y": 0,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 0, "end": 0 },
+				"selected": { "start": 1, "end": 1 },
+				"active": { "start": 1, "end": 1 }
+			},
+			"callback": {
+				"route": "sound-toggle"
+			}
+		},
+		"weather": {
+			"src": "/public/drawings/ui/weather.json",
+			"x": 100,
+			"y": 0,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 0, "end": 0 },
+				"selected": { "start": 1, "end": 1 },
+				"active": { "start": 1, "end": 1 }
+			},
+			"callback": {
+				"route": "weather-toggle"
+			}
+		},
+		"scratch": {
+			"src": "/public/drawings/ui/scratch-selection.json",
+			"x": 1200,
+			"y": 10,
+			"states": {
+				"idle": { "start": 0, "end": 3 },
+				"over": { "start": 3, "end": 6 },
+				"selected": { "start": 3, "end": 6 },
+				"active": { "start": 6, "end": 9 }
+			},
+			"callback" : {
+				"route": "character selection",
+				"message": "scratch"
+			}
+		}
+	},
 	"pickups": [
 		{
 			"label": "apple 0",

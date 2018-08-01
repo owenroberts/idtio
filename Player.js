@@ -7,7 +7,7 @@ class Player extends Entity {
 		socket.emit('id', socket.id);
 		this.joinedGame = false;
 		this.input = { right: false, up: false, left: false, down: false };
-		this.bounds = { top: -4096, bottom: 4096, left: -8192, right: 7168 };
+		this.bounds = { top: -3596, bottom: 4026, left: -8192, right: 7168 };
 		this.speed = 5;
 		this.animationState = 'idle';
 
