@@ -44,7 +44,7 @@ function loadSplashScene(data) {
 			key: "K"
 		},
 		apple: {
-			animation: new Animation("/public/drawings/ui/icon-apple.json", false),
+			animation: new Animation("/public/drawings/ui/icon-heart.json", false),
 			key: "L"
 		}
 	};
@@ -76,7 +76,7 @@ function loadMap(data) {
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		// scenes.game.scenery.push( new Item(data.scenery[i], false) );
+		scenes.game.scenery.push( new Item(data.scenery[i], false) );
 		// if (data.scenery[i].src == '/public/drawings/scenery/south-beach-0.json') {
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].debug = true;
 		// 	scenes.game.scenery[scenes.game.scenery.length - 1].animation.debug = true;

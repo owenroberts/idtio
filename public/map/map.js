@@ -15,11 +15,11 @@ const m = {
 
 function loadMap(data) {
 	for (let i = 0; i < data.interactives.length; i++) {
-		// map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
+		map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
-		// map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
+		map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {

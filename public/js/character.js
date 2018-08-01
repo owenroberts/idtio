@@ -70,7 +70,6 @@ class Character extends Sprite {
 				x += 20;
 				y += 20;
 				for (const key in Game.icons) {
-					x += 40;
 					if (key == this.iconType) {
 						Game.icons[key].animation.setState('over');
 						Game.icons[key].animation.draw(x, y);
@@ -79,13 +78,14 @@ class Character extends Sprite {
 						if (this.resources[key].length > 0) {
 							Game.icons[key].animation.setState('idle');
 							Game.letters.setState(Game.icons[key].key);
-							Game.letters.draw(x, y + 100);
+							Game.letters.draw(x + 30, y + 90);
+						} else {
+							Game.icons[key].animation.setState('select');
 						}
-						else
-							Game.icons[key].animation.setState('unavailable');
 						Game.icons[key].animation.draw(x, y);
 					}
 					i++;
+					x += 90;
 				}
 			}
 			if (this.displayBox)

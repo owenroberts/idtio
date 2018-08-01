@@ -1,0 +1,82 @@
+{
+	"pickups": [
+		{
+			"label": "apple 0",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-0.json",
+			"x": 4400, 
+			"y": -2320,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 1",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-1.json",
+			"x": 4000, 
+			"y": -2270,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 9 }
+			}
+		},
+		{
+			"label": "apple 2",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-2.json",
+			"x": 4500, 
+			"y": -2380,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 3",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-3.json",
+			"x": 4315, "y": 2567,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "apple 4",
+			"type": "apple",
+			"src": "/public/drawings/pickups/apple-4.json",
+			"x": 4105, "y": 2531,
+			"distance": 200,
+			"msg": "E to pick apple",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+	]
+}

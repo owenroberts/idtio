@@ -30,7 +30,8 @@
 				"up": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
-				"apple": { "start": 23, "end": 26 }
+				"apple-x": { "start": 23, "end": 27 },
+				"apple": { "start": 27, "end": 32 }
 			}
 		},
 		"bubble": {
@@ -62,14 +63,15 @@
 				"down": { "start": 14, "end": 16 },
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
-				"apple": { "start": 23, "end": 28 }
+				"apple-x": { "start": 23, "end": 28 },
+				"apple": { "start": 28, "end": 33 }
 			}
 		},
 		"bubble": {
 			"src": "/public/drawings/ui/pig-interface.json",
 			"states": {
-				"forward": { "start": 0, "end": 12 },
-				"reverse": { "start": 12, "end": 20 }
+				"forward": { "start": 0, "end": 6 },
+				"reverse": { "start": 7, "end": 12 }
 			}
 		},
 		"box": {
@@ -100,8 +102,8 @@
 		"bubble": {
 			"src": "/public/drawings/ui/birds-interface.json",
 			"states": {
-				"forward": { "start": 0, "end": 13 },
-				"reverse": { "start": 14, "end": 25 }
+				"forward": { "start": 0, "end": 5 },
+				"reverse": { "start": 6, "end": 12 }
 			}
 		},
 		"box": {

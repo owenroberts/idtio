@@ -111,6 +111,216 @@
 				"reborn": {"start": 4, "end": 8 }
 			}
 		},
+		{
+			"label": "flower 7",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-7.json",
+			"x": 1037, "y": 620,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 8",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-8.json",
+			"x": -137, "y": 198,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 9",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-9.json",
+			"x": -137, "y": -266,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 10",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-10.json",
+			"x": 276, "y": -294,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 11",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-11.json",
+			"x": -545, "y": -516,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 12",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-12.json",
+			"x": 763, "y": -488,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 13",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-13.json",
+			"x": 129, "y": -708,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 14",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-14.json",
+			"x": 1212, "y": -888,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 15",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-15.json",
+			"x": 558, "y": -1068,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 16",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-16.json",
+			"x": 47, "y": 1007,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 17",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-17.json",
+			"x": -734, "y": -164,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 18",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-18.json",
+			"x": -67, "y": -803,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 19",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-19.json",
+			"x": 3057, "y": 1988,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
+		{
+			"label": "flower 20",
+			"type": "flower",
+			"src": "/public/drawings/pickups/flower-20.json",
+			"x": -3779, "y": -1545,
+			"distance": 100,
+			"msg": "E to pick flower",
+			"wrap": 9,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 4 },
+				"end": {"start": 4, "end": 4 },
+				"reborn": {"start": 5, "end": 8 }
+			}
+		},
 
 		{
 			"label": "skull 0",
@@ -148,8 +358,7 @@
 			"label": "skull 2",
 			"type": "skull",
 			"src": "/public/drawings/pickups/grave-2.json",
-			"x": -200, 
-			"y": 200,
+			"x": 3848, "y": 562,
 			"distance": 100,
 			"msg": "E to dig up skull",
 			"wrap": 8,
@@ -164,8 +373,37 @@
 			"label": "skull 3",
 			"type": "skull",
 			"src": "/public/drawings/pickups/grave-3.json",
-			"x": -500, 
-			"y": 200,
+			"x": 3476, "y": 626,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 6 },
+				"end": {"start": 6, "end": 6 },
+				"reborn": {"start": 6, "end": 8 }
+			}
+		},
+		{
+			"label": "skull 4",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-4.json",
+			"x": 4146, "y": 932,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 5 },
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 8 }
+			}
+		},
+		{
+			"label": "skull 5",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-5.json",
+			"x": -7823, "y": -2446,
 			"distance": 100,
 			"msg": "E to dig up skull",
 			"wrap": 8,
@@ -176,85 +414,68 @@
 				"reborn": {"start": 7, "end": 8 }
 			}
 		},
-
 		{
-			"label": "apple 0",
-			"type": "apple",
-			"src": "/public/drawings/pickups/apple-0.json",
-			"x": 4400, 
-			"y": -2320,
-			"distance": 200,
-			"msg": "E to pick apple",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "apple 1",
-			"type": "apple",
-			"src": "/public/drawings/pickups/apple-1.json",
-			"x": 4000, 
-			"y": -2270,
-			"distance": 200,
-			"msg": "E to pick apple",
-			"wrap": 9,
+			"label": "skull 6",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-6.json",
+			"x": -8738, "y": -2160,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 5 },
 				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 9 }
+				"reborn": {"start": 6, "end": 8 }
 			}
 		},
 		{
-			"label": "apple 2",
-			"type": "apple",
-			"src": "/public/drawings/pickups/apple-2.json",
-			"x": 4500, 
-			"y": -2380,
-			"distance": 200,
-			"msg": "E to pick apple",
-			"wrap": 9,
+			"label": "skull 7",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-7.json",
+			"x": -8142, "y": -1984,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 8 }
 			}
 		},
 		{
-			"label": "apple 3",
-			"type": "apple",
-			"src": "/public/drawings/pickups/apple-3.json",
-			"x": 4315, "y": 2567,
-			"distance": 200,
-			"msg": "E to pick apple",
-			"wrap": 9,
+			"label": "skull 8",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-8.json",
+			"x": -8595, "y": -1598,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 8 }
 			}
 		},
 		{
-			"label": "apple 4",
-			"type": "apple",
-			"src": "/public/drawings/pickups/apple-4.json",
-			"x": 4105, "y": 2531,
-			"distance": 200,
-			"msg": "E to pick apple",
-			"wrap": 9,
+			"label": "skull 9",
+			"type": "skull",
+			"src": "/public/drawings/pickups/grave-9.json",
+			"x": -7676, "y": -1804,
+			"distance": 100,
+			"msg": "E to dig up skull",
+			"wrap": 8,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
+				"end": {"start": 5, "end": 5 },
+				"reborn": {"start": 6, "end": 8 }
 			}
 		},
+
+
 		{
 			"label": "heart 0",
 			"type": "apple",
