@@ -314,7 +314,13 @@ socket.on('init', (data) => {
 /* does this do anything? */
 socket.on('character chosen', (character) => {
 	scenes.splash.ui[character].setChosen();
-	user.character = character;
+	// user.character = character; /* wait is this all sockets? */
+	/* hopefully this doesn't break anything */
+});
+
+/* does this do anything? */
+socket.on('character unchosen', (character) => {
+	scenes.splash.ui[character].setUnchosen();
 });
 
 /* add character to scene, both user and others */
@@ -368,7 +374,6 @@ socket.on('update', (data) => {
 	}
 });
 
-
 /* player interacting with map interactives */
 socket.on('display interact message', (params) => {
 	if (!scenes.game.interactives[params.label].isActive)
@@ -402,7 +407,6 @@ socket.on('return resource', (resource) => {
 	});
 });
 
-
 /* interacting with another player */
 socket.on('character interface', (id, character, state) => {
 	if (id == user.id)
@@ -421,7 +425,7 @@ socket.on('start story', (data) => {
 	const ot = data[1].type; // other story type
 	const charKey = storyData[p + '-' + o] ? p + '-' + o : o + '-' + p;
 	const charData = storyData[charKey];
-	const storyKey = charData[pt + '-' + ot] ? pt + '-' + ot : ot + '-' + pt;
+	const storyKey = charKey == p + '-' + o ? pt + '-' + ot : ot + '-' + pt;
 	const story = charData[storyKey];
 
 	setTimeout(() => {

@@ -349,7 +349,7 @@
 	- fuck wifi setup - 
 	- selecting multiple characters 
 		- user can choose all characters
-	- interface doesn't go away while talking
+		- test
 	- scenery
 		- grass -
 		- dunes -
@@ -359,9 +359,8 @@
 		- palm trees
 		- windmills
 		- forrest trees
-	
+		- television
 	- three way interactions?
-	
 	- idtio.owen.cool
 
 - would be nice
@@ -371,9 +370,33 @@
 	- every dialog needs to pop
 
 - bugs during play
+	- interface didn't go away while talking
+	- front end broke
 	- started convo then left can't interact with stuff
 		- maybe convo left timeout
 	- maybe froze when both interacting with void
+	- trying to interact with whirlpool
+	- add player tracking
+	- father dialog stopped in the middle ????
+	- im one of the three little pigs aren't i?
+		- need to redo the pig character
+		- also animal farm
+	- test dialog heart-flower vs flower-heart
+	- make it so you can't have the same dialog?
+	- kind of annoying when trying to get a resource and dialog prevents
+		- maybe dismiss dialog button
+
+
+- comments
+	- what is the goal of the game?
+	- how do you wait for tomorrow?
+	- i'm jesus pig 
+	- i was walking on the ocean earlier
+	- theory, pig built the house
+	- how mad would these two be if they found out the void is an asshole?
+	- kind of get the theme but why do we pick flowers?
+	- one of those indie games where something horrible happens
+
 	
 
 - lines change layer order

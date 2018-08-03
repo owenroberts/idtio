@@ -33,7 +33,7 @@ class Player extends Entity {
 		this.playersInRange = [];
 		this.joinedGame = false;
 		this.character = undefined;
-		for (a in this.act) {
+		for (const a in this.act) {
 			this.act[a] = false;
 		}
 		this.x = 0;

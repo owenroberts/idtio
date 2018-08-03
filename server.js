@@ -13,7 +13,7 @@ const Interactive = require('./Interactive.js');
 const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
 
-const port = 5001;
+const port = process.env.PORT || 5001;
 app.set('port', port);
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -206,8 +206,10 @@ io.on('connection', function(socket) {
 	/* select a character (need access to characters obj) */
 	socket.on('character selection', (character) => {
 		if (!characters[character].isInUse) {
-			if (players[socket.id].character)
+			if (players[socket.id].character) {
 				characters[players[socket.id].character].isInUse = false;
+				io.sockets.emit('character unchosen', players[socket.id].character);
+			}
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
 			io.sockets.emit('character chosen', character);

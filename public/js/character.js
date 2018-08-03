@@ -52,7 +52,6 @@ class Character extends Sprite {
 			this.box.states = data.box.states;
 		});
 		this.displayBox = false;
-		
 	}
 
 	display() {
