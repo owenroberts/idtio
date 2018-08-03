@@ -345,7 +345,11 @@
 	- exit button - 
 	- exit screen -
 	- test players refresh w exit - 
-	- 5 void dialogs
+	- 5 void dialogs -
+	- fuck wifi setup - 
+	- selecting multiple characters 
+		- user can choose all characters
+	- interface doesn't go away while talking
 	- scenery
 		- grass -
 		- dunes -
@@ -355,11 +359,9 @@
 		- palm trees
 		- windmills
 		- forrest trees
-	- selecting multiple characters 
-		- user can choose all characters
-	- interface doesn't go away while talking
+	
 	- three way interactions?
-	- fuck wifi setup - 
+	
 	- idtio.owen.cool
 
 - would be nice
@@ -367,6 +369,11 @@
 	- player timeout
 	- change colors
 	- every dialog needs to pop
+
+- bugs during play
+	- started convo then left can't interact with stuff
+		- maybe convo left timeout
+	- maybe froze when both interacting with void
 	
 
 - lines change layer order

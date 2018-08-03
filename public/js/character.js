@@ -93,7 +93,7 @@ class Character extends Sprite {
 			if (this.displayStory) {
 				this.story.display(this.storyCount, x, this.position.y - 35);
 				this.storyFrameCount++;
-				if (this.storyFrameCount == 2) {
+				if (this.storyFrameCount == 1) {
 					this.storyFrameCount = 0;
 					if (this.storyEnd > 3) {
 						this.displayStory = false;	
