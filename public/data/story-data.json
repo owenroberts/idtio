@@ -18,7 +18,7 @@
 			[ "cat", "if we don't talk, would you go today?" ]
 		],
 		"flower-skull": [
-			[ "cat", "the birds won't shut up about you, you know?" ],
+			[ "cat", "the birds won't shut up about you, you know." ],
 			[ "pig", "what are they saying about me?" ],
 			[ "cat", "i don't think i should tell you." ]
 		],
@@ -90,7 +90,9 @@
 			[ "pig", "i'm kind of scared of the ocean." ]
 		],
 		"skull-apple": [
-			[ "birds", "my favorite show was the family of birds that shit on other animals.  that was hilarious.  it's kind of embarrassing to admit that." ],
+			[ "birds", "my favorite show was the family of birds that shit on other animals." ],
+			[ "birds", "that was hilarious." ],
+			[ "birds", 	"it's kind of embarrassing to admit that." ],
 			[ "pig", "i don't think i saw that show." ],
 			[ "birds", "it was really funny." ],
 			[ "pig", "was it fictional or reality?" ],
@@ -102,7 +104,9 @@
 			[ "birds", "i never met him." ],
 			[ "pig", "he died afterward." ],
 			[ "birds", "that's sad." ],
-			[ "pig", "yeah.  it sucks because he really wanted  a lot of grand children and i never had any.  that's why he was so obsessed with building that big house.  that's why i really wanted everyone to live there." ]
+			[ "pig", "yeah.  it sucks because he really wanted  a lot of grand children and i never had any." ],
+			[ "pig", "that's why he was so obsessed with building that big house."],
+			[ "pig", "that's why i really wanted everyone to live there." ]
 		],
 		"skull-apple": [
 			[ "birds", "why did he want you to hvae so many kids?" ],

@@ -42,7 +42,7 @@
 	},
 	"uis": {
 		"join-game": {
-			"src": "/public/drawings/ui/join.json",
+			"src": "/public/drawings/ui/join_game.json",
 			"x": 0,
 			"y": 50,
 			"states" : {

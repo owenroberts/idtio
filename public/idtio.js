@@ -400,7 +400,6 @@ socket.on('update resources', (player) => {
 });
 
 socket.on('return resource', (resource) => {
-	console.log('return resource');
 	scenes.game.interactives[resource].animation.setState('reborn'); // animate back
 	scenes.game.interactives[resource].animation.playOnce(() => {
 		scenes.game.interactives[resource].animation.setState('idle');

@@ -336,9 +336,9 @@
 		- use Texts - 
 	- test characters leaving -
 		- good on refresh - 
-	- remove server log and stats from client
-		- fuck this doesn't work on hilton wifi
-		- maybe use hotspot?
+	- remove server log and stats from client - 
+		- fuck this doesn't work on hilton wifi - 
+		- maybe use hotspot? - 
 	- two players w one resource - 
 	- player reloads when in range of resource - 
 	- redo tree of introduction dialog - 
@@ -347,9 +347,10 @@
 	- test players refresh w exit - 
 	- 5 void dialogs -
 	- fuck wifi setup - 
-	- selecting multiple characters 
-		- user can choose all characters
-		- test
+	- selecting multiple characters -
+		- user can choose all characters -
+		- test - 
+	- new join game - 
 	- scenery
 		- grass -
 		- dunes -
@@ -361,16 +362,25 @@
 		- forrest trees
 		- television
 	- three way interactions?
-	- idtio.owen.cool
+	- idtio.owen.cool - 
+	- q to wave
+		- need some instruction
+		- also pop up little animation in other players screens
+	- test dialog heart-flower vs flower-heart -
+	- interfaces should pop back up after dialog is done
 
 - would be nice
 	- resources timeout
 	- player timeout
 	- change colors
 	- every dialog needs to pop
+	- favicon
 
 - bugs during play
 	- interface didn't go away while talking
+		- i think with three people
+		- should ignore the third person
+		- or make dialog end?
 	- front end broke
 	- started convo then left can't interact with stuff
 		- maybe convo left timeout
@@ -381,10 +391,14 @@
 	- im one of the three little pigs aren't i?
 		- need to redo the pig character
 		- also animal farm
-	- test dialog heart-flower vs flower-heart
 	- make it so you can't have the same dialog?
 	- kind of annoying when trying to get a resource and dialog prevents
 		- maybe dismiss dialog button
+	- idtio: 435 - Cannot read property '0' of undefined - nextStory - 
+	- one player with all the resources
+		- give back resources
+		- drop resources
+		- trade resources
 
 
 - comments
@@ -396,6 +410,10 @@
 	- how mad would these two be if they found out the void is an asshole?
 	- kind of get the theme but why do we pick flowers?
 	- one of those indie games where something horrible happens
+	- every time you talk it uses the resource
+		- kind of cool, using resource to negotiate
+	- i have no concept of how big this map is
+
 
 	
 
