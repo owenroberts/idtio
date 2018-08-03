@@ -342,6 +342,9 @@
 	- two players w one resource - 
 	- player reloads when in range of resource - 
 	- redo tree of introduction dialog - 
+	- exit button - 
+	- exit screen -
+	- test players refresh w exit - 
 	- 5 void dialogs
 	- scenery
 		- grass -
@@ -356,9 +359,6 @@
 	- fuck wifi setup
 
 - would be nice
-	- exit button
-	- exit screen
-	- test players refresh w exit
 	- resources timeout
 	- player timeout
 	- change colors

@@ -235,13 +235,13 @@ io.on('connection', function(socket) {
 	});
 
 	/* player leaves */
-	socket.on('disconnect', function() {
-    	if (players[socket.id]) {
-    		const p = players[socket.id];
-    		if (p.character) {
-    			characters[p.character].isInUse = false;
-    			io.sockets.emit('remove character', p.character);
-    		}
+	function exitGame(socketLive) {
+		if (players[socket.id]) {
+			const p = players[socket.id];
+			if (p.character) {
+				characters[p.character].isInUse = false;
+				io.sockets.emit('remove character', p.character);
+			}
 
 			/* restore players resources */
 			const resources = p.returnResources();
@@ -260,14 +260,27 @@ io.on('connection', function(socket) {
 				io.sockets.emit('end story', players[pid].character);
 			}
 
-    		delete players[socket.id];
-    	}
-    	/* if all players are gone stop gameInterval */
-    	if (Object.keys(players).length == 0) {
-	    	clearInterval(gameInterval);
-	    	gameIsPlaying = false;
-    	}
-  	});
+			if (!socketLive)
+				delete players[socket.id];
+			else {
+				players[socket.id].character = undefined;
+				console.log(players[socket.id]);
+			}
+		}
+		/* if all players are gone stop gameInterval */
+		if (Object.keys(players).length == 0) {
+			clearInterval(gameInterval);
+			gameIsPlaying = false;
+		}
+		socket.emit('change scene', 'splash');
+	}
+
+	socket.on('exit game', () => {
+		exitGame(true);
+	});
+	socket.on('disconnect', () => {
+		exitGame(false);
+	});
 
 	/* chat */
 	socket.on('send-chat', function(msg) {

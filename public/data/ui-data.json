@@ -6,8 +6,7 @@
 			"scenes": [
 				"loading",
 				"splash",
-				"instructions",
-				"exit"
+				"instructions"
 			]
 		}
 	},
@@ -59,6 +58,43 @@
 				"route": "join"
 			}
 		},
+		"exit": {
+			"src": "/public/drawings/ui/exit.json",
+			"x": 0,
+			"y": 0,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [
+				"game"
+			],
+			"callback": {
+				"route": "change scene",
+				"message": "exit"
+			},
+			"key": "escape"
+		},
+		"exit-home": {
+			"src": "/public/drawings/ui/exit-home.json",
+			"x": 10,
+			"y": 100,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [
+				"exit"
+			],
+			"callback": {
+				"route": "exit game"
+			},
+			"key": "enter"
+		},
 		"instructions": {
 			"src": "/public/drawings/ui/instructions.json",
 			"x": 280,
@@ -77,7 +113,7 @@
 				"message": "instructions"
 			}
 		},
-		"back": {
+		"back-splash": {
 			"src": "/public/drawings/ui/back-splash.json",
 			"x": 150, "y": 0,
 			"states": {
@@ -90,6 +126,22 @@
 			"callback": {
 				"route": "change scene",
 				"message": "splash"
+			},
+			"key": "escape"
+		},
+		"back-game": {
+			"src": "/public/drawings/ui/back-splash.json",
+			"x": 0, "y": 0,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [ "exit" ],
+			"callback": {
+				"route": "change scene",
+				"message": "game"
 			},
 			"key": "escape"
 		},
