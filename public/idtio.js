@@ -462,17 +462,17 @@ socket.on('disconnect', () => {
 });
 
 /* chat */
-const chat = document.getElementById('chat');
-const chatInput = document.getElementById('chat-input');
+// const chat = document.getElementById('chat');
+// const chatInput = document.getElementById('chat-input');
 
-socket.on('get-chat', (msg) => {
-	const newChat = document.createElement('div');
-	newChat.textContent = msg;
-	chat.appendChild(newChat);
-	if (chat.children.length > 25) {
-		chat.children[1].remove();
-	}
-});
+// socket.on('get-chat', (msg) => {
+// 	const newChat = document.createElement('div');
+// 	newChat.textContent = msg;
+// 	chat.appendChild(newChat);
+// 	if (chat.children.length > 25) {
+// 		chat.children[1].remove();
+// 	}
+// });
 
 /* debug messages */
 socket.on('get-eval', (msg) => {
