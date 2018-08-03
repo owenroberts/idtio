@@ -1,6 +1,3 @@
-[submodule "lines"]
-	path = public/lines
-	url = https://github.com/owenroberts/lines
 [submodule "public/lines"]
 	path = public/lines
 	url = https://github.com/owenroberts/lines
