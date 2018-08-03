@@ -81,8 +81,8 @@ function gameUpdate() {
 							];
 							
 							if (isInRange) { 
-								if (!wasInRange) { /* entered */
-									player.act.inPlayerRange = true;
+								if (!player.act.inPlayerRange && (other.act.inPlayerRange == id || !other.act.inPlayerRange)) { /* entered */
+									player.act.inPlayerRange = other.id;
 									io.sockets.emit('character interface', player.id, player.character, true);
 								}
 								if (player.act.inputStoryType && other.act.inputStoryType) {

@@ -361,7 +361,6 @@
 		- windmills
 		- forrest trees
 		- television
-	- three way interactions?
 	- idtio.owen.cool - 
 	- q to wave
 		- need some instruction
@@ -381,6 +380,7 @@
 		- i think with three people
 		- should ignore the third person
 		- or make dialog end?
+		- interface doesn't pop up for players in game to new player who joins
 	- front end broke
 	- started convo then left can't interact with stuff
 		- maybe convo left timeout
@@ -399,6 +399,8 @@
 		- give back resources
 		- drop resources
 		- trade resources
+	- socket receiving other players animations before they're loaded
+		- init socket events?
 
 
 - comments

@@ -71,7 +71,7 @@ class Player extends Entity {
 	}
 
 	endDialog() {
-		this.act.inPlayerRange = false;
+		this.act.inPlayerRange = false; /* could still be in player range? */
 		this.act.inputStoryType = false;
 		this.act.storyTypeSent = false;
 		this.act.storyStarted = false;
