@@ -15,5 +15,8 @@
   },
   "engines": {
     "node": "6.11.5"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.18.0"
   }
 }

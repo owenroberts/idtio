@@ -317,16 +317,56 @@
 	- maybe add explode animation to animate ... useful for other stuff probably
 - have to set up timing as well
 - use csv? story data gets much bigger
+
+8.2.2018
 - loading is slow
 	- move map load to on init ?
 	- shouldn't really be waiting for data so it must be building everything in load functions
-- exit button
+	- timeouts seem to help a little bit but haven't fixed the problem
+		- google how to load stuff with pausing the main js thread
+		- is it possible there will be an error?
+		- is there a way to inspect multi-threads
+	- code minimization?
+
+- need
+	- logo on loading, splash and exit - 
+	- choose character message - 
+	- instructions -
+		- just some sprites - wasd, arrows, e, jkl, esc to exit - 
+		- use Texts - 
+	- test characters leaving -
+		- good on refresh - 
+	- remove server log and stats from client
+		- fuck this doesn't work on hilton wifi
+		- maybe use hotspot?
+	- two players w one resource - 
+	- player reloads when in range of resource - 
+	- redo tree of introduction dialog - 
+	- 5 void dialogs
+	- scenery
+		- grass -
+		- dunes -
+		- random trees - 
+		- graveyard fence
+		- rocks
+		- palm trees
+		- windmills
+		- forrest trees
+	- selecting multiple characters
+	- fuck wifi setup
+
+- would be nice
+	- exit button
+	- exit screen
+	- test players refresh w exit
+	- resources timeout
+	- player timeout
+	- change colors
+	- idtio.owen.cool
 
 - lines change layer order
 - lines setups - defaults ... 
-- loading screen
-- resources timeout
-- player timeout
+
 - will there be an error when one player leaves a story or turns off tab for a while?
 
 

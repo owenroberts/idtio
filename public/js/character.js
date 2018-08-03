@@ -149,4 +149,8 @@ class Character extends Sprite {
 		this.storyLength = dialog.length;
 		this.storyCallback = callback;
 	}
+
+	endStory() {
+		this.displayStory = false;
+	}
 }

@@ -23,6 +23,11 @@ class Entity {
 		callback(isInRange, wasInRange);
 
 	}
+
+	removePlayer(id) {
+		const playerIndex = this.playersInRange.indexOf(id);
+		this.playersInRange.splice(playerIndex, 1);
+	}
 }
 
 module.exports = Entity;

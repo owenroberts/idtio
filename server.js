@@ -3,6 +3,7 @@ const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 
+
 const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
@@ -12,7 +13,8 @@ const Interactive = require('./Interactive.js');
 const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
 
-app.set('port', 5000);
+const port = 5001;
+app.set('port', port);
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function(request, response){
@@ -23,8 +25,8 @@ app.get('/map', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/map/index.html'));
 });
 
-server.listen(5000, function() {
-	console.log('Starting server on port 5000');
+server.listen(port, function() {
+	console.log('Starting server on port ' + port);
 });
 
 const DEBUG = true;
@@ -228,6 +230,10 @@ io.on('connection', function(socket) {
 		}
 	});
 
+	socket.on('change scene', (scene) => {
+		socket.emit('change scene', scene);
+	});
+
 	/* player leaves */
 	socket.on('disconnect', function() {
     	if (players[socket.id]) {
@@ -236,12 +242,22 @@ io.on('connection', function(socket) {
     			characters[p.character].isInUse = false;
     			io.sockets.emit('remove character', p.character);
     		}
+
 			/* restore players resources */
 			const resources = p.returnResources();
-			for (var i = 0; i < resources.length; i++) {
+			for (let i = 0; i < resources.length; i++) {
 				const item = resources[i];
 				interactives[item].picked = false;
+				interactives[item].removePlayer(p.id);
 				io.sockets.emit('return resource', interactives[item].label);
+			}
+
+			/* end in progress dialogs */
+			for (let i = 0; i < p.playersInRange.length; i++) {
+				const pid = p.playersInRange[i]; /* player id */
+				players[pid].endDialog();
+				players[pid].removePlayer(p.id);
+				io.sockets.emit('end story', players[pid].character);
 			}
 
     		delete players[socket.id];

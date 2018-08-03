@@ -1,19 +1,5 @@
 {
 	"ui": {
-		"instructions": {
-			"src": "/public/drawings/ui/instructions.json",
-			"x": 280,
-			"y": 20,
-			"states" : {
-				"idle": { "start": 0, "end": 0 },
-				"over": { "start": 1, "end": 2 },
-				"selected": { "start": 1, "end": 2 },
-				"active": { "start": 2, "end": 3 }
-			},
-			"callback": {
-				"route": "instructions"
-			}
-		},
 		"sound": {
 			"src": "/public/drawings/ui/sound.json",
 			"x": 0,

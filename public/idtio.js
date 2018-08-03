@@ -1,8 +1,10 @@
 const socket = io();
 const scenes = {
 	loading: { sprites: {} },
-	splash: { ui: {}, texts: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] }
+	splash: { ui: {}, texts: {}, sprites: {} },
+	instructions: { ui: {}, texts: {}, sprites: {} },
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] },
+	exit: { ui: {}, sprites: {}, texts: {} }
 };
 const assetsLoaded = {
 	splash: false,
@@ -21,25 +23,46 @@ let user = {
 	}
 }
 
-function loadSplashScene(data) {
+function loadUI(data) {
 	console.log('%c splash loaded', 'color:white;background:lightblue;');
 
 	Game.letters = new Animation("/public/drawings/ui/letters.json");
 	// Game.letters.debug = true;
 	Game.letters.load(false);
 
-	const map = { "a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25, "0":26, "1":27, "2":28, "3":29, "4":30, "5":31, "6":32, "7":33, "8":34, "9":35, ".":36, ",":37, ":":38, "?":39, "E":40, "F":41, "A":42, "S":43, "D":44, "W":45, "_left" :46, "_right": 47, "_up": 48, "_down": 49, "M": 50, "J": 51, "K": 52, "L": 53 }
+	const map = { "a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25, "0":26, "1":27, "2":28, "3":29, "4":30, "5":31, "6":32, "7":33, "8":34, "9":35, ".":36, ",":37, ":":38, "?":39, "E":40, "F":41, "A":42, "S":43, "D":44, "W":45, "{" :46, "}": 47, "-": 48, "+": 49, "M": 50, "J": 51, "K": 52, "L": 53, "Q": 54 }
 
 	for (const key in map) {
 		Game.letters.createNewState(key, map[key], map[key]);
 	}
 
-	for (const key in data) {
-		const ui = data[key];
-		scenes.splash.ui[key] = new UI(ui, false);
-		scenes.splash.ui[key].callback = function() {
-			socket.emit(ui.callback.route, ui.callback.message);
+	for (const key in data.sprites) {
+		const s = data.sprites[key];
+		const sprite = new Sprite(s.x, s.y);
+		sprite.addAnimation(s.src, () => {
+			// sprite.center();
+		});
+		for (let i = 0; i < s.scenes.length; i++) {
+			scenes[s.scenes[i]].sprites[key] = sprite;
+		}
+	}
+
+	for (const key in data.uis) {
+		const u = data.uis[key];
+		const ui = new UI(u, false);
+		ui.callback = function() {
+			socket.emit(u.callback.route, u.callback.message);
 		};
+		if (u.key) {
+			document.addEventListener('keydown', function(ev) {
+				if (Cool.keys[ev.which] == u.key && u.scenes.indexOf(currentScene) != -1) {
+					ui.callback();
+				}
+			});
+		}
+		for (let i = 0; i < u.scenes.length; i++) {
+			scenes[u.scenes[i]].ui[key] = ui;
+		}
 	}
 
 	Game.icons = {
@@ -68,7 +91,14 @@ function loadSplashScene(data) {
 		Game.icons[i].animation.state = "idle";
 	}
 
-	scenes.splash.texts['choose'] = new Text(10, 160, "choose a character:", 19, Game.letters);
+	for (const key in data.texts) {
+		const t = data.texts[key];
+		const text = new Text(t.x, t.y, t.msg, t.wrap, Game.letters);
+		for (let i = 0; i < t.scenes.length; i++) {
+			scenes[t.scenes[i]].texts[key] = text;
+		}
+	}
+
 	socket.emit('splash loaded');
 
 	assetsLoaded.splash = true;
@@ -77,23 +107,22 @@ function loadSplashScene(data) {
 function loadMap(data) {
 	console.log('%c map loaded', 'color:white;background:pink;');
 	for (let i = 0; i < data.interactives.length; i++) {
-		scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
-		// draw(); // loading
+		setTimeout(() => {
+			scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
+		}, 1);
 	}
 
 	for (let i = 0; i < data.pickups.length; i++) {
-		scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
-		scenes.game.interactives[data.pickups[i].label].isPickup = true;
-		// draw(); // loading
+		setTimeout(() => {
+			scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
+			scenes.game.interactives[data.pickups[i].label].isPickup = true;
+		}, 1);
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
-		scenes.game.scenery.push( new Item(data.scenery[i], false) );
-		// if (data.scenery[i].src == '/public/drawings/scenery/south-beach-0.json') {
-		// 	scenes.game.scenery[scenes.game.scenery.length - 1].debug = true;
-		// 	scenes.game.scenery[scenes.game.scenery.length - 1].animation.debug = true;
-		// }
-		// draw(); // loading
+		setTimeout(() => {
+			scenes.game.scenery.push(new Item(data.scenery[i], false));
+		}, 1);
 	}
 	assetsLoaded.map = true;
 }
@@ -111,7 +140,7 @@ function start() {
 
 	fetch('/public/data/ui-data.json')
 		.then(response =>  { return response.json() })
-		.then(json => loadSplashScene(json));
+		.then(json => loadUI(json));
 
 	fetch('/public/data/map-data.json')
 		.then(response =>  { return response.json() })
@@ -259,7 +288,7 @@ function mouseUp(x, y) {
 
 /* init game last bc it calls the start function .... better way to do this?
 	just no start function? */
-Game.init(window.innerWidth, window.innerHeight, 10, true);
+Game.init(window.innerWidth, window.innerHeight, 10, false);
 socket.emit('set bounds', window.innerWidth/2, window.innerHeight/2); 
 	/* need to account for player width/height*/
 
@@ -301,6 +330,11 @@ socket.on('remove character', (character) => {
 
 socket.on('join game', () => {
 	currentScene = 'game';
+});
+
+socket.on('change scene', (scene) => {
+	delete scenes[currentScene].texts.msg;
+	currentScene = scene;
 });
 
 /* recieve player position from server */
@@ -411,8 +445,14 @@ socket.on('start story', (data) => {
 	}, 1200);
 });
 
+socket.on('end story', (character) => {
+	scenes.game.characters[character].endStory();
+	scenes.game.characters[character].toggleBox(false);
+	scenes.game.characters[character].toggleInterface(false);
+});
+
 socket.on('msg', (msg) => {
-	console.log(msg);
+	scenes[currentScene].texts['msg'] = new Text(10, Game.height - 50, msg, 20, Game.letters);
 });
 
 socket.on('disconnect', () => {

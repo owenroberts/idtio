@@ -52,9 +52,16 @@ class Player extends Entity {
 			this.init(socket);
 			return true;
 		} else {
-			socket.emit('msg', 'Please select a character');
+			socket.emit('msg', 'please select a character');
 			return false;
 		}
+	}
+
+	endDialog() {
+		this.act.inPlayerRange = false;
+		this.act.inputStoryType = false;
+		this.act.storyTypeSent = false;
+		this.act.storyStarted = false;
 	}
 
 	init(socket) {
@@ -77,10 +84,7 @@ class Player extends Entity {
 		});
 
 		socket.on('done talking', () => {
-			this.act.inPlayerRange = false;
-			this.act.inputStoryType = false;
-			this.act.storyTypeSent = false;
-			this.act.storyStarted = false;
+			this.endDialog();
 		});
 	}
 

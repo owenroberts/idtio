@@ -1,61 +1,151 @@
 {
-	"join-game": {
-		"src": "/public/drawings/ui/join.json",
-		"x": 0,
-		"y": 50,
-		"states" : {
-			"idle": { "start": 0, "end": 0 },
-			"over": { "start": 1, "end": 2 },
-			"selected": { "start": 1, "end": 2 },
-			"active": { "start": 2, "end": 3 }
-		},
-		"callback": {
-			"route": "join"
+	"sprites": {
+		"logo": {
+			"src": "/public/drawings/ui/idtio.json",
+			"x": 0, "y": 0,
+			"scenes": [
+				"loading",
+				"splash",
+				"instructions",
+				"exit"
+			]
 		}
 	},
-	"cat": {
-		"src": "/public/drawings/ui/cat-selection.json",
-		"x": 10,
-		"y": 150,
-		"states": {
-			"idle": { "start": 0, "end": 0 },
-			"over": { "start": 1, "end": 1 },
-			"active": { "start": 2, "end": 2 },
-			"selected": { "start": 3, "end": 3 }
+	"texts": {
+		"choose": {
+			"msg": "choose a character:",
+			"x": 10,
+			"y": 160,
+			"wrap": 19,
+			"scenes": [ "splash" ]
 		},
-		"callback" : {
-			"route": "character selection",
-			"message": "cat"
+		"walk": {
+			"msg": "use W A S D or { } - + to walk",
+			"x": 10,
+			"y": 150,
+			"wrap": 50,
+			"scenes": [ "instructions" ]
+		},
+		"interact": {
+			"msg": "E to interact",
+			"x": 10,
+			"y": 200,
+			"wrap": 50,
+			"scenes": [ "instructions" ]
+		},
+		"dialogs": {
+			"msg": "J K L to select dialogs",
+			"x": 10,
+			"y": 250,
+			"wrap": 50,
+			"scenes": [ "instructions" ]
 		}
 	},
-	"pig": {
-		"src": "/public/drawings/ui/pig-selection.json",
-		"x": 200,
-		"y": 180,
-		"states": {
-			"idle": { "start": 0, "end": 0 },
-			"over": { "start": 1, "end": 1 },
-			"active": { "start": 2, "end": 2 },
-			"selected": { "start": 3, "end": 3 }
+	"uis": {
+		"join-game": {
+			"src": "/public/drawings/ui/join.json",
+			"x": 0,
+			"y": 50,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback": {
+				"route": "join"
+			}
 		},
-		"callback" : {
-			"route": "character selection",
-			"message": "pig"
-		}
-	},
-	"birds": {
-		"src": "/public/drawings/ui/birds-selection.json",
-		"x": 400,
-		"y": 120,
-		"states": {
-			"idle": { "start": 0, "end": 0 },
-			"over": { "start": 1, "end": 1 },
-			"active": { "start": 2, "end": 2 },
-			"selected": { "start": 3, "end": 3 }
+		"instructions": {
+			"src": "/public/drawings/ui/instructions.json",
+			"x": 280,
+			"y": 20,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback": {
+				"route": "change scene",
+				"message": "instructions"
+			}
 		},
-		"callback" : {
-			"route": "character selection",
-			"message": "birds"
+		"back": {
+			"src": "/public/drawings/ui/back-splash.json",
+			"x": 150, "y": 0,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [ "instructions" ],
+			"callback": {
+				"route": "change scene",
+				"message": "splash"
+			},
+			"key": "escape"
+		},
+		"cat": {
+			"src": "/public/drawings/ui/cat-selection.json",
+			"x": 10,
+			"y": 150,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback" : {
+				"route": "character selection",
+				"message": "cat"
+			}
+		},
+		"pig": {
+			"src": "/public/drawings/ui/pig-selection.json",
+			"x": 200,
+			"y": 180,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback" : {
+				"route": "character selection",
+				"message": "pig"
+			}
+		},
+		"birds": {
+			"src": "/public/drawings/ui/birds-selection.json",
+			"x": 400,
+			"y": 120,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback" : {
+				"route": "character selection",
+				"message": "birds"
+			}
 		}
 	}
 }
