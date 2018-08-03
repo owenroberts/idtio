@@ -263,8 +263,7 @@ io.on('connection', function(socket) {
 			if (!socketLive)
 				delete players[socket.id];
 			else {
-				players[socket.id].character = undefined;
-				console.log(players[socket.id]);
+				players[socket.id].reset();
 			}
 		}
 		/* if all players are gone stop gameInterval */

@@ -8,6 +8,8 @@ class Interactive extends Item {
 		this.animation.loop = false;
 		this.isPickup = false;
 		this.picked = true;
+		this.label = params.label;
+		this.randomState = params.random;
 	}
 	display() {
 		super.display();
@@ -18,7 +20,12 @@ class Interactive extends Item {
 	}
 	playInteractState(callback) {
 		if (!this.isActive) {
-			this.animation.setState('interact');
+			if (this.randomState) {
+				const states = Object.keys(this.animation.states);
+				this.animation.setState(states[Cool.randomInt(1, states.length)]);
+			} else {
+				this.animation.setState('interact');
+			}
 			this.displayText = false;
 			this.isActive = true;
 			this.animation.playOnce(() => {
@@ -29,5 +36,4 @@ class Interactive extends Item {
 			});
 		}
 	}
-	
 }

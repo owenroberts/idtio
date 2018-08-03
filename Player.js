@@ -29,11 +29,24 @@ class Player extends Entity {
 		this.updatePosition = false;
 	}
 
+	reset() {
+		this.playersInRange = [];
+		this.joinedGame = false;
+		this.character = undefined;
+		for (a in this.act) {
+			this.act[a] = false;
+		}
+		this.x = 0;
+		this.y = 0;
+	}
+
 	returnResources() {
 		let resources = [];
 		for (var r in this.resources) {
 			resources = resources.concat( this.resources[r] );
 			resources = resources.concat( this.usedResources[r] );
+			this.resources[r] = [];
+			this.usedResources[r] = [];
 		}
 		return resources;
 	}

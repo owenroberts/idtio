@@ -355,14 +355,19 @@
 		- palm trees
 		- windmills
 		- forrest trees
-	- selecting multiple characters
-	- fuck wifi setup
+	- selecting multiple characters 
+		- user can choose all characters
+	- interface doesn't go away while talking
+	- three way interactions?
+	- fuck wifi setup - 
+	- idtio.owen.cool
 
 - would be nice
 	- resources timeout
 	- player timeout
 	- change colors
-	- idtio.owen.cool
+	- every dialog needs to pop
+	
 
 - lines change layer order
 - lines setups - defaults ... 

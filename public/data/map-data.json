@@ -569,7 +569,7 @@
 			"label": "heart 6",
 			"type": "apple",
 			"src": "/public/drawings/pickups/heart-6.json",
-			"x": -9162, "y": 1103,
+			"x": -8162, "y": 1303,
 			"distance": 200,
 			"msg": "E to remove heart",
 			"wrap": 9,
@@ -640,7 +640,8 @@
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 71 }
-			}
+			},
+			"random": false
 		},
 		{
 			"label": "tree of waiting",
@@ -653,7 +654,8 @@
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 34 }
-			}
+			},
+			"random": false
 		},
 		{
 			"label": "tree of age",
@@ -667,7 +669,8 @@
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 83 }
-			}
+			},
+			"random": false
 		},
 		{
 			"label": "the void",
@@ -679,8 +682,13 @@
 			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 47 }
-			}
+				"yesterday": { "start": 1, "end": 108 },
+				"tomorrow": { "start": 109, "end": 202 },
+				"birds": { "start": 203, "end": 284 },
+				"cat": { "start": 285, "end": 354 },
+				"pig": { "start": 355, "end": 397 }
+			},
+			"random": true
 		}
 
 	],
