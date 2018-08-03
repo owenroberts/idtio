@@ -483,11 +483,11 @@ function servLog(statement) {
 	socket.emit('send-eval', statement);
 }
 
-chatInput.addEventListener('keydown', (ev) => {
-	if (ev.which == 13) {
-		socket.emit('send-eval', chatInput.value);
-		chatInput.value = '';
-	}
-	if (ev.which == 27)
-		chatInput.blur();
-});
+// chatInput.addEventListener('keydown', (ev) => {
+// 	if (ev.which == 13) {
+// 		socket.emit('send-eval', chatInput.value);
+// 		chatInput.value = '';
+// 	}
+// 	if (ev.which == 27)
+// 		chatInput.blur();
+// });
