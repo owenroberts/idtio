@@ -41,7 +41,7 @@
 			[ "pig", "the things you say don't make sense." ],
 			[ "cat", "does anything make sense?" ]
 		],
-		"skull-apple": [
+		"apple-flower": [
 			[ "cat", "why don't you just hang out with the birds then?" ],
 			[ "pig", "they were kind of mean to me." ],
 			[ "cat", "they're mean to everyone." ]
@@ -108,7 +108,7 @@
 			[ "pig", "that's why he was so obsessed with building that big house."],
 			[ "pig", "that's why i really wanted everyone to live there." ]
 		],
-		"skull-apple": [
+		"apple-flower": [
 			[ "birds", "why did he want you to hvae so many kids?" ],
 			[ "pig", "my mother kind of got bored of having kids after me and they never had any more.  he wanted more kids so he was a little overly focused on my love life." ],
 			[ "birds", "thats a lot of pressure." ]
@@ -162,7 +162,7 @@
 			[ "birds", "should i go too?" ],
 			[ "cat", "if you want to." ]
 		],
-		"skull-apple": [
+		"apple-flower": [
 			[ "birds", "what do you think is in the void?" ],
 			[ "cat", "probably a mirror image of the island." ],
 			[ "birds", "really?" ],

@@ -355,7 +355,7 @@
 		- grass -
 		- dunes -
 		- random trees - 
-		- graveyard fence
+		- graveyard fence - 
 		- rocks
 		- palm trees
 		- windmills
@@ -366,14 +366,19 @@
 		- need some instruction
 		- also pop up little animation in other players screens
 	- test dialog heart-flower vs flower-heart -
-	- interfaces should pop back up after dialog is done
+		- nah fuck head heart-flower and flower-heart are the same
+		- change apples to hearts
+	- interfaces should pop back up after dialog is done - 
 
 - would be nice
+	- smaller exit button
 	- resources timeout
 	- player timeout
 	- change colors
 	- every dialog needs to pop
 	- favicon
+	- gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
+
 
 - bugs during play
 	- interface didn't go away while talking
@@ -400,7 +405,9 @@
 		- drop resources
 		- trade resources
 	- socket receiving other players animations before they're loaded
-		- init socket events?
+		- init socket events? - test - nah need the init stuff for splash ...
+		- function to initialize various socket events?
+	- two players try to interact with the void at once 
 
 
 - comments

@@ -85,6 +85,7 @@ function gameUpdate() {
 									player.act.inPlayerRange = other.id;
 									io.sockets.emit('character interface', player.id, player.character, true);
 								}
+								/* maybe also check that they're the right inPlayerRange ids? */
 								if (player.act.inputStoryType && other.act.inputStoryType) {
 									io.sockets.emit('start story', [
 										{ character: player.character, type: player.act.inputStoryType },
@@ -99,11 +100,11 @@ function gameUpdate() {
 								}
 							} else {
 								if (wasInRange) { /* exited */
-									if (player.act.inPlayerRange) {
+									if (player.act.inPlayerRange == other.id) {
 										player.act.inPlayerRange = false;
 										io.sockets.emit('character interface',  player.id, player.character, false);
 									}
-									if (player.act.inputStoryType) {
+									if (player.act.inputStoryType && player.act.inPlayerRange == other.id) {
 										io.sockets.emit('story input', {
 											character: player.character, 
 											type: false
