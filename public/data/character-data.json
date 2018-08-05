@@ -31,7 +31,8 @@
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
 				"apple-x": { "start": 23, "end": 27 },
-				"apple": { "start": 27, "end": 32 }
+				"apple": { "start": 27, "end": 32 },
+				"wave": { "start": 32, "end": 36 }
 			}
 		},
 		"bubble": {
@@ -64,7 +65,8 @@
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
 				"apple-x": { "start": 23, "end": 28 },
-				"apple": { "start": 28, "end": 33 }
+				"apple": { "start": 28, "end": 33 },
+				"wave": { "start": 33, "end": 37 }
 			}
 		},
 		"bubble": {
@@ -96,7 +98,8 @@
 				"down": { "start": 10, "end": 12 },
 				"flower": { "start": 12, "end": 15 },
 				"skull": { "start": 15, "end": 19 },
-				"apple": { "start": 19, "end": 22 }
+				"apple": { "start": 19, "end": 22 },
+				"wave": { "start": 22, "end": 26 }
 			}
 		},
 		"bubble": {

@@ -4,7 +4,6 @@ const path = require('path');
 const socketIO = require('socket.io');
 const favicon = require('serve-favicon');
 
-
 const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
@@ -60,6 +59,11 @@ function gameUpdate() {
 		const player = players[id];
 		if (player.joinedGame) {
 			data.players[id] = player.getUpdate();
+
+			if (player.waving) {
+				io.sockets.emit('play character animation', player.character, 'wave');
+				player.waving = false;
+			}
 
 			/* if story type is input show it on client, and flag that it is being shown */
 			if (player.act.inputStoryType && !player.act.storyTypeSent) {

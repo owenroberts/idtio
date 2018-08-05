@@ -20,6 +20,8 @@ class Player extends Entity {
 			storyStarted: false
 		};
 
+		this.waving = false;
+
 		this.resources = { flower: [], skull: [], apple: [] };
 		this.usedResources = { flower: [], skull: [], apple: [] };
 		this.resourceKey = { j: "flower", k: "skull", l: "apple" };
@@ -81,13 +83,19 @@ class Player extends Entity {
 			this.act.withItem = state;
 		});
 
+		socket.on('key wave', (state) => {
+			this.waving = true;
+		});
+
 		socket.on('key choose dialog', (key) => {
 			if (this.hasResource(key))
 				this.act.inputStoryType = this.getResourceType(key);
-		})
+		});
 
 		socket.on('done interacting', () => {
 			this.act.withItem = false;
+			if (this.waving)
+				this.waving = false;
 		});
 
 		socket.on('done talking', () => {
@@ -104,29 +112,27 @@ class Player extends Entity {
 	}
 	
 	update() {
-		// if (!this.isInteracting) {
-			this.animationState = 'idle';
-			if (this.input.up) {
-				if (this.y > this.bounds.top)
-					this.y -= this.speed;
-				this.animationState = 'up';
-			}
-			if (this.input.down) {
-				if (this.y < this.bounds.bottom)
-					this.y += this.speed;
-				this.animationState = 'down';
-			}
-			if (this.input.right) {
-				if (this.x < this.bounds.right)
-					this.x += this.speed;
-				this.animationState = 'right';
-			}
-			if (this.input.left) {
-				if (this.x > this.bounds.left)
-					this.x -= this.speed;
-				this.animationState = 'left';
-			}
-		// }
+		this.animationState = 'idle';
+		if (this.input.up) {
+			if (this.y > this.bounds.top)
+				this.y -= this.speed;
+			this.animationState = 'up';
+		}
+		if (this.input.down) {
+			if (this.y < this.bounds.bottom)
+				this.y += this.speed;
+			this.animationState = 'down';
+		}
+		if (this.input.right) {
+			if (this.x < this.bounds.right)
+				this.x += this.speed;
+			this.animationState = 'right';
+		}
+		if (this.input.left) {
+			if (this.x > this.bounds.left)
+				this.x -= this.speed;
+			this.animationState = 'left';
+		}
 	}
 
 	getUpdate() {

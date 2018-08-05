@@ -222,6 +222,10 @@ function keyDown(key) {
 			socket.emit('key interact', true);
 			break;
 
+		case 'q':
+			socket.emit('key wave', true);
+			break;
+
 	}
 }
 
@@ -246,6 +250,10 @@ function keyUp(key) {
 
 		case 'e':
 			socket.emit('key interact', false);
+			break;
+
+		case 'q':
+			socket.emit('key wave', false);
 			break;
 
 		case 'j':
@@ -361,9 +369,11 @@ socket.on('update', (data) => {
 		}
 		for (const interactive in scenes[currentScene].interactives) {
 			scenes[currentScene].interactives[interactive].update(offset);
+			/* center? */
 		}
 		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
 			scenes[currentScene].scenery[i].update(offset);
+			/* center? */
 		}
 	}
 });
@@ -386,6 +396,7 @@ function initGameSockets() {
 		scenes.game.characters[character].isInteracting = true;
 		scenes.game.characters[character].animation.setState(type);
 		scenes.game.characters[character].animation.playOnce(() => {
+			console.log('done waving');
 			scenes.game.characters[character].animation.setState('idle');
 			socket.emit('done interacting');
 			scenes.game.characters[character].isInteracting = false;
