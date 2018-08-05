@@ -7,7 +7,26 @@
 				"loading",
 				"splash",
 				"instructions"
-			]
+			],
+			"alive": true
+		},
+		"cat-wave": {
+			"src": "/public/drawings/ui/cat-wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
+		},
+		"pig-wave": {
+			"src": "/public/drawings/ui/pig-wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
+		},
+		"birds-wave": {
+			"src": "/public/drawings/ui/birds-wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
 		}
 	},
 	"texts": {

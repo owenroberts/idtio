@@ -62,6 +62,7 @@ function gameUpdate() {
 
 			if (player.waving) {
 				io.sockets.emit('play character animation', player.character, 'wave');
+				data.players[id].waving = true;
 				player.waving = false;
 			}
 

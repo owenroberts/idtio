@@ -3,7 +3,7 @@ const scenes = {
 	loading: { sprites: {} },
 	splash: { ui: {}, texts: {}, sprites: {} },
 	instructions: { ui: {}, texts: {}, sprites: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [] },
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [], sprites: {} },
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
 const assetsLoaded = {
@@ -39,6 +39,7 @@ function loadUI(data) {
 	for (const key in data.sprites) {
 		const s = data.sprites[key];
 		const sprite = new Sprite(s.x, s.y);
+		sprite.alive = s.alive;
 		sprite.addAnimation(s.src, () => {
 			// sprite.center();
 		});
@@ -310,7 +311,8 @@ socket.on('id', (id) => {
 socket.on('init splash', (data) => {
 	for (const id in data.players) {
 		const player = data.players[id];
-		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
+		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false);
+		scenes.splash.ui[player.character].toggle(true);
 	}
 });
 
@@ -365,6 +367,32 @@ socket.on('update', (data) => {
 					scenes.game.characters[player.character].position.add(offset);
 					scenes.game.characters[player.character].center();
 				}
+
+
+				const offscreen = 
+					scenes.game.characters[player.character].position.x + scenes.game.characters[player.character].width < 0 ||
+					scenes.game.characters[player.character].position.x > Game.width ||
+					scenes.game.characters[player.character].position.y + scenes.game.characters[player.character].height < 0 ||
+					scenes.game.characters[player.character].position.y > Game.height;
+
+				/* play waving */
+				if (player.waving && offscreen) {
+					const wave = player.character + '-wave';
+					const pos = new Cool.Vector(
+						Game.width/2,
+						Game.height/2
+					);
+					pos.subtract(scenes.game.characters[player.character].position);
+					pos.multiply(-1);
+					pos.normalize();
+					pos.multiply( Math.abs(pos.x) > Math.abs(pos.y) ? Game.width/2 - 50 : Game.height/2 - 50  );
+					pos.add({x: Game.width/2, y: Game.height/2 });
+					scenes.game.sprites[wave].position = pos;
+					scenes.game.sprites[wave].alive = true;
+					scenes.game.sprites[wave].animation.playOnce(() => {
+						scenes.game.sprites[wave].alive = false;
+					});
+				}
 			}
 		}
 		for (const interactive in scenes[currentScene].interactives) {
@@ -396,7 +424,6 @@ function initGameSockets() {
 		scenes.game.characters[character].isInteracting = true;
 		scenes.game.characters[character].animation.setState(type);
 		scenes.game.characters[character].animation.playOnce(() => {
-			console.log('done waving');
 			scenes.game.characters[character].animation.setState('idle');
 			socket.emit('done interacting');
 			scenes.game.characters[character].isInteracting = false;

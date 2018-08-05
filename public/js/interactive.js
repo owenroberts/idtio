@@ -22,7 +22,7 @@ class Interactive extends Item {
 		if (!this.isActive) {
 			if (this.randomState) {
 				const states = Object.keys(this.animation.states);
-				this.animation.setState(states[Cool.randomInt(1, states.length)]);
+				this.animation.setState(states[Cool.randomInt(1, states.length - 1)]);
 			} else {
 				this.animation.setState('interact');
 			}
