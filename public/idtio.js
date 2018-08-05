@@ -22,6 +22,7 @@ let user = {
 		type: 'none'
 	}
 }
+const colorPicker = document.getElementById('color-picker');
 
 function loadUI(data) {
 	console.log('%c splash loaded', 'color:white;background:lightblue;');
@@ -93,7 +94,7 @@ function loadUI(data) {
 
 	for (const key in data.texts) {
 		const t = data.texts[key];
-		const text = new Text(t.x, t.y >= 0 ? t.y : Game.height + t.y, t.msg, t.wrap, Game.letters);
+		const text = new Text(t.x >= 0 ? t.x : Game.width + t.x, t.y >= 0 ? t.y : Game.height + t.y, t.msg, t.wrap, Game.letters);
 		for (let i = 0; i < t.scenes.length; i++) {
 			scenes[t.scenes[i]].texts[key] = text;
 		}
@@ -167,6 +168,7 @@ function draw() {
 	if (currentScene == 'loading') {
 		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading) {
 			currentScene = 'splash';
+			colorPicker.style.display = 'block';
 		}
 	}
 
@@ -297,6 +299,16 @@ function mouseUp(x, y) {
 /* init game last bc it calls the start function .... better way to do this?
 	just no start function? */
 Game.init(window.innerWidth, window.innerHeight, 10, false);
+
+/* color selectors */
+document.getElementById('line-color').addEventListener('change', function(ev) {
+	Game.ctx.strokeStyle = this.value;
+});
+
+document.getElementById('bg-color').addEventListener('change', function(ev) {
+	Game.canvas.style.backgroundColor = this.value;
+});
+
 socket.emit('set bounds', window.innerWidth/2, window.innerHeight/2); 
 	/* need to account for player width/height*/
 
@@ -320,6 +332,7 @@ socket.on('join game', (data) => {
 			scenes.game.interactives[label].animation.setState('end');
 	}
 	currentScene = 'game';
+	colorPicker.style.display = 'none';
 	initGameSockets();
 });
 
@@ -342,6 +355,7 @@ socket.on('remove character', (character) => {
 socket.on('change scene', (scene) => {
 	delete scenes[currentScene].texts.msg;
 	currentScene = scene;
+	colorPicker.style.display = currentScene == 'splash' ? 'block' : 'none';
 });
 
 /* recieve player position from server 

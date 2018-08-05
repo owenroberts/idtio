@@ -12,6 +12,22 @@
 				right: 0; top: 0; /*bottom: 0; */
 				font-family: sans-serif;
 			}
+		#color-picker {
+			display: none;
+			position: absolute;
+			top: 60px;
+			right: 200px;
+		}
+		#color-picker input {
+			width: 100px;
+			border: none;
+			height: 50px;
+			background: transparent;
+		}
+		#color-picker input:focus {
+			outline: none;
+			border: none;
+		}
 	</style>
 	<link rel="icon" href="/public/favicon.gif">
 </head>
@@ -22,6 +38,11 @@
 	<canvas id="lines">
 		How old is your dang computer???
 	</canvas>
+
+	<div id="color-picker">
+		<input type="color" id="line-color" value="#000000">
+		<input type="color" id="bg-color" value="#ffffff">
+	</div>
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/public/lines/lib/cool/cool.js"></script>

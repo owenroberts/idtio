@@ -47,6 +47,13 @@
 			"wrap": 19,
 			"scenes": [ "splash" ]
 		},
+		"set-colors": {
+			"msg": "change colors:",
+			"x": -400,
+			"y": 10,
+			"wrap": 12,
+			"scenes": [ "splash" ]
+		},
 		"walk": {
 			"msg": "use W A S D or { } - + to walk",
 			"x": 10,
