@@ -12,7 +12,7 @@ const assetsLoaded = {
 	characters: false,
 	stories: false,
 	loading: false
-}
+};
 let currentScene = 'loading';
 let characterData, storyData;
 let user = {
