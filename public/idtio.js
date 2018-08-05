@@ -27,7 +27,6 @@ function loadUI(data) {
 	console.log('%c splash loaded', 'color:white;background:lightblue;');
 
 	Game.letters = new Animation("/public/drawings/ui/letters.json");
-	// Game.letters.debug = true;
 	Game.letters.load(false);
 
 	const map = { "a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8, "j":9, "k":10, "l":11, "m":12, "n":13, "o":14, "p":15, "q":16, "r":17, "s":18, "t":19, "u":20, "v":21, "w":22, "x":23, "y":24, "z":25, "0":26, "1":27, "2":28, "3":29, "4":30, "5":31, "6":32, "7":33, "8":34, "9":35, ".":36, ",":37, ":":38, "?":39, "E":40, "F":41, "A":42, "S":43, "D":44, "W":45, "{" :46, "}": 47, "-": 48, "+": 49, "M": 50, "J": 51, "K": 52, "L": 53, "Q": 54 }
@@ -38,7 +37,7 @@ function loadUI(data) {
 
 	for (const key in data.sprites) {
 		const s = data.sprites[key];
-		const sprite = new Sprite(s.x, s.y);
+		const sprite = new Sprite(s.x >= 0 ? s.x : Game.width + s.x, s.y);
 		sprite.alive = s.alive;
 		sprite.addAnimation(s.src, () => {
 			// sprite.center();
@@ -94,14 +93,13 @@ function loadUI(data) {
 
 	for (const key in data.texts) {
 		const t = data.texts[key];
-		const text = new Text(t.x, t.y, t.msg, t.wrap, Game.letters);
+		const text = new Text(t.x, t.y >= 0 ? t.y : Game.height + t.y, t.msg, t.wrap, Game.letters);
 		for (let i = 0; i < t.scenes.length; i++) {
 			scenes[t.scenes[i]].texts[key] = text;
 		}
 	}
 
 	socket.emit('splash loaded');
-
 	assetsLoaded.splash = true;
 }
 
@@ -369,14 +367,8 @@ socket.on('update', (data) => {
 				}
 
 
-				const offscreen = 
-					scenes.game.characters[player.character].position.x + scenes.game.characters[player.character].width < 0 ||
-					scenes.game.characters[player.character].position.x > Game.width ||
-					scenes.game.characters[player.character].position.y + scenes.game.characters[player.character].height < 0 ||
-					scenes.game.characters[player.character].position.y > Game.height;
-
 				/* play waving */
-				if (player.waving && offscreen) {
+				if (player.waving && !scenes.game.characters[player.character].isOnscreen()) {
 					const wave = player.character + '-wave';
 					const pos = new Cool.Vector(
 						Game.width/2,

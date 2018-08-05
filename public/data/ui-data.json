@@ -10,6 +10,16 @@
 			],
 			"alive": true
 		},
+		"logo-vertical": {
+			"src": "/public/drawings/ui/logo-vertical.json",
+			"x": -50, "y": 10,
+			"scenes": [
+				"splash",
+				"instructions",
+				"exit"
+			],
+			"alive": true
+		},
 		"cat-wave": {
 			"src": "/public/drawings/ui/cat-wave.json",
 			"x": 0, "y": 0,
@@ -40,23 +50,30 @@
 		"walk": {
 			"msg": "use W A S D or { } - + to walk",
 			"x": 10,
-			"y": 150,
+			"y": -200,
 			"wrap": 50,
-			"scenes": [ "instructions" ]
+			"scenes": [ "splash" ]
 		},
 		"interact": {
 			"msg": "E to interact",
 			"x": 10,
-			"y": 200,
+			"y": -150,
 			"wrap": 50,
-			"scenes": [ "instructions" ]
+			"scenes": [ "splash" ]
 		},
 		"dialogs": {
 			"msg": "J K L to select dialogs",
 			"x": 10,
-			"y": 250,
+			"y": -100,
 			"wrap": 50,
-			"scenes": [ "instructions" ]
+			"scenes": [ "splash" ]
+		},
+		"wave": {
+			"msg": "Q to wave",
+			"x": 10,
+			"y": -50,
+			"wrap": 50,
+			"scenes": [ "splash" ]
 		}
 	},
 	"uis": {
@@ -96,24 +113,6 @@
 				"route": "exit game"
 			},
 			"key": "enter"
-		},
-		"instructions": {
-			"src": "/public/drawings/ui/instructions.json",
-			"x": 280,
-			"y": 20,
-			"states" : {
-				"idle": { "start": 0, "end": 0 },
-				"over": { "start": 1, "end": 2 },
-				"selected": { "start": 1, "end": 2 },
-				"active": { "start": 2, "end": 3 }
-			},
-			"scenes": [
-				"splash"
-			],
-			"callback": {
-				"route": "change scene",
-				"message": "instructions"
-			}
 		},
 		"back-splash": {
 			"src": "/public/drawings/ui/back-splash.json",

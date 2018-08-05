@@ -328,6 +328,7 @@
 		- is there a way to inspect multi-threads
 	- code minimization?
 
+8.3 - 8.5.2018 2DCON
 - need
 	- logo on loading, splash and exit - 
 	- choose character message - 
@@ -356,19 +357,19 @@
 		- dunes -
 		- random trees - 
 		- graveyard fence - 
-		- rocks
+		- rocks -
 		- palm trees
 		- windmills - 
 		- forrest trees - 
 		- television
 	- idtio.owen.cool - 
-	- q to wave
-		- need some instruction
-		- also pop up little animation in other players screens
+	- q to wave - 
+		- need some instruction -
+		- also pop up little animation in other players screens -
 	- test dialog heart-flower vs flower-heart -
 		- nah fuck head heart-flower and flower-heart are the same - 
 		- change apples to hearts 
-		- wrong keys for one of them
+		- wrong keys for one of them - 
 	- interfaces should pop back up after dialog is done - 
 
 - would be nice
@@ -377,26 +378,22 @@
 	- player timeout
 	- change colors
 	- every dialog needs to pop
-	- favicon
+	- favicon - 
 	- gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
 
 
 - bugs during play
-	- interface didn't go away while talking
-		- i think with three people
-		- should ignore the third person
-		- or make dialog end?
-		- interface doesn't pop up for players in game to new player who joins
-	- front end broke
-	- started convo then left can't interact with stuff
-		- maybe convo left timeout
-	- maybe froze when both interacting with void
-	- trying to interact with whirlpool
-	- add player tracking
-	- father dialog stopped in the middle ????
-	- im one of the three little pigs aren't i?
-		- need to redo the pig character
-		- also animal farm
+	- interface didn't go away while talking - 
+		- i think with three people - 
+		- should ignore the third person - 
+		- or make dialog end? -
+		- interface doesn't pop up for players in game to new player who joins - ok -
+	- front end broke - 
+	- started convo then left can't interact with stuff - 
+		- maybe convo left timeout - 
+	- maybe froze when both interacting with void -
+	- add player tracking - wave - 
+	- father dialog stopped in the middle ???? - 
 	- make it so you can't have the same dialog?
 	- kind of annoying when trying to get a resource and dialog prevents
 		- maybe dismiss dialog button
@@ -405,13 +402,14 @@
 		- give back resources
 		- drop resources
 		- trade resources
-	- socket receiving other players animations before they're loaded
-		- init socket events? - test - nah need the init stuff for splash ...
-		- function to initialize various socket events?
-	- two players try to interact with the void at once 
+	- socket receiving other players animations before they're loaded - 
+		- init socket events? - test - nah need the init stuff for splash ... - 
+		- function to initialize various socket events? - 
+	- two players try to interact with the void at once -
 
 
 - comments
+	- trying to interact with whirlpool
 	- what is the goal of the game?
 	- how do you wait for tomorrow?
 	- i'm jesus pig 
@@ -423,8 +421,9 @@
 	- every time you talk it uses the resource
 		- kind of cool, using resource to negotiate
 	- i have no concept of how big this map is
-
-
+	- im one of the three little pigs aren't i?
+		- need to redo the pig character
+		- also animal farm
 	
 
 - lines change layer order

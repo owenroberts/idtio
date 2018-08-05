@@ -17,14 +17,20 @@ class Item extends Sprite {
 
 	display() {
 		/* could this be permanent to sprite.js in Game ? */
-		// console.log(this.position.x, this.width, Game.width);
+		if (this.isOnscreen())
+			super.display();
+		else if (Game.map) // temp fix
+			super.display();
+	}
+
+	isOnscreen() {
 		if (this.position.x + this.width > 0 && 
 			this.position.y + this.height > 0 &&
 			this.position.x < Game.width &&
 			this.position.y < Game.height)
-			super.display();
-		else if (Game.map) // temp fix
-			super.display();
+			return true;
+		else
+			return false;
 	}
 
 	update(offset) {

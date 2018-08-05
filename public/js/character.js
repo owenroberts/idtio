@@ -54,11 +54,18 @@ class Character extends Sprite {
 		this.displayBox = false;
 	}
 
-	display() {
+	isOnscreen() {
 		if (this.position.x + this.width > 0 && 
 			this.position.y + this.height > 0 &&
 			this.position.x < Game.width &&
-			this.position.y < Game.height) {
+			this.position.y < Game.height)
+			return true;
+		else
+			return false;
+	}
+
+	display() {
+		if (this.isOnscreen) {
 			super.display();
 			let x = this.position.x - this.width / 4;
 			let y = this.position.y - this.height / 2;
