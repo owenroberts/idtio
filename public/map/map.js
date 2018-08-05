@@ -57,6 +57,7 @@ function draw() {
 	Game.ctx.font = '16px monaco';
 	Game.ctx.fillStyle = '#bb11ff';
 	for (const interactive in map.interactives) {
+		Game.ctx.strokeStyle = '#000000';
 		map.interactives[interactive].display();
 		Game.ctx.fillText(interactive, map.interactives[interactive].position.x, map.interactives[interactive].position.y);
 	}

@@ -39,7 +39,7 @@ class Player extends Entity {
 			this.act[a] = false;
 		}
 		this.x = 0;
-		this.y = 0;
+		this.y = 768;
 	}
 
 	returnResources() {

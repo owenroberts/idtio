@@ -696,7 +696,7 @@
 			"distance": 300,
 			"msg": "E interact",
 			"wrap": 11,
-			"src": "/public/drawings/scenery/rock-north-east.json", 
+			"src": "/public/drawings/interactives/rock-north-east.json", 
 			"x": 6043, "y": -4080,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -710,7 +710,7 @@
 			"distance": 300,
 			"msg": "E interact",
 			"wrap": 11,
-			"src": "/public/drawings/scenery/rock-north-west.json", 
+			"src": "/public/drawings/interactives/rock-north-west.json", 
 			"x": -8384, "y": -3698,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -724,7 +724,7 @@
 			"distance": 300,
 			"msg": "E interact",
 			"wrap": 11,
-			"src": "/public/drawings/scenery/rock-south-east.json", 
+			"src": "/public/drawings/interactives/rock-south-east.json", 
 			"x": 6601, "y": 3536,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -738,11 +738,25 @@
 			"distance": 300,
 			"msg": "E interact",
 			"wrap": 11,
-			"src": "/public/drawings/scenery/rock-south-west.json", 
+			"src": "/public/drawings/interactives/rock-south-west.json", 
 			"x": -8604, "y": 3780,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 69 }
+			},
+			"random": false
+		},
+		{ 
+			"label": "tv",
+			"type": "interactive",
+			"distance": 300,
+			"msg": "E interact",
+			"wrap": 11,
+			"src": "/public/drawings/interactives/tv.json", 
+			"x": -7147, "y": 2048,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 28 }
 			},
 			"random": false
 		}
