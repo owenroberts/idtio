@@ -58,16 +58,10 @@ class Player extends Entity {
 		this.bounds.right -= width;
 	}
 
-	join(socket) {
-		if (this.character) {
-			this.joinedGame = true;
-			socket.emit('join game');
-			this.init(socket);
-			return true;
-		} else {
-			socket.emit('msg', 'please select a character');
-			return false;
-		}
+	join(character, socket) {
+		this.joinedGame = true;
+		this.character = character;
+		this.init(socket);
 	}
 
 	endDialog() {

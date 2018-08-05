@@ -689,8 +689,63 @@
 				"pig": { "start": 355, "end": 397 }
 			},
 			"random": true
+		},
+		{ 
+			"label": "rock north east",
+			"type": "interactive",
+			"distance": 300,
+			"msg": "E interact",
+			"wrap": 11,
+			"src": "/public/drawings/scenery/rock-north-east.json", 
+			"x": 6043, "y": -4080,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 61 }
+			},
+			"random": false
+		},
+		{ 
+			"label": "rock north west",
+			"type": "interactive",
+			"distance": 300,
+			"msg": "E interact",
+			"wrap": 11,
+			"src": "/public/drawings/scenery/rock-north-west.json", 
+			"x": -8384, "y": -3698,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 45 }
+			},
+			"random": false
+		},
+		{ 
+			"label": "rock south east",
+			"type": "interactive",
+			"distance": 300,
+			"msg": "E interact",
+			"wrap": 11,
+			"src": "/public/drawings/scenery/rock-south-east.json", 
+			"x": 6601, "y": 3536,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 49 }
+			},
+			"random": false 
+		},
+		{ 
+			"label": "rock south west",
+			"type": "interactive",
+			"distance": 300,
+			"msg": "E interact",
+			"wrap": 11,
+			"src": "/public/drawings/scenery/rock-south-west.json", 
+			"x": -8604, "y": 3780,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"interact": { "start": 1, "end": 69 }
+			},
+			"random": false
 		}
-
 	],
 
 	"scenery": [
@@ -907,9 +962,10 @@
 		{ "m": true, "src": "/public/drawings/scenery/forrest-28.json", "x": 6329, "y": -3081	},
 		{ "m": true, "src": "/public/drawings/scenery/forrest-29.json", "x": 6769, "y": -3706	},
 
-
 		{ "m": false, "src": "/public/drawings/scenery/windmill-0.json", "x": -3476, 		"y": 1654 	},
+		{ "m": false, "src": "/public/drawings/scenery/windmill-1.json", "x": -3776, 		"y": 1854 	},
+		{ "m": false, "src": "/public/drawings/scenery/windmill-2.json", "x": -4076, 		"y": 2054 	},
 
-		{ "m": false, "src": "/public/drawings/scenery/wreckage.json", "x": -8749, 			"y": 2594 	}
+		{ "m": false, "src": "/public/drawings/scenery/wreckage.json", "x": -8249, 			"y": 2594 	}
 	]
 }

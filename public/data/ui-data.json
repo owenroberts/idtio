@@ -12,9 +12,9 @@
 	},
 	"texts": {
 		"choose": {
-			"msg": "choose a character:",
+			"msg": "choose a character to join the game:",
 			"x": 10,
-			"y": 160,
+			"y": 140,
 			"wrap": 19,
 			"scenes": [ "splash" ]
 		},
@@ -41,23 +41,6 @@
 		}
 	},
 	"uis": {
-		"join-game": {
-			"src": "/public/drawings/ui/join_game.json",
-			"x": 0,
-			"y": 50,
-			"states" : {
-				"idle": { "start": 0, "end": 0 },
-				"over": { "start": 1, "end": 2 },
-				"selected": { "start": 1, "end": 2 },
-				"active": { "start": 2, "end": 3 }
-			},
-			"scenes": [
-				"splash"
-			],
-			"callback": {
-				"route": "join"
-			}
-		},
 		"exit": {
 			"src": "/public/drawings/ui/exit.json",
 			"x": 0,
@@ -159,7 +142,7 @@
 				"splash"
 			],
 			"callback" : {
-				"route": "character selection",
+				"route": "character join",
 				"message": "cat"
 			}
 		},
@@ -177,7 +160,7 @@
 				"splash"
 			],
 			"callback" : {
-				"route": "character selection",
+				"route": "character join",
 				"message": "pig"
 			}
 		},
@@ -195,7 +178,7 @@
 				"splash"
 			],
 			"callback" : {
-				"route": "character selection",
+				"route": "character join",
 				"message": "birds"
 			}
 		}

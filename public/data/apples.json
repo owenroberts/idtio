@@ -1,5 +1,22 @@
 {
 	"ui": {
+		"join-game": {
+			"src": "/public/drawings/ui/join_game.json",
+			"x": 0,
+			"y": 50,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 1, "end": 2 },
+				"active": { "start": 2, "end": 3 }
+			},
+			"scenes": [
+				"splash"
+			],
+			"callback": {
+				"route": "join"
+			}
+		},
 		"sound": {
 			"src": "/public/drawings/ui/sound.json",
 			"x": 0,

@@ -299,29 +299,25 @@ socket.on('id', (id) => {
 });
 
 /* load init data */
-socket.on('init', (data) => {
+socket.on('init splash', (data) => {
 	for (const id in data.players) {
 		const player = data.players[id];
-		// console.log('character data', characterData);
 		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false); 
-		scenes.splash.ui[player.character].setChosen();
 	}
+});
+
+socket.on('join game', (data) => {
 	for (const label in data.interactives) {
 		if (data.interactives[label].picked)
 			scenes.game.interactives[label].animation.setState('end');
 	}
+	currentScene = 'game';
+	initGameSockets();
 });
 
-/* does this do anything? */
-socket.on('character chosen', (character) => {
-	scenes.splash.ui[character].setChosen();
-	// user.character = character; /* wait is this all sockets? */
-	/* hopefully this doesn't break anything */
-});
-
-/* does this do anything? */
-socket.on('character unchosen', (character) => {
-	scenes.splash.ui[character].setUnchosen();
+/* hide/show available characters */
+socket.on('character selected', (character, state) => {
+	scenes.splash.ui[character].toggle(state);
 });
 
 /* add character to scene, both user and others */
@@ -331,12 +327,8 @@ socket.on('add character', (player) => {
 });
 
 socket.on('remove character', (character) => {
-	scenes.splash.ui[character].setUnchosen();
+	scenes.splash.ui[character].toggle(false);
 	delete scenes.game.characters[character];
-});
-
-socket.on('join game', () => {
-	currentScene = 'game';
 });
 
 socket.on('change scene', (scene) => {
@@ -344,8 +336,8 @@ socket.on('change scene', (scene) => {
 	currentScene = scene;
 });
 
-
-/* recieve player position from server */
+/* recieve player position from server 
+	does this go in initGameSockets ? */
 socket.on('update', (data) => {
 	if (currentScene == 'game') {
 		const offset = {
@@ -376,85 +368,89 @@ socket.on('update', (data) => {
 	}
 });
 
-/* player interacting with map interactives */
-socket.on('display interact message', (params) => {
-	if (!scenes.game.interactives[params.label].isActive)
-		scenes.game.interactives[params.label].displayText = params.state;
-});
+/* prevent these updates during loading.... */
+function initGameSockets() {
 
-socket.on('play interact animation', (label) => {
-	if (currentScene == 'game')
-		scenes[currentScene].interactives[label].playInteractState();
-});
-
-socket.on('play character animation', (character, type) => {
-	scenes.game.characters[character].isInteracting = true;
-	scenes.game.characters[character].animation.setState(type);
-	scenes.game.characters[character].animation.playOnce(() => {
-		scenes.game.characters[character].animation.setState('idle');
-		socket.emit('done interacting');
-		scenes.game.characters[character].isInteracting = false;
+	/* player interacting with map interactives */
+	socket.on('display interact message', (params) => {
+		if (!scenes.game.interactives[params.label].isActive)
+			scenes.game.interactives[params.label].displayText = params.state;
 	});
-});
 
-socket.on('update resources', (player) => {
-	scenes.game.characters[player.character].resources = player.resources;
-});
-
-socket.on('return resource', (resource) => {
-	scenes.game.interactives[resource].animation.setState('reborn'); // animate back
-	scenes.game.interactives[resource].animation.playOnce(() => {
-		scenes.game.interactives[resource].animation.setState('idle');
+	socket.on('play interact animation', (label) => {
+		if (currentScene == 'game')
+			scenes[currentScene].interactives[label].playInteractState();
 	});
-});
 
-/* interacting with another player */
-socket.on('character interface', (id, character, state) => {
-	if (id == user.id)
-		user.interacting.state = state;
-	scenes.game.characters[character].toggleInterface(state);
-});
+	socket.on('play character animation', (character, type) => {
+		scenes.game.characters[character].isInteracting = true;
+		scenes.game.characters[character].animation.setState(type);
+		scenes.game.characters[character].animation.playOnce(() => {
+			scenes.game.characters[character].animation.setState('idle');
+			socket.emit('done interacting');
+			scenes.game.characters[character].isInteracting = false;
+		});
+	});
 
-socket.on('story input', (data) => {
-	scenes.game.characters[data.character].setStoryType(data.type);
-});
+	socket.on('update resources', (player) => {
+		scenes.game.characters[player.character].resources = player.resources;
+	});
 
-socket.on('start story', (data) => {
-	const p = data[0].character; // player
-	const o = data[1].character; // other
-	const pt = data[0].type; // player story type
-	const ot = data[1].type; // other story type
-	const charKey = storyData[p + '-' + o] ? p + '-' + o : o + '-' + p;
-	const charData = storyData[charKey];
-	const storyKey = charKey == p + '-' + o ? pt + '-' + ot : ot + '-' + pt;
-	const story = charData[storyKey];
+	socket.on('return resource', (resource) => {
+		scenes.game.interactives[resource].animation.setState('reborn'); // animate back
+		scenes.game.interactives[resource].animation.playOnce(() => {
+			scenes.game.interactives[resource].animation.setState('idle');
+		});
+	});
 
-	setTimeout(() => {
-		scenes.game.characters[p].iconType = false;
-		scenes.game.characters[o].iconType = false;
-		function playNextStory(index) {
-			const char = story[index][0];
-			const dialog = story[index][1];
-			scenes.game.characters[char].toggleBox(true);
-			scenes.game.characters[char].playStory(dialog, () => {
-				index++;
-				if (index < story.length) {
-					scenes.game.characters[char].toggleBox(false);
-					playNextStory(index);
-				} else {
-					socket.emit('done talking');
-				}
-			});
-		}
-		playNextStory(0);
-	}, 1200);
-});
+	/* interacting with another player */
+	socket.on('character interface', (id, character, state) => {
+		if (id == user.id)
+			user.interacting.state = state;
+		scenes.game.characters[character].toggleInterface(state);
+	});
 
-socket.on('end story', (character) => {
-	scenes.game.characters[character].endStory();
-	scenes.game.characters[character].toggleBox(false);
-	scenes.game.characters[character].toggleInterface(false);
-});
+	socket.on('story input', (data) => {
+		scenes.game.characters[data.character].setStoryType(data.type);
+	});
+
+	socket.on('start story', (data) => {
+		const p = data[0].character; // player
+		const o = data[1].character; // other
+		const pt = data[0].type; // player story type
+		const ot = data[1].type; // other story type
+		const charKey = storyData[p + '-' + o] ? p + '-' + o : o + '-' + p;
+		const charData = storyData[charKey];
+		const storyKey = charKey == p + '-' + o ? pt + '-' + ot : ot + '-' + pt;
+		const story = charData[storyKey];
+
+		setTimeout(() => {
+			scenes.game.characters[p].iconType = false;
+			scenes.game.characters[o].iconType = false;
+			function playNextStory(index) {
+				const char = story[index][0];
+				const dialog = story[index][1];
+				scenes.game.characters[char].toggleBox(true);
+				scenes.game.characters[char].playStory(dialog, () => {
+					index++;
+					if (index < story.length) {
+						scenes.game.characters[char].toggleBox(false);
+						playNextStory(index);
+					} else {
+						socket.emit('done talking');
+					}
+				});
+			}
+			playNextStory(0);
+		}, 1200);
+	});
+
+	socket.on('end story', (character) => {
+		scenes.game.characters[character].endStory();
+		scenes.game.characters[character].toggleBox(false);
+		scenes.game.characters[character].toggleInterface(false);
+	});
+}
 
 socket.on('msg', (msg) => {
 	scenes[currentScene].texts['msg'] = new Text(10, Game.height - 50, msg, 20, Game.letters);

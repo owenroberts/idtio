@@ -10,13 +10,9 @@ class UI extends Sprite {
 		this.animation.state = 'idle';
 		this.clickStart = false;
 	}
-	setChosen() {
-		this.animation.setState('selected');
-		this.selected = true;
-	}
-	setUnchosen() {
-		this.animation.setState('idle');
-		this.selected = false;
+	toggle(selected) {
+		this.selected = selected;
+		this.animation.setState(selected ? 'selected' : 'idle')
 	}
 	over(x, y) {
 		if (!this.selected) {

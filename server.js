@@ -103,14 +103,14 @@ function gameUpdate() {
 									if (player.act.inPlayerRange == other.id) {
 										player.act.inPlayerRange = false;
 										io.sockets.emit('character interface',  player.id, player.character, false);
-									}
-									if (player.act.inputStoryType && player.act.inPlayerRange == other.id) {
-										io.sockets.emit('story input', {
-											character: player.character, 
-											type: false
-										});
-										player.act.inputStoryType = false;
-										player.act.storyTypeSent = false;
+										if (player.act.inputStoryType) {
+											io.sockets.emit('story input', {
+												character: player.character, 
+												type: false
+											});
+											player.act.inputStoryType = false;
+											player.act.storyTypeSent = false;
+										}
 									}
 								}
 							}
@@ -176,17 +176,23 @@ function gameUpdate() {
 	io.sockets.emit('update', data);
 }
 
-function initData() {
+function getCharacterData() {
 	var data = {
-		players: {},
-		interactives: {}
+		players: {}
 	}
 	for (const id in players) {
 		if (players[id].character) {
 			data.players[id] = players[id].getUpdate();
-			// data.players[id].character = players[id].character;
 			data.players[id].resources = players[id].resources;
 		}
+	}
+	return data;
+}
+
+function getItemData() {
+	var data = {
+		players: {},
+		interactives: {}
 	}
 	for (const label in interactives) {
 		if (interactives[label].isPickup)
@@ -204,37 +210,27 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('splash loaded', () => {
-		socket.emit('init', initData());
+		socket.emit('init splash', getCharacterData());
 	});
 
-	/* select a character (need access to characters obj) */
-	socket.on('character selection', (character) => {
+	/* select a character (need access to characters obj) 
+		adding "join" */
+	socket.on('character join', (character) => {
 		if (!characters[character].isInUse) {
-			if (players[socket.id].character) {
-				characters[players[socket.id].character].isInUse = false;
-				io.sockets.emit('character unchosen', players[socket.id].character);
-			}
 			players[socket.id].character = character;
 			characters[character].isInUse = true;
-			io.sockets.emit('character chosen', character);
-		} else if (players[socket.id].character == character) {
-			socket.emit('msg', 'you have selected that character');
-		} else {
-			socket.emit('msg', 'character not available');
-		}
-	});
-
-	/* joins game (needs other players) */
-	socket.on('join', () => {
-		const joined = players[socket.id].join(socket);
-		if (joined) {
-			socket.emit('init', initData()); /* for flowers */
+			io.sockets.emit('character selected', character, true);
+			players[socket.id].join(character, socket);
 			io.sockets.emit('add character', players[socket.id]);
+			socket.emit('join game', getItemData()); 
+
 			/* if this is the first player to join start gameInterval */
 			if (!gameIsPlaying) {
 				gameIsPlaying = true;
 				gameInterval = setInterval(gameUpdate, 1000 / 60);
 			}
+		} else {
+			socket.emit('msg', 'character not available');
 		}
 	});
 

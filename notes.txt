@@ -358,16 +358,17 @@
 		- graveyard fence - 
 		- rocks
 		- palm trees
-		- windmills
-		- forrest trees
+		- windmills - 
+		- forrest trees - 
 		- television
 	- idtio.owen.cool - 
 	- q to wave
 		- need some instruction
 		- also pop up little animation in other players screens
 	- test dialog heart-flower vs flower-heart -
-		- nah fuck head heart-flower and flower-heart are the same
-		- change apples to hearts
+		- nah fuck head heart-flower and flower-heart are the same - 
+		- change apples to hearts 
+		- wrong keys for one of them
 	- interfaces should pop back up after dialog is done - 
 
 - would be nice
@@ -428,6 +429,7 @@
 
 - lines change layer order
 - lines setups - defaults ... 
+- lines - deselect frame with key command
 
 - will there be an error when one player leaves a story or turns off tab for a while?
 
@@ -460,3 +462,10 @@
 	- http://www.abbamoses.com/fiddledo/fiddlepage
 	- http://www.kenmiddleton.co.uk/free-tabs/
 	- https://gumroad.com/l/minstrel-uke
+
+- writing stuff
+	- http://anaditeaching.com/koan-practice-zen-of-wasting-time/
+	- this writing sucks and i hated doing it
+	- need to forget "back story" and just write non sense
+	- but make the non sense compelling - maybe talk to tom?
+	- match w new non sense drawings
