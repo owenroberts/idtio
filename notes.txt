@@ -495,3 +495,8 @@
 	- jig animations and stuff
 	- exit to home in cursive
 	- lines sprites around color changing things
+- new characters
+	- worm
+	- fucked up rabbit
+	- fucked up frog
+	- computer mouse

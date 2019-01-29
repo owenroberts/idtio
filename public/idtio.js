@@ -298,7 +298,14 @@ function mouseUp(x, y) {
 
 /* init game last bc it calls the start function .... better way to do this?
 	just no start function? */
-Game.init(window.innerWidth, window.innerHeight, 10, false);
+Game.init({
+	width: window.innerWidth, 
+	height: window.innerHeight, 
+	lps: 10, 
+	stats: false,
+	debug: true,
+	mixedColors: false
+});
 
 /* color selectors */
 document.getElementById('line-color').addEventListener('change', function(ev) {
