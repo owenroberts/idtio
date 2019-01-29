@@ -18,7 +18,6 @@ app.set('port', port);
 app.use('/public', express.static(__dirname + '/public'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.gif')))
 
-
 app.get('/', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/index.html'));
 });

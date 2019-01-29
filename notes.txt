@@ -426,6 +426,16 @@
 		- also animal farm
 	
 
+8.15.2018
+- yin talk
+- keep open world
+- more weird characters
+- maybe stages
+- remove stuff but keep animations?
+- what does that imply about the world?
+- itdio, keep separate, linear like plug and play
+
+
 - lines change layer order
 - lines setups - defaults ... 
 - lines - deselect frame with key command
@@ -468,3 +478,20 @@
 	- need to forget "back story" and just write non sense
 	- but make the non sense compelling - maybe talk to tom?
 	- match w new non sense drawings
+
+1.29.2018
+- new version
+	- no button presses for dialog or collecting stuff, just triggered
+	- mix and match origin stories for characters
+		- specific to interlocutor or just random
+		- how many choices
+	- new text animations
+	- more characters
+	- more stuff to interact with
+	- finish by march indiecade due date??
+	- different origin point for each character
+	- audio!
+	- some goal or quest for each character?
+	- jig animations and stuff
+	- exit to home in cursive
+	- lines sprites around color changing things
