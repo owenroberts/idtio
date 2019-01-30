@@ -45,15 +45,13 @@ const interactives = {};
 for (const i in mapData.interactives) {
 	interactives[mapData.interactives[i].label] = new Interactive(mapData.interactives[i]);
 }
+
 for (const i in mapData.pickups) {
 	interactives[mapData.pickups[i].label] = new Pickup(mapData.pickups[i]);
 }
 
 function gameUpdate() {
-	var data = {
-		players: {},
-		interactives: {}
-	}
+	var data = { players: {}, interactives: {} };
 	for (const id in players) {
 		const player = players[id];
 		if (player.joinedGame) {
@@ -181,9 +179,7 @@ function gameUpdate() {
 }
 
 function getCharacterData() {
-	var data = {
-		players: {}
-	}
+	var data = { players: {} };
 	for (const id in players) {
 		if (players[id].character) {
 			data.players[id] = players[id].getUpdate();
@@ -194,10 +190,7 @@ function getCharacterData() {
 }
 
 function getItemData() {
-	var data = {
-		players: {},
-		interactives: {}
-	}
+	var data = { players: {}, interactives: {} };
 	for (const label in interactives) {
 		if (interactives[label].isPickup)
 			data.interactives[label] = interactives[label].getUpdate();

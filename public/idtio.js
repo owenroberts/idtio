@@ -6,13 +6,7 @@ const scenes = {
 	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [], sprites: {} },
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
-const assetsLoaded = {
-	splash: false,
-	map: false,
-	characters: false,
-	stories: false,
-	loading: false
-};
+const assetsLoaded = { splash: false, map: false, characters: false, stories: false, loading: false };
 let currentScene = 'loading';
 let characterData, storyData;
 let user = {
@@ -21,7 +15,7 @@ let user = {
 		label: 'none',
 		type: 'none'
 	}
-}
+};
 const colorPicker = document.getElementById('color-picker');
 
 function loadUI(data) {
@@ -134,8 +128,9 @@ function start() {
 		scenes.loading.sprites.loading.center();
 		scenes.loading.sprites.loading.animation.onPlayedState = function() {
 			assetsLoaded.loading = true;
-		}
+		};
 	});
+	assetsLoaded.loading = true; // remove to play full loading anim
 
 
 	fetch('/public/data/ui-data.json')
@@ -164,10 +159,9 @@ function start() {
 }
 
 function draw() {
-
 	if (currentScene == 'loading') {
 		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading) {
-			currentScene = 'splash';
+				currentScene = 'splash';
 			colorPicker.style.display = 'block';
 		}
 	}
@@ -293,7 +287,6 @@ function mouseUp(x, y) {
 		if (sprite.up(x, y))
 			return;
 	}
-
 }
 
 /* init game last bc it calls the start function .... better way to do this?
@@ -320,12 +313,12 @@ socket.emit('set bounds', window.innerWidth/2, window.innerHeight/2);
 	/* need to account for player width/height*/
 
 /* new user */
-socket.on('id', (id) => {
+socket.on('id', id => {
 	user.id = id;
 });
 
 /* load init data */
-socket.on('init splash', (data) => {
+socket.on('init splash', data => {
 	for (const id in data.players) {
 		const player = data.players[id];
 		scenes.game.characters[player.character] = new Character(player, characterData[player.character], false, false);
@@ -333,7 +326,7 @@ socket.on('init splash', (data) => {
 	}
 });
 
-socket.on('join game', (data) => {
+socket.on('join game', data => {
 	for (const label in data.interactives) {
 		if (data.interactives[label].picked)
 			scenes.game.interactives[label].animation.setState('end');
@@ -349,17 +342,17 @@ socket.on('character selected', (character, state) => {
 });
 
 /* add character to scene, both user and others */
-socket.on('add character', (player) => {
+socket.on('add character', player => {
 	var isPlayer = player.id == user.id;
 	scenes.game.characters[player.character] = new Character(player, characterData[player.character], isPlayer, false); 
 });
 
-socket.on('remove character', (character) => {
+socket.on('remove character', character => {
 	scenes.splash.ui[character].toggle(false);
 	delete scenes.game.characters[character];
 });
 
-socket.on('change scene', (scene) => {
+socket.on('change scene', scene => {
 	delete scenes[currentScene].texts.msg;
 	currentScene = scene;
 	colorPicker.style.display = currentScene == 'splash' ? 'block' : 'none';
@@ -367,7 +360,7 @@ socket.on('change scene', (scene) => {
 
 /* recieve player position from server 
 	does this go in initGameSockets ? */
-socket.on('update', (data) => {
+socket.on('update', data => {
 	if (currentScene == 'game') {
 		const offset = {
 			x: Game.width/2 - data.players[user.id].x,
@@ -375,8 +368,10 @@ socket.on('update', (data) => {
 		}
 		for (const id in data.players) {
 			const player = data.players[id];
-			if (!scenes.game.characters[player.character].isInteracting)
+			if (!scenes.game.characters[player.character].isInteracting) {
+				// console.log(player.animationState);
 				scenes.game.characters[player.character].animation.setState(player.animationState);
+			}
 
 			/* move non character players */
 			if (id != user.id) {
@@ -387,14 +382,10 @@ socket.on('update', (data) => {
 					scenes.game.characters[player.character].center();
 				}
 
-
-				/* play waving */
+				/* player waving */
 				if (player.waving && !scenes.game.characters[player.character].isOnscreen()) {
 					const wave = player.character + '-wave';
-					const pos = new Cool.Vector(
-						Game.width/2,
-						Game.height/2
-					);
+					const pos = new Cool.Vector( Game.width/2, Game.height/2 );
 					pos.subtract(scenes.game.characters[player.character].position);
 					pos.multiply(-1);
 					pos.normalize();
@@ -513,19 +504,6 @@ socket.on('disconnect', () => {
 	setTimeout(location.reload.bind(location), 1); // can be longer for debugging
 });
 
-/* chat */
-// const chat = document.getElementById('chat');
-// const chatInput = document.getElementById('chat-input');
-
-// socket.on('get-chat', (msg) => {
-// 	const newChat = document.createElement('div');
-// 	newChat.textContent = msg;
-// 	chat.appendChild(newChat);
-// 	if (chat.children.length > 25) {
-// 		chat.children[1].remove();
-// 	}
-// });
-
 /* debug messages */
 socket.on('get-eval', (msg) => {
 	console.log(msg);
@@ -534,12 +512,3 @@ socket.on('get-eval', (msg) => {
 function servLog(statement) {
 	socket.emit('send-eval', statement);
 }
-
-// chatInput.addEventListener('keydown', (ev) => {
-// 	if (ev.which == 13) {
-// 		socket.emit('send-eval', chatInput.value);
-// 		chatInput.value = '';
-// 	}
-// 	if (ev.which == 27)
-// 		chatInput.blur();
-// });
