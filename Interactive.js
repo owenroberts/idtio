@@ -5,7 +5,8 @@ class Interactive extends Entity {
 		super(params);
 		this.msg = params.msg;
 		this.label = params.label;
-		this.type = params.type;
+		this.type = params.type || 'interactive';
+		/* do i need to know label and type? */
 		this.triggered = false;
 	}
 }

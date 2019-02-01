@@ -500,3 +500,16 @@
 	- fucked up rabbit
 	- fucked up frog
 	- computer mouse
+
+1.30.2019
+- automatically pick things up
+	- smaller range?
+	- kinda hard to tell what's happening without the prompt
+	- maybe should some text saying "you dug the heart out of this rabbit" or whatever
+- remove "data" from data files
+
+1.31.2019
+- ignore resources for now, add later if necessary
+- box disappearing
+- keeps triggering dialog switching back and forth, need to test
+

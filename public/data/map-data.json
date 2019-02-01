@@ -1,685 +1,275 @@
 {
-	"pickups": [
-		{
-			"label": "flower 0",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-0.json",
-			"x": 500, 
-			"y": 400,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3 },
-				"end": {"start": 3, "end": 4 },
-				"reborn": {"start": 4, "end": 8 }
+	"pickups": {
+		"flower": {
+			"distance": 75,
+			"msg": "picked a flower",
+			"wrap": 6,
+			"state_index": {
+				"idle": { "start": 0, "end": 1 },
+				"interact": { "start": 2, "end": 3},
+				"end": { "start": 3, "end": 5},
+				"reborn": { "start": 6, "end": 7 }
+			},
+			"items": {
+				"flower 0": {
+					"src": "/public/drawings/pickups/flower-0.json",
+					"x": 500,  "y": 400,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 1": {
+					"src": "/public/drawings/pickups/flower-1.json",
+					"x": 800, "y": 400,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 2":  {
+					"src": "/public/drawings/pickups/flower-2.json",
+					"x": 200, "y": 412,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 3": {
+					"src": "/public/drawings/pickups/flower-3.json",
+					"x": 600, "y": 256,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 4": {
+					"src": "/public/drawings/pickups/flower-4.json",
+					"x": 100, "y": 512,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 5": {
+					"src": "/public/drawings/pickups/flower-5.json",
+					"x": 300, "y": 150,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},
+				"flower 6": {
+					"src": "/public/drawings/pickups/flower-6.json",
+					"x": 960, "y": 179,
+					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+				},"flower 7": {
+					"src": "/public/drawings/pickups/flower-7.json",
+					"x": 1037, "y": 620,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 8": {
+					"src": "/public/drawings/pickups/flower-8.json",
+					"x": -137, "y": 198,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 9": {
+					"src": "/public/drawings/pickups/flower-9.json",
+					"x": -137, "y": -266,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 10": {
+					"src": "/public/drawings/pickups/flower-10.json",
+					"x": 276, "y": -294,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 11": {
+					"src": "/public/drawings/pickups/flower-11.json",
+					"x": -545, "y": -516,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 12": {
+					"src": "/public/drawings/pickups/flower-12.json",
+					"x": 763, "y": -488,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 13": {
+					"src": "/public/drawings/pickups/flower-13.json",
+					"x": 129, "y": -708,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 14": {
+					"src": "/public/drawings/pickups/flower-14.json",
+					"x": 1212, "y": -888,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 15": {
+					"src": "/public/drawings/pickups/flower-15.json",
+					"x": 558, "y": -1068,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 16": {
+					"src": "/public/drawings/pickups/flower-16.json",
+					"x": 47, "y": 1007,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 17": {
+					"src": "/public/drawings/pickups/flower-17.json",
+					"x": -734, "y": -164,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 18": {
+					"src": "/public/drawings/pickups/flower-18.json",
+					"x": -67, "y": -803,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 19": {
+					"src": "/public/drawings/pickups/flower-19.json",
+					"x": 3057, "y": 1988,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				},
+				"flower 20": {
+					"src": "/public/drawings/pickups/flower-20.json",
+					"x": -3779, "y": -1575,
+					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+				}
 			}
 		},
-		{
-			"label": "flower 1",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-1.json",
-			"x": 800, 
-			"y": 400,
+		"skull": {
 			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3},
-				"end": {"start": 3, "end": 4},
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 2",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-2.json",
-			"x": 200, 
-			"y": 412,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3 },
-				"end": {"start": 3, "end": 4 },
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 3",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-3.json",
-			"x": 600, 
-			"y": 256,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3},
-				"end": {"start": 3, "end": 4},
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 4",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-4.json",
-			"x": 100, 
-			"y": 512,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3 },
-				"end": {"start": 3, "end": 4 },
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 5",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-5.json",
-			"x": 300, 
-			"y": 150,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3 },
-				"end": {"start": 3, "end": 4 },
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 6",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-6.json",
-			"x": 960, "y": 179,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 3 },
-				"end": {"start": 3, "end": 4 },
-				"reborn": {"start": 4, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 7",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-7.json",
-			"x": 1037, "y": 620,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 8",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-8.json",
-			"x": -137, "y": 198,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 9",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-9.json",
-			"x": -137, "y": -266,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 10",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-10.json",
-			"x": 276, "y": -294,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 11",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-11.json",
-			"x": -545, "y": -516,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 12",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-12.json",
-			"x": 763, "y": -488,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 13",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-13.json",
-			"x": 129, "y": -708,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 14",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-14.json",
-			"x": 1212, "y": -888,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 15",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-15.json",
-			"x": 558, "y": -1068,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 16",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-16.json",
-			"x": 47, "y": 1007,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 17",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-17.json",
-			"x": -734, "y": -164,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 18",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-18.json",
-			"x": -67, "y": -803,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 19",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-19.json",
-			"x": 3057, "y": 1988,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-		{
-			"label": "flower 20",
-			"type": "flower",
-			"src": "/public/drawings/pickups/flower-20.json",
-			"x": -3779, "y": -1545,
-			"distance": 100,
-			"msg": "E to pick flower",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 4 },
-				"end": {"start": 4, "end": 4 },
-				"reborn": {"start": 5, "end": 8 }
-			}
-		},
-
-		{
-			"label": "skull 0",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-0.json",
-			"x": 4200, 
-			"y": 600,
-			"distance": 100,
-			"msg": "E to dig up skull",
+			"msg": "dug up a skull",
 			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 5, "end": 7 }
+			"state_index": {
+				"idle": { "start": 0, "end": 1 },
+				"interact": { "start": 2, "end": 3 },
+				"end": {"start": 4, "end": 5 },
+				"reborn": {"start": 6, "end": 7 }
+			},
+			"items": {
+				"skull 0": {
+					"src": "/public/drawings/pickups/grave-0.json",
+					"x": 4200, "y": 600,
+					"states": [0, 0, 1, 5, 5, 5, 5, 7]
+				},
+				"skull 1": {
+					"src": "/public/drawings/pickups/grave-1.json",
+					"x": 3700, "y": 1000,
+					"states": [0, 0, 1, 6, 6, 6, 7, 7]
+				},
+				"skull 2": {
+					"src": "/public/drawings/pickups/grave-2.json",
+					"x": 3700, "y": 662,
+					"states": [0, 0, 1, 6, 6, 6, 7, 9]
+				},
+				"skull 3": {
+					"src": "/public/drawings/pickups/grave-3.json",
+					"x": 4596, "y": 692,
+					"states": [0, 0, 1, 6, 6, 6, 6, 8]
+				},
+				"skull 4": {
+					"src": "/public/drawings/pickups/grave-4.json",
+					"x": 4146, "y": 932,
+					"states": [0, 0, 1, 5, 5, 5, 6, 8]
+				},
+				"skull 5": {
+					"src": "/public/drawings/pickups/grave-5.json",
+					"x": -7823, "y": -2446,
+					"states": [0, 0, 1, 6, 6, 6, 7, 8]
+				},
+				"skull 6": {
+					"src": "/public/drawings/pickups/grave-6.json",
+					"x": -8738, "y": -2160,
+					"states": [0, 0, 1, 5, 5, 5, 6, 8]
+				},
+				"skull 7": {
+					"src": "/public/drawings/pickups/grave-7.json",
+					"x": -8142, "y": -1984,
+					"states": [0, 0, 1, 5, 5, 5, 6, 8]
+				},
+				"skull 8": {
+					"src": "/public/drawings/pickups/grave-8.json",
+					"x": -8595, "y": -1598,
+					"states": [0, 0, 1, 5, 5, 5, 6, 8]
+				},
+				"skull 9": {
+					"src": "/public/drawings/pickups/grave-9.json",
+					"x": -7676, "y": -1804,
+					"states": [0, 0, 1, 5, 5, 5, 6, 8]
+				}
 			}
 		},
-		{
-			"label": "skull 1",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-1.json",
-			"x": 3700, 
-			"y": 1000,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 7 }
-			}
-		},
-		{
-			"label": "skull 2",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-2.json",
-			"x": 3700, "y": 662,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "skull 3",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-3.json",
-			"x": 4596, "y": 692,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 4",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-4.json",
-			"x": 4146, "y": 932,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 5",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-5.json",
-			"x": -7823, "y": -2446,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 6",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-6.json",
-			"x": -8738, "y": -2160,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 7",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-7.json",
-			"x": -8142, "y": -1984,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 8",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-8.json",
-			"x": -8595, "y": -1598,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-		{
-			"label": "skull 9",
-			"type": "skull",
-			"src": "/public/drawings/pickups/grave-9.json",
-			"x": -7676, "y": -1804,
-			"distance": 100,
-			"msg": "E to dig up skull",
-			"wrap": 8,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 5 },
-				"end": {"start": 5, "end": 5 },
-				"reborn": {"start": 6, "end": 8 }
-			}
-		},
-
-		{
-			"label": "heart 0",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-0.json",
-			"x": -2052, "y": 835,
+		"heart" : {
 			"distance": 200,
-			"msg": "E to remove heart",
+			"msg": "removed a heart",
 			"wrap": 9,
-			"states": {
+			"state_index": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 6 },
 				"end": {"start": 6, "end": 6 },
 				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 1",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-1.json",
-			"x": 3175, "y": -2357,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 2",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-2.json",
-			"x": -2412, "y": -2077,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 3",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-3.json",
-			"x": 5266, "y": 2703,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 4",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-4.json",
-			"x": -8820, "y": -3194,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 5",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-5.json",
-			"x": -6298, "y": 2777,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 6",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-6.json",
-			"x": -8162, "y": 1303,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 7",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-7.json",
-			"x": -2735, "y": -1980,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 8",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-8.json",
-			"x": -4303, "y": -743,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
-			}
-		},
-		{
-			"label": "heart 9",
-			"type": "apple",
-			"src": "/public/drawings/pickups/heart-9.json",
-			"x": -7849, "y": 3548,
-			"distance": 200,
-			"msg": "E to remove heart",
-			"wrap": 9,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 6 },
-				"end": {"start": 6, "end": 6 },
-				"reborn": {"start": 7, "end": 9 }
+			},
+			"states": [0, 0, 1, 6, 6, 6, 7, 9 ],
+			"items": {
+				"heart 0": {
+					"src": "/public/drawings/pickups/heart-0.json",
+					"x": -2052, "y": 835
+				},
+				"heart 1": {
+					"src": "/public/drawings/pickups/heart-1.json",
+					"x": 3175, "y": -2357
+				},
+				"heart 2": {
+					"src": "/public/drawings/pickups/heart-2.json",
+					"x": -2412, "y": -2077
+				},
+				"heart 3": {
+					"src": "/public/drawings/pickups/heart-3.json",
+					"x": 5266, "y": 2703
+				},
+				"heart 4": {
+					"src": "/public/drawings/pickups/heart-4.json",
+					"x": -8820, "y": -3194
+				},
+				"heart 5": {
+					"src": "/public/drawings/pickups/heart-5.json",
+					"x": -6298, "y": 2777
+				},
+				"heart 6": {
+					"src": "/public/drawings/pickups/heart-6.json",
+					"x": -8162, "y": 1303
+				},
+				"heart 7": {
+					"src": "/public/drawings/pickups/heart-7.json",
+					"x": -2735, "y": -1980
+				},
+				"heart 8": {
+					"src": "/public/drawings/pickups/heart-8.json",
+					"x": -4303, "y": -743
+				},
+				"heart 9": {
+					"src": "/public/drawings/pickups/heart-9.json",
+					"x": -7849, "y": 3548
+				}
 			}
 		}
-	],
-
-	"interactives": [
-		{
-			"label": "tree of introduction",
-			"type": "interactive",
+	},
+	"interactives": {
+		"tree of introduction": {
 			"src": "/public/drawings/interactives/palm-intro.json",
-			"x": 500,
-			"y": 768,
+			"x": 500, "y": 768,
 			"distance": 300,
-			"msg": "E to interact",
-			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 71 }
 			},
 			"random": false
 		},
-		{
-			"label": "tree of waiting",
-			"type": "interactive",
+		"tree of waiting": {
 			"src": "/public/drawings/interactives/palm-1.json",
 			"x": 453, "y": -2734,
 			"distance": 300,
-			"msg": "E to interact",
-			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 34 }
 			},
 			"random": false
 		},
-		{
-			"label": "tree of age",
-			"type": "interactive",
+		"tree of age": {
 			"src": "/public/drawings/interactives/palm-2.json",
-			"x": 1500,
-			"y": -3000,
+			"x": 1500, "y": -3000,
 			"distance": 300,
-			"msg": "E to interact",
-			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"interact": { "start": 1, "end": 83 }
 			},
 			"random": false
 		},
-		{
-			"label": "the void",
-			"type": "interactive",
+		"the void": {
 			"src": "/public/drawings/interactives/the_void.json",
 			"x": -7144, "y": 0,
 			"distance": 300,
-			"msg": "E enter the void",
-			"wrap": 22,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"yesterday": { "start": 1, "end": 108 },
@@ -690,12 +280,8 @@
 			},
 			"random": true
 		},
-		{ 
-			"label": "rock north east",
-			"type": "interactive",
+		 "rock north east": {
 			"distance": 300,
-			"msg": "E interact",
-			"wrap": 11,
 			"src": "/public/drawings/interactives/rock-north-east.json", 
 			"x": 6043, "y": -4080,
 			"states": {
@@ -704,12 +290,8 @@
 			},
 			"random": false
 		},
-		{ 
-			"label": "rock north west",
-			"type": "interactive",
+		 "rock north west": {
 			"distance": 300,
-			"msg": "E interact",
-			"wrap": 11,
 			"src": "/public/drawings/interactives/rock-north-west.json", 
 			"x": -8384, "y": -3698,
 			"states": {
@@ -718,12 +300,8 @@
 			},
 			"random": false
 		},
-		{ 
-			"label": "rock south east",
-			"type": "interactive",
+		 "rock south east": {
 			"distance": 300,
-			"msg": "E interact",
-			"wrap": 11,
 			"src": "/public/drawings/interactives/rock-south-east.json", 
 			"x": 6601, "y": 3536,
 			"states": {
@@ -732,12 +310,8 @@
 			},
 			"random": false 
 		},
-		{ 
-			"label": "rock south west",
-			"type": "interactive",
+		 "rock south west": {
 			"distance": 300,
-			"msg": "E interact",
-			"wrap": 11,
 			"src": "/public/drawings/interactives/rock-south-west.json", 
 			"x": -8604, "y": 3780,
 			"states": {
@@ -746,12 +320,8 @@
 			},
 			"random": false
 		},
-		{ 
-			"label": "tv",
-			"type": "interactive",
+		 "tv": {
 			"distance": 300,
-			"msg": "E interact",
-			"wrap": 11,
 			"src": "/public/drawings/interactives/tv.json", 
 			"x": -7147, "y": 2048,
 			"states": {
@@ -760,10 +330,9 @@
 			},
 			"random": false
 		}
-	],
+	},
 
 	"scenery": [
-
 		{ "m": true,  "src": "/public/drawings/scenery/grass-0.json", "x": -200,			"y": 100 	},
 		{ "m": true,  "src": "/public/drawings/scenery/grass-1.json", "x": -300, 			"y": 200 	},
 		{ "m": true,  "src": "/public/drawings/scenery/grass-2.json", "x": 100, 			"y": 300 	},

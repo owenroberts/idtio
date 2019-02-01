@@ -100,17 +100,29 @@ function loadUI(data) {
 
 function loadMap(data) {
 	console.log('%c map loaded', 'color:white;background:pink;');
-	for (let i = 0; i < data.interactives.length; i++) {
+	for (const label in data.interactives) {
 		setTimeout(() => {
-			scenes.game.interactives[data.interactives[i].label] = new Interactive(data.interactives[i], false);
+			scenes.game.interactives[label] = new Interactive(data.interactives[label], false, false);
 		}, 1);
 	}
 
-	for (let i = 0; i < data.pickups.length; i++) {
-		setTimeout(() => {
-			scenes.game.interactives[data.pickups[i].label] = new Interactive(data.pickups[i], false);
-			scenes.game.interactives[data.pickups[i].label].isPickup = true;
-		}, 1);
+	for (const type in data.pickups) {
+		const group = data.pickups[type];
+		const items = data.pickups[type].items;
+		for (const label in items) {
+			const pickup = items[label];
+			setTimeout(() => {
+				let states = {}; 
+				let s = pickup.states || group.states;
+				for (const state in group['state_index']) {
+					states[state] = { 
+						start: s[group['state_index'][state].start],
+						end: s[group['state_index'][state].end],
+					};
+				}
+				scenes.game.interactives[label] = new Interactive({ ...pickup, msg: data.pickups[type].msg, wrap: data.pickups[type].wrap, states: states }, true, false);
+			}, 1);
+		}
 	}
 
 	for (let i = 0; i < data.scenery.length; i++) {
@@ -365,10 +377,11 @@ socket.on('update', data => {
 		const offset = {
 			x: Game.width/2 - data.players[user.id].x,
 			y: Game.height/2 - data.players[user.id].y
-		}
+		};
 		for (const id in data.players) {
 			const player = data.players[id];
 			if (!scenes.game.characters[player.character].isInteracting) {
+				// test to see if they are interacting and then set to true
 				// console.log(player.animationState);
 				scenes.game.characters[player.character].animation.setState(player.animationState);
 			}
@@ -414,12 +427,14 @@ socket.on('update', data => {
 function initGameSockets() {
 
 	/* player interacting with map interactives */
-	socket.on('display interact message', (params) => {
-		if (!scenes.game.interactives[params.label].isActive)
+	/* remove  */
+	socket.on('display interact message', params => {
+		if (!scenes.game.interactives[params.label].isActive) {
 			scenes.game.interactives[params.label].displayText = params.state;
+		}
 	});
 
-	socket.on('play interact animation', (label) => {
+	socket.on('play interact animation', label => {
 		if (currentScene == 'game')
 			scenes[currentScene].interactives[label].playInteractState();
 	});
@@ -434,11 +449,11 @@ function initGameSockets() {
 		});
 	});
 
-	socket.on('update resources', (player) => {
+	socket.on('update resources', player => {
 		scenes.game.characters[player.character].resources = player.resources;
 	});
 
-	socket.on('return resource', (resource) => {
+	socket.on('return resource', resource => {
 		scenes.game.interactives[resource].animation.setState('reborn'); // animate back
 		scenes.game.interactives[resource].animation.playOnce(() => {
 			scenes.game.interactives[resource].animation.setState('idle');
@@ -452,11 +467,11 @@ function initGameSockets() {
 		scenes.game.characters[character].toggleInterface(state);
 	});
 
-	socket.on('story input', (data) => {
+	socket.on('story input', data => {
 		scenes.game.characters[data.character].setStoryType(data.type);
 	});
 
-	socket.on('start story', (data) => {
+	socket.on('start story', data => {
 		const p = data[0].character; // player
 		const o = data[1].character; // other
 		const pt = data[0].type; // player story type
@@ -466,28 +481,24 @@ function initGameSockets() {
 		const storyKey = charKey == p + '-' + o ? pt + '-' + ot : ot + '-' + pt;
 		const story = charData[storyKey];
 
-		setTimeout(() => {
-			scenes.game.characters[p].iconType = false;
-			scenes.game.characters[o].iconType = false;
-			function playNextStory(index) {
-				const char = story[index][0];
-				const dialog = story[index][1];
-				scenes.game.characters[char].toggleBox(true);
-				scenes.game.characters[char].playStory(dialog, () => {
-					index++;
-					if (index < story.length) {
-						scenes.game.characters[char].toggleBox(false);
-						playNextStory(index);
-					} else {
-						socket.emit('done talking');
-					}
-				});
-			}
-			playNextStory(0);
-		}, 1200);
+		function playNextStory(index) {
+			const char = story[index][0];
+			const dialog = story[index][1];
+			scenes.game.characters[char].toggleBox(true);
+			scenes.game.characters[char].playStory(dialog, () => {
+				index++;
+				if (index < story.length) {
+					scenes.game.characters[char].toggleBox(false);
+					playNextStory(index);
+				} else {
+					socket.emit('done talking');
+				}
+			});
+		}
+		playNextStory(0);
 	});
 
-	socket.on('end story', (character) => {
+	socket.on('end story', character => {
 		scenes.game.characters[character].endStory();
 		scenes.game.characters[character].toggleBox(false);
 		scenes.game.characters[character].toggleInterface(false);

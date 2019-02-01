@@ -1,15 +1,16 @@
 class Interactive extends Item {
-	constructor(params, debug) {
+	constructor(params, isPickup, debug) {
 		super(params, debug);
-		this.text = params.text;
-		this.displayText = false;
-		this.text = new Text(params.x, params.y, params.msg, params.wrap, Game.letters);
+		if (params.msg) {
+			this.displayText = false;
+			this.text = new Text(params.x, params.y, params.msg, params.wrap, Game.letters);
+		}
 		this.isActive = false;
 		this.animation.loop = false;
-		this.isPickup = false;
+		this.isPickup = isPickup;
 		this.picked = true;
 		this.label = params.label;
-		this.randomState = params.random;
+		this.randomState = params.random || false;
 	}
 	display() {
 		super.display();
@@ -26,8 +27,9 @@ class Interactive extends Item {
 			} else {
 				this.animation.setState('interact');
 			}
-			this.displayText = false;
-			this.isActive = true;
+			if (this.text) this.displayText = true; // if needs text/message, some dont
+			setTimeout(() => { this.displayText = false; }, 4000); /* replace w counter */
+			// this.isActive = true;
 			this.animation.playOnce(() => {
 				this.animation.setState(this.isPickup ? 'end' : 'idle');
 				this.isActive = false;

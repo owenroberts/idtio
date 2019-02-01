@@ -30,6 +30,7 @@ server.listen(port, function() {
 	console.log('Starting server on port ' + port);
 });
 
+// console.clear();
 const DEBUG = true;
 let gameIsPlaying = false;
 let gameInterval;
@@ -42,12 +43,24 @@ const characters = {
 const players = {};
 const interactives = {};
 
-for (const i in mapData.interactives) {
-	interactives[mapData.interactives[i].label] = new Interactive(mapData.interactives[i]);
+for (const label in mapData.interactives) {
+	interactives[label] = new Interactive(mapData.interactives[label]);
 }
 
-for (const i in mapData.pickups) {
-	interactives[mapData.pickups[i].label] = new Pickup(mapData.pickups[i]);
+for (const type in mapData.pickups) {
+	const items = mapData.pickups[type].items;
+	for (const label in items) {
+		const pickup = items[label];
+		pickup.type = type;
+		pickup.label = label;
+		pickup.distance = mapData.pickups[type].distance;
+		interactives[label] = new Pickup(pickup);
+	}
+}
+
+function randomType() {
+	const types = ['flower', 'apple', 'skull'];
+	return types[Math.floor( Math.random() * types.length )];
 }
 
 function gameUpdate() {
@@ -63,21 +76,12 @@ function gameUpdate() {
 				player.waving = false;
 			}
 
-			/* if story type is input show it on client, and flag that it is being shown */
-			if (player.act.inputStoryType && !player.act.storyTypeSent) {
-				io.sockets.emit('story input', {
-					character: player.character, 
-					type: player.act.inputStoryType
-				});
-				player.act.storyTypeSent = true;
-			}
-
 			for (const o in players) {
 				const other = players[o];
 				if (other.id != id && other.joinedGame) {
 					if (!player.act.storyStarted && !other.act.storyStarted) {
 						other.checkInRange(player, (isInRange, wasInRange) => {
-							const players =[
+							const players = [
 								{ id: id, character: player.character },
 								{ id: other.id, character: other.character }
 							];
@@ -85,35 +89,16 @@ function gameUpdate() {
 							if (isInRange) { 
 								if (!player.act.inPlayerRange && (other.act.inPlayerRange == id || !other.act.inPlayerRange)) { /* entered */
 									player.act.inPlayerRange = other.id;
-									io.sockets.emit('character interface', player.id, player.character, true);
-								}
-								/* maybe also check that they're the right inPlayerRange ids? */
-								if (player.act.inputStoryType && other.act.inputStoryType) {
 									io.sockets.emit('start story', [
-										{ character: player.character, type: player.act.inputStoryType },
-										{ character: other.character, type: other.act.inputStoryType }
-									]); 
-									player.usedResources[player.act.inputStoryType].push( player.resources[player.act.inputStoryType].shift() );
-									other.usedResources[other.act.inputStoryType].push( other.resources[other.act.inputStoryType].shift() );
-									io.sockets.emit('update resources', player);
-									io.sockets.emit('update resources', other);
-									player.act.storyStarted = true;
-									other.act.storyStarted = true;
+										{ character: player.character, type: randomType() },
+										{ character: other.character, type: randomType() }
+									]); /* any way to add this to update ? */
+									player.act.storyStarted = other.act.storyStarted = true;
 								}
 							} else {
 								if (wasInRange) { /* exited */
-									if (player.act.inPlayerRange == other.id) {
-										player.act.inPlayerRange = false;
-										io.sockets.emit('character interface',  player.id, player.character, false);
-										if (player.act.inputStoryType) {
-											io.sockets.emit('story input', {
-												character: player.character, 
-												type: false
-											});
-											player.act.inputStoryType = false;
-											player.act.storyTypeSent = false;
-										}
-									}
+									if (player.act.inPlayerRange == other.id) player.act.inPlayerRange = false;
+									/* end story? */
 								}
 							}
 						});
@@ -121,53 +106,29 @@ function gameUpdate() {
 				}
 			}
 
-			for (const i in interactives) {
-				const interactive = interactives[i];
+			for (const label in interactives) {
+				const interactive = interactives[label];
 				if (!interactive.picked) { 
 					interactive.checkInRange(player, (isInRange, wasInRange) => {
-
 						/* first check if another player has entered the scene */
-						if (player.act.inPlayerRange) {
-							if (player.act.inItemRange == interactive.label) {
-								io.sockets.connected[id].emit('display interact message', {
-									label: interactive.label, 
-									type: interactive.type, 
-									state: false 
-								});
-								player.act.inItemRange = false;
-							}
+						if (player.act.inPlayerRange && player.act.inItemRange == interactive.label) {
+							console.log(id, 'in range of item and player ... ');
+							player.act.inItemRange = false; // what does this do? i guess prevent two players from getting same interactive ... 
+							// maybe dont need act.inItemRange if things are auto triggered
 						} else {
-							if (isInRange) {
-								if (!player.act.inItemRange) { /* entered */
-									player.act.inItemRange = interactive.label;
-									io.sockets.connected[id].emit('display interact message', { 
-										label: interactive.label, 
-										type: interactive.type, 
-										state: true 
-									});
-								}
-								if (player.act.withItem) {
-									player.act.withItem = false;
-									player.act.inItemRange = false;
-									if (interactive.isPickup && !interactive.picked) {
-										io.sockets.emit('play character animation', player.character, interactive.type);
-										io.sockets.emit('play interact animation', interactive.label);
-										player.resources[interactive.type].push( interactive.label );
-										io.sockets.emit('update resources', player);
-										interactive.picked = true;
-									} else {
-										io.sockets.emit('play interact animation', interactive.label);
-									}
+							if (isInRange && !wasInRange) { // entered
+								if (!player.act.inItemRange) player.act.inItemRange = true;
+								if (interactive.isPickup && !interactive.picked) {
+									io.sockets.emit('play character animation', player.character, interactive.type); // general update ? 
+									io.sockets.emit('play interact animation', label); // general update ?? 
+									player.resources[interactive.type].push(label);
+									io.sockets.emit('update resources', player); // can this be  part of general update? 
+									interactive.picked = true;
+								} else {
+									io.sockets.emit('play interact animation', label);
 								}
 							} else {
-								if (wasInRange) { /* exited */
-									io.sockets.connected[id].emit('display interact message', {
-										label: interactive.label, 
-										type: interactive.type, 
-										state: false 
-									});
-									player.act.inItemRange = false;
-								}
+								if (player.act.inItemRange) player.act.inItemRange = false;
 							}
 						}
 					});
