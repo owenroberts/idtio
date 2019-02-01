@@ -16,11 +16,12 @@ class Interactive extends Item {
 		super.display();
 		if (this.displayText) {
 			this.text.setPosition(this.position.x, this.position.y);
-			this.text.display();
+			const ended = this.text.display(true, true);
+			if (ended) this.displayText = false;
 		}
 	}
 	playInteractState(callback) {
-		if (!this.isActive) {
+		if (!this.isActive && this.animation.state != 'interact') {
 			if (this.randomState) {
 				const states = Object.keys(this.animation.states);
 				this.animation.setState(states[Cool.randomInt(1, states.length - 1)]);
@@ -28,7 +29,6 @@ class Interactive extends Item {
 				this.animation.setState('interact');
 			}
 			if (this.text) this.displayText = true; // if needs text/message, some dont
-			setTimeout(() => { this.displayText = false; }, 4000); /* replace w counter */
 			// this.isActive = true;
 			this.animation.playOnce(() => {
 				this.animation.setState(this.isPickup ? 'end' : 'idle');

@@ -281,23 +281,19 @@ function mouseClicked(x, y) {
 
 function mouseMoved(x, y) {
 	for (const ui in scenes[currentScene].ui) {
-		const sprite = scenes[currentScene].ui[ui];
-		sprite.over(x, y);
+		scenes[currentScene].ui[ui].over(x, y);
 	}
 }
 
 function mouseDown(x, y) {
 	for (const ui in scenes[currentScene].ui) {
-		const sprite = scenes[currentScene].ui[ui];
-		sprite.down(x, y);
+		scenes[currentScene].ui[ui].down(x, y);
 	}
 }
 
 function mouseUp(x, y) {
 	for (const ui in scenes[currentScene].ui) {
-		const sprite = scenes[currentScene].ui[ui];
-		if (sprite.up(x, y))
-			return;
+		if (scenes[currentScene].ui[ui].up(x, y)) return;
 	}
 }
 
@@ -484,7 +480,6 @@ function initGameSockets() {
 		function playNextStory(index) {
 			const char = story[index][0];
 			const dialog = story[index][1];
-			scenes.game.characters[char].toggleBox(true);
 			scenes.game.characters[char].playStory(dialog, () => {
 				index++;
 				if (index < story.length) {
