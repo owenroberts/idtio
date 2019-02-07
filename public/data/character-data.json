@@ -12,7 +12,7 @@
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/scratch-interface.json",
+			"src": "/public/drawings/characters/ui/scratch-interface.json",
 			"states": {
 				"forward": { "start": 0, "end": 19 },
 				"reverse": { "start": 19, "end": 33 }
@@ -31,26 +31,26 @@
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
 				"apple-x": { "start": 23, "end": 27 },
-				"apple": { "start": 27, "end": 32 },
+				"heart": { "start": 27, "end": 32 },
 				"wave": { "start": 32, "end": 36 }
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/cat-interface.json",
+			"src": "/public/drawings/characters/ui/cat/cat-interface.json",
 			"states": {
 				"forward": { "start": 0, "end": 16 },
 				"reverse": { "start": 17, "end": 28 }
 			}
 		},
 		"box": {
-			"src": "/public/drawings/ui/cat-box.json",
+			"src": "/public/drawings/characters/ui/cat/cat-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 15 }
 			}
 		},
 		"letters": {
-			"src": "/public/drawings/ui/cat-letters.json"
+			"src": "/public/drawings/characters/ui/cat/cat-letters.json"
 		}
 	},
 	"pig": {
@@ -65,26 +65,26 @@
 				"flower": { "start": 16, "end": 19 },
 				"skull": { "start": 19, "end": 23 },
 				"apple-x": { "start": 23, "end": 28 },
-				"apple": { "start": 28, "end": 33 },
+				"heart": { "start": 28, "end": 33 },
 				"wave": { "start": 33, "end": 37 }
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/pig-interface.json",
+			"src": "/public/drawings/characters/ui/pig/pig-interface.json",
 			"states": {
 				"forward": { "start": 0, "end": 6 },
 				"reverse": { "start": 7, "end": 12 }
 			}
 		},
 		"box": {
-			"src": "/public/drawings/ui/pig-box.json",
+			"src": "/public/drawings/characters/ui/pig/pig-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 15 }
 			}
 		},
 		"letters": {
-			"src": "/public/drawings/ui/pig-letters.json"
+			"src": "/public/drawings/characters/ui/pig/pig-letters.json"
 		}
 	},
 	"birds": {
@@ -98,26 +98,52 @@
 				"down": { "start": 10, "end": 12 },
 				"flower": { "start": 12, "end": 15 },
 				"skull": { "start": 15, "end": 19 },
-				"apple": { "start": 19, "end": 22 },
+				"heart": { "start": 19, "end": 22 },
 				"wave": { "start": 22, "end": 26 }
 			}
 		},
 		"bubble": {
-			"src": "/public/drawings/ui/birds-interface.json",
+			"src": "/public/drawings/characters/ui/birds/birds-interface.json",
 			"states": {
 				"forward": { "start": 0, "end": 5 },
 				"reverse": { "start": 6, "end": 12 }
 			}
 		},
 		"box": {
-			"src": "/public/drawings/ui/birds-box.json",
+			"src": "/public/drawings/characters/ui/birds/birds-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 18 }
 			}
 		},
 		"letters": {
-			"src": "/public/drawings/ui/birds-letters.json"
+			"src": "/public/drawings/characters/ui/birds/birds-letters.json"
+		}
+	},
+	"fruit": {
+		"walk": {
+			"src": "/public/drawings/characters/fruit.json",
+			"states": {
+				"idle": { "start": 0, "end": 4 },
+				"right": { "start": 4, "end": 9 },
+				"left": { "start": 9, "end": 15 },
+				"up": { "start": 15, "end": 19 },
+				"down": { "start": 19, "end": 23 },
+				"flower": { "start": 23, "end": 26 },
+				"skull": { "start": 26, "end": 29 },
+				"heart": { "start": 29, "end": 32 },
+				"wave": { "start": 32, "end": 35 }
+			}
+		},
+		"box": {
+			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
+			"states": {
+				"forward": { "start": 0, "end": 8 },
+				"reverse": { "start": 8, "end": 14 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/characters/ui/fruit/fruit-letters.json"
 		}
 	}
 }

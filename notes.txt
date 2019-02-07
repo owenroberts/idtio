@@ -526,3 +526,8 @@
 - player enter/exit - 
 
 - problem that stories are randomized on client, need to be built on server
+- change apple to heart in character data ... 
+- box to bubble
+- ui folders
+- fix character anims extra frame
+- pressing button really fast triggering walk anim ....

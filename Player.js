@@ -14,9 +14,9 @@ class Player extends Entity {
 		this.waving = false;
 		this.isInteracting = false;
 
-		this.resources = { flower: [], skull: [], apple: [] };
-		this.usedResources = { flower: [], skull: [], apple: [] };
-		this.resourceKey = { j: "flower", k: "skull", l: "apple" };
+		this.resources = { flower: [], skull: [], heart: [] };
+		this.usedResources = { flower: [], skull: [], heart: [] };
+		this.resourceKey = { j: "flower", k: "skull", l: "heart" };
 
 		/* not implemented */
 		this.updateAnimation = false;

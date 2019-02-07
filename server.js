@@ -38,7 +38,8 @@ const characters = {
 	scratch: { isInUse: false },
 	cat: { isInUse: false },
 	pig: { isInUse: false },
-	birds: { isInUse: false }
+	birds: { isInUse: false },
+	fruit: { isInUse: false }
 };
 const players = {};
 const interactives = {};
@@ -59,7 +60,7 @@ for (const type in mapData.pickups) {
 }
 
 function randomType() {
-	const types = ['flower', 'apple', 'skull'];
+	const types = ['flower', 'heart', 'skull'];
 	return types[Math.floor( Math.random() * types.length )];
 }
 

@@ -60,21 +60,6 @@ function loadUI(data) {
 		}
 	}
 
-	Game.icons = {
-		flower: {
-			animation: new Animation("/public/drawings/ui/icon-flower.json", true),
-			key: "J"
-		},
-		skull: {
-			animation: new Animation("/public/drawings/ui/icon-skull.json", false),
-			key: "K"
-		},
-		apple: {
-			animation: new Animation("/public/drawings/ui/icon-heart.json", false),
-			key: "L"
-		}
-	};
-
 	for (const i in Game.icons) {
 		Game.icons[i].animation.load(false);
 		Game.icons[i].animation.states = {
