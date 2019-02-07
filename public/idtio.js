@@ -310,12 +310,12 @@ Game.init({
 });
 
 /* color selectors */
-document.getElementById('line-color').addEventListener('change', function(ev) {
-	Game.ctx.strokeStyle = this.value;
+document.getElementById('line-color').addEventListener('change', ev => {
+	Game.ctx.strokeStyle = ev.currentTarget.value;
 });
 
-document.getElementById('bg-color').addEventListener('change', function(ev) {
-	Game.canvas.style.backgroundColor = this.value;
+document.getElementById('bg-color').addEventListener('change', ev => {
+	Game.canvas.style.backgroundColor = ev.currentTarget.value;
 });
 
 socket.emit('set bounds', window.innerWidth/2, window.innerHeight/2); 
@@ -352,8 +352,7 @@ socket.on('character selected', (character, state) => {
 
 /* add character to scene, both user and others */
 socket.on('add character', player => {
-	var isPlayer = player.id == user.id;
-	scenes.game.characters[player.character] = new Character(player, characterData[player.character], isPlayer, false); 
+	scenes.game.characters[player.character] = new Character(player, characterData[player.character], player.id == user.id, false); 
 });
 
 socket.on('remove character', character => {

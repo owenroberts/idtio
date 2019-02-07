@@ -20,7 +20,8 @@
 			"b": "There is a legend of an world below the surface of idtio, like like the veins under our skin.",
 			"c": "In the bowels of the land of idtio is where I know I'll find love."
 		},
-		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" }
 	},
 	"pig": {
 		"origin": {
@@ -43,6 +44,31 @@
 			"b": "I hope to find the creature for me, I just need to know where to look.",
 			"c": "I won't let go of a creature until I find a new one."
 		},
-		"cat": { "origin": "bc", "goal": "ac", "obstacle": "abc",  "reward": "bc" }
+		"cat": { "origin": "abc", "goal": "ac", "obstacle": "abc",  "reward": "bc" },
+		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" }
+	},
+	"birds": {
+		"origin": {
+			"a": "I grew up in the dense forest in the east.",
+			"b": "I'm from the east, where the trees begin and the land ends.",
+			"c": "When I was younger I lived in the forest and I kind of wish I had never left."
+		},
+		"goal": {
+			"a": "I fell in love with the most intelligent but dirty creature.",
+			"b": "I was always distracted by love.",
+			"c": "I wanted to build a nest somewhere."
+		},
+		"obstacle": {
+			"a": "I don't know if a creature can truly feel love.",
+			"b": "I don't know if two creatures can really know each other.",
+			"c": "I think there's someone else but I don't understand their connection."
+		},
+		"reward": {
+			"a": "I want to be the one to discover the void and show my creature the way inside.",
+			"b": "I don't want to be alone here if they're together.",
+			"c": "What if I was the only one to find the void?"
+		},
+		"cat": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ac" },
+		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" }
 	}
 }
