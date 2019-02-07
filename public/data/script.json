@@ -21,7 +21,8 @@
 			"c": "In the bowels of the land of idtio is where I know I'll find love."
 		},
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" }
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"pig": {
 		"origin": {
@@ -45,7 +46,8 @@
 			"c": "I won't let go of a creature until I find a new one."
 		},
 		"cat": { "origin": "abc", "goal": "ac", "obstacle": "abc",  "reward": "bc" },
-		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" }
+		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"birds": {
 		"origin": {
@@ -69,6 +71,28 @@
 			"c": "What if I was the only one to find the void?"
 		},
 		"cat": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ac" },
-		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" }
+		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+	},
+	"fruit": {
+		"origin": {
+			"a": "I was born in the south under the shadow of a tropical tree.",
+			"b": "I'm from the curve in land where the young become old.",
+			"c": "I grew up in the fragrant south where I never aged." },
+		"goal": {
+			"a": "Honestly, I just want to find somewhere that's not lame.",
+			"b": "I don't care where you're from.",
+			"c": "I'm so sick of these conversations" },
+		"obstacle": {
+			"a": "Can we go swimming?",
+			"b": "Screw looking for the void or whatever.",
+			"c": "Sorry I wasn't responding to your waves before, it's been such a long day." },
+		"reward": {
+			"a": "I'm not gonna go in that void, I don't really care.",
+			"b": "I'll wait here.",
+			"c": "I have to go but I'll definitely see you later."	},
+		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	}
 }
