@@ -1,0 +1,48 @@
+{
+	"cat": {
+		"origin": {
+			"a": "I was born in a big fart.",
+			"b": "I'm from the land of errant wind.",
+			"c": "I am the child of the air and the earth."
+		},
+		"goal": {
+			"a": "When I was younger I fell in love with my own reflection.",
+			"b": "As a child, I never liked any one else",
+			"c": "I was always lonely because no one was good enough for me."
+		},
+		"obstacle": {
+			"a": "I could make any one fall in love with me but I couldn't fall in love with anyone else.",
+			"b": "I've had a chance with every creature I've met but none has had a chance with me.",
+			"c": "I've never known another creature like I know myself."
+		},
+		"reward": {
+			"a": "I have been told there is a portal to another land, a mirror world, where I could find myself.",
+			"b": "There is a legend of an world below the surface of idtio, like like the veins under our skin.",
+			"c": "In the bowels of the land of idtio is where I know I'll find love."
+		},
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+	},
+	"pig": {
+		"origin": {
+			"a": "I came from an ocean of peepee.",
+			"b": "As an infant I drank in the yellow waters of South Idtio.",
+			"c": "I come from the acidic land of South Idtio."
+		},
+		"goal": {
+			"a": "I'm an idiot who only values beauty.",
+			"b": "I think the cat is the most beautiful creature in this land but she told the television she doesn't like me.",
+			"c": "I have been with the most beautiful creatures in the land."
+		},
+		"obstacle": {
+			"a": "Is it obvious that I hate myself?",
+			"b": "No one ever seems to remember who I am.",
+			"c": "Do I sound desperate?"
+		},
+		"reward": {
+			"a": "If the cat is desperate enough we may be together.",
+			"b": "I hope to find the creature for me, I just need to know where to look.",
+			"c": "I won't let go of a creature until I find a new one."
+		},
+		"cat": { "origin": "bc", "goal": "ac", "obstacle": "abc",  "reward": "bc" }
+	}
+}

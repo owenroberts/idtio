@@ -513,3 +513,16 @@
 - box disappearing
 - keeps triggering dialog switching back and forth, need to test
 
+2.1.2019
+- move players to different origins
+- make a couple more players
+- think about dialog system more
+- generate origin stories?
+- make quests?
+
+2.6.2019
+- sockets in functions
+- center everything ?
+- player enter/exit - 
+
+- problem that stories are randomized on client, need to be built on server

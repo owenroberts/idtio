@@ -161,11 +161,12 @@ function start() {
 			assetsLoaded.characters = true;
 		});
 
-	fetch('/public/data/story-data.json')
+	fetch('/public/data/script.json')
 		.then(response => { return response.json() })
 		.then(json => {
 			console.log('%c stories loaded', 'color:white;background:gold;');
 			storyData = json;
+			storyData.order = ['origin', 'origin', 'goal', 'goal', 'obstacle', 'obstacle', 'reward', 'reward'];
 			assetsLoaded.stories = true;
 		});
 }
@@ -304,7 +305,7 @@ Game.init({
 	height: window.innerHeight, 
 	lps: 10, 
 	stats: false,
-	debug: true,
+	debug: false,
 	mixedColors: false
 });
 
@@ -419,88 +420,57 @@ socket.on('update', data => {
 	}
 });
 
-/* prevent these updates during loading.... */
-function initGameSockets() {
-
-	/* player interacting with map interactives */
-	/* remove  */
-	socket.on('display interact message', params => {
-		if (!scenes.game.interactives[params.label].isActive) {
-			scenes.game.interactives[params.label].displayText = params.state;
-		}
-	});
-
-	socket.on('play interact animation', label => {
-		if (currentScene == 'game')
-			scenes[currentScene].interactives[label].playInteractState();
-	});
-
-	socket.on('play character animation', (character, type) => {
-		scenes.game.characters[character].isInteracting = true;
-		scenes.game.characters[character].animation.setState(type);
-		scenes.game.characters[character].animation.playOnce(() => {
-			scenes.game.characters[character].animation.setState('idle');
-			socket.emit('done interacting');
-			scenes.game.characters[character].isInteracting = false;
-		});
-	});
-
-	socket.on('update resources', player => {
-		scenes.game.characters[player.character].resources = player.resources;
-	});
-
-	socket.on('return resource', resource => {
-		scenes.game.interactives[resource].animation.setState('reborn'); // animate back
-		scenes.game.interactives[resource].animation.playOnce(() => {
-			scenes.game.interactives[resource].animation.setState('idle');
-		});
-	});
-
-	/* interacting with another player */
-	socket.on('character interface', (id, character, state) => {
-		if (id == user.id)
-			user.interacting.state = state;
-		scenes.game.characters[character].toggleInterface(state);
-	});
-
-	socket.on('story input', data => {
-		scenes.game.characters[data.character].setStoryType(data.type);
-	});
-
-	socket.on('start story', data => {
-		const p = data[0].character; // player
-		const o = data[1].character; // other
-		const pt = data[0].type; // player story type
-		const ot = data[1].type; // other story type
-		const charKey = storyData[p + '-' + o] ? p + '-' + o : o + '-' + p;
-		const charData = storyData[charKey];
-		const storyKey = charKey == p + '-' + o ? pt + '-' + ot : ot + '-' + pt;
-		const story = charData[storyKey];
-
-		function playNextStory(index) {
-			const char = story[index][0];
-			const dialog = story[index][1];
-			scenes.game.characters[char].playStory(dialog, () => {
-				index++;
-				if (index < story.length) {
-					scenes.game.characters[char].toggleBox(false);
-					playNextStory(index);
-				} else {
-					socket.emit('done talking');
-				}
-			});
-		}
-		playNextStory(0);
-	});
-
-	socket.on('end story', character => {
-		scenes.game.characters[character].endStory();
-		scenes.game.characters[character].toggleBox(false);
-		scenes.game.characters[character].toggleInterface(false);
-	});
+/* things not handlged in update ... */
+function playInteractiveAnimation(label) {
+	if (currentScene == 'game') /* necessary? */
+		scenes[currentScene].interactives[label].playInteractState();
 }
 
-socket.on('msg', (msg) => {
+function playCharacterAnimation(character, type) {
+	scenes.game.characters[character].playAnimation(type);
+}
+
+function updateResources(player) {
+	scenes.game.characters[player.character].resources = player.resources;
+}
+
+function returnResource(resource) {
+	scenes.game.interactives[resource].return();
+}
+
+function returnStory(one, two) {
+	function playNextStory(i, o, t) {
+		// choose random story from chater of o (one) that is in string for t (two)
+		const dialog = storyData[o][storyData.order[i]][storyData[o][t][storyData.order[i]].charAt(Math.random() * storyData[o][t][storyData.order[i]].length)].toLowerCase();
+		scenes.game.characters[o].playStory(dialog, () => {
+			i++;
+			if (i < 8) {
+				playNextStory(i, t, o);
+			} else {
+				socket.emit('done talking');
+			}
+		});
+	}
+	if (Math.round(Math.random())) playNextStory(0, one, two);
+	else playNextStory(0, two, one);
+}
+
+function endStory(character) {
+	scenes.game.characters[character].endStory();
+}
+
+
+/* prevent these updates during loading.... */
+function initGameSockets() {
+	socket.on('play interact animation', playInteractiveAnimation);
+	socket.on('play character animation', playCharacterAnimation);
+	socket.on('update resources', updateResources);
+	socket.on('return resource', returnResource);
+	socket.on('start story', returnStory);
+	socket.on('end story', endStory);
+}
+
+socket.on('msg', msg => {
 	scenes[currentScene].texts['msg'] = new Text(10, Game.height - 50, msg, 20, Game.letters);
 });
 
@@ -511,7 +481,7 @@ socket.on('disconnect', () => {
 });
 
 /* debug messages */
-socket.on('get-eval', (msg) => {
+socket.on('get-eval', msg => {
 	console.log(msg);
 });
 

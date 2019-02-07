@@ -8,6 +8,10 @@ class Interactive extends Entity {
 		this.type = params.type || 'interactive';
 		/* do i need to know label and type? */
 		this.triggered = false;
+
+		/* not sure this is the best way to do it */
+		this.isPickup = false;
+		this.picked = false; /* fuck */
 	}
 }
 

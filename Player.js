@@ -11,16 +11,8 @@ class Player extends Entity {
 		this.speed = 5;
 		this.animationState = 'idle';
 
-		this.act = {
-			inItemRange: false,
-			withItem: false,
-			inPlayerRange: false,
-			inputStoryType: false,
-			storyTypeSent: false,
-			storyStarted: false
-		};
-
 		this.waving = false;
+		this.isInteracting = false;
 
 		this.resources = { flower: [], skull: [], apple: [] };
 		this.usedResources = { flower: [], skull: [], apple: [] };
@@ -35,9 +27,7 @@ class Player extends Entity {
 		this.playersInRange = [];
 		this.joinedGame = false;
 		this.character = undefined;
-		for (const a in this.act) {
-			this.act[a] = false;
-		}
+		this.isInteracting = false;
 		this.x = 0;
 		this.y = 768;
 	}
@@ -67,10 +57,7 @@ class Player extends Entity {
 	}
 
 	endDialog() {
-		this.act.inPlayerRange = false; /* could still be in player range? */
-		this.act.inputStoryType = false;
-		this.act.storyTypeSent = false;
-		this.act.storyStarted = false;
+		this.isInteracting = false;
 	}
 
 	init(socket) {
@@ -79,8 +66,8 @@ class Player extends Entity {
 			this.input[key.input] = key.state;	
 		});
 
-		socket.on('key interact', (state) => {
-			this.act.withItem = state;
+		socket.on('key interact', state => {
+			//  this.act.withItem = state;
 		});
 
 		socket.on('key wave', (state) => {
@@ -88,14 +75,11 @@ class Player extends Entity {
 		});
 
 		socket.on('key choose dialog', (key) => {
-			if (this.hasResource(key))
-				this.act.inputStoryType = this.getResourceType(key);
+			// if (this.hasResource(key)) this.act.inputStoryType = this.getResourceType(key);
 		});
 
 		socket.on('done interacting', () => {
-			this.act.withItem = false;
-			if (this.waving)
-				this.waving = false;
+			if (this.waving) this.waving = false;
 		});
 
 		socket.on('done talking', () => {

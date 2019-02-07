@@ -79,30 +79,18 @@ function gameUpdate() {
 			for (const o in players) {
 				const other = players[o];
 				if (other.id != id && other.joinedGame) {
-					if (!player.act.storyStarted && !other.act.storyStarted) {
-						other.checkInRange(player, (isInRange, wasInRange) => {
-							const players = [
-								{ id: id, character: player.character },
-								{ id: other.id, character: other.character }
-							];
-							
-							if (isInRange) { 
-								if (!player.act.inPlayerRange && (other.act.inPlayerRange == id || !other.act.inPlayerRange)) { /* entered */
-									player.act.inPlayerRange = other.id;
-									io.sockets.emit('start story', [
-										{ character: player.character, type: randomType() },
-										{ character: other.character, type: randomType() }
-									]); /* any way to add this to update ? */
-									player.act.storyStarted = other.act.storyStarted = true;
-								}
-							} else {
-								if (wasInRange) { /* exited */
-									if (player.act.inPlayerRange == other.id) player.act.inPlayerRange = false;
-									/* end story? */
-								}
+					other.checkInRange(player, (isInRange, wasInRange) => {
+						if (isInRange && !wasInRange) {   /* entered */
+							if (!other.isInteracting && !player.isInteracting) {
+								io.sockets.emit('start story', player.character, other.character); /* any way to add this to update ? */
+								other.isInteracting  = player.isInteracting = true;
 							}
-						});
-					}
+						} else {
+							if (wasInRange) { /* exited */
+								/* end story? */
+							}
+						}
+					});
 				}
 			}
 
@@ -110,25 +98,15 @@ function gameUpdate() {
 				const interactive = interactives[label];
 				if (!interactive.picked) { 
 					interactive.checkInRange(player, (isInRange, wasInRange) => {
-						/* first check if another player has entered the scene */
-						if (player.act.inPlayerRange && player.act.inItemRange == interactive.label) {
-							console.log(id, 'in range of item and player ... ');
-							player.act.inItemRange = false; // what does this do? i guess prevent two players from getting same interactive ... 
-							// maybe dont need act.inItemRange if things are auto triggered
-						} else {
-							if (isInRange && !wasInRange) { // entered
-								if (!player.act.inItemRange) player.act.inItemRange = true;
-								if (interactive.isPickup && !interactive.picked) {
-									io.sockets.emit('play character animation', player.character, interactive.type); // general update ? 
-									io.sockets.emit('play interact animation', label); // general update ?? 
-									player.resources[interactive.type].push(label);
-									io.sockets.emit('update resources', player); // can this be  part of general update? 
-									interactive.picked = true;
-								} else {
-									io.sockets.emit('play interact animation', label);
-								}
+						if (isInRange && !wasInRange) { // entered
+							if (interactive.isPickup && !interactive.picked) {
+								io.sockets.emit('play character animation', player.character, interactive.type); // general update ? 
+								io.sockets.emit('play interact animation', label); // general update ?? 
+								player.resources[interactive.type].push(label);
+								io.sockets.emit('update resources', player); // can this be  part of general update? 
+								interactive.picked = true;
 							} else {
-								if (player.act.inItemRange) player.act.inItemRange = false;
+								io.sockets.emit('play interact animation', label);
 							}
 						}
 					});

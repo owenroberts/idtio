@@ -88,6 +88,16 @@ class Character extends Sprite {
 		this.story.callback = callback;
 	}
 
+	playAnimation(type) {
+		this.isInteracting = true;
+		this.animation.setState(type);
+		this.animation.playOnce(() => {
+			this.animation.setState('idle');
+			socket.emit('done interacting'); // global?
+			this.isInteracting = false;
+		});
+	}
+
 	endStory() {
 		this.displayStory = false;
 	}

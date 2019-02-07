@@ -4,10 +4,6 @@ class Entity {
 		this.y = params.y;
 		this.distance = params.distance;
 		this.playersInRange = []; 
-
-		/* not sure this is the best way to do it */
-		this.isPickup = false;
-		this.picked = false;
 	}
 
 	checkInRange(player, callback) {
@@ -25,8 +21,7 @@ class Entity {
 	}
 
 	removePlayer(id) {
-		const playerIndex = this.playersInRange.indexOf(id);
-		this.playersInRange.splice(playerIndex, 1);
+		this.playersInRange.splice(this.playersInRange.indexOf(id), 1);
 	}
 }
 

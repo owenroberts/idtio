@@ -12,6 +12,7 @@ class Interactive extends Item {
 		this.label = params.label;
 		this.randomState = params.random || false;
 	}
+
 	display() {
 		super.display();
 		if (this.displayText) {
@@ -20,6 +21,7 @@ class Interactive extends Item {
 			if (ended) this.displayText = false;
 		}
 	}
+
 	playInteractState(callback) {
 		if (!this.isActive && this.animation.state != 'interact') {
 			if (this.randomState) {
@@ -37,5 +39,12 @@ class Interactive extends Item {
 					this.picked = true;
 			});
 		}
+	}
+
+	return() {
+		this.animation.setState('reborn');
+		this.animation.placeOnce(() => {
+			this.animation.setState('idle');
+		});
 	}
 }
