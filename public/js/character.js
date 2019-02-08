@@ -8,10 +8,10 @@ class Character extends Sprite {
 			this.position.y = Game.height / 2;
 		}
 
-		this.addAnimation(data.walk.src, () => {
+		this.addAnimation(data.src, () => {
 			if (isPlayer)
 				this.center();
-			this.animation.states = data.walk.states;
+			this.animation.states = data.states;
 			this.animation.state = 'idle';
 		});
 

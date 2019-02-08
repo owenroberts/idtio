@@ -226,6 +226,22 @@
 				"route": "character join",
 				"message": "fruit"
 			}
+		},
+		"worm": {
+			"src": "/public/drawings/characters/ui/worm/worm-selection.json",
+			"x": 10,
+			"y": 450,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "splash" ],
+			"callback" : {
+				"route": "character join",
+				"message": "worm"
+			}
 		}
 	}
 }

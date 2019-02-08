@@ -39,7 +39,8 @@ const characters = {
 	cat: { isInUse: false },
 	pig: { isInUse: false },
 	birds: { isInUse: false },
-	fruit: { isInUse: false }
+	fruit: { isInUse: false },
+	worm: { isInUse: false }
 };
 const players = {};
 const interactives = {};

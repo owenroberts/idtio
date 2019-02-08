@@ -1,15 +1,13 @@
 {
 	"scratch": {
-		"walk": {
-			"src": "/public/drawings/characters/scratch_walk.json",
-			"states": {
-				"idle": { "start": 0, "end": 3 },
-				"right": { "start": 3, "end": 7 },
-				"left": { "start": 7, "end": 11 },
-				"down": { "start": 11, "end": 13 },
-				"up": { "start": 13, "end": 15 },
-				"flower": { "start": 15, "end":  18 }
-			}
+		"src": "/public/drawings/characters/scratch_walk.json",
+		"states": {
+			"idle": { "start": 0, "end": 3 },
+			"right": { "start": 3, "end": 7 },
+			"left": { "start": 7, "end": 11 },
+			"down": { "start": 11, "end": 13 },
+			"up": { "start": 13, "end": 15 },
+			"flower": { "start": 15, "end":  18 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/ui/scratch-interface.json",
@@ -20,20 +18,18 @@
 		}
 	},
 	"cat": {
-		"walk": {
-			"src": "/public/drawings/characters/cat.json",
-			"states": {
-				"idle": { "start": 0, "end": 4 },
-				"right": { "start": 4, "end": 8 },
-				"left": { "start": 8, "end": 12 },
-				"down": { "start": 12, "end": 14 },
-				"up": { "start": 14, "end": 16 },
-				"flower": { "start": 16, "end": 19 },
-				"skull": { "start": 19, "end": 23 },
-				"apple-x": { "start": 23, "end": 27 },
-				"heart": { "start": 27, "end": 32 },
-				"wave": { "start": 32, "end": 36 }
-			}
+		"src": "/public/drawings/characters/cat.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 8 },
+			"left": { "start": 8, "end": 12 },
+			"down": { "start": 12, "end": 14 },
+			"up": { "start": 14, "end": 16 },
+			"flower": { "start": 16, "end": 19 },
+			"skull": { "start": 19, "end": 23 },
+			"apple-x": { "start": 23, "end": 27 },
+			"heart": { "start": 27, "end": 32 },
+			"wave": { "start": 32, "end": 36 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/ui/cat/cat-interface.json",
@@ -54,20 +50,18 @@
 		}
 	},
 	"pig": {
-		"walk": {
-			"src": "/public/drawings/characters/pig.json",
-			"states": {
-				"idle": { "start": 0, "end": 4 },
-				"right": { "start": 4, "end": 8 },
-				"left": { "start": 8, "end": 12 },
-				"up": { "start": 12, "end": 14 },
-				"down": { "start": 14, "end": 16 },
-				"flower": { "start": 16, "end": 19 },
-				"skull": { "start": 19, "end": 23 },
-				"apple-x": { "start": 23, "end": 28 },
-				"heart": { "start": 28, "end": 33 },
-				"wave": { "start": 33, "end": 37 }
-			}
+		"src": "/public/drawings/characters/pig.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 8 },
+			"left": { "start": 8, "end": 12 },
+			"up": { "start": 12, "end": 14 },
+			"down": { "start": 14, "end": 16 },
+			"flower": { "start": 16, "end": 19 },
+			"skull": { "start": 19, "end": 23 },
+			"apple-x": { "start": 23, "end": 28 },
+			"heart": { "start": 28, "end": 33 },
+			"wave": { "start": 33, "end": 37 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/ui/pig/pig-interface.json",
@@ -88,19 +82,17 @@
 		}
 	},
 	"birds": {
-		"walk": {
-			"src": "/public/drawings/characters/birds.json",
-			"states": {
-				"idle": { "start": 0, "end": 4 },
-				"right": { "start": 4, "end": 6 },
-				"left": { "start": 6, "end": 8 },
-				"up": { "start": 8, "end": 10 },
-				"down": { "start": 10, "end": 12 },
-				"flower": { "start": 12, "end": 15 },
-				"skull": { "start": 15, "end": 19 },
-				"heart": { "start": 19, "end": 22 },
-				"wave": { "start": 22, "end": 26 }
-			}
+		"src": "/public/drawings/characters/birds.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 6 },
+			"left": { "start": 6, "end": 8 },
+			"up": { "start": 8, "end": 10 },
+			"down": { "start": 10, "end": 12 },
+			"flower": { "start": 12, "end": 15 },
+			"skull": { "start": 15, "end": 19 },
+			"heart": { "start": 19, "end": 22 },
+			"wave": { "start": 22, "end": 26 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/ui/birds/birds-interface.json",
@@ -121,25 +113,47 @@
 		}
 	},
 	"fruit": {
-		"walk": {
-			"src": "/public/drawings/characters/fruit.json",
-			"states": {
-				"idle": { "start": 0, "end": 4 },
-				"right": { "start": 4, "end": 9 },
-				"left": { "start": 9, "end": 15 },
-				"up": { "start": 15, "end": 19 },
-				"down": { "start": 19, "end": 23 },
-				"flower": { "start": 23, "end": 26 },
-				"skull": { "start": 26, "end": 29 },
-				"heart": { "start": 29, "end": 32 },
-				"wave": { "start": 32, "end": 35 }
-			}
+		"src": "/public/drawings/characters/fruit.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 9 },
+			"left": { "start": 9, "end": 15 },
+			"up": { "start": 15, "end": 19 },
+			"down": { "start": 19, "end": 23 },
+			"flower": { "start": 23, "end": 26 },
+			"skull": { "start": 26, "end": 29 },
+			"heart": { "start": 29, "end": 32 },
+			"wave": { "start": 32, "end": 35 }
 		},
 		"box": {
 			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 14 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/characters/ui/fruit/fruit-letters.json"
+		}
+	},
+	"worm": {
+		"src": "/public/drawings/characters/worm.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 6 },
+			"left": { "start": 6, "end": 8 },
+			"up": { "start": 8, "end": 10 },
+			"down": { "start": 10, "end": 12 },
+			"flower": { "start": 12, "end": 15 },
+			"skull": { "start": 15, "end": 19 },
+			"heart": { "start": 19, "end": 22 },
+			"wave": { "start": 22, "end": 25 }
+		},
+		"box": {
+			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
+			"states": {
+				"forward": { "start": 0, "end": 17 },
+				"reverse": { "start": 17, "end": 29 }
 			}
 		},
 		"letters": {
