@@ -130,15 +130,15 @@ function start() {
 	assetsLoaded.loading = true; // remove to play full loading anim
 
 
-	fetch('/public/data/ui-data.json')
+	fetch('/public/data/ui.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadUI(json));
 
-	fetch('/public/data/map-data.json')
+	fetch('/public/data/map.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadMap(json));
 
-	fetch('/public/data/character-data.json')
+	fetch('/public/data/character.json')
 		.then(response => { return response.json() })
 		.then(json => {
 			console.log('%c characters loaded', 'color:white;background:lightgreen;');
@@ -151,7 +151,6 @@ function start() {
 		.then(json => {
 			console.log('%c stories loaded', 'color:white;background:gold;');
 			storyData = json;
-			storyData.order = ['origin', 'origin', 'goal', 'goal', 'obstacle', 'obstacle', 'reward', 'reward'];
 			assetsLoaded.stories = true;
 		});
 }
@@ -422,27 +421,24 @@ function returnResource(resource) {
 	scenes.game.interactives[resource].return();
 }
 
-function returnStory(one, two) {
-	function playNextStory(i, o, t) {
-		// choose random story from chater of o (one) that is in string for t (two)
-		const dialog = storyData[o][storyData.order[i]][storyData[o][t][storyData.order[i]].charAt(Math.random() * storyData[o][t][storyData.order[i]].length)].toLowerCase();
-		scenes.game.characters[o].playStory(dialog, () => {
+function startStory(story) {
+	function playNextStory(i) {
+		console.log(storyData[story[i].character][storyData.order[i]][story[i].dialog])
+		scenes.game.characters[story[i].character].playStory(storyData[story[i].character][storyData.order[i]][story[i].dialog].toLowerCase(), () => {
 			i++;
 			if (i < 8) {
-				playNextStory(i, t, o);
+				playNextStory(i);
 			} else {
 				socket.emit('done talking');
 			}
 		});
 	}
-	if (Math.round(Math.random())) playNextStory(0, one, two);
-	else playNextStory(0, two, one);
+	playNextStory(0);
 }
 
 function endStory(character) {
 	scenes.game.characters[character].endStory();
 }
-
 
 /* prevent these updates during loading.... */
 function initGameSockets() {
@@ -450,7 +446,7 @@ function initGameSockets() {
 	socket.on('play character animation', playCharacterAnimation);
 	socket.on('update resources', updateResources);
 	socket.on('return resource', returnResource);
-	socket.on('start story', returnStory);
+	socket.on('start story', startStory);
 	socket.on('end story', endStory);
 }
 

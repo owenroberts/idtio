@@ -8,7 +8,8 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
-const mapData = require('./public/data/map-data.json');
+const mapData = require('./public/data/map.json');
+const script = require('./public/data/script.json');
 const Interactive = require('./Interactive.js'); 
 const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
@@ -84,7 +85,19 @@ function gameUpdate() {
 					other.checkInRange(player, (isInRange, wasInRange) => {
 						if (isInRange && !wasInRange) {   /* entered */
 							if (!other.isInteracting && !player.isInteracting) {
-								io.sockets.emit('start story', player.character, other.character); /* any way to add this to update ? */
+								const [one, two] = Math.round(Math.random()) ? [player.character, other.character] : [other.character, player.character];
+								const story = [];
+								for (let i = 0; i < 8; i++) {
+									const [c, o] = i % 2 ? [two, one] : [one, two];
+									const s = script[c][o][script.order[i]];
+									console.log(s);
+									story.push({
+										character: c,
+										dialog: s[Math.floor(Math.random() * s.length)]
+									});
+								}
+								console.log(story);
+								io.sockets.emit('start story', story); /* any way to add this to update ? */
 								other.isInteracting  = player.isInteracting = true;
 							}
 						} else {

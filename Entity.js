@@ -9,9 +9,9 @@ class Entity {
 	checkInRange(player, callback) {
 		const _x = player.x - this.x;
 		const _y = player.y - this.y;
-		const isInRange = Math.sqrt(_x * _x + _y * _y) < this.distance;
 		const playerIndex = this.playersInRange.indexOf(player.id);
 		const wasInRange = playerIndex != -1;
+		const isInRange = Math.sqrt(_x * _x + _y * _y) < this.distance * (wasInRange ? 2 : 1);
 		if (isInRange && !wasInRange)
 			this.playersInRange.push(player.id);
 		if (wasInRange && !isInRange)

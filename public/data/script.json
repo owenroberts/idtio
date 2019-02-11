@@ -1,78 +1,70 @@
 {
+	"order": [ "origin", "origin", "goal", "goal", "obstacle", "obstacle", "reward", "reward" ],
 	"cat": {
 		"origin": {
 			"a": "I was born in a big fart.",
 			"b": "I'm from the land of errant wind.",
-			"c": "I am the child of the air and the earth."
-		},
+			"c": "I am the child of the air and the earth." },
 		"goal": {
 			"a": "When I was younger I fell in love with my own reflection.",
 			"b": "As a child, I never liked any one else",
-			"c": "I was always lonely because no one was good enough for me."
-		},
+			"c": "I was always lonely because no one was good enough for me." },
 		"obstacle": {
 			"a": "I could make any one fall in love with me but I couldn't fall in love with anyone else.",
 			"b": "I've had a chance with every creature I've met but none has had a chance with me.",
-			"c": "I've never known another creature like I know myself."
-		},
+			"c": "I've never known another creature like I know myself." },
 		"reward": {
 			"a": "I have been told there is a portal to another land, a mirror world, where I could find myself.",
 			"b": "There is a legend of an world below the surface of idtio, like like the veins under our skin.",
-			"c": "In the bowels of the land of idtio is where I know I'll find love."
-		},
+			"c": "In the bowels of the land of idtio is where I know I'll find love." },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" },
-		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"pig": {
 		"origin": {
 			"a": "I came from an ocean of peepee.",
 			"b": "As an infant I drank in the yellow waters of South Idtio.",
-			"c": "I come from the acidic land of South Idtio."
-		},
+			"c": "I come from the acidic land of South Idtio." },
 		"goal": {
 			"a": "I'm an idiot who only values beauty.",
 			"b": "I think the cat is the most beautiful creature in this land but she told the television she doesn't like me.",
-			"c": "I have been with the most beautiful creatures in the land."
-		},
+			"c": "I have been with the most beautiful creatures in the land." },
 		"obstacle": {
 			"a": "Is it obvious that I hate myself?",
 			"b": "No one ever seems to remember who I am.",
-			"c": "Do I sound desperate?"
-		},
+			"c": "Do I sound desperate?" },
 		"reward": {
 			"a": "If the cat is desperate enough we may be together.",
 			"b": "I hope to find the creature for me, I just need to know where to look.",
-			"c": "I won't let go of a creature until I find a new one."
-		},
+			"c": "I won't let go of a creature until I find a new one." },
 		"cat": { "origin": "abc", "goal": "ac", "obstacle": "abc",  "reward": "bc" },
 		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" },
-		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"birds": {
 		"origin": {
 			"a": "I grew up in the dense forest in the east.",
 			"b": "I'm from the east, where the trees begin and the land ends.",
-			"c": "When I was younger I lived in the forest and I kind of wish I had never left."
-		},
+			"c": "When I was younger I lived in the forest and I kind of wish I had never left." },
 		"goal": {
 			"a": "I fell in love with the most intelligent but dirty creature.",
 			"b": "I was always distracted by love.",
-			"c": "I wanted to build a nest somewhere."
-		},
+			"c": "I wanted to build a nest somewhere." },
 		"obstacle": {
 			"a": "I don't know if a creature can truly feel love.",
 			"b": "I don't know if two creatures can really know each other.",
-			"c": "I think there's someone else but I don't understand their connection."
-		},
+			"c": "I think there's someone else but I don't understand their connection." },
 		"reward": {
 			"a": "I want to be the one to discover the void and show my creature the way inside.",
 			"b": "I don't want to be alone here if they're together.",
-			"c": "What if I was the only one to find the void?"
-		},
+			"c": "What if I was the only one to find the void?" },
 		"cat": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ac" },
 		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" },
-		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "ab" }
 	},
 	"fruit": {
 		"origin": {
@@ -82,7 +74,7 @@
 		"goal": {
 			"a": "Honestly, I just want to find somewhere that's not lame.",
 			"b": "I don't care where you're from.",
-			"c": "I'm so sick of these conversations" },
+			"c": "I'm so sick of these conversations." },
 		"obstacle": {
 			"a": "Can we go swimming?",
 			"b": "Screw looking for the void or whatever.",
@@ -93,6 +85,29 @@
 			"c": "I have to go but I'll definitely see you later."	},
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "bc", "obstacle": "bc", "reward": "abc" }
+	},
+	"worm": {
+		"origin": {
+			"a": "I grew up in dirt.",
+			"b": "I could have come from anywhere, I emerged from dirt and was immediately blinded by the power of the sun.",
+			"c": "I'll never go back into the mud where I was born." },
+		"goal": {
+			"a": "One day I'll be the most famous worm that ever lived, once I discover the connection between the void and our world.",
+			"b": "I'll be more than just a worm.",
+			"c": "I know the secret of the void and I know the fruit will follow me to it." },
+		"obstacle": {
+			"a": "I miss the fish but we weren't right for each other.  Too many secrets.",
+			"b": "The bug is beautiful, I will always remember what we had.",
+			"c": "I think the fruit like me." },
+		"reward": {
+			"a": "I know what's needed to bring to the void.",
+			"b": "There's a skull submerged in dirt that contained the directions to the void.",
+			"c": "I will bring the fruit to the void." },
+		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"fruit": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ab" }
 	}
 }

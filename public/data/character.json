@@ -150,14 +150,14 @@
 			"wave": { "start": 22, "end": 25 }
 		},
 		"box": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
+			"src": "/public/drawings/characters/ui/worm/worm-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 17 },
 				"reverse": { "start": 17, "end": 29 }
 			}
 		},
 		"letters": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-letters.json"
+			"src": "/public/drawings/characters/ui/worm/worm-letters.json"
 		}
 	}
 }
