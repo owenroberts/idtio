@@ -32,13 +32,6 @@
 			"wave": { "start": 32, "end": 36 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/cat/cat-interface.json",
-			"states": {
-				"forward": { "start": 0, "end": 16 },
-				"reverse": { "start": 17, "end": 28 }
-			}
-		},
-		"box": {
 			"src": "/public/drawings/characters/ui/cat/cat-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
@@ -64,13 +57,6 @@
 			"wave": { "start": 33, "end": 37 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/pig/pig-interface.json",
-			"states": {
-				"forward": { "start": 0, "end": 6 },
-				"reverse": { "start": 7, "end": 12 }
-			}
-		},
-		"box": {
 			"src": "/public/drawings/characters/ui/pig/pig-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
@@ -95,13 +81,6 @@
 			"wave": { "start": 22, "end": 26 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/birds/birds-interface.json",
-			"states": {
-				"forward": { "start": 0, "end": 5 },
-				"reverse": { "start": 6, "end": 12 }
-			}
-		},
-		"box": {
 			"src": "/public/drawings/characters/ui/birds/birds-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
@@ -125,7 +104,7 @@
 			"heart": { "start": 29, "end": 32 },
 			"wave": { "start": 32, "end": 35 }
 		},
-		"box": {
+		"bubble": {
 			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
@@ -149,7 +128,7 @@
 			"heart": { "start": 19, "end": 22 },
 			"wave": { "start": 22, "end": 25 }
 		},
-		"box": {
+		"bubble": {
 			"src": "/public/drawings/characters/ui/worm/worm-box.json",
 			"states": {
 				"forward": { "start": 0, "end": 17 },

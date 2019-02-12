@@ -16,9 +16,6 @@ class Character extends Sprite {
 		});
 
 		this.resources = params.resources;
-		this.displayStory = false;
-		
-		// this.stories = {};
 
 		this.letters = new Animation(data.letters.src, false);
 		this.letters.load(false);
@@ -27,15 +24,15 @@ class Character extends Sprite {
 			this.letters.createNewState(key, map[key], map[key]);
 		}
 
-		// dialog box 
+		// dialog bubble 
 		this.story = new Text(this.position.x, this.position.y, "", 10, this.letters);
-		
-		this.box = new Animation(data.box.src, false);
-		this.box.load(false, () => {
-			this.box.loop = false;
-			this.box.states = data.box.states;
+		this.story.alive = false;
+		this.bubble = new Animation(data.bubble.src, false);
+		this.bubble.load(false, () => {
+			this.bubble.loop = false;
+			this.bubble.states = data.bubble.states;
 		});
-		this.displayBox = false;
+		this.bubble.alive = false;
 	}
 
 	isOnscreen() {
@@ -53,34 +50,34 @@ class Character extends Sprite {
 			super.display();
 			let x = this.position.x - this.width / 4;
 			let y = this.position.y - this.height / 2;
-			if (this.displayBox) this.box.draw(x, this.position.y);
-			if (this.displayStory) {
+			if (this.bubble.alive) this.bubble.draw(x, this.position.y);
+			if (this.story.alive) {
 				const ended = this.story.display(true, false, x, this.position.y - 35);
 				if (ended) {
-					this.displayStory = false;	
-					this.toggleBox(false);
+					this.story.alive = false;	
+					this.toggleBubble(false);
 					if (this.story.callback) this.story.callback();
 				}
 			}
 		}
 	}
 
-	toggleBox(state) { /* speech bubble */
+	toggleBubble(state) { /* speech bubble */
 		if (state) {
-			this.displayBox = true;
-			this.box.setState('forward');
+			this.bubble.alive = true;
+			this.bubble.setState('forward');
 		} else {
-			this.box.setState('reverse');
-			this.box.playOnce(() => {
-				this.displayBox = false;
+			this.bubble.setState('reverse');
+			this.bubble.playOnce(() => {
+				this.bubble.alive = false;
 			});
 		}
 	}
 
 	playStory(dialog, callback) {
-		this.toggleBox(true);
+		this.toggleBubble(true);
 		this.iconType = false;
-		this.displayStory = true;
+		this.story.alive = true;
 		this.story.setMsg(dialog);
 		this.story.count = 0;
 		this.story.end = 0;

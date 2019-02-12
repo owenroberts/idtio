@@ -423,7 +423,6 @@ function returnResource(resource) {
 
 function startStory(story) {
 	function playNextStory(i) {
-		console.log(storyData[story[i].character][storyData.order[i]][story[i].dialog])
 		scenes.game.characters[story[i].character].playStory(storyData[story[i].character][storyData.order[i]][story[i].dialog].toLowerCase(), () => {
 			i++;
 			if (i < 8) {

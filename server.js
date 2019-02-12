@@ -90,19 +90,13 @@ function gameUpdate() {
 								for (let i = 0; i < 8; i++) {
 									const [c, o] = i % 2 ? [two, one] : [one, two];
 									const s = script[c][o][script.order[i]];
-									console.log(s);
 									story.push({
 										character: c,
 										dialog: s[Math.floor(Math.random() * s.length)]
 									});
 								}
-								console.log(story);
 								io.sockets.emit('start story', story); /* any way to add this to update ? */
 								other.isInteracting  = player.isInteracting = true;
-							}
-						} else {
-							if (wasInRange) { /* exited */
-								/* end story? */
 							}
 						}
 					});
