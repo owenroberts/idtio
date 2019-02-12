@@ -531,7 +531,8 @@
 2.11.2019
 - problem that stories are randomized on client, need to be built on server
 - center everything ? - doesn't really change anything
+2.12.2019
+- box to bubble - 
 
-- box to bubble
 - fix character anims extra frame
 - pressing button really fast triggering walk anim ....

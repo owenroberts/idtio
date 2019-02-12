@@ -1,22 +1,4 @@
 {
-	"scratch": {
-		"src": "/public/drawings/characters/scratch_walk.json",
-		"states": {
-			"idle": { "start": 0, "end": 3 },
-			"right": { "start": 3, "end": 7 },
-			"left": { "start": 7, "end": 11 },
-			"down": { "start": 11, "end": 13 },
-			"up": { "start": 13, "end": 15 },
-			"flower": { "start": 15, "end":  18 }
-		},
-		"bubble": {
-			"src": "/public/drawings/characters/ui/scratch-interface.json",
-			"states": {
-				"forward": { "start": 0, "end": 19 },
-				"reverse": { "start": 19, "end": 33 }
-			}
-		}
-	},
 	"cat": {
 		"src": "/public/drawings/characters/cat.json",
 		"states": {
@@ -32,7 +14,7 @@
 			"wave": { "start": 32, "end": 36 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/cat/cat-box.json",
+			"src": "/public/drawings/characters/ui/cat/cat-bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 15 }
@@ -57,7 +39,7 @@
 			"wave": { "start": 33, "end": 37 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/pig/pig-box.json",
+			"src": "/public/drawings/characters/ui/pig/pig-bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 15 }
@@ -81,7 +63,7 @@
 			"wave": { "start": 22, "end": 26 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/birds/birds-box.json",
+			"src": "/public/drawings/characters/ui/birds/birds-bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 18 }
@@ -105,7 +87,7 @@
 			"wave": { "start": 32, "end": 35 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-box.json",
+			"src": "/public/drawings/characters/ui/fruit/fruit-bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 14 }
@@ -129,7 +111,7 @@
 			"wave": { "start": 22, "end": 25 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/worm/worm-box.json",
+			"src": "/public/drawings/characters/ui/worm/worm-bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 17 },
 				"reverse": { "start": 17, "end": 29 }
