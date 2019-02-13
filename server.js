@@ -35,14 +35,7 @@ server.listen(port, function() {
 const DEBUG = true;
 let gameIsPlaying = false;
 let gameInterval;
-const characters = {
-	scratch: { isInUse: false },
-	cat: { isInUse: false },
-	pig: { isInUse: false },
-	birds: { isInUse: false },
-	fruit: { isInUse: false },
-	worm: { isInUse: false }
-};
+const inGame = [];
 const players = {};
 const interactives = {};
 
@@ -161,9 +154,9 @@ io.on('connection', function(socket) {
 	/* select a character (need access to characters obj) 
 		adding "join" */
 	socket.on('character join', (character) => {
-		if (!characters[character].isInUse) {
+		if (inGame.indexOf(character) == -1) {
 			players[socket.id].character = character;
-			characters[character].isInUse = true;
+			inGame.push(character);
 			io.sockets.emit('character selected', character, true);
 			players[socket.id].join(character, socket);
 			io.sockets.emit('add character', players[socket.id]);

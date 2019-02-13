@@ -20,7 +20,8 @@
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"pig": {
 		"origin": {
@@ -42,7 +43,8 @@
 		"cat": { "origin": "abc", "goal": "ac", "obstacle": "abc",  "reward": "bc" },
 		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"birds": {
 		"origin": {
@@ -64,7 +66,8 @@
 		"cat": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ac" },
 		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "ab" }
+		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "ab" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"fruit": {
 		"origin": {
@@ -86,7 +89,8 @@
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "bc", "obstacle": "bc", "reward": "abc" }
+		"worm": { "origin": "abc", "goal": "bc", "obstacle": "bc", "reward": "abc" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"worm": {
 		"origin": {
@@ -108,6 +112,30 @@
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fruit": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ab" }
+		"fruit": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ab" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+	},
+	"tv": {
+		"origin": {
+			"a": "I lived in the house before it was burned down.  They left me inside.",
+			"b": "I never really left the house.  I didn't know what was going on when everyone would disappear.",
+			"c": "I'm from the burnt down house in the south west." },
+		"goal": {
+			"a": "I wasn't ready for everyone to leave.",
+			"b": "I want them to come back.",
+			"c": "I want to be with my family and friends." },
+		"obstacle": {
+			"a": "Everyone is looking for some secret place instead of looking for me.",
+			"b": "I don't really care about finding anything else in the world.",
+			"c": "Why can't people just be happy and hang out?" },
+		"reward": {
+			"a": "Don't go looking for anything, just sit here with me.",
+			"b": "Let's go back to the house and just hang out in the ruins.",
+			"c": "Don't leave me." },
+		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	}
 }

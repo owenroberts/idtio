@@ -75,7 +75,7 @@ class Text {
 				return true;
 			}
 		} else {
-			if (this.end >= 3) {
+			if (this.end >= 5) { // how long to wait after completed text
 				this.end = 0;
 				this.count = 0;
 				return true; // ended

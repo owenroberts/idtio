@@ -489,12 +489,9 @@
 	- more characters
 	- more stuff to interact with
 	- finish by march indiecade due date??
-	- different origin point for each character
-	- audio!
+	
 	- some goal or quest for each character?
-	- jig animations and stuff
-	- exit to home in cursive
-	- lines sprites around color changing things
+	
 - new characters
 	- worm
 	- fucked up rabbit
@@ -514,7 +511,7 @@
 - keeps triggering dialog switching back and forth, need to test
 
 2.1.2019
-- move players to different origins
+
 - make a couple more players
 - think about dialog system more
 - generate origin stories?
@@ -533,6 +530,18 @@
 - center everything ? - doesn't really change anything
 2.12.2019
 - box to bubble - 
-
-- fix character anims extra frame
+- fix character anims extra frame -
+	- not a good solution right now ...
 - pressing button really fast triggering walk anim ....
+ 	- not worth addressing right now
+
+general to do
+- audio!
+- text for interactives 
+- random words for scenery?
+- exit to home in cursive
+
+- before release/testing
+	- different origin point for each character
+	- jig animations and stuff
+	- lines sprites around color changing things

@@ -120,5 +120,29 @@
 		"letters": {
 			"src": "/public/drawings/characters/ui/worm/worm-letters.json"
 		}
+	},
+	"tv": {
+		"src": "/public/drawings/characters/tv.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 8 },
+			"left": { "start": 8, "end": 12 },
+			"up": { "start": 12, "end": 14 },
+			"down": { "start": 14, "end": 16 },
+			"flower": { "start": 16, "end": 19 },
+			"skull": { "start": 19, "end": 22 },
+			"heart": { "start": 22, "end": 25 },
+			"wave": { "start": 25, "end": 29 }
+		},
+		"bubble": {
+			"src": "/public/drawings/characters/ui/tv/tv-bubble.json",
+			"states": {
+				"forward": { "start": 0, "end": 7 },
+				"reverse": { "start": 7, "end": 13 }
+			}
+		},
+		"letters": {
+			"src": "/public/drawings/characters/ui/tv/tv-letters.json"
+		}
 	}
 }

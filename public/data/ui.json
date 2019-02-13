@@ -242,6 +242,22 @@
 				"route": "character join",
 				"message": "worm"
 			}
+		},
+		"tv": {
+			"src": "/public/drawings/characters/ui/tv/tv-selection.json",
+			"x": 600,
+			"y": 150,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "splash" ],
+			"callback" : {
+				"route": "character join",
+				"message": "tv"
+			}
 		}
 	}
 }
