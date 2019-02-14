@@ -1,6 +1,7 @@
 {
 	"cat": {
-		"src": "/public/drawings/characters/cat.json",
+		"src": "/public/drawings/characters/cat/cat.json",
+		"letters": "/public/drawings/characters/cat/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 8 },
@@ -14,18 +15,16 @@
 			"wave": { "start": 32, "end": 36 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/cat/cat-bubble.json",
+			"src": "/public/drawings/characters/cat/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 15 }
 			}
-		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/cat/cat-letters.json"
 		}
 	},
 	"pig": {
-		"src": "/public/drawings/characters/pig.json",
+		"src": "/public/drawings/characters/pig/pig.json",
+		"letters": "/public/drawings/characters/pig/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 8 },
@@ -39,18 +38,16 @@
 			"wave": { "start": 33, "end": 37 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/pig/pig-bubble.json",
+			"src": "/public/drawings/characters/pig/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 15 }
 			}
-		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/pig/pig-letters.json"
 		}
 	},
 	"birds": {
-		"src": "/public/drawings/characters/birds.json",
+		"src": "/public/drawings/characters/birds/birds.json",
+		"letters": "/public/drawings/characters/birds/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 6 },
@@ -63,18 +60,16 @@
 			"wave": { "start": 22, "end": 26 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/birds/birds-bubble.json",
+			"src": "/public/drawings/characters/birds/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 9 },
 				"reverse": { "start": 9, "end": 18 }
 			}
-		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/birds/birds-letters.json"
 		}
 	},
 	"fruit": {
-		"src": "/public/drawings/characters/fruit.json",
+		"src": "/public/drawings/characters/fruit/fruit.json",
+		"letters": "/public/drawings/characters/fruit/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 9 },
@@ -87,18 +82,16 @@
 			"wave": { "start": 32, "end": 35 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-bubble.json",
+			"src": "/public/drawings/characters/fruit/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 8 },
 				"reverse": { "start": 8, "end": 14 }
 			}
-		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-letters.json"
 		}
 	},
 	"worm": {
-		"src": "/public/drawings/characters/worm.json",
+		"src": "/public/drawings/characters/worm/worm.json",
+		"letters": "/public/drawings/characters/worm/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 6 },
@@ -111,18 +104,16 @@
 			"wave": { "start": 22, "end": 25 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/worm/worm-bubble.json",
+			"src": "/public/drawings/characters/worm/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 17 },
 				"reverse": { "start": 17, "end": 29 }
 			}
-		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/worm/worm-letters.json"
 		}
 	},
 	"tv": {
-		"src": "/public/drawings/characters/tv.json",
+		"src": "/public/drawings/characters/tv/tv.json",
+		"letters": "/public/drawings/characters/tv/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 8 },
@@ -135,14 +126,33 @@
 			"wave": { "start": 25, "end": 29 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/tv/tv-bubble.json",
+			"src": "/public/drawings/characters/tv/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 7 },
 				"reverse": { "start": 7, "end": 13 }
 			}
+		}
+	},
+	"cactus": {
+		"src": "/public/characters/cactus/cactus.json",
+		"letters": "/public/drawings/characters/cactus/letters.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 6 },
+			"left": { "start": 6, "end": 8 },
+			"up": { "start": 8, "end": 10 },
+			"down": { "start": 10, "end": 12 },
+			"flower": { "start": 12, "end": 15 },
+			"skull": { "start": 15, "end": 18 },
+			"heart": { "start": 18, "end": 21 },
+			"wave": { "start": 21, "end": 25 }
 		},
-		"letters": {
-			"src": "/public/drawings/characters/ui/tv/tv-letters.json"
+		"bubble": {
+			"src": "/public/drawings/characters/ui/cactus/bubble.json",
+			"states": {
+				"forward": { "start": 0, "end": 19 },
+				"reverse": { "start": 20, "end": 37 }
+			}
 		}
 	}
 }

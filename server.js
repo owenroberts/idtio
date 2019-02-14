@@ -181,7 +181,7 @@ io.on('connection', function(socket) {
 		if (players[socket.id]) {
 			const p = players[socket.id];
 			if (p.character) {
-				characters[p.character].isInUse = false;
+				inGame.splice(inGame.indexOf(p.character), 1);
 				io.sockets.emit('remove character', p.character);
 			}
 

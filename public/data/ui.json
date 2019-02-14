@@ -63,20 +63,6 @@
 		"walk": {
 			"msg": "use W A S D or { } - + to walk",
 			"x": 10,
-			"y": -200,
-			"wrap": 50,
-			"scenes": [ "splash" ]
-		},
-		"interact": {
-			"msg": "E to interact",
-			"x": 10,
-			"y": -150,
-			"wrap": 50,
-			"scenes": [ "splash" ]
-		},
-		"dialogs": {
-			"msg": "J K L to select dialogs",
-			"x": 10,
 			"y": -100,
 			"wrap": 50,
 			"scenes": [ "splash" ]
@@ -158,7 +144,7 @@
 			"key": "escape"
 		},
 		"cat": {
-			"src": "/public/drawings/characters/ui/cat/cat-selection.json",
+			"src": "/public/drawings/characters/cat/selection.json",
 			"x": 10,
 			"y": 150,
 			"states": {
@@ -176,7 +162,7 @@
 			}
 		},
 		"pig": {
-			"src": "/public/drawings/characters/ui/pig/pig-selection.json",
+			"src": "/public/drawings/characters/pig/selection.json",
 			"x": 200,
 			"y": 180,
 			"states": {
@@ -194,7 +180,7 @@
 			}
 		},
 		"birds": {
-			"src": "/public/drawings/characters/ui/birds/birds-selection.json",
+			"src": "/public/drawings/characters/birds/selection.json",
 			"x": 400,
 			"y": 120,
 			"states": {
@@ -212,7 +198,7 @@
 			}
 		},
 		"fruit": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-selection.json",
+			"src": "/public/drawings/characters/fruit/selection.json",
 			"x": 400,
 			"y": 350,
 			"states": {
@@ -228,7 +214,7 @@
 			}
 		},
 		"worm": {
-			"src": "/public/drawings/characters/ui/worm/worm-selection.json",
+			"src": "/public/drawings/characters/worm/selection.json",
 			"x": 10,
 			"y": 450,
 			"states": {
@@ -244,7 +230,7 @@
 			}
 		},
 		"tv": {
-			"src": "/public/drawings/characters/ui/tv/tv-selection.json",
+			"src": "/public/drawings/characters/tv/selection.json",
 			"x": 600,
 			"y": 150,
 			"states": {
@@ -257,6 +243,22 @@
 			"callback" : {
 				"route": "character join",
 				"message": "tv"
+			}
+		},
+		"cactus": {
+			"src": "/public/drawings/characters/cactus/selection.json",
+			"x": 800,
+			"y": 450,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "splash" ],
+			"callback" : {
+				"route": "character join",
+				"message": "cactus"
 			}
 		}
 	}

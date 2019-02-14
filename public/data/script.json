@@ -21,7 +21,8 @@
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "c", "reward": "ab" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"pig": {
 		"origin": {
@@ -44,7 +45,8 @@
 		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"birds": {
 		"origin": {
@@ -67,7 +69,8 @@
 		"pig": { "origin": "abc", "goal": "bc", "obstacle": "ab", "reward": "c" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "ab" },
-		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"fruit": {
 		"origin": {
@@ -90,7 +93,8 @@
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "bc", "obstacle": "bc", "reward": "abc" },
-		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"worm": {
 		"origin": {
@@ -113,7 +117,8 @@
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"fruit": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ab" },
-		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"tv": {
 		"origin": {
@@ -136,6 +141,31 @@
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+	},
+	"cactus": {
+		"origin": {
+			"a": "I'm from the deserted lands past the two hills.",
+			"b": "My childhood was pretty boring.",
+			"c": "I'm from the desert where the sun makes everything bright and dry." },
+		"goal": {
+			"a": "After spending days and days outside I began to write poems.",
+			"b": "I will sing a song about the darkest region in this land.",
+			"c": "You may have heard of the bard of the west.  That's me.  I am him." },
+		"obstacle": {
+			"a": "I've been distracted from my quest by my own charisma.",
+			"b": "I'm such a good poet that I'm always busy reciting my poems for all the idiots of this world.",
+			"c": "I never have time to search for my true muse." },
+		"reward": {
+			"a": "There is a darkness that will inspire my truest poem.",
+			"b": "In darkness I will my find my true voice.",
+			"c": "Help me find the entrance to the dark side of this world." },
+		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	}
 }
