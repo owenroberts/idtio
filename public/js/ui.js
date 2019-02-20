@@ -4,11 +4,13 @@ class UI extends Sprite {
 		this.debug = debug;
 		this.addAnimation(params.src, () => {
 			// this.center();
+			if (params.state) this.animation.setState(params.state);
 		});
 		this.selected = false;
 		this.animation.states = params.states;
 		this.animation.state = 'idle';
 		this.clickStart = false;
+		if (params.func) this.func = window[params.func];
 	}
 	toggle(selected) {
 		this.selected = selected;
@@ -41,7 +43,8 @@ class UI extends Sprite {
 			if (this.tap(x,y) && this.clickStart) {
 				this.animation.setState('over');
 				document.body.style.cursor = 'pointer';
-				this.callback();
+				if (this.callback) this.callback();
+				if (this.func) this.func();
 				callbacked = true;
 			}
 		}

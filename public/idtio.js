@@ -44,14 +44,20 @@ function loadUI(data) {
 
 	for (const key in data.uis) {
 		const u = data.uis[key];
+		// console.log(u);
 		const ui = new UI(u, false);
-		ui.callback = function() {
-			socket.emit(u.callback.route, u.callback.message);
-		};
+		if (u.callback) {
+			ui.callback = function() {
+				socket.emit(u.callback.route, u.callback.message);
+			};
+		}
+		// if (u.func) {
+		// 	window[u.func]();
+		// }
 		if (u.key) {
 			document.addEventListener('keydown', function(ev) {
 				if (Cool.keys[ev.which] == u.key && u.scenes.indexOf(currentScene) != -1) {
-					ui.callback();
+					if (ui.callback) ui.callback();
 				}
 			});
 		}
@@ -81,6 +87,66 @@ function loadUI(data) {
 
 	socket.emit('splash loaded');
 	assetsLoaded.splash = true;
+}
+
+let theme;
+const clips = [];
+let gameSoundOn = false;
+
+function toggleSound() {
+	/* load audio if not loaded */
+	if (!theme) {
+		theme = new Audio('/public/audio/theme.mp3');
+		theme.volume = 0.5;
+		theme.loop = true;
+		theme.play();
+		for (let i = 0; i < 8; i++) {
+			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
+			clips[i].loop = true;
+		}
+	} else {
+		if (currentScene == 'splash') {
+			if (theme.paused) theme.play();
+			else theme.pause();
+		}
+		if (currentScene == 'exit') {
+			if (!gameSoundOn) clips.forEach(clip => clip.pause());
+		}
+	}
+	gameSoundOn = !gameSoundOn;
+}
+
+function updateAudio(_x, _y) {
+	// console.log(_x, _y);
+	/* play audio in quadrant at 0.75 */
+	/* audio in adjoining quandrants at 0.25 */
+	let mainClip;
+	const adjClips = [];
+	for (let x = 0; x < 4; x++) {
+		for (let y = 0; y < 2; y++) {
+			if (_x > (x - 2) * 4 * 1024 && _x < (x - 1) * 4 * 1024 &&
+				_y > (y - 1) * 4 * 1024 && _y < y * 4 * 1024) {
+				mainClip = x + y * 4;
+				if (x < 3) adjClips.push(x + 1);
+				if (x > 0) adjClips.push(x - 1);
+				if (y == 0) adjClips.push(x + 4);
+				if (y == 1) adjClips.push(x - 4);
+			}
+		}
+	}
+	
+	if (mainClip) {
+		if (clips[mainClip].paused) clips[mainClip].play();
+		if (clips[mainClip].volume != 0.5) clips[mainClip].volume = 0.5;
+	}
+	for (let i = 0; i < clips.length; i++) {
+		if (adjClips.includes(i)) {
+			if (clips[i].paused) clips[i].play();
+			if (clips[i].volume != 0.25) clips[i].volume = 0.25;
+		}
+		else
+			if (!clips[i].paused) clips[i].pause();
+	}
 }
 
 function loadMap(data) {
@@ -325,6 +391,7 @@ socket.on('join game', data => {
 			scenes.game.interactives[label].animation.setState('end');
 	}
 	currentScene = 'game';
+	if (theme) if (!theme.paused) theme.pause();
 	colorPicker.style.display = 'none';
 	initGameSockets();
 });
@@ -400,6 +467,7 @@ socket.on('update', data => {
 			scenes[currentScene].scenery[i].update(offset);
 			/* center? */
 		}
+		if (gameSoundOn) updateAudio(data.players[user.id].x, data.players[user.id].y);
 	}
 });
 

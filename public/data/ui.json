@@ -21,25 +21,43 @@
 			"alive": true
 		},
 		"cat-wave": {
-			"src": "/public/drawings/characters/ui/cat/cat-wave.json",
+			"src": "/public/drawings/characters/cat/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
 		},
 		"pig-wave": {
-			"src": "/public/drawings/characters/ui/pig/pig-wave.json",
+			"src": "/public/drawings/characters/pig/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
 		},
 		"birds-wave": {
-			"src": "/public/drawings/characters/ui/birds/birds-wave.json",
+			"src": "/public/drawings/characters/birds/wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
+		},
+		"worm-wave": {
+			"src": "/public/drawings/characters/worm/wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
+		},
+		"tv-wave": {
+			"src": "/public/drawings/characters/tv/wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
+		},
+		"cactus-wave": {
+			"src": "/public/drawings/characters/cactus/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
 		},
 		"fruit-wave": {
-			"src": "/public/drawings/characters/ui/fruit/fruit-wave.json",
+			"src": "/public/drawings/characters/fruit/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
@@ -86,9 +104,7 @@
 				"selected": { "start": 1, "end": 2 },
 				"active": { "start": 2, "end": 3 }
 			},
-			"scenes": [
-				"game"
-			],
+			"scenes": [ "game" ],
 			"callback": {
 				"route": "change scene",
 				"message": "exit"
@@ -260,6 +276,20 @@
 				"route": "character join",
 				"message": "cactus"
 			}
+		},
+		"sound": {
+			"src": "/public/drawings/ui/sound.json",
+			"x": 200, "y": -20,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 2, "end": 2 },
+				"active": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "exit", "splash" ],
+			"func": "toggleSound",
+			"state": "active",
+			"selected": true
 		}
 	}
 }
