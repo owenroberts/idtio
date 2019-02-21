@@ -536,7 +536,10 @@
  	- not worth addressing right now
 
 general to do
-- audio!
+- audio! - 
+- two more characters -
+- what the fuck is this even about??
+- sound toggle
 - text for interactives 
 - random words for scenery?
 - exit to home in cursive
@@ -545,3 +548,5 @@ general to do
 	- different origin point for each character
 	- jig animations and stuff
 	- lines sprites around color changing things
+	- remove redundant data, unnecessary file paths
+	- move punctuation to the right in letters

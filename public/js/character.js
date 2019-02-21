@@ -7,7 +7,6 @@ class Character extends Sprite {
 			this.position.x = Game.width / 2;
 			this.position.y = Game.height / 2;
 		}
-
 		this.addAnimation(data.src, () => {
 			if (isPlayer)
 				this.center();

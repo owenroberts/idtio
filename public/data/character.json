@@ -134,7 +134,7 @@
 		}
 	},
 	"cactus": {
-		"src": "/public/characters/cactus/cactus.json",
+		"src": "/public/drawings/characters/cactus/cactus.json",
 		"letters": "/public/drawings/characters/cactus/letters.json",
 		"states": {
 			"idle": { "start": 0, "end": 4 },
@@ -148,10 +148,32 @@
 			"wave": { "start": 21, "end": 25 }
 		},
 		"bubble": {
-			"src": "/public/drawings/characters/ui/cactus/bubble.json",
+			"src": "/public/drawings/characters/cactus/bubble.json",
 			"states": {
 				"forward": { "start": 0, "end": 19 },
 				"reverse": { "start": 20, "end": 37 }
+			}
+		}
+	},
+	"fish": {
+		"src": "/public/drawings/characters/fish/fish.json",
+		"letters": "/public/drawings/characters/fish/letters.json",
+		"states": {
+			"idle": { "start": 0, "end": 6 },
+			"right": { "start": 6, "end": 10 },
+			"left": { "start": 10, "end": 14 },
+			"up": { "start": 14, "end": 18 },
+			"down": { "start": 18, "end": 22 },
+			"flower": { "start": 22, "end": 27 },
+			"skull": { "start": 27, "end": 33 },
+			"heart": { "start": 33, "end": 38 },
+			"wave": { "start": 38, "end": 42 }
+		},
+		"bubble": {
+			"src": "/public/drawings/characters/fish/bubble.json",
+			"states": {
+				"forward": { "start": 0, "end": 15 },
+				"reverse": { "start": 16, "end": 31 }
 			}
 		}
 	}
