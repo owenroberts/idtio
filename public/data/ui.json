@@ -283,7 +283,7 @@
 		},
 		"cactus": {
 			"src": "/public/drawings/characters/cactus/selection.json",
-			"x": 800,
+			"x": 700,
 			"y": 450,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -311,6 +311,22 @@
 			"callback" : {
 				"route": "character join",
 				"message": "fish"
+			}
+		},
+		"bug": {
+			"src": "/public/drawings/characters/bug/selection.json",
+			"x": 310,
+			"y": 650,
+			"states": {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 1 },
+				"active": { "start": 2, "end": 2 },
+				"selected": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "splash" ],
+			"callback" : {
+				"route": "character join",
+				"message": "bug"
 			}
 		}
 	}

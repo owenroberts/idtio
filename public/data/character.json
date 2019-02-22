@@ -176,5 +176,27 @@
 				"reverse": { "start": 16, "end": 31 }
 			}
 		}
+	},
+	"bug": {
+		"src": "/public/drawings/characters/bug/bug.json",
+		"letters": "/public/drawings/characters/bug/letters.json",
+		"states": {
+			"idle": { "start": 0, "end": 4 },
+			"right": { "start": 4, "end": 8 },
+			"left": { "start": 8, "end": 12 },
+			"up": { "start": 12, "end": 16 },
+			"down": { "start": 16, "end": 20 },
+			"flower": { "start": 20, "end": 24 },
+			"skull": { "start": 24, "end": 28 },
+			"heart": { "start": 28, "end": 32 },
+			"wave": { "start": 32, "end": 37 }
+		},
+		"bubble": {
+			"src": "/public/drawings/characters/bug/bubble.json",
+			"states": {
+				"forward": { "start": 0, "end": 15 },
+				"reverse": { "start": 16, "end": 31 }
+			}
+		}
 	}
 }
