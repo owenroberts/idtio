@@ -544,6 +544,10 @@ general to do
 - random words for scenery?
 - exit to home in cursive
 
+drawing notes
+- but up state is too far away from idle state
+- 
+
 - before release/testing
 	- different origin point for each character
 	- jig animations and stuff

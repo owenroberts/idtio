@@ -23,7 +23,8 @@
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"pig": {
 		"origin": {
@@ -48,7 +49,8 @@
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"birds": {
 		"origin": {
@@ -73,7 +75,8 @@
 		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "ab" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"fruit": {
 		"origin": {
@@ -98,7 +101,8 @@
 		"worm": { "origin": "abc", "goal": "bc", "obstacle": "bc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"worm": {
 		"origin": {
@@ -123,7 +127,8 @@
 		"fruit": { "origin": "abc", "goal": "ab", "obstacle": "ab", "reward": "ab" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"tv": {
 		"origin": {
@@ -148,7 +153,8 @@
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"cactus": {
 		"origin": {
@@ -173,7 +179,8 @@
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
 	},
 	"fish": {
 		"origin": {
@@ -198,6 +205,33 @@
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"worm": { "origin": "abc", "goal": "bc", "obstacle": "abc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "ac", "obstacle": "abc", "reward": "abc" },
-		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"bug": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" }
+	},
+	"bug": {
+		"origin": {
+			"a": "I actually was born in the void.",
+			"b": "I don't know how I got here.",
+			"c": "I was just looking for something to eat." },
+		"goal": {
+			"a": "Are there any other bugs here?",
+			"b": "I'd like to make amends with the worm.  But don't tell the worm that.",
+			"c": "If everyone wants to find the void I can tell them where to look." },
+		"obstacle": {
+			"a": "I've just been hanging out with the fish all day but they want to go into the water.",
+			"b": "Oh yeah I'm close with the cat too.",
+			"c": "I can't really walk that fast." },
+		"reward": {
+			"a": "I guess I'm on the fense.  I'd like to stay here but the void is cool too.",
+			"b": "If everyone goes to the void I'll go.",
+			"c": "If you want to stay here that would be fine too." },
+		"cat": { "origin": "abc", "goal": "ab", "obstacle": "ac", "reward": "abc" },
+		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "ac", "obstacle": "abc", "reward": "abc" },
+		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
+		"fish": { "origin": "abc", "goal": "abc", "obstacle": "bc", "reward": "abc" }
 	}
 }

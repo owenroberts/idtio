@@ -194,8 +194,8 @@
 		"bubble": {
 			"src": "/public/drawings/characters/bug/bubble.json",
 			"states": {
-				"forward": { "start": 0, "end": 15 },
-				"reverse": { "start": 16, "end": 31 }
+				"forward": { "start": 0, "end": 10 },
+				"reverse": { "start": 11, "end": 20 }
 			}
 		}
 	}
