@@ -10,6 +10,7 @@ const io = socketIO(server);
 
 const mapData = require('./public/data/map.json');
 const script = require('./public/data/script.json');
+const Entity = require('./Entity.js'); 
 const Interactive = require('./Interactive.js'); 
 const Pickup = require('./Pickup.js');
 const Player = require('./Player.js');
@@ -38,9 +39,18 @@ let gameInterval;
 const inGame = [];
 const players = {};
 const interactives = {};
+const items = {};
 
 for (const label in mapData.interactives) {
 	interactives[label] = new Interactive(mapData.interactives[label]);
+}
+for (const label in mapData.scenery) {
+	const set = mapData.scenery[label];
+	items[label] = [];
+	for (let i = 0; i < set.length; i++) {
+		set[i].distance = 100;
+		items[label].push( new Entity(set[i]) );
+	}
 }
 
 for (const type in mapData.pickups) {
@@ -112,6 +122,19 @@ function gameUpdate() {
 							}
 						}
 					});
+				}
+			}
+
+			for (const label in items) {
+				const set = items[label];
+				for (let i = 0; i < set.length; i++) {
+					const item = set[i];
+					if (item.msg) {
+						item.checkInRange(player, (isInRange, wasInRange) => {
+							if (isInRange && !wasInRange) io.sockets.emit('display item message', label, i);
+							if (!isInRange && wasInRange) io.sockets.emit('hide item message', label, i);
+						});
+					}
 				}
 			}
 		}

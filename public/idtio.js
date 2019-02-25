@@ -3,7 +3,7 @@ const scenes = {
 	loading: { sprites: {} },
 	splash: { ui: {}, texts: {}, sprites: {} },
 	instructions: { ui: {}, texts: {}, sprites: {} },
-	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: [], sprites: {} },
+	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: {}, sprites: {} },
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
 const assetsLoaded = { splash: false, map: false, characters: false, stories: false, loading: false };
@@ -176,10 +176,14 @@ function loadMap(data) {
 		}
 	}
 
-	for (let i = 0; i < data.scenery.length; i++) {
-		setTimeout(() => {
-			scenes.game.scenery.push(new Item(data.scenery[i], false));
-		}, 1);
+	for (const s in data.scenery) {
+		const set = data.scenery[s];
+		scenes.game.scenery[s] = [];
+		for (let i = 0; i < set.length; i++) {
+			setTimeout(() => {
+				scenes.game.scenery[s].push(new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false));
+			}, 1);
+		}
 	}
 	assetsLoaded.map = true;
 }
@@ -242,14 +246,17 @@ function draw() {
 	}
 
 	if (currentScene == 'game') {
-		for (const character in scenes[currentScene].characters) {
-			scenes[currentScene].characters[character].display();
+		for (const character in scenes.game.characters) {
+			scenes.game.characters[character].display();
 		}
-		for (const interactive in scenes[currentScene].interactives) {
-			scenes[currentScene].interactives[interactive].display();
+		for (const interactive in scenes.game.interactives) {
+			scenes.game.interactives[interactive].display();
 		}
-		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
-			scenes[currentScene].scenery[i].display();
+		for (const label in scenes[currentScene].scenery) {
+			const set = scenes.game.scenery[label];
+			for (let i = 0; i < set.length; i++) {
+				set[i].display();
+			}
 		}
 	}
 }
@@ -461,11 +468,15 @@ socket.on('update', data => {
 		}
 		for (const interactive in scenes[currentScene].interactives) {
 			scenes[currentScene].interactives[interactive].update(offset);
-			/* center? */
 		}
 		for (let i = 0; i < scenes[currentScene].scenery.length; i++) {
 			scenes[currentScene].scenery[i].update(offset);
-			/* center? */
+		}
+		for (const label in scenes[currentScene].scenery) {
+			const set = scenes.game.scenery[label];
+			for (let i = 0; i < set.length; i++) {
+				set[i].update(offset);
+			}
 		}
 		if (gameSoundOn) updateAudio(data.players[user.id].x, data.players[user.id].y);
 	}
@@ -475,6 +486,16 @@ socket.on('update', data => {
 function playInteractiveAnimation(label) {
 	if (currentScene == 'game') /* necessary? */
 		scenes[currentScene].interactives[label].playInteractState();
+}
+
+function displayItemMessage(label, index) {
+	if (currentScene == 'game')
+		scenes.game.scenery[label][index].displayMessage(true, false);
+}
+
+function hideItemMessage(label, index) {
+	if (currentScene == 'game')
+		scenes.game.scenery[label][index].displayMessage(false, false);
 }
 
 function playCharacterAnimation(character, type) {
@@ -510,6 +531,8 @@ function endStory(character) {
 /* prevent these updates during loading.... */
 function initGameSockets() {
 	socket.on('play interact animation', playInteractiveAnimation);
+	socket.on('display item message', displayItemMessage);
+	socket.on('hide item message', hideItemMessage);
 	socket.on('play character animation', playCharacterAnimation);
 	socket.on('update resources', updateResources);
 	socket.on('return resource', returnResource);

@@ -541,6 +541,9 @@ general to do
 - what the fuck is this even about??
 - sound toggle
 - text for interactives 
+	- items - text should display in middle, not in upper left corner ...
+	- text triggered constantly?
+
 - random words for scenery?
 - exit to home in cursive
 

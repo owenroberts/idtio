@@ -1,29 +1,45 @@
 class Item extends Sprite {
-	constructor(params, debug) {
+	constructor(params, src, debug) {
 		super(params.x, params.y);
 		this.x = params.x;
 		this.y = params.y;
 		this.debug = debug;
-		this.addAnimation(params.src, () => {
+		this.addAnimation(src, () => {
 			this.center();
+			if (params.msg) {
+				this.displayText = false;
+				this.endText = true;
+				this.text = new Text(this.x, this.y, params.msg, params.wrap, Game.letters);
+			}
 		});
 		if (params.states) {
 			this.animation.states = params.states;
 			this.animation.state = 'idle';
 		}
-		if (params.r)
-			this.animation.randomFrames = true;
+		if (params.r) this.animation.randomFrames = true;
 	}
 
 	display() {
-		/* could this be permanent to sprite.js in Game ? */
-		if (this.isOnscreen())
+		if (this.isOnScreen()) { /* this could be permanent to sprite.js in Game ? */
 			super.display();
+			if (this.displayText) {
+				this.text.setPosition(this.position.x + this.width/2, this.position.y);
+				const ended = this.text.display(true, true);
+				if (ended && this.endText) this.displayText = false;
+			}
+		}
 		else if (Game.map) // temp fix
 			super.display();
 	}
 
-	isOnscreen() {
+	displayMessage(show, end) {
+		if (this.text) {
+			this.displayText = show; // if needs text/message, some dont
+			this.endText = end;
+		}	
+	}
+
+	isOnScreen() {
 		if (this.position.x + this.width > 0 && 
 			this.position.y + this.height > 0 &&
 			this.position.x < Game.width &&
