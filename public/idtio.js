@@ -171,7 +171,9 @@ function loadMap(data) {
 						end: s[group['state_index'][state].end],
 					};
 				}
-				scenes.game.interactives[label] = new Interactive({ ...pickup, msg: data.pickups[type].msg, wrap: data.pickups[type].wrap, states: states }, true, false);
+				scenes.game.interactives[label] = new Interactive(
+					{ ...pickup, wrap: data.pickups[type].wrap, states: states }, 
+					true, false);
 			}, 1);
 		}
 	}

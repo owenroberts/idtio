@@ -14,106 +14,128 @@
 				"flower 0": {
 					"src": "/public/drawings/pickups/flower-0.json",
 					"x": 500,  "y": 400,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "idtio was once a happy place"
 				},
 				"flower 1": {
 					"src": "/public/drawings/pickups/flower-1.json",
 					"x": 800, "y": 400,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "idtio was full of growing flowers"
 				},
 				"flower 2":  {
 					"src": "/public/drawings/pickups/flower-2.json",
 					"x": 200, "y": 412,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "there were fires"
 				},
 				"flower 3": {
 					"src": "/public/drawings/pickups/flower-3.json",
 					"x": 600, "y": 256,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "there were floods"
 				},
 				"flower 4": {
 					"src": "/public/drawings/pickups/flower-4.json",
 					"x": 100, "y": 512,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "and plagues"
 				},
 				"flower 5": {
 					"src": "/public/drawings/pickups/flower-5.json",
 					"x": 300, "y": 150,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "a plague of frogs"
 				},
 				"flower 6": {
 					"src": "/public/drawings/pickups/flower-6.json",
 					"x": 960, "y": 179,
-					"states": [0, 0, 1, 3, 3, 4, 4, 8]
-				},"flower 7": {
+					"states": [0, 0, 1, 3, 3, 4, 4, 8],
+					"msg": "a plague of rabbits"
+				},
+				"flower 7": {
 					"src": "/public/drawings/pickups/flower-7.json",
 					"x": 1037, "y": 620,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "a savior had come"
 				},
 				"flower 8": {
 					"src": "/public/drawings/pickups/flower-8.json",
 					"x": -137, "y": 198,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "with a glowing face and long ears"
 				},
 				"flower 9": {
 					"src": "/public/drawings/pickups/flower-9.json",
 					"x": -137, "y": -266,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "a portal was opened to land beneath"
 				},
 				"flower 10": {
 					"src": "/public/drawings/pickups/flower-10.json",
 					"x": 276, "y": -294,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "creatures emerged from the void in the earth"
 				},
 				"flower 11": {
 					"src": "/public/drawings/pickups/flower-11.json",
 					"x": -545, "y": -516,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "and other creatures found their way inside"
 				},
 				"flower 12": {
 					"src": "/public/drawings/pickups/flower-12.json",
 					"x": 763, "y": -488,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "inside and out"
 				},
 				"flower 13": {
 					"src": "/public/drawings/pickups/flower-13.json",
 					"x": 129, "y": -708,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "a mirror world"
 				},
 				"flower 14": {
 					"src": "/public/drawings/pickups/flower-14.json",
 					"x": 1212, "y": -888,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "like a dark sea"
 				},
 				"flower 15": {
 					"src": "/public/drawings/pickups/flower-15.json",
 					"x": 558, "y": -1068,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "like an empty sky"
 				},
 				"flower 16": {
 					"src": "/public/drawings/pickups/flower-16.json",
 					"x": 47, "y": 1007,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "like a river of black"
 				},
 				"flower 17": {
 					"src": "/public/drawings/pickups/flower-17.json",
 					"x": -734, "y": -164,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "will you race into the void?"
 				},
 				"flower 18": {
 					"src": "/public/drawings/pickups/flower-18.json",
 					"x": -67, "y": -803,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "we will still be alone"
 				},
 				"flower 19": {
 					"src": "/public/drawings/pickups/flower-19.json",
 					"x": 3057, "y": 1988,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "alone like the moon"
 				},
 				"flower 20": {
 					"src": "/public/drawings/pickups/flower-20.json",
 					"x": -3779, "y": -1575,
-					"states": [0, 0, 1, 4, 4, 4, 5, 8]
+					"states": [0, 0, 1, 4, 4, 4, 5, 8],
+					"msg": "alone like the sun"
 				}
 			}
 		},

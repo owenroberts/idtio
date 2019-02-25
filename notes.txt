@@ -539,17 +539,20 @@ general to do
 - audio! - 
 - two more characters -
 - what the fuck is this even about??
+- writing/dialog rules
+- messages from pickups, ignore item gathering, they're just animations for now ... 
 - sound toggle
 - text for interactives 
-	- items - text should display in middle, not in upper left corner ...
-	- text triggered constantly?
-
-- random words for scenery?
-- exit to home in cursive
+	- items - text should display in middle, not in upper left corner ... - 
+	- text triggered constantly? - 
+- random words for scenery? - 
+- fix map
+- added isOnScreen to Sprite without removing from item dumb fuck
 
 drawing notes
-- but up state is too far away from idle state
-- 
+- bug up state is too far away from idle state
+- cactus left and right too big, kind of too big in general
+
 
 - before release/testing
 	- different origin point for each character
@@ -557,3 +560,4 @@ drawing notes
 	- lines sprites around color changing things
 	- remove redundant data, unnecessary file paths
 	- move punctuation to the right in letters
+	- exit to home in cursive

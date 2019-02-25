@@ -14,22 +14,21 @@ class Item extends Sprite {
 		});
 		if (params.states) {
 			this.animation.states = params.states;
-			this.animation.state = 'idle';
+			this.animation.state = params.state || 'idle';
 		}
 		if (params.r) this.animation.randomFrames = true;
 	}
 
-	display() {
+	display(isMap) {
 		if (this.isOnScreen()) { /* this could be permanent to sprite.js in Game ? */
 			super.display();
 			if (this.displayText) {
-				this.text.setPosition(this.position.x + this.width/2, this.position.y);
 				const ended = this.text.display(true, true);
 				if (ended && this.endText) this.displayText = false;
 			}
+		} else if (Game.map) {
+			super.display(true); // temp fix
 		}
-		else if (Game.map) // temp fix
-			super.display();
 	}
 
 	displayMessage(show, end) {
@@ -53,5 +52,6 @@ class Item extends Sprite {
 		this.position.x = this.x + offset.x;
 		this.position.y = this.y + offset.y;
 		this.center();
+		if (this.text) this.text.setPosition(this.position.x + this.width/2, this.position.y);
 	}
 }

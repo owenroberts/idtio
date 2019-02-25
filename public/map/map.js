@@ -1,8 +1,4 @@
-const map = {
-	interactives: {},
-	pickups: {},
-	scenery: []
-};
+const map = { interactives: {}, pickups: {}, scenery: {} };
 Game.map = true;
 const m = {
 	display: false,
@@ -10,29 +6,36 @@ const m = {
 	y: 0,
 	w: 0,
 	h: 0
-
 }
 
 function loadMap(data) {
-	for (let i = 0; i < data.interactives.length; i++) {
-		map.interactives[data.interactives[i].label] = new Item(data.interactives[i], false);
+	for (const label in data.interactives) {
+		map.interactives[label] = new Interactive(data.interactives[label], false);
 	}
 
-	for (let i = 0; i < data.pickups.length; i++) {
-		map.interactives[data.pickups[i].label] = new Item(data.pickups[i], false);
+	for (const type in data.pickups) {
+		const set = data.pickups[type].items;
+		for (const label in set) {
+			const item = set[label];
+			item.state = 'idle';
+			item.states = { idle: { start: 0, end: 0 } };
+			map.interactives[label] = new Interactive(item, false);
+		}
 	}
 
-	for (let i = 0; i < data.scenery.length; i++) {
-		// if (data.scenery[i].m) {
-			const item = new Item(data.scenery[i], false);
-			item.label = data.scenery[i].src.split('/').pop().split('.')[0]
-			map.scenery.push(item);
-		// }
+	for (const s in data.scenery) {
+		const set = data.scenery[s];
+		map.scenery[s] = [];
+		for (let i = 0; i < set.length; i++) {
+			const item = new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false);
+			map.scenery[s].push(item);
+			item.label = set[i].src.split('/').pop().split('.')[0];
+		}
 	}
 }
 
 function start() {
-	fetch('/public/data/map-data.json')
+	fetch('/public/data/map.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadMap(json));
 
@@ -43,7 +46,6 @@ function start() {
 function update() { /* for stats */}
 
 function draw() {
-
 	/* clear  */
 	const p1 = Game.ctx.transformedPoint(0,0);
 	const p2 = Game.ctx.transformedPoint(Game.canvas.width, Game.canvas.height);
@@ -61,9 +63,15 @@ function draw() {
 		map.interactives[interactive].display();
 		Game.ctx.fillText(interactive, map.interactives[interactive].position.x, map.interactives[interactive].position.y);
 	}
-	for (let i = 0; i < map.scenery.length; i++) {
-		map.scenery[i].display();
-		Game.ctx.fillText(map.scenery[i].label, map.scenery[i].position.x, map.scenery[i].position.y);
+
+	for (const s in map.scenery) {
+		const set = map.scenery[s];
+		for (let i = 0; i < set.length; i++) {
+			const item = map.scenery[s][i];
+			Game.ctx.strokeStyle = '#000000';
+			item.display();
+			Game.ctx.fillText(`${s} ${item.label}`, item.position.x, item.position.y);
+		}
 	}
 
 	/* measurement */
@@ -121,7 +129,6 @@ function mouseDown(x, y, button) {
 		m.y = p.y;
 		m.display = true;
 	}
-	
 }
 
 function mouseUp(x, y, button) {
@@ -132,7 +139,7 @@ function mouseUp(x, y, button) {
 		m.display = false;
 }
 
-Game.init(window.innerWidth, window.innerHeight, 1, false);
+Game.init({width: window.innerWidth, height: window.innerHeight, lps: 5, debug: false});
 
 document.addEventListener('mousedown', function(ev) {
 	if (ev.which == 3) {
@@ -146,7 +153,7 @@ trackTransforms(Game.ctx);
 const scaleFactor = 1.05;
 function zoom(clicks) {
 	const pt = Game.ctx.transformedPoint(offset.px, offset.py);
-	Game.ctx.translate(pt.x,pt.y);
+	Game.ctx.translate(pt.x, pt.y);
 	const factor = Math.pow(scaleFactor, clicks);
 	Game.ctx.scale(factor, factor);
 	Game.ctx.translate(-pt.x, -pt.y);
