@@ -548,6 +548,7 @@ general to do
 - random words for scenery? - 
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
+- initLittering in game not implemented?
 
 drawing notes
 - bug up state is too far away from idle state

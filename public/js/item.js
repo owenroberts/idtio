@@ -9,7 +9,7 @@ class Item extends Sprite {
 			if (params.msg) {
 				this.displayText = false;
 				this.endText = true;
-				this.text = new Text(this.x, this.y, params.msg, params.wrap, Game.letters);
+				this.text = new Text(this.x, this.y, params.msg.toLowerCase(), params.wrap, Game.letters);
 			}
 		});
 		if (params.states) {
