@@ -51,9 +51,6 @@ function loadUI(data) {
 				socket.emit(u.callback.route, u.callback.message);
 			};
 		}
-		// if (u.func) {
-		// 	window[u.func]();
-		// }
 		if (u.key) {
 			document.addEventListener('keydown', function(ev) {
 				if (Cool.keys[ev.which] == u.key && u.scenes.indexOf(currentScene) != -1) {
@@ -63,6 +60,13 @@ function loadUI(data) {
 		}
 		for (let i = 0; i < u.scenes.length; i++) {
 			scenes[u.scenes[i]].ui[key] = ui;
+		}
+	}
+
+	for (const key in data.toggles) {
+		const toggle = new Toggle(data.toggles[key]);
+		for (let i = 0; i < data.toggles[key].scenes.length; i++) {
+			scenes[data.toggles[key].scenes[i]].ui[key] = toggle;
 		}
 	}
 

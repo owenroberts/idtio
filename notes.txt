@@ -542,18 +542,25 @@ general to do
 - writing/dialog rules
 - messages from pickups, ignore item gathering, they're just animations for now ... 
 - sound toggle
+- weather toggle
 - text for interactives 
 	- items - text should display in middle, not in upper left corner ... - 
 	- text triggered constantly? - 
+	- grass ?
+	- windmills etc.
+	- keep wrecked house?
 - random words for scenery? - 
+
+
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
 - initLittering in game not implemented?
 
 drawing notes
 - bug up state is too far away from idle state
-- cactus left and right too big, kind of too big in general
-
+- cactus left and right too big, kind of too big in general - cactus small
+- tv cut dots from up state
+- worm small
 
 - before release/testing
 	- different origin point for each character

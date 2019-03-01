@@ -222,47 +222,57 @@
 				"end": {"start": 4, "end": 5 },
 				"reborn": {"start": 6, "end": 7 }
 			},
-			"states": [0, 0, 1, 6, 6, 6, 7, 9 ],
+			"states": [0, 0, 1, 6, 6, 6, 7, 9],
 			"items": {
 				"heart 0": {
 					"src": "/public/drawings/pickups/heart-0.json",
-					"x": -2052, "y": 835
+					"x": -2052, "y": 835,
+					"msg": "give me a chance."
 				},
 				"heart 1": {
 					"src": "/public/drawings/pickups/heart-1.json",
-					"x": 3175, "y": -2357
+					"x": 3175, "y": -2357,
+					"msg": "give me to your lover."
 				},
 				"heart 2": {
 					"src": "/public/drawings/pickups/heart-2.json",
-					"x": -2412, "y": -2077
+					"x": -2412, "y": -2077,
+					"msg": "give me to your spirit."
 				},
 				"heart 3": {
 					"src": "/public/drawings/pickups/heart-3.json",
-					"x": 5266, "y": 2703
+					"x": 5266, "y": 2703,
+					"msg": "find my home."
 				},
 				"heart 4": {
 					"src": "/public/drawings/pickups/heart-4.json",
-					"x": -8820, "y": -3194
+					"x": -8820, "y": -3194,
+					"msg": "it's okay to be alone."
 				},
 				"heart 5": {
 					"src": "/public/drawings/pickups/heart-5.json",
-					"x": -6298, "y": 2777
+					"x": -6298, "y": 2777,
+					"msg": "i'm a lump."
 				},
 				"heart 6": {
 					"src": "/public/drawings/pickups/heart-6.json",
-					"x": -8162, "y": 1303
+					"x": -8162, "y": 1303,
+					"msg": "i've forgotten who i am."
 				},
 				"heart 7": {
 					"src": "/public/drawings/pickups/heart-7.json",
-					"x": -2735, "y": -1980
+					"x": -2735, "y": -1980,
+					"msg": "dig me a grave."
 				},
 				"heart 8": {
 					"src": "/public/drawings/pickups/heart-8.json",
-					"x": -4303, "y": -743
+					"x": -4303, "y": -743,
+					"msg": "where have you been?"
 				},
 				"heart 9": {
 					"src": "/public/drawings/pickups/heart-9.json",
-					"x": -7849, "y": 3548
+					"x": -7849, "y": 3548,
+					"msg": "take me with you to the void."
 				}
 			}
 		}

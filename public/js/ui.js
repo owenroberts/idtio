@@ -3,10 +3,9 @@ class UI extends Sprite {
 		super(params.x, params.y);
 		this.debug = debug;
 		this.addAnimation(params.src, () => {
-			// this.center();
 			if (params.state) this.animation.setState(params.state);
 		});
-		this.selected = false;
+		this.selected = params.selected || false;
 		this.animation.states = params.states;
 		this.animation.state = 'idle';
 		this.clickStart = false;

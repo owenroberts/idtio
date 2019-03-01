@@ -99,6 +99,22 @@
 			"scenes": [ "splash" ]
 		}
 	},
+	"toggles": {
+		"sound": {
+			"src": "/public/drawings/ui/sound.json",
+			"x": 200, "y": 0,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 2, "end": 2 },
+				"active": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "exit", "splash" ],
+			"func": "toggleSound",
+			"state": "active",
+			"selected": true
+		}
+	},
 	"uis": {
 		"exit": {
 			"src": "/public/drawings/ui/exit.json",
@@ -164,20 +180,6 @@
 				"message": "game"
 			},
 			"key": "escape"
-		},
-		"sound": {
-			"src": "/public/drawings/ui/sound.json",
-			"x": 200, "y": -20,
-			"states" : {
-				"idle": { "start": 0, "end": 0 },
-				"over": { "start": 1, "end": 2 },
-				"selected": { "start": 2, "end": 2 },
-				"active": { "start": 3, "end": 3 }
-			},
-			"scenes": [ "exit", "splash" ],
-			"func": "toggleSound",
-			"state": "active",
-			"selected": true
 		},
 		"cat": {
 			"src": "/public/drawings/characters/cat/selection.json",
