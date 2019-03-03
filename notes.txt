@@ -543,6 +543,8 @@ general to do
 - messages from pickups, ignore item gathering, they're just animations for now ... 
 - sound toggle
 - weather toggle
+	- multiple weathers?
+
 - text for interactives 
 	- items - text should display in middle, not in upper left corner ... - 
 	- text triggered constantly? - 
@@ -561,6 +563,8 @@ drawing notes
 - cactus left and right too big, kind of too big in general - cactus small
 - tv cut dots from up state
 - worm small
+- clouds all same frame - jump around too fast
+
 
 - before release/testing
 	- different origin point for each character

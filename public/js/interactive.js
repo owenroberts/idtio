@@ -30,7 +30,7 @@ class Interactive extends Item {
 
 	return() {
 		this.animation.setState('reborn');
-		this.animation.placeOnce(() => {
+		this.animation.playOnce(() => {
 			this.animation.setState('idle');
 		});
 	}

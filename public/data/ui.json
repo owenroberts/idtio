@@ -102,7 +102,7 @@
 	"toggles": {
 		"sound": {
 			"src": "/public/drawings/ui/sound.json",
-			"x": 200, "y": 0,
+			"x": 170, "y": 0,
 			"states" : {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 2 },
@@ -111,6 +111,20 @@
 			},
 			"scenes": [ "exit", "splash" ],
 			"func": "toggleSound",
+			"state": "active",
+			"selected": true
+		},
+		"weather": {
+			"src": "/public/drawings/ui/weather.json",
+			"x": 310, "y": 10,
+			"states" : {
+				"idle": { "start": 0, "end": 0 },
+				"over": { "start": 1, "end": 2 },
+				"selected": { "start": 2, "end": 2 },
+				"active": { "start": 3, "end": 3 }
+			},
+			"scenes": [ "exit", "splash" ],
+			"func": "toggleWeather",
 			"state": "active",
 			"selected": true
 		}
