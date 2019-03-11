@@ -3,7 +3,7 @@ class Text {
 		this.x = x;
 		this.y = y;
 		this.msg = msg;
-		this.wrap = wrap;
+		this.wrap = wrap || 12;
 		this.active = true;
 		this.letters = letters;
 		this.breaks = [];

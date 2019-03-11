@@ -24,7 +24,7 @@ class Character extends Sprite {
 		}
 
 		// dialog bubble 
-		this.story = new Text(this.position.x, this.position.y, "", 10, this.letters);
+		this.story = new Text(this.position.x, this.position.y, "", 12, this.letters);
 		this.story.alive = false;
 		this.bubble = new Animation(data.bubble.src, false);
 		this.bubble.load(false, () => {

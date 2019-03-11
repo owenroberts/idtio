@@ -107,7 +107,7 @@ function toggleSound() {
 		theme = new Audio('/public/audio/theme.mp3');
 		theme.volume = 0.5;
 		theme.loop = true;
-		theme.play();
+		if (currentScene != 'game') theme.play();
 		for (let i = 0; i < 8; i++) {
 			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
 			clips[i].loop = true;
@@ -157,12 +157,13 @@ function toggleWeather() {
 						currentWeather.src = '/public/drawings/weather/clouds-heavy.json';
 					else
 						currentWeather.src = '/public/drawings/weather/clouds.json';
-				} else if (weather.wind.speed > 0) {
-					if (weather.wind.speed > 7)
+				} else if (data.wind.speed > 0) {
+					currentWeather.randomFrames = false;
+					if (data.wind.speed > 7)
 						currentWeather.src = '/public/drawings/weather/wind-heavy.json';
-					if (weather.wind.speed > 4)
+					if (data.wind.speed > 4)
 						currentWeather.src = '/public/drawings/weather/wind.json';
-					if (weather.wind.speed > 1)
+					if (data.wind.speed > 1)
 						currentWeather.src = '/public/drawings/weather/wind-light.json';
 				} else if (weather.includes('mist')) {
 					currentWeather.src = '/public/drawings/weather/mist.json';
@@ -290,7 +291,7 @@ function start() {
 function draw() {
 	if (currentScene == 'loading') {
 		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading) {
-				currentScene = 'splash';
+			currentScene = 'splash';
 			colorPicker.style.display = 'block';
 		}
 	}
@@ -325,6 +326,7 @@ function draw() {
 			for (let x = 0; x <= Game.width; x += 512) {
 				for (let y = 0; y <= Game.height; y += 512) {
 					currentWeather.draw(x, y);
+					// currentWeather.random();
 					// currentWeather.updateFrame();
 				}
 			}

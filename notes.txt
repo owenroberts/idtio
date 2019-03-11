@@ -544,6 +544,7 @@ general to do
 - sound toggle
 - weather toggle
 	- multiple weathers?
+	- fix weather randomness
 
 - text for interactives 
 	- items - text should display in middle, not in upper left corner ... - 
@@ -551,12 +552,22 @@ general to do
 	- grass ?
 	- windmills etc.
 	- keep wrecked house?
+	- cut intro tree interaction, other speech bubble trees
 - random words for scenery? - 
-
+- arms and legs? and collisions
+	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
+	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
+- animated interactives?
+- move flowers around
 
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
 - initLittering in game not implemented?
+- ui class also added to lines/game but not implemented
+- fix distance to sprite size
+- what happens when the void is found???
+- new instructions sprites
+- south beach order
 
 drawing notes
 - bug up state is too far away from idle state
@@ -564,6 +575,9 @@ drawing notes
 - tv cut dots from up state
 - worm small
 - clouds all same frame - jump around too fast
+- cactus bubble is off
+- wind with explode over multiple things
+- more grass
 
 
 - before release/testing
@@ -573,3 +587,4 @@ drawing notes
 	- remove redundant data, unnecessary file paths
 	- move punctuation to the right in letters
 	- exit to home in cursive
+	- fit all drawings

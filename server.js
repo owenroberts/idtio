@@ -48,8 +48,10 @@ for (const label in mapData.scenery) {
 	const set = mapData.scenery[label];
 	items[label] = [];
 	for (let i = 0; i < set.length; i++) {
-		set[i].distance = 100;
-		items[label].push( new Entity(set[i]) );
+		if (set[i].msg) {
+			set[i].distance = 200;
+			items[label].push(new Entity(set[i]));
+		}
 	}
 }
 
