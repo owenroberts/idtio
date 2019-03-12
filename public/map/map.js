@@ -22,23 +22,27 @@ function loadMap(data) {
 	// 		map.interactives[label] = new Interactive(item, false);
 	// 	}
 	// }
-	for (const key in data.pickups.flower.items) {
-		const item = data.pickups.flower.items[key];
-		item.state = 'idle';
-		item.states = { idle: { start: 0, end: 0 } };
-		// console.log(item.src);
-		map.interactives[key] = new Interactive(item, item.src, false);
-	}
-
-	// for (const s in data.scenery) {
-	// 	const set = data.scenery[s];
-	// 	map.scenery[s] = [];
-	// 	for (let i = 0; i < set.length; i++) {
-	// 		const item = new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false);
-	// 		map.scenery[s].push(item);
-	// 		item.label = set[i].src.split('/').pop().split('.')[0];
-	// 	}
+	// for (const key in data.pickups.flower.items) {
+	// 	const item = data.pickups.flower.items[key];
+	// 	item.state = 'idle';
+	// 	item.states = { idle: { start: 0, end: 0 } };
+	// 	// console.log(item.src);
+	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
+
+	const scenes = ['north-beach', 'north-waves', 'south-beach', 'south-waves', 'spine', 'river', 'forest'];
+
+	for (const s in data.scenery) {
+		if (scenes.includes(s)) {
+			const set = data.scenery[s];
+			map.scenery[s] = [];
+			for (let i = 0; i < set.length; i++) {
+				const item = new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false);
+				map.scenery[s].push(item);
+				item.label = set[i].src.split('/').pop().split('.')[0];
+			}
+		}
+	}
 }
 
 function start() {
@@ -146,7 +150,7 @@ function mouseUp(x, y, button) {
 		m.display = false;
 }
 
-Game.init({width: window.innerWidth, height: window.innerHeight, lps: 5, debug: false});
+Game.init({width: window.innerWidth, height: window.innerHeight, lps: 10, debug: false});
 
 document.addEventListener('mousedown', function(ev) {
 	if (ev.which == 3) {

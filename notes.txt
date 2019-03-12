@@ -545,12 +545,6 @@ to done
 	- multiple weathers?
 - fix weather randomness
 - reload weather
-
-
-undoable
-- what the fuck is this even about??
-
-general to do
 - test all weathers
 - text for interactives 
 	- items - text should display in middle, not in upper left corner ... - 
@@ -560,12 +554,16 @@ general to do
 	- keep wrecked house?
 	- cut intro tree interaction, other speech bubble trees
 - random words for scenery? - 
-- arms and legs? and collisions
-	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
-	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
+
+
+undoable
+- what the fuck is this even about??
+
+general to do
+- arms and legs? 
+
 - animated interactives?
 - move flowers around - bunches
-
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
 - initLittering in game not implemented?
@@ -609,6 +607,9 @@ maybe
 -  weather offset one but not others
 	- would need four weather sprites
 - resize
+- world collisions
+	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
+	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
 
 
 lines follow over missing first segment?
