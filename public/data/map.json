@@ -458,6 +458,24 @@
 			{ "src": "23.json", "r": true, "x": 1398, "y": -3992 },
 			{ "src": "24.json", "r": true, "x": -2905, "y": -3500 }
 		],
+		"east-shore": [
+			{ "src": "0.json", "r": true, "x": 6019, "y": -4279 },
+			{ "src": "1.json", "r": true, "x": 5174, "y": -3544 },
+			{ "src": "2.json", "r": true, "x": 4199, "y": -2858 },
+			{ "src": "3.json", "r": true, "x": 4949, "y": -2136 },
+			{ "src": "4.json", "r": true, "x": 5879, "y": -1414 },
+			{ "src": "5.json", "r": true, "x": 7007, "y": -1291 },
+			{ "src": "6.json", "r": true, "x": 8055, "y": -1732 },
+			{ "src": "7.json", "r": true, "x": 9003, "y": -1978 },
+			{ "src": "8.json", "r": true, "x": 9958, "y": -1243 },
+			{ "src": "9.json", "r": true, "x": 9003, "y": -1978 },
+			{ "src": "10.json", "r": true, "x": 10435, "y": -380 },
+			{ "src": "11.json", "r": true, "x": 10252, "y": 485 },
+			{ "src": "12.json", "r": true, "x": 9301, "y": 1259 },
+			{ "src": "13.json", "r": true, "x": 8202, "y": 1974 },
+			{ "src": "14.json", "r": true, "x": 7203, "y": 2512 }
+
+		],
 		"south-beach": [
 			{ "msg": "its", "r": true, "src": "0.json", "x": 0, "y": 3000 	},
 			{ "msg": "the", "r": true, "src": "1.json", "x": 1000, "y": 3000 	},
