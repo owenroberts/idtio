@@ -244,6 +244,7 @@ io.on('connection', function(socket) {
 	socket.on('exit game', () => {
 		exitGame(true);
 	});
+	
 	socket.on('disconnect', () => {
 		exitGame(false);
 	});

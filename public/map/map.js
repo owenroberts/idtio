@@ -9,29 +9,36 @@ const m = {
 }
 
 function loadMap(data) {
-	for (const label in data.interactives) {
-		map.interactives[label] = new Interactive(data.interactives[label], false);
+	// for (const label in data.interactives) {
+	// 	map.interactives[label] = new Interactive(data.interactives[label], false);
+	// }
+
+	// for (const type in data.pickups) {
+	// 	const set = data.pickups[type].items;
+	// 	for (const label in set) {
+	// 		const item = set[label];
+	// 		item.state = 'idle';
+	// 		item.states = { idle: { start: 0, end: 0 } };
+	// 		map.interactives[label] = new Interactive(item, false);
+	// 	}
+	// }
+	for (const key in data.pickups.flower.items) {
+		const item = data.pickups.flower.items[key];
+		item.state = 'idle';
+		item.states = { idle: { start: 0, end: 0 } };
+		// console.log(item.src);
+		map.interactives[key] = new Interactive(item, item.src, false);
 	}
 
-	for (const type in data.pickups) {
-		const set = data.pickups[type].items;
-		for (const label in set) {
-			const item = set[label];
-			item.state = 'idle';
-			item.states = { idle: { start: 0, end: 0 } };
-			map.interactives[label] = new Interactive(item, false);
-		}
-	}
-
-	for (const s in data.scenery) {
-		const set = data.scenery[s];
-		map.scenery[s] = [];
-		for (let i = 0; i < set.length; i++) {
-			const item = new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false);
-			map.scenery[s].push(item);
-			item.label = set[i].src.split('/').pop().split('.')[0];
-		}
-	}
+	// for (const s in data.scenery) {
+	// 	const set = data.scenery[s];
+	// 	map.scenery[s] = [];
+	// 	for (let i = 0; i < set.length; i++) {
+	// 		const item = new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false);
+	// 		map.scenery[s].push(item);
+	// 		item.label = set[i].src.split('/').pop().split('.')[0];
+	// 	}
+	// }
 }
 
 function start() {

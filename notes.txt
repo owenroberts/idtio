@@ -535,17 +535,23 @@
 - pressing button really fast triggering walk anim ....
  	- not worth addressing right now
 
-general to do
+to done
 - audio! - 
 - two more characters -
-- what the fuck is this even about??
 - writing/dialog rules
 - messages from pickups, ignore item gathering, they're just animations for now ... 
 - sound toggle
 - weather toggle
 	- multiple weathers?
-	- fix weather randomness
+- fix weather randomness
+- reload weather
 
+
+undoable
+- what the fuck is this even about??
+
+general to do
+- test all weathers
 - text for interactives 
 	- items - text should display in middle, not in upper left corner ... - 
 	- text triggered constantly? - 
@@ -558,7 +564,7 @@ general to do
 	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
 - animated interactives?
-- move flowers around
+- move flowers around - bunches
 
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
@@ -569,6 +575,13 @@ general to do
 - new instructions sprites
 - south beach order
 
+writing to do
+- rewrite pickups
+- another pass on character dialog
+- void ?  what happens!!!
+- new anims/sceneries 
+
+
 drawing notes
 - bug up state is too far away from idle state
 - cactus left and right too big, kind of too big in general - cactus small
@@ -578,6 +591,8 @@ drawing notes
 - cactus bubble is off
 - wind with explode over multiple things
 - more grass
+- waves dont look good
+- logo anim with dots instead of x
 
 
 - before release/testing
@@ -588,3 +603,12 @@ drawing notes
 	- move punctuation to the right in letters
 	- exit to home in cursive
 	- fit all drawings
+
+
+maybe
+-  weather offset one but not others
+	- would need four weather sprites
+- resize
+
+
+lines follow over missing first segment?

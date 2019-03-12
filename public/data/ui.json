@@ -1,7 +1,7 @@
 {
 	"sprites": {
 		"logo": {
-			"src": "/public/drawings/ui/idtio.json",
+			"src": "/public/drawings/ui/idtio_anim.json",
 			"x": 0, "y": 0,
 			"scenes": [
 				"loading",

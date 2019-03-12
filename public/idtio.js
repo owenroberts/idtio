@@ -93,13 +93,18 @@ function loadUI(data) {
 	assetsLoaded.splash = true;
 }
 
+/* sound */
 let theme;
 const clips = [];
 let gameSoundOn = false;
+
+/* weather */
 let weatherOn = false;
-let currentWeather = new Animation();
+const currentWeather = new Animation(undefined, true);
 currentWeather.randomFrames = true;
-let weatherInterval; /* check weather updates?  10 mins? */
+currentWeather.prevFrameCheck = true;
+const weatherTime = 1000 * 60 * 5;
+let weatherInterval, zip; /* check weather updates?  10 mins? */
 
 function toggleSound() {
 	/* load audio if not loaded */
@@ -125,56 +130,67 @@ function toggleSound() {
 }
 
 function toggleWeather() {
-	if (weatherOn) weatherOn = false;
+	if (weatherOn) {
+		weatherOn = false;
+		clearInterval(weatherInterval);
+	}
 	else {
 		weatherOn = true;
-		const zip = prompt("Enter zip code.");
-		const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=915153355d273e3ff9959dd900a3834f`;
-		fetch(url)
-			.then(response => { return response.json() })
-			.then(data => {
-				console.log(data);
-				const weather = data.weather[0].description;
-				currentWeather.src = undefined;
-				if (weather.includes('rain')) {
-					if (weather.includes('light') || weather.includes('drizzle'))
-						currentWeather.src = '/public/drawings/weather/rain-light.json';
-					else if (weather.includes('heavy') || weather.includes('shower') || weather.includes('extreme'))
-						currentWeather.src = '/public/drawings/weather/rain-heavy.json';
-					else
-						currentWeather.src = '/public/drawings/weather/rain.json';
-				} else if (weather.includes('snow')) {
-					if (weather.includes('light'))
-						currentWeather.src = '/public/drawings/weather/snow-light.json';
-					else if (weather.includes('heavy'))
-						currentWeather.src = '/public/drawings/weather/snow-heavy.json';
-					else
-						currentWeather.src = '/public/drawings/weather/snow.json';
-				} else if (weather.includes('clouds')) {
-					if (weather.includes('few') || weather.includes('scattered'))
-						currentWeather.src = '/public/drawings/weather/clouds-light.json';
-					else if (weather.includes('overcast'))
-						currentWeather.src = '/public/drawings/weather/clouds-heavy.json';
-					else
-						currentWeather.src = '/public/drawings/weather/clouds.json';
-				} else if (data.wind.speed > 0) {
-					currentWeather.randomFrames = false;
-					if (data.wind.speed > 7)
-						currentWeather.src = '/public/drawings/weather/wind-heavy.json';
-					if (data.wind.speed > 4)
-						currentWeather.src = '/public/drawings/weather/wind.json';
-					if (data.wind.speed > 1)
-						currentWeather.src = '/public/drawings/weather/wind-light.json';
-				} else if (weather.includes('mist')) {
-					currentWeather.src = '/public/drawings/weather/mist.json';
-				} else if (weather.includes('fog')) {
-					currentWeather.src = '/public/drawings/weather/fog.json';
-				}
-				currentWeather.src = '/public/drawings/weather/wind-light.json'
-				if (currentWeather.src) currentWeather.load(false);
-			})
-			.catch(error => { console.log(error) });
+		checkWeather();
 	}
+}
+
+function checkWeather() {
+	if (!zip) zip = prompt("Enter zip code.");
+	const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=915153355d273e3ff9959dd900a3834f`;
+	fetch(weatherURL)
+		.then(response => { return response.json() })
+		.then(data => {
+			// console.log(data);
+			const weather = data.weather[0].description;
+			currentWeather.src = undefined;
+			if (weather.includes('rain')) {
+				if (weather.includes('light') || weather.includes('drizzle'))
+					currentWeather.src = '/public/drawings/weather/rain-light.json';
+				else if (weather.includes('heavy') || weather.includes('shower') || weather.includes('extreme'))
+					currentWeather.src = '/public/drawings/weather/rain-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/rain.json';
+			} else if (weather.includes('snow')) {
+				if (weather.includes('light'))
+					currentWeather.src = '/public/drawings/weather/snow-light.json';
+				else if (weather.includes('heavy'))
+					currentWeather.src = '/public/drawings/weather/snow-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/snow.json';
+			} else if (weather.includes('clouds')) {
+				currentWeather.randomFrames = false;
+				if (weather.includes('few') || weather.includes('scattered'))
+					currentWeather.src = '/public/drawings/weather/clouds-light.json';
+				else if (weather.includes('overcast'))
+					currentWeather.src = '/public/drawings/weather/clouds-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/clouds.json';
+			} else if (data.wind.speed > 0) {
+				currentWeather.randomFrames = false;
+				if (data.wind.speed > 7)
+					currentWeather.src = '/public/drawings/weather/wind-heavy.json';
+				else if (data.wind.speed > 4)
+					currentWeather.src = '/public/drawings/weather/wind.json';
+				else if (data.wind.speed > 1)
+					currentWeather.src = '/public/drawings/weather/wind-light.json';
+			} else if (weather.includes('mist')) {
+				currentWeather.src = '/public/drawings/weather/mist.json';
+			} else if (weather.includes('fog')) {
+				currentWeather.src = '/public/drawings/weather/fog.json';
+			}
+			currentWeather.src = '/public/drawings/weather/fog.json'
+			// currentWeather.randomFrames = false;
+			// console.log(currentWeather.src);
+			if (currentWeather.src) currentWeather.load(false);
+			weatherInterval = setInterval(checkWeather, weatherTime);
+		})
+		.catch(error => { console.log(error) });
 }
 
 function updateAudio(_x, _y) {
