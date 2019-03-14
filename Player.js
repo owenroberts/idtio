@@ -44,10 +44,11 @@ class Player extends Entity {
 	}
 
 	setBounds(width, height) {
-		this.bounds.top += height/2;
-		this.bounds.bottom -= height/2;
-		this.bounds.left -= width/2;
-		this.bounds.right += width/2;
+		/* window width and height */
+		this.bounds.top -= height;
+		this.bounds.bottom += height;
+		this.bounds.left -= width;
+		this.bounds.right += width;
 	}
 
 	join(character, socket) {

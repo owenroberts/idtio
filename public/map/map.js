@@ -8,6 +8,10 @@ const m = {
 	h: 0
 }
 
+window.addEventListener('keydown', ev => {
+	if (Cool.keys[ev.which] == 'r') location.reload();
+});
+
 function loadMap(data) {
 	// for (const label in data.interactives) {
 	// 	map.interactives[label] = new Interactive(data.interactives[label], false);
@@ -22,15 +26,15 @@ function loadMap(data) {
 	// 		map.interactives[label] = new Interactive(item, false);
 	// 	}
 	// }
-	// for (const key in data.pickups.flower.items) {
-	// 	const item = data.pickups.flower.items[key];
-	// 	item.state = 'idle';
-	// 	item.states = { idle: { start: 0, end: 0 } };
-	// 	// console.log(item.src);
-	// 	map.interactives[key] = new Interactive(item, item.src, false);
-	// }
+	for (const key in data.pickups.flower.items) {
+		const item = data.pickups.flower.items[key];
+		item.state = 'idle';
+		item.states = { idle: { start: 0, end: 0 } };
+		// console.log(item.src);
+		map.interactives[key] = new Interactive(item, item.src, false);
+	}
 
-	const scenes = ['north-beach', 'south-beach', 'east-shore', 'spine', 'river', 'forest', 'waves'];
+	const scenes = ['north-beach', 'south-beach', 'spine', 'river'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -43,6 +47,22 @@ function loadMap(data) {
 			}
 		}
 	}
+
+	/* textures tags r is random, a is animate, i is index */
+	// for (const t in data.textures) {
+	// 	map.scenery[t] = [];
+	// 	const texture = data.textures[t];
+	// 	for (let j = 0; j < texture.length; j++) {
+	// 		const set = texture[j];
+	// 		for (let i = 0; i < set.position.length; i++) {
+	// 			const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
+	// 			map.scenery[t].push(item);
+	// 			item.label = set.src.split('/').pop().split('.')[0] + ` ${i}`;
+	// 			if (set.tags.includes("r")) item.animation.randomFrames = true;
+	// 			if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
+	// 		}
+	// 	}
+	// }
 }
 
 function start() {

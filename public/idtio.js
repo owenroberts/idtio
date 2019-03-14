@@ -260,10 +260,25 @@ function loadMap(data) {
 		scenes.game.scenery[s] = [];
 		for (let i = 0; i < set.length; i++) {
 			setTimeout(() => {
-				scenes.game.scenery[s].push(new Item(set[i], `/public/drawings/scenery/${s}-${set[i].src}`, false));
+				scenes.game.scenery[s].push(new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false));
 			}, 1);
 		}
 	}
+
+	for (const t in data.textures) {
+		scenes.game.scenery[t] = [];
+		const texture = data.textures[t];
+		for (let j = 0; j < texture.length; j++) {
+			const set = texture[j];
+			for (let i = 0; i < set.position.length; i++) {
+				const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
+				scenes.game.scenery[t].push(item);
+				if (set.tags.includes("r")) item.animation.randomFrames = true;
+				if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
+			}
+		}
+	}
+
 	assetsLoaded.map = true;
 }
 

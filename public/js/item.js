@@ -5,7 +5,7 @@ class Item extends Sprite {
 		this.y = params.y;
 		this.debug = debug;
 		this.addAnimation(src, () => {
-			// this.center();
+			this.center();
 			if (params.msg) {
 				this.displayText = false;
 				this.endText = true;

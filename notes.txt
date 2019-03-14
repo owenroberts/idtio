@@ -554,35 +554,36 @@ to done
 	- keep wrecked house?
 	- cut intro tree interaction, other speech bubble trees
 - random words for scenery? - 
-
+- waves - 
+- fix map - 
+- grass brush - 
 
 undoable
 - what the fuck is this even about??
 
 general to do
-- waves
 - move flowers around - bunches
-- fix map
+- move all palm trees to the south
 - added isOnScreen to Sprite without removing from item dumb fuck
-- initLittering in game not implemented?
-- ui class also added to lines/game but not implemented
 - fix distance to sprite size
-- what happens when the void is found???
 - new instructions sprites
 - south beach order
 - animation rewards for resources
 	- animated interactives?
-- grass brush
 - east shore 9
-- arms and legs? 
-
+- what happens when the void is found???
+- smaller exit button
+- diagonal shore text in weird position - cut for now
 
 writing to do
 - rewrite pickups
 - another pass on character dialog
 - void ?  what happens!!!
 - new anims/sceneries 
-
+- trees - no meaning of life, no cryptic lame shit
+- no lame shit!
+	- ive forgotten who i am - who cares!
+	- resources need to have apparently interesting information bc they get eaten up
 
 drawing notes
 - bug up state is too far away from idle state
@@ -596,7 +597,6 @@ drawing notes
 - waves dont look good
 - logo anim with dots instead of x
 
-
 - before release/testing
 	- different origin point for each character
 	- jig animations and stuff
@@ -606,8 +606,16 @@ drawing notes
 	- exit to home in cursive
 	- fit all drawings
 
+- after indiecade submission
+	- initLittering in game not implemented?
+	- ui class also added to lines/game but not implemented
+	- arms and legs? 
+	- waves not squares, overlap etc 
+	- resources timeout?
+	- player timeout?
+
 for later
-- no map edges
+- no map edges ?
 
 
 maybe
@@ -617,6 +625,6 @@ maybe
 - world collisions
 	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
-
+- gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
 
 lines follow over missing first segment?
