@@ -30,7 +30,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['north-beach', 'south-beach', 'east-shore', 'spine', 'river', 'forest'];
+	const scenes = ['north-beach', 'south-beach', 'east-shore', 'spine', 'river', 'forest', 'waves'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -39,7 +39,7 @@ function loadMap(data) {
 			for (let i = 0; i < set.length; i++) {
 				const item = new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false);
 				map.scenery[s].push(item);
-				item.label = set[i].src.split('/').pop().split('.')[0];
+				item.label = set[i].src.split('/').pop().split('.')[0] + ` ${i}`;
 			}
 		}
 	}

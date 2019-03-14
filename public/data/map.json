@@ -416,6 +416,32 @@
 			{ "msg": "why aren't you listening?", "src": "8.json", "x": 2213, "y": 2240 },
 			{ "msg": "the meaning of life will be here soon.", "src": "9.json", "x": -1295, "y": 1394 }
 		],
+		"waves": [
+			{ "src": "waves.json", "r": true, "x": -6039, "y": -3775 },
+			{ "src": "waves.json", "r": true, "x": -5045, "y": -3733 },
+			{ "src": "waves.json", "r": true, "x": -4063, "y": -3717 },
+			{ "src": "waves.json", "r": true, "x": -3074, "y": -3782 },
+			{ "src": "waves.json", "r": true, "x": -2011, "y": -3754 },
+			{ "src": "waves.json", "r": true, "x": -974, "y": -3689 },
+			{ "src": "waves.json", "r": true, "x": 63, "y": -3684 },
+			{ "src": "waves.json", "r": true, "x": 1041, "y": -3707 },
+			{ "src": "waves.json", "r": true, "x": 2078, "y": -3626 },
+			{ "src": "waves.json", "r": true, "x": -6001, "y": -4381 },
+			{ "src": "waves.json", "r": true, "x": -4994, "y": -4431 },
+			{ "src": "waves.json", "r": true, "x": -4021, "y": -4321 },
+			{ "src": "waves.json", "r": true, "x": -3036, "y": -4408 },
+			{ "src": "waves.json", "r": true, "x": -2007, "y": -4333 },
+			{ "src": "waves.json", "r": true, "x": -909, "y": -4329 },
+			{ "src": "waves.json", "r": true, "x": 5, "y": -4315 },
+			{ "src": "waves.json", "r": true, "x": 1001, "y": -4211 },
+			{ "src": "waves.json", "r": true, "x": 2003, "y": -4355 },
+
+			{ "src": "waves.json", "r": true, "x": -6936, "y": -4344 },
+
+			{ "src": "waves-top-right.json", "r": true, "x": -7808, "y": -4269 },
+			{ "src": "waves-top-right.json", "r": true, "x": -6983, "y": -3637 }
+
+		],
 		"north-beach": [
 			{ "msg": "sad",  "r": true, "src": "0.json", "x": 0, "y": -3000 },
 			{ "msg": "and",  "r": true, "src": "1.json", "x": -1012, "y": -3000 },
@@ -424,12 +450,12 @@
 			{ "msg": "find",  "r": true, "src": "4.json", "x": -4048, "y": -3000 },
 			{ "msg": "the",  "r": true, "src": "5.json", "x": -5050, "y": -3000 },
 			{ "msg": "lost",  "r": true, "src": "6.json", "x": -6062, "y": -3000 },
-			{ "msg": "void",  "r": true, "src": "7.json", "x": -7074, "y": -3250 },
-			{ "msg": "vast",  "r": true, "src": "8.json", "x": -7800, "y": -3800 },
+			{ "msg": "void",  "r": true, "src": "7.json", "x": -7074, "y": -3450 },
+			{ "msg": "vast",  "r": true, "src": "8.json", "x": -7800, "y": -4000 },
 			{ "msg": "and",  "r": true, "src": "9.json", "x": 1012, "y": -3000 },
 			{ "msg": "empty",  "r": true, "src": "10.json", "x": 2024, "y": -3000 },
-			{ "msg": "south",  "r": true, "src": "11.json", "x": 3036, "y": -3250 },
-			{ "msg": "goodbye",  "r": true, "src": "12.json", "x": 3948, "y": -4000 }
+			{ "msg": "south",  "r": true, "src": "11.json", "x": 3036, "y": -3500 },
+			{ "msg": "goodbye",  "r": true, "src": "12.json", "x": 3948, "y": -4250 }
 		],
 		"north-waves": [
 			{ "src": "0.json",  "r": true, "x": 0, "y": -3296 },
@@ -468,13 +494,15 @@
 			{ "src": "6.json", "r": true, "x": 8055, "y": -1732 },
 			{ "src": "7.json", "r": true, "x": 9003, "y": -1978 },
 			{ "src": "8.json", "r": true, "x": 9958, "y": -1243 },
-			{ "src": "9.json", "r": true, "x": 9003, "y": -1978 },
+		
 			{ "src": "10.json", "r": true, "x": 10435, "y": -380 },
-			{ "src": "11.json", "r": true, "x": 10252, "y": 485 },
-			{ "src": "12.json", "r": true, "x": 9301, "y": 1259 },
-			{ "src": "13.json", "r": true, "x": 8202, "y": 1974 },
-			{ "src": "14.json", "r": true, "x": 7203, "y": 2512 }
-
+			{ "src": "11.json", "r": true, "x": 10152, "y": 385 },
+			{ "src": "12.json", "r": true, "x": 9201, "y": 1059 },
+			{ "src": "13.json", "r": true, "x": 8102, "y": 1774 },
+			{ "src": "14.json", "r": true, "x": 7103, "y": 2312 },
+			{ "src": "15.json", "r": true, "x": 6024, "y": 2019 },
+			{ "src": "16.json", "r": true, "x": 6570, "y": 2747 },
+			{ "src": "17.json", "r": true, "x": 7424, "y": 3412 }
 		],
 		"south-beach": [
 			{ "msg": "its", "r": true, "src": "0.json", "x": 0, "y": 3000 	},

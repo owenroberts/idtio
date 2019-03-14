@@ -560,9 +560,7 @@ undoable
 - what the fuck is this even about??
 
 general to do
-- arms and legs? 
-
-- animated interactives?
+- waves
 - move flowers around - bunches
 - fix map
 - added isOnScreen to Sprite without removing from item dumb fuck
@@ -572,6 +570,12 @@ general to do
 - what happens when the void is found???
 - new instructions sprites
 - south beach order
+- animation rewards for resources
+	- animated interactives?
+- grass brush
+- east shore 9
+- arms and legs? 
+
 
 writing to do
 - rewrite pickups
@@ -601,6 +605,9 @@ drawing notes
 	- move punctuation to the right in letters
 	- exit to home in cursive
 	- fit all drawings
+
+for later
+- no map edges
 
 
 maybe
