@@ -9,6 +9,7 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 const mapData = require('./public/data/map.json');
+const characterData = require('./public/data/character.json');
 const script = require('./public/data/script.json');
 const Entity = require('./Entity.js'); 
 const Interactive = require('./Interactive.js'); 
@@ -191,6 +192,8 @@ io.on('connection', function(socket) {
 	socket.on('character join', (character) => {
 		if (inGame.indexOf(character) == -1) {
 			players[socket.id].character = character;
+			players[socket.id].x = characterData[character].x;
+			players[socket.id].y = characterData[character].y;
 			inGame.push(character);
 			io.sockets.emit('character selected', character, true);
 			players[socket.id].join(character, socket);

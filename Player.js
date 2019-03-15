@@ -2,7 +2,7 @@ const Entity = require('./Entity');
 
 class Player extends Entity {
 	constructor(socket) {
-		super({ x: 0, y: 768, distance: 250 });
+		super({ x: 0, y: 0, distance: 250 });
 		this.id = socket.id;
 		socket.emit('id', socket.id);
 		this.joinedGame = false;

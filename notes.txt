@@ -583,12 +583,10 @@ undoable
 - waves dont look good - 
 - logo anim with dots instead of x -
 - exit to home in cursive - 
+- void interaction with resources - 
+- different origin point for each character - 
 
-general to do
-- void interaction with resources
-- three voids
-- different origin point for each character
-- move punctuation to the right in letters
+void ntoes
 - animation rewards for resources
 	- animated interactives?
 - what happens when the void is found???
@@ -599,20 +597,21 @@ general to do
 	- new anims/sceneries 
 	- randomized offering requirements
 
-writing to do
+general to do
 - rewrite pickups
 - trees - no meaning of life, no cryptic lame shit
 - no lame shit!
 	- ive forgotten who i am - who cares!
 	- resources need to have apparently interesting information bc they get eaten up
-- another pass on character dialog
-
-- before release/testing
-	- lines sprites around color changing things
-	- remove redundant data, unnecessary file paths
-	- documentation
+	- or resources go back to "you got a heart or whatever"
+	- or do weird spelling, verbs etc.
+- new loading anim
+- documentation
+- move punctuation to the right in letters
 
 - after indiecade submission
+	- three voids
+	- another pass on character dialog
 	- initLittering in game not implemented?
 	- ui class also added to lines/game but not implemented
 	- arms and legs? 
@@ -631,6 +630,9 @@ writing to do
 	- fit all drawings
 	- jig animations and stuff (try making weird anim effects)
 	- clean up scenery, items, interactives etc.
+	- server classes folder
+	- lines sprites around color changing things
+	- remove redundant data, unnecessary file paths
 & drawing notes
 
 

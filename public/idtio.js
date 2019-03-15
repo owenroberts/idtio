@@ -288,7 +288,7 @@ function start() {
 			assetsLoaded.loading = true;
 		};
 	});
-	assetsLoaded.loading = true; // remove to play full loading anim
+	// assetsLoaded.loading = true; // remove to play full loading anim
 
 
 	fetch('/public/data/ui.json')
