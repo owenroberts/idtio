@@ -150,8 +150,8 @@
 		"bubble": {
 			"src": "/public/drawings/characters/cactus/bubble.json",
 			"states": {
-				"forward": { "start": 0, "end": 19 },
-				"reverse": { "start": 20, "end": 37 }
+				"forward": { "start": 0, "end": 30 },
+				"reverse": { "start": 31, "end": 52 }
 			}
 		}
 	},
@@ -172,8 +172,8 @@
 		"bubble": {
 			"src": "/public/drawings/characters/fish/bubble.json",
 			"states": {
-				"forward": { "start": 0, "end": 15 },
-				"reverse": { "start": 16, "end": 31 }
+				"forward": { "start": 0, "end": 23 },
+				"reverse": { "start": 24, "end": 46 }
 			}
 		}
 	},

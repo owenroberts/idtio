@@ -204,8 +204,8 @@
 		},
 		"pig": {
 			"src": "/public/drawings/characters/pig/selection.json",
-			"x": 200,
-			"y": 180,
+			"x": 10,
+			"y": 460,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 1 },
@@ -222,7 +222,7 @@
 		},
 		"birds": {
 			"src": "/public/drawings/characters/birds/selection.json",
-			"x": 400,
+			"x": 350,
 			"y": 120,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -256,8 +256,8 @@
 		},
 		"worm": {
 			"src": "/public/drawings/characters/worm/selection.json",
-			"x": 10,
-			"y": 450,
+			"x": 180,
+			"y": 310,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 1 },
@@ -273,7 +273,7 @@
 		"tv": {
 			"src": "/public/drawings/characters/tv/selection.json",
 			"x": 600,
-			"y": 150,
+			"y": 100,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 1 },
@@ -288,7 +288,7 @@
 		},
 		"cactus": {
 			"src": "/public/drawings/characters/cactus/selection.json",
-			"x": 700,
+			"x": 600,
 			"y": 450,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
@@ -304,8 +304,8 @@
 		},
 		"fish": {
 			"src": "/public/drawings/characters/fish/selection.json",
-			"x": 10,
-			"y": 700,
+			"x": 180,
+			"y": 200,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 1 },
@@ -320,8 +320,8 @@
 		},
 		"bug": {
 			"src": "/public/drawings/characters/bug/selection.json",
-			"x": 310,
-			"y": 650,
+			"x": 250,
+			"y": 550,
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 1 },

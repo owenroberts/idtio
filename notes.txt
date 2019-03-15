@@ -575,6 +575,13 @@ undoable
 - bug up state is too far away from idle state - 
 - cactus left and right too big, kind of too big in general - cactus small - 
 - tv cut dots from up state - 
+- worm small -
+- clouds all same frame - jump around too fast - 
+- cactus bubble is off - 
+- wind with explode over multiple things - 
+- more grass - 
+- waves dont look good - 
+- logo anim with dots instead of x -
 
 general to do
 - animation rewards for resources
@@ -593,16 +600,6 @@ writing to do
 	- ive forgotten who i am - who cares!
 	- resources need to have apparently interesting information bc they get eaten up
 - another pass on character dialog
-
-drawing notes
-
-- worm small
-- clouds all same frame - jump around too fast
-- cactus bubble is off
-- wind with explode over multiple things
-- more grass
-- waves dont look good
-- logo anim with dots instead of x
 
 - before release/testing
 	- different origin point for each character
@@ -628,6 +625,9 @@ drawing notes
 	- fucking figure out where texts go
 	- east shore 9 - drawing that i forgot to use
 	- full cactus redraw
+	- cursor over any ui
+& drawing notes
+
 
 
 for later

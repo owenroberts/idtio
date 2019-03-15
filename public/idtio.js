@@ -142,9 +142,10 @@ function checkWeather() {
 	fetch(weatherURL)
 		.then(response => { return response.json() })
 		.then(data => {
-			// console.log(data);
+			console.log(data);
 			const weather = data.weather[0].description;
 			currentWeather.src = undefined;
+			console.log(weather);
 			if (weather.includes('rain')) {
 				if (weather.includes('light') || weather.includes('drizzle'))
 					currentWeather.src = '/public/drawings/weather/rain-light.json';
@@ -180,7 +181,7 @@ function checkWeather() {
 			} else if (weather.includes('fog')) {
 				currentWeather.src = '/public/drawings/weather/fog.json';
 			}
-			currentWeather.src = '/public/drawings/weather/fog.json'
+			// currentWeather.src = '/public/drawings/weather/fog.json'
 			// currentWeather.randomFrames = false;
 			// console.log(currentWeather.src);
 			if (currentWeather.src) currentWeather.load(false);

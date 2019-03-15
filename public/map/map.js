@@ -49,20 +49,20 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	// for (const t in data.textures) {
-	// 	map.scenery[t] = [];
-	// 	const texture = data.textures[t];
-	// 	for (let j = 0; j < texture.length; j++) {
-	// 		const set = texture[j];
-	// 		for (let i = 0; i < set.position.length; i++) {
-	// 			const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
-	// 			map.scenery[t].push(item);
-	// 			item.label = set.src.split('/').pop().split('.')[0] + ` ${i}`;
-	// 			if (set.tags.includes("r")) item.animation.randomFrames = true;
-	// 			if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
-	// 		}
-	// 	}
-	// }
+	for (const t in data.textures) {
+		map.scenery[t] = [];
+		const texture = data.textures[t];
+		for (let j = 0; j < texture.length; j++) {
+			const set = texture[j];
+			for (let i = 0; i < set.position.length; i++) {
+				const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
+				map.scenery[t].push(item);
+				item.label = set.src.split('/').pop().split('.')[0] + ` ${i}`;
+				if (set.tags.includes("r")) item.animation.randomFrames = true;
+				if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
+			}
+		}
+	}
 }
 
 function start() {
