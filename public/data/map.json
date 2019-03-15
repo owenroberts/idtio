@@ -15,127 +15,127 @@
 					"src": "/public/drawings/pickups/flower-0.json",
 					"x": 500,  "y": 400,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "idtio was once a happy place."
+					"msg": "picked a flower"
 				},
 				"flower 1": {
 					"src": "/public/drawings/pickups/flower-1.json",
 					"x": 800, "y": 400,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "idtio was full of growing flowers."
+					"msg": "bicked a flower"
 				},
 				"flower 2":  {
 					"src": "/public/drawings/pickups/flower-2.json",
 					"x": 200, "y": 412,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "there were fires."
+					"msg": "flowed a flower"
 				},
 				"flower 3": {
 					"src": "/public/drawings/pickups/flower-3.json",
 					"x": 600, "y": 256,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "there were floods."
+					"msg": "flubbed a dlower"
 				},
 				"flower 4": {
 					"src": "/public/drawings/pickups/flower-4.json",
 					"x": 505, "y": 586,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "and plagues."
+					"msg": "skinked a flower"
 				},
 				"flower 5": {
 					"src": "/public/drawings/pickups/flower-5.json",
 					"x": -594, "y": 1160,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "a plague of frogs."
+					"msg": "pricked a flower"
 				},
 				"flower 6": {
 					"src": "/public/drawings/pickups/flower-6.json",
 					"x": -808, "y": 1323,
 					"states": [0, 0, 1, 3, 3, 4, 4, 8],
-					"msg": "a plague of rabbits."
+					"msg": "split a flower"
 				},
 				"flower 7": {
 					"src": "/public/drawings/pickups/flower-7.json",
 					"x": -641, "y": 1491,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "a savior had come."
+					"msg": "dead a flower"
 				},
 				"flower 8": {
 					"src": "/public/drawings/pickups/flower-8.json",
 					"x": 370, "y": 383,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "with a glowing face and long ears."
+					"msg": "ficked a flower"
 				},
 				"flower 9": {
 					"src": "/public/drawings/pickups/flower-9.json",
 					"x": -362, "y": -638,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "a portal was opened to land beneath."
+					"msg": "picked a flewer"
 				},
 				"flower 10": {
 					"src": "/public/drawings/pickups/flower-10.json",
 					"x": -728, "y": -522,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "creatures emerged from the void in the earth."
+					"msg": "flewed a flier"
 				},
 				"flower 11": {
 					"src": "/public/drawings/pickups/flower-11.json",
 					"x": -545, "y": -516,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "and other creatures found their way inside."
+					"msg": "freed a fleeer"
 				},
 				"flower 12": {
 					"src": "/public/drawings/pickups/flower-12.json",
 					"x": -726, "y": -701,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "inside and out."
+					"msg": "read a plower"
 				},
 				"flower 13": {
 					"src": "/public/drawings/pickups/flower-13.json",
 					"x": -3795, "y": -1770,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "a mirror world."
+					"msg": "mired a flower"
 				},
 				"flower 14": {
 					"src": "/public/drawings/pickups/flower-14.json",
 					"x": -3670, "y": -1893,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "like a dark sea."
+					"msg": "meered a fleewer"
 				},
 				"flower 15": {
 					"src": "/public/drawings/pickups/flower-15.json",
 					"x": -3870, "y": -1590,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "like an empty sky."
+					"msg": "emptied the dirt of a flower"
 				},
 				"flower 16": {
 					"src": "/public/drawings/pickups/flower-16.json",
 					"x": 2696, "y": 1742,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "like a river of black."
+					"msg": "flowerd a floor"
 				},
 				"flower 17": {
 					"src": "/public/drawings/pickups/flower-17.json",
 					"x": 3031, "y": 1695,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "will you race into the void?"
+					"msg": "dricked a fleweer"
 				},
 				"flower 18": {
 					"src": "/public/drawings/pickups/flower-18.json",
 					"x": 2908, "y": 1945,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "we will still be alone."
+					"msg": "found a flow er"
 				},
 				"flower 19": {
 					"src": "/public/drawings/pickups/flower-19.json",
 					"x": 3057, "y": 1988,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "alone like the moon."
+					"msg": "pic ked a flo wer"
 				},
 				"flower 20": {
 					"src": "/public/drawings/pickups/flower-20.json",
 					"x": -4023, "y": -1936,
 					"states": [0, 0, 1, 4, 4, 4, 5, 8],
-					"msg": "alone like the sun."
+					"msg": "wer a picked flo"
 				}
 			}
 		},
@@ -154,61 +154,61 @@
 					"src": "/public/drawings/pickups/grave-0.json",
 					"x": 4200, "y": 600,
 					"states": [0, 0, 1, 5, 5, 5, 5, 7],
-					"msg": "death may visit this world."
+					"msg": "dug a skull"
 				},
 				"skull 1": {
 					"src": "/public/drawings/pickups/grave-1.json",
 					"x": 3700, "y": 1000,
 					"states": [0, 0, 1, 6, 6, 6, 7, 7],
-					"msg": "friends forever."
+					"msg": "dead a slull"
 				},
 				"skull 2": {
 					"src": "/public/drawings/pickups/grave-2.json",
 					"x": 3700, "y": 662,
 					"states": [0, 0, 1, 6, 6, 6, 7, 9],
-					"msg": "i was never invited to the party."
+					"msg": "dug one skull in the dirt"
 				},
 				"skull 3": {
 					"src": "/public/drawings/pickups/grave-3.json",
 					"x": 4596, "y": 692,
 					"states": [0, 0, 1, 6, 6, 6, 6, 8],
-					"msg": "do you know how deep the sea gets?"
+					"msg": "skugged a skul"
 				},
 				"skull 4": {
 					"src": "/public/drawings/pickups/grave-4.json",
 					"x": 4146, "y": 932,
 					"states": [0, 0, 1, 5, 5, 5, 6, 8],
-					"msg": "It's dark in here."
+					"msg": "skulled a dug"
 				},
 				"skull 5": {
 					"src": "/public/drawings/pickups/grave-5.json",
 					"x": -7823, "y": -2446,
 					"states": [0, 0, 1, 6, 6, 6, 7, 8],
-					"msg": "My existence was pretty pointless."
+					"msg": "dug up a kull"
 				},
 				"skull 6": {
 					"src": "/public/drawings/pickups/grave-6.json",
 					"x": -8738, "y": -2160,
 					"states": [0, 0, 1, 5, 5, 5, 6, 8],
-					"msg": "You are still alive."
+					"msg": "digged up as kull"
 				},
 				"skull 7": {
 					"src": "/public/drawings/pickups/grave-7.json",
 					"x": -8142, "y": -1984,
 					"states": [0, 0, 1, 5, 5, 5, 6, 8],
-					"msg": "The night passes slowly."
+					"msg": "digged a skull of dirt"
 				},
 				"skull 8": {
 					"src": "/public/drawings/pickups/grave-8.json",
 					"x": -8595, "y": -1598,
 					"states": [0, 0, 1, 5, 5, 5, 6, 8],
-					"msg": "This is my friend.  I'm dead."
+					"msg": "dead a skull in dug"
 				},
 				"skull 9": {
 					"src": "/public/drawings/pickups/grave-9.json",
 					"x": -7676, "y": -1804,
 					"states": [0, 0, 1, 5, 5, 5, 6, 8],
-					"msg": "It wasn't time."
+					"msg": "skulled the dug dirt lull"
 				}
 			}
 		},
@@ -227,52 +227,52 @@
 				"heart 0": {
 					"src": "/public/drawings/pickups/heart-0.json",
 					"x": -2052, "y": 835,
-					"msg": "give me a chance."
+					"msg": "removed a heart"
 				},
 				"heart 1": {
 					"src": "/public/drawings/pickups/heart-1.json",
 					"x": 3175, "y": -2357,
-					"msg": "give me to your lover."
+					"msg": "rehooved a hart"
 				},
 				"heart 2": {
 					"src": "/public/drawings/pickups/heart-2.json",
 					"x": -2412, "y": -2077,
-					"msg": "give me to your spirit."
+					"msg": "refluved a fart"
 				},
 				"heart 3": {
 					"src": "/public/drawings/pickups/heart-3.json",
 					"x": 5266, "y": 2703,
-					"msg": "find my home."
+					"msg": "a heart removed"
 				},
 				"heart 4": {
 					"src": "/public/drawings/pickups/heart-4.json",
 					"x": -8820, "y": -3194,
-					"msg": "it's okay to be alone."
+					"msg": "rem oved ahe art"
 				},
 				"heart 5": {
 					"src": "/public/drawings/pickups/heart-5.json",
 					"x": -6298, "y": 2777,
-					"msg": "i'm a lump."
+					"msg": "lumped a heart"
 				},
 				"heart 6": {
 					"src": "/public/drawings/pickups/heart-6.json",
 					"x": -8162, "y": 1303,
-					"msg": "i've forgotten who i am."
+					"msg": "removed a heert"
 				},
 				"heart 7": {
 					"src": "/public/drawings/pickups/heart-7.json",
 					"x": -2735, "y": -1980,
-					"msg": "dig me a grave."
+					"msg": "remuved a hairt"
 				},
 				"heart 8": {
 					"src": "/public/drawings/pickups/heart-8.json",
 					"x": -4303, "y": -743,
-					"msg": "where have you been?"
+					"msg": "refooved a flart"
 				},
 				"heart 9": {
 					"src": "/public/drawings/pickups/heart-9.json",
 					"x": -7849, "y": 3548,
-					"msg": "take me with you to the void."
+					"msg": "re me ov ed a he are te"
 				}
 			}
 		}
@@ -546,7 +546,7 @@
 			{ "src": "20.json", "x": 4464, "y": 2908 }
 		],
 		"palm": [
-			{ "msg": "The dead lie in the north west and south east.", "src": "intro.json", "x": 530, "y": 2404 },
+			{ "msg": "The dead lie in the north west and the south east.", "src": "intro.json", "x": 530, "y": 2404 },
 			{ "msg": "How long have I been here?", "src": "1.json", "x": 1022, "y": 2373 },
 			{ "msg": "I feel old.", "src": "2.json", "x": 1623, "y": 2196 }
 		],
@@ -557,16 +557,16 @@
 			{ "msg": "go back where you came from.", "src": "south-west.json", "x": -8604, "y": 3780 }
 		],
 		"tree": [
-			{ "msg": "everything is not always going to be okay.", "src": "0.json", "x": 5295, "y": 1208 },
+			{ "msg": "keep walking.  it will be okay.  at least like as okay as things go.", "src": "0.json", "x": 5295, "y": 1208 },
 			{ "msg": "are you lost?", "src": "1.json", "x": 4091, "y": -321 },
 			{ "msg": "you're not the only one who is lost.", "src": "2.json", "x": 2477, "y": 944 },
 			{ "msg": "you don't have to find anything.", "src": "3.json", "x": 2586, "y": -1183 },
-			{ "msg": "life has no point.", "src": "4.json", "x": -4920, "y": -1439 },
-			{ "msg": "i'm going to be alive for hundreds of years after you're gone and forgotten.", "src": "5.json", "x": -3034, "y": 781 },
-			{ "msg": "you can stop searching.", "src": "6.json", "x": -8451, "y": 1161 },
-			{ "msg": "why are you talking to trees?", "src": "7.json", "x": -6317, "y": 1487 },
-			{ "msg": "why aren't you listening?", "src": "8.json", "x": 2213, "y": 2240 },
-			{ "msg": "the meaning of life will be here soon.", "src": "9.json", "x": -1295, "y": 1394 }
+			{ "msg": "there isn't really a direction.", "src": "4.json", "x": -4920, "y": -1439 },
+			{ "msg": "i'll alive for hundreds of years after you're gone and forgotten.", "src": "5.json", "x": -3034, "y": 781 },
+			{ "msg": "don't stop don't talk to me.", "src": "6.json", "x": -8451, "y": 1161 },
+			{ "msg": "i'm a tree.  what do you want?", "src": "7.json", "x": -6317, "y": 1487 },
+			{ "msg": "listen to trees.", "src": "8.json", "x": 2213, "y": 2240 },
+			{ "msg": "it's okay to feel like giving up.  nothing is going to happen.", "src": "9.json", "x": -1295, "y": 1394 }
 		],
 		"north-beach": [
 			{ "msg": "sad",  "r": true, "src": "0.json", "x": 0, "y": -3000 },
@@ -629,16 +629,16 @@
 			{ "src": "west.json",  "x": -9098, "y": -2050 }
 		],
 		"apple-tree": [
-			{ "msg": "idiot idito idtio the grave yard the evening and nothing more.", "src": "0.json", "x": 4200, "y": -2400 },
+			{ "msg": "idiot idito idtio the grave yard the dead the flowers and nothing more.", "src": "0.json", "x": 4200, "y": -2400 },
 			{ "msg": "itdio tidio idiot the rot rots the decay decays.", "src": "1.json", "x": 4200, "y": 2400 	}
 		],
 		"spine": [
 			{ "msg": "bollow bones", "src": "7.json", "x": -4096, "y": 0 },
 			{ "msg": "follow stones", "src": "6.json", "x": -3072, "y": 0 },
-			{ "msg": "idtio life", "src": "3.json", "x": -2048, "y": 0 },
+			{ "msg": "an idtio", "src": "3.json", "x": -2048, "y": 0 },
 			{ "msg": "a bloid", "src": "1.json", "x": -1024, "y": 0 },
 			{ "msg": "a void", "src": "0.json", "x": 0, "y": 0 },
-			{ "msg": "where in", "src": "2.json", "x": 1024,  "y": 0 },
+			{ "msg": "where life", "src": "2.json", "x": 1024,  "y": 0 },
 			{ "msg": "stops strops", "src": "4.json", "x": 2048,  "y": 0 },
 			{ "msg": "inside out", "src": "5.json", "x": 3072,  "y": 0 }
 		],
@@ -659,32 +659,32 @@
 			{ "msg": "do time", "src": "3.json", "x": 6090, "y": -473 	},
 			{ "msg": "due death", "src": "4.json", "x": 6322, "y": -37 	},
 			{ "msg": "do life", "src": "5.json","x": 7159, "y": 157 	},
-			{ "msg": "forget me", "src": "6.json", "x": 6429, "y": -731 	},
-			{ "msg": "set a pleen", "src": "7.json", "x": 6932, "y": -803 	},
-			{ "msg": "sleen a fish", "src": "8.json", "x": 7038, "y": -337 	},
-			{ "msg": "cat a wiff", "src": "9.json", "x": 6626, "y": -466 	},
+			{ "msg": "forget and", "src": "6.json", "x": 6429, "y": -731 	},
+			{ "msg": "get a pleen", "src": "7.json", "x": 6932, "y": -803 	},
+			{ "msg": "gleen a fish", "src": "8.json", "x": 7038, "y": -337 	},
+			{ "msg": "cleen a cat", "src": "9.json", "x": 6626, "y": -466 	},
 	
 			{ "msg": "once there", "src": "10.json", "x": 6745, "y": 124 	},
-			{ "msg": "was a banana", "src": "11.json", "x": 6550, "y": 455 	},
-			{ "msg": "in a tree", "src": "12.json", "x": 6835, "y": -300	},
+			{ "msg": "was", "src": "11.json", "x": 6550, "y": 455 	},
+			{ "msg": "in trees", "src": "12.json", "x": 6835, "y": -300	},
 			{ "msg": "a banan", "src": "13.json", "x": 8140, "y": 250 	},
-			{ "msg": "a was eaten", "src": "14.json", "x": 82070, "y": 100	},
-			{ "msg": "was et", "src": "15.json", "x": 7395, "y": 300	},
-			{ "msg": "an forget", "src": "16.json", "x": 7270, "y": -500 },
+			{ "msg": "a life", "src": "14.json", "x": 82070, "y": 100	},
+			{ "msg": "was life", "src": "15.json", "x": 7395, "y": 300	},
+			{ "msg": "was forget", "src": "16.json", "x": 7270, "y": -500 },
 			{ "msg": "leave home", "src": "17.json", "x": 7940, "y": -400 },
 			{ "msg": "return home", "src": "18.json", "x": 7710, "y": 210 	},
-			{ "msg": "an forget", "src": "19.json", "x": 8410, "y": -600 	},
+			{ "msg": "is forget", "src": "19.json", "x": 8410, "y": -600 	},
 
 			{ "msg": "know now", "src": "20.json", "x": 8612, "y": 100	},
-			{ "msg": "not then", "src": "21.json", "x": 7793, "y": -650	},
-			{ "msg": "bring ten", "src": "22.json", "x": 7494, "y": -500	},
-			{ "msg": "no its nine", "src": "23.json", "x": 6792, "y": -1000	},
+			{ "msg": "know then", "src": "21.json", "x": 7793, "y": -650	},
+			{ "msg": "bring them", "src": "22.json", "x": 7494, "y": -500	},
+			{ "msg": "its nine", "src": "23.json", "x": 6792, "y": -1000	},
 			{ "msg": "its fine", "src": "24.json", "x": 7468, "y": -800	},
 			{ "msg": "this is fine", "src": "25.json", "x": 8885, "y": -200	},
-			{ "msg": "this is nine", "src": "26.json", "x": 7137, "y": -1071 	},
+			{ "msg": "it is nine", "src": "26.json", "x": 7137, "y": -1071 	},
 			{ "msg": "the nine", "src": "27.json", "x": 7971, "y": 100 	},
-			{ "msg": "the nine lives", "src": "28.json", "x": 8329, "y": -200	},
-			{ "msg": "sine lives", "src": "29.json", "x": 8169, "y": -700	}
+			{ "msg": "the lives", "src": "28.json", "x": 8329, "y": -200	},
+			{ "msg": "the live", "src": "29.json", "x": 8169, "y": -700	}
 		],
 		"windmill": [
 			{ "msg": "is it a hole?", "src": "0.json", "x": -3476, "y": 1654 },

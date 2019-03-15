@@ -585,6 +585,14 @@ undoable
 - exit to home in cursive - 
 - void interaction with resources - 
 - different origin point for each character - 
+- new loading anim - 
+- rewrite pickups - nonsense for now
+- trees - no meaning of life, no cryptic lame shit - 
+- no lame shit!
+	- ive forgotten who i am - who cares!
+	- resources need to have apparently interesting information bc they get eaten up
+	- or resources go back to "you got a heart or whatever"
+	- or do weird spelling, verbs etc.
 
 void ntoes
 - animation rewards for resources
@@ -598,14 +606,6 @@ void ntoes
 	- randomized offering requirements
 
 general to do
-- rewrite pickups
-- trees - no meaning of life, no cryptic lame shit
-- no lame shit!
-	- ive forgotten who i am - who cares!
-	- resources need to have apparently interesting information bc they get eaten up
-	- or resources go back to "you got a heart or whatever"
-	- or do weird spelling, verbs etc.
-- new loading anim
 - documentation
 - move punctuation to the right in letters
 
@@ -633,6 +633,8 @@ general to do
 	- server classes folder
 	- lines sprites around color changing things
 	- remove redundant data, unnecessary file paths
+	- story for the trees
+	- sound in east shore
 & drawing notes
 
 
