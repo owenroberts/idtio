@@ -295,46 +295,6 @@
 				"three": { "start": 205, "end": 214 },
 				"sfarks": { "start": 214, "end": 243 }
 			}
-		},
-		"rock north east": {
-			"distance": 300,
-			"src": "/public/drawings/interactives/rock-north-east.json", 
-			"x": 6043, "y": -4080,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 61 }
-			},
-			"random": false
-		},
-		"rock north west": {
-			"distance": 300,
-			"src": "/public/drawings/interactives/rock-north-west.json", 
-			"x": -8384, "y": -3698,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 45 }
-			},
-			"random": false
-		},
-		"rock south east": {
-			"distance": 300,
-			"src": "/public/drawings/interactives/rock-south-east.json", 
-			"x": 6601, "y": 3536,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 49 }
-			},
-			"random": false 
-		},
-		"rock south west": {
-			"distance": 300,
-			"src": "/public/drawings/interactives/rock-south-west.json", 
-			"x": -8604, "y": 3780,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"interact": { "start": 1, "end": 69 }
-			},
-			"random": false
 		}
 	},
 	"textures": {
@@ -533,7 +493,23 @@
 					{ "x": 2265, "y": -662 },
 					{ "x": 3670, "y": -506 },
 					{ "x": 6322, "y": 825 },
-					{ "x": 6717, "y": 3519 }
+					{ "x": 6717, "y": 3519 },
+					{ "x": -832, "y": -460 },
+					{ "x": 0, "y": -607 },
+					{ "x": 208, "y": -775 },
+					{ "x": 1059, "y": -466 },
+					{ "x": -2193, "y": -466 },
+					{ "x": -939, "y": 1465 },
+					{ "x": 1072, "y": 1371 },
+					{ "x": 516, "y": -607 },
+					{ "x": 1227, "y": -922 },
+					{ "x": 2132, "y": -1539 },
+					{ "x": 2320, "y": 164 },
+					{ "x": 2762, "y": 2001 },
+					{ "x": 3084, "y": 150 },
+					{ "x": -3205, "y": 191 },
+					{ "x": -3487, "y": -440 },
+					{ "x": -4358, "y": -1915 }
 				]
 			}
 		]
@@ -563,9 +539,15 @@
 			{ "src": "20.json", "x": 4464, "y": 2908 }
 		],
 		"palm": [
-			{ "msg": "There are graves to plunder in the north west and the south east.", "src": "intro.json", "x": 500, "y": 768 },
-			{ "msg": "How long have I been here?", "src": "1.json", "x": 453, "y": -2734 },
-			{ "msg": "I feel old.", "src": "2.json", "x": 1500, "y": -3000 }
+			{ "msg": "The dead lie in the north west and south east.", "src": "intro.json", "x": 530, "y": 2404 },
+			{ "msg": "How long have I been here?", "src": "1.json", "x": 1022, "y": 2373 },
+			{ "msg": "I feel old.", "src": "2.json", "x": 1623, "y": 2196 }
+		],
+		"rock": [
+			{ "msg": "you can't go any further.", "src": "north-west.json", "x": -8384, "y": -3698 },
+			{ "msg": "time to turn around.", "src": "north-east.json", "x": 5043, "y": -4080 },
+			{ "msg": "you've reached the edge.", "src": "south-east.json", "x": 6601, "y": 3536 },
+			{ "msg": "go back where you came from.", "src": "south-west.json", "x": -8604, "y": 3780 }
 		],
 		"tree": [
 			{ "msg": "everything is not always going to be okay.", "src": "0.json", "x": 5295, "y": 1208 },
@@ -640,8 +622,8 @@
 			{ "src": "west.json",  "x": -9098, "y": -2050 }
 		],
 		"apple-tree": [
-			{ "msg": "idiot idito idtio the grave yard the evening and nothing more", "src": "0.json", "x": 4200, "y": -2400 },
-			{ "msg": "itdio tidio idiot the rot rots the decay decays", "src": "1.json", "x": 4200, "y": 2400 	}
+			{ "msg": "idiot idito idtio the grave yard the evening and nothing more.", "src": "0.json", "x": 4200, "y": -2400 },
+			{ "msg": "itdio tidio idiot the rot rots the decay decays.", "src": "1.json", "x": 4200, "y": 2400 	}
 		],
 		"spine": [
 			{ "msg": "bollow bones", "src": "7.json", "x": -4096, "y": 0 },
@@ -700,7 +682,7 @@
 		"windmill": [
 			{ "msg": "is it a hole?", "src": "0.json", "x": -3476, "y": 1654 },
 			{ "msg": "is it a whole?", "src": "1.json", "x": -3776, "y": 1854 },
-			{ "msg": "is is the seashore?", "src": "2.json", "x": -4076, "y": 2054 }
+			{ "msg": "is it the seashore?", "src": "2.json", "x": -4076, "y": 2054 }
 		],
 		"wreckage": [
 			{ "src": "0.json", "x": -8249, 	"y": 2594 }

@@ -557,13 +557,15 @@ to done
 - waves - 
 - fix map - 
 - grass brush - 
+- move flowers around - bunches - 
+- move all palm trees to the south - 
+- rocks are scenerys - 
 
 undoable
 - what the fuck is this even about??
 
+
 general to do
-- move flowers around - bunches
-- move all palm trees to the south
 - added isOnScreen to Sprite without removing from item dumb fuck
 - fix distance to sprite size
 - new instructions sprites
@@ -572,6 +574,7 @@ general to do
 	- animated interactives?
 - east shore 9
 - what happens when the void is found???
+	- maybe there's a whole bunch of voids
 - smaller exit button
 - diagonal shore text in weird position - cut for now
 
@@ -613,6 +616,7 @@ drawing notes
 	- waves not squares, overlap etc 
 	- resources timeout?
 	- player timeout?
+	- figure out ui and toggle
 
 for later
 - no map edges ?
