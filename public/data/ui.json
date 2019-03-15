@@ -18,19 +18,19 @@
 		"instructions": {
 			"src": "/public/drawings/ui/instructions/instructions.json",
 			"x": -300, "y": -230,
-			"scenes": [ "splash" ],
+			"scenes": [ "splash", "exit" ],
 			"alive": true
 		},
 		"walk": {
 			"src": "/public/drawings/ui/instructions/walk.json",
 			"x": -500, "y": -150,
-			"scenes": [ "splash" ],
+			"scenes": [ "splash", "exit" ],
 			"alive": true
 		},
 		"wave": {
 			"src": "/public/drawings/ui/instructions/wave.json",
 			"x": -200, "y": -125,
-			"scenes": [ "splash" ],
+			"scenes": [ "splash", "exit" ],
 			"alive": true
 		},
 		"cat-wave": {
