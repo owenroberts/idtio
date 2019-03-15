@@ -44,16 +44,6 @@ const items = {};
 for (const label in mapData.interactives) {
 	interactives[label] = new Interactive(mapData.interactives[label]);
 }
-for (const label in mapData.scenery) {
-	const set = mapData.scenery[label];
-	items[label] = [];
-	for (let i = 0; i < set.length; i++) {
-		if (set[i].msg) {
-			set[i].distance = 512;
-			items[label].push(new Entity(set[i]));
-		}
-	}
-}
 
 for (const type in mapData.pickups) {
 	const items = mapData.pickups[type].items;
@@ -65,6 +55,18 @@ for (const type in mapData.pickups) {
 		interactives[label] = new Pickup(pickup);
 	}
 }
+
+for (const label in mapData.scenery) {
+	const set = mapData.scenery[label];
+	items[label] = [];
+	for (let i = 0; i < set.length; i++) {
+		if (set[i].msg) {
+			set[i].distance = 512;
+			items[label].push(new Entity(set[i]));
+		}
+	}
+}
+
 
 function randomType() {
 	const types = ['flower', 'heart', 'skull'];
@@ -116,11 +118,19 @@ function gameUpdate() {
 							if (interactive.isPickup && !interactive.picked) {
 								io.sockets.emit('play character animation', player.character, interactive.type); // general update ? 
 								io.sockets.emit('play interact animation', label); // general update ?? 
+								io.sockets.emit('display item message', label);
 								player.resources[interactive.type].push(label);
 								io.sockets.emit('update resources', player); // can this be  part of general update? 
 								interactive.picked = true;
-							} else {
+							} else if (!interactive.resource) {
 								io.sockets.emit('play interact animation', label);
+							} else { /* currently just voids */
+								if (player.resources[interactive.resource].length > 0) {
+									io.sockets.emit('play interact animation', label);
+									player.usedResources[interactive.resource].push(player.resources[interactive.resource].shift()); /* move to used resources */
+								} else {
+									io.sockets.emit('display item message', label);
+								}
 							}
 						}
 					});

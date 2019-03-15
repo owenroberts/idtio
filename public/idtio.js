@@ -591,8 +591,10 @@ function playInteractiveAnimation(label) {
 }
 
 function displayItemMessage(label, index) {
-	if (currentScene == 'game')
-		scenes.game.scenery[label][index].displayMessage(true, false);
+	if (currentScene == 'game') {
+		if (index !== undefined) scenes.game.scenery[label][index].displayMessage(true, false);
+		else scenes.game.interactives[label].displayMessage(true, true);
+	}
 }
 
 function hideItemMessage(label, index) {

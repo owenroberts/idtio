@@ -582,8 +582,13 @@ undoable
 - more grass - 
 - waves dont look good - 
 - logo anim with dots instead of x -
+- exit to home in cursive - 
 
 general to do
+- void interaction with resources
+- three voids
+- different origin point for each character
+- move punctuation to the right in letters
 - animation rewards for resources
 	- animated interactives?
 - what happens when the void is found???
@@ -592,6 +597,7 @@ general to do
 	- choose the true void
 	- void ?  what happens!!!
 	- new anims/sceneries 
+	- randomized offering requirements
 
 writing to do
 - rewrite pickups
@@ -602,13 +608,9 @@ writing to do
 - another pass on character dialog
 
 - before release/testing
-	- different origin point for each character
-	- jig animations and stuff
 	- lines sprites around color changing things
 	- remove redundant data, unnecessary file paths
-	- move punctuation to the right in letters
-	- exit to home in cursive
-	- fit all drawings
+	- documentation
 
 - after indiecade submission
 	- initLittering in game not implemented?
@@ -626,6 +628,9 @@ writing to do
 	- east shore 9 - drawing that i forgot to use
 	- full cactus redraw
 	- cursor over any ui
+	- fit all drawings
+	- jig animations and stuff (try making weird anim effects)
+	- clean up scenery, items, interactives etc.
 & drawing notes
 
 

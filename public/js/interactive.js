@@ -17,7 +17,7 @@ class Interactive extends Item {
 			} else {
 				this.animation.setState('interact');
 			}
-			this.displayMessage(true, true);
+			// this.displayMessage(true, true);
 			// this.isActive = true;
 			this.animation.playOnce(() => {
 				this.animation.setState(this.isPickup ? 'end' : 'idle');

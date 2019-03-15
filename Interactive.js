@@ -6,8 +6,7 @@ class Interactive extends Entity {
 		this.msg = params.msg;
 		this.label = params.label;
 		this.type = params.type || 'interactive';
-		/* do i need to know label and type? */
-		this.triggered = false;
+		this.resource = params.resource;
 
 		/* not sure this is the best way to do it */
 		this.isPickup = false;

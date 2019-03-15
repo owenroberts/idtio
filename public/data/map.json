@@ -283,11 +283,12 @@
 			"x": -7144, "y": 0,
 			"distance": 300,
 			"random": true,
+			"msg": "i require an offering of one skull.",
+			"resource": "skull",
 			"states": {
 				"idle": { "start": 0, "end": 0 },
 				"cat": { "start": 1, "end": 37 },
 				"tomorrow": { "start": 38, "end": 64 },
-				"voiddoid": { "start": 64, "end": 72 },
 				"skull": { "start": 72, "end": 84 },
 				"fart": { "start": 84, "end": 126 },
 				"pig": { "start": 126, "end": 179 },
