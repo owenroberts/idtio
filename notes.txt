@@ -560,38 +560,42 @@ to done
 - move flowers around - bunches - 
 - move all palm trees to the south - 
 - rocks are scenerys - 
-
+- added isOnScreen to Sprite without removing from item dumb fuck -
+- fix distance to sprite size -
+	- set to 512 -
+	- text at the bottom, let likely to overlap ... and looks like label?
+- new instructions sprites
+- south beach order -
+- diagonal shore text in weird position - cut for now - ok its ok
+- smaller exit button -
+- sound from splash -
 undoable
 - what the fuck is this even about??
-
+- redo logo - 
+- bug up state is too far away from idle state - 
+- cactus left and right too big, kind of too big in general - cactus small - 
+- tv cut dots from up state - 
 
 general to do
-- added isOnScreen to Sprite without removing from item dumb fuck
-- fix distance to sprite size
-- new instructions sprites
-- south beach order
 - animation rewards for resources
 	- animated interactives?
-- east shore 9
 - what happens when the void is found???
 	- maybe there's a whole bunch of voids
-- smaller exit button
-- diagonal shore text in weird position - cut for now
+	- three voids - skull, heart, flower
+	- choose the true void
+	- void ?  what happens!!!
+	- new anims/sceneries 
 
 writing to do
 - rewrite pickups
-- another pass on character dialog
-- void ?  what happens!!!
-- new anims/sceneries 
 - trees - no meaning of life, no cryptic lame shit
 - no lame shit!
 	- ive forgotten who i am - who cares!
 	- resources need to have apparently interesting information bc they get eaten up
+- another pass on character dialog
 
 drawing notes
-- bug up state is too far away from idle state
-- cactus left and right too big, kind of too big in general - cactus small
-- tv cut dots from up state
+
 - worm small
 - clouds all same frame - jump around too fast
 - cactus bubble is off
@@ -617,6 +621,14 @@ drawing notes
 	- resources timeout?
 	- player timeout?
 	- figure out ui and toggle
+	- wave files need to be in ui data? just load with characters?
+	- remove unused jsons
+	- draw rest of splash uis
+	- i screen is wide add some random scene art
+	- fucking figure out where texts go
+	- east shore 9 - drawing that i forgot to use
+	- full cactus redraw
+
 
 for later
 - no map edges ?
@@ -631,4 +643,6 @@ maybe
 	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
 - gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
 
-lines follow over missing first segment?
+lines 
+	- follow over missing first segment?
+	- offset doesn't work with xy frames

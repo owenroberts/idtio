@@ -2,7 +2,6 @@ const socket = io();
 const scenes = {
 	loading: { sprites: {} },
 	splash: { ui: {}, texts: {}, sprites: {} },
-	instructions: { ui: {}, texts: {}, sprites: {} },
 	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: {}, sprites: {} },
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
@@ -32,11 +31,9 @@ function loadUI(data) {
 
 	for (const key in data.sprites) {
 		const s = data.sprites[key];
-		const sprite = new Sprite(s.x >= 0 ? s.x : Game.width + s.x, s.y);
+		const sprite = new Sprite(s.x >= 0 ? s.x : Game.width + s.x, s.y >= 0 ? s.y : Game.height + s.y);
 		sprite.alive = s.alive;
-		sprite.addAnimation(s.src, () => {
-			// sprite.center();
-		});
+		sprite.addAnimation(s.src);
 		for (let i = 0; i < s.scenes.length; i++) {
 			scenes[s.scenes[i]].sprites[key] = sprite;
 		}
@@ -44,7 +41,6 @@ function loadUI(data) {
 
 	for (const key in data.uis) {
 		const u = data.uis[key];
-		// console.log(u);
 		const ui = new UI(u, false);
 		if (u.callback) {
 			ui.callback = function() {
@@ -53,7 +49,7 @@ function loadUI(data) {
 		}
 		if (u.key) {
 			document.addEventListener('keydown', function(ev) {
-				if (Cool.keys[ev.which] == u.key && u.scenes.indexOf(currentScene) != -1) {
+				if (Cool.keys[ev.which] == u.key && u.scenes.includes(currentScene)) {
 					if (ui.callback) ui.callback();
 				}
 			});
@@ -112,7 +108,7 @@ function toggleSound() {
 		theme = new Audio('/public/audio/theme.mp3');
 		theme.volume = 0.5;
 		theme.loop = true;
-		if (currentScene != 'game') theme.play();
+		if (currentScene == 'splash') theme.play();
 		for (let i = 0; i < 8; i++) {
 			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
 			clips[i].loop = true;
@@ -123,7 +119,7 @@ function toggleSound() {
 			else theme.pause();
 		}
 		if (currentScene == 'exit') {
-			if (!gameSoundOn) clips.forEach(clip => clip.pause());
+			if (gameSoundOn) clips.forEach(clip => clip.pause());
 		}
 	}
 	gameSoundOn = !gameSoundOn;
@@ -391,7 +387,8 @@ function keyDown(key) {
 			socket.emit('key interact', true);
 			break;
 
-		case 'q':
+		case 'x':
+		case 'enter':
 			socket.emit('key wave', true);
 			break;
 

@@ -597,19 +597,19 @@
 			{ "src": "17.json", "r": true, "x": 7424, "y": 3412 }
 		],
 		"south-beach": [
-			{ "msg": "its", "r": true, "src": "0.json", "x": 0, "y": 3000 	},
-			{ "msg": "the", "r": true, "src": "1.json", "x": 1000, "y": 3000 	},
-			{ "msg": "lonely", "r": true, "src": "2.json", "x": 2000, "y": 3000 	},
-			{ "msg": "bonely", "r": true, "src": "3.json", "x": 3000, "y": 3000 	},
-			{ "msg": "donely", "r": true, "src": "4.json", "x": 4000, "y": 3000 	},
-			{ "msg": "gonely", "r": true, "src": "5.json", "x": 5000, "y": 3650 	},
-			{ "msg": "nonely", "r": true, "src": "6.json", "x": -1000, "y": 3000 	},
-			{ "msg": "monely", "r": true, "src": "7.json", "x": -2000, "y": 3000 	},
-			{ "msg": "wonely", "r": true, "src": "8.json", "x": -3000, "y": 3000 	},
-			{ "msg": "fonely", "r": true, "src": "9.json", "x": -4000, "y": 3000 	},
-			{ "msg": "honely", "r": true, "src": "10.json", "x": -5000, "y": 3000 	},
-			{ "msg": "tonely", "r": true, "src": "11.json", "x": -6000, "y": 3000 	},
-			{ "msg": "south", "r": true, "src": "12.json", "x": -7000, "y": 3750 	}
+			{ "msg": "its", "r": true, "src": "12.json", "x": -7000, "y": 3950 },
+			{ "msg": "the", "r": true, "src": "11.json", "x": -6000, "y": 3200 },
+			{ "msg": "lonely", "r": true, "src": "10.json", "x": -5000, "y": 3000 },
+			{ "msg": "bonely", "r": true, "src": "9.json", "x": -4000, "y": 3000 },
+			{ "msg": "donely", "r": true, "src": "8.json", "x": -3000, "y": 3000 },
+			{ "msg": "gonely", "r": true, "src": "7.json", "x": -2000, "y": 3000 },
+			{ "msg": "nonely", "r": true, "src": "6.json", "x": -1000, "y": 3000 },
+			{ "msg": "monely", "r": true, "src": "0.json", "x": 0, "y": 3000 },
+			{ "msg": "wonely", "r": true, "src": "1.json", "x": 1000, "y": 3000 },
+			{ "msg": "fonely", "r": true, "src": "2.json", "x": 2000, "y": 3000 },
+			{ "msg": "honely", "r": true, "src": "3.json", "x": 3000, "y": 3000 },
+			{ "msg": "tonely", "r": true, "src": "4.json", "x": 4000, "y": 3200 },
+			{ "msg": "south", "r": true, "src": "5.json", "x": 5000, "y": 3850 }
 		],
 		"graveyard": [
 			{ "src": "0.json", "x": 4270, "y": 400 	},

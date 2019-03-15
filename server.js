@@ -49,7 +49,7 @@ for (const label in mapData.scenery) {
 	items[label] = [];
 	for (let i = 0; i < set.length; i++) {
 		if (set[i].msg) {
-			set[i].distance = 200;
+			set[i].distance = 512;
 			items[label].push(new Entity(set[i]));
 		}
 	}
@@ -244,7 +244,7 @@ io.on('connection', function(socket) {
 	socket.on('exit game', () => {
 		exitGame(true);
 	});
-	
+
 	socket.on('disconnect', () => {
 		exitGame(false);
 	});

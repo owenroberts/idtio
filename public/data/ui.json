@@ -1,23 +1,36 @@
 {
 	"sprites": {
 		"logo": {
-			"src": "/public/drawings/ui/idtio_anim.json",
-			"x": 0, "y": 0,
+			"src": "/public/drawings/ui/idiot.json",
+			"x": 20, "y": 20,
 			"scenes": [
 				"loading",
-				"splash",
-				"instructions"
+				"splash"
 			],
 			"alive": true
 		},
 		"logo-vertical": {
 			"src": "/public/drawings/ui/logo-vertical.json",
 			"x": -50, "y": 10,
-			"scenes": [
-				"splash",
-				"instructions",
-				"exit"
-			],
+			"scenes": [ "splash", "exit" ],
+			"alive": true
+		},
+		"instructions": {
+			"src": "/public/drawings/ui/instructions/instructions.json",
+			"x": -300, "y": -230,
+			"scenes": [ "splash" ],
+			"alive": true
+		},
+		"walk": {
+			"src": "/public/drawings/ui/instructions/walk.json",
+			"x": -500, "y": -150,
+			"scenes": [ "splash" ],
+			"alive": true
+		},
+		"wave": {
+			"src": "/public/drawings/ui/instructions/wave.json",
+			"x": -200, "y": -125,
+			"scenes": [ "splash" ],
 			"alive": true
 		},
 		"cat-wave": {
@@ -67,6 +80,12 @@
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
+		},
+		"bug-wave": {
+			"src": "/public/drawings/characters/bug/wave.json",
+			"x": 0, "y": 0,
+			"scenes": [ "game" ],
+			"alive": false
 		}
 	},
 	"texts": {
@@ -82,20 +101,6 @@
 			"x": -400,
 			"y": 10,
 			"wrap": 12,
-			"scenes": [ "splash" ]
-		},
-		"walk": {
-			"msg": "use W A S D or { } - + to walk",
-			"x": 10,
-			"y": -100,
-			"wrap": 50,
-			"scenes": [ "splash" ]
-		},
-		"wave": {
-			"msg": "Q to wave",
-			"x": 10,
-			"y": -50,
-			"wrap": 50,
 			"scenes": [ "splash" ]
 		}
 	},
@@ -149,8 +154,8 @@
 		},
 		"exit-home": {
 			"src": "/public/drawings/ui/exit-home.json",
-			"x": 10,
-			"y": 100,
+			"x": 100,
+			"y": 0,
 			"states" : {
 				"idle": { "start": 0, "end": 0 },
 				"over": { "start": 1, "end": 2 },
@@ -162,22 +167,6 @@
 				"route": "exit game"
 			},
 			"key": "enter"
-		},
-		"back-splash": {
-			"src": "/public/drawings/ui/back-splash.json",
-			"x": 150, "y": 0,
-			"states": {
-				"idle": { "start": 0, "end": 0 },
-				"over": { "start": 1, "end": 2 },
-				"selected": { "start": 1, "end": 2 },
-				"active": { "start": 2, "end": 3 }
-			},
-			"scenes": [ "instructions" ],
-			"callback": {
-				"route": "change scene",
-				"message": "splash"
-			},
-			"key": "escape"
 		},
 		"back-game": {
 			"src": "/public/drawings/ui/back-splash.json",
