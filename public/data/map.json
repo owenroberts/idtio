@@ -311,7 +311,7 @@
 		},
 		"flower void": {
 			"src": "/public/drawings/interactives/void_2.json",
-			"x": 2127, "y": -2582,
+			"x": 2427, "y": -2582,
 			"distance": 300,
 			"random": true,
 			"msg": "i require an offering of one flower.",
