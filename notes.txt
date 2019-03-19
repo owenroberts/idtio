@@ -638,6 +638,7 @@ void ntoes
 	- sound in east shore
 	- void anims need to be long
 	- set vertical position of texts per label
+	- update sound quadrants
 & drawing notes
 
 for later

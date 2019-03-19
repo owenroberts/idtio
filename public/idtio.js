@@ -17,6 +17,137 @@ let user = {
 };
 const colorPicker = document.getElementById('color-picker');
 
+/* sound */
+let theme;
+const clips = [];
+let gameSoundOn = false;
+
+function toggleSound() {
+	/* load audio if not loaded */
+	if (!theme) {
+		theme = new Audio('/public/audio/theme.mp3');
+		theme.volume = 0.5;
+		theme.loop = true;
+		if (currentScene == 'splash') theme.play();
+		for (let i = 0; i < 8; i++) {
+			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
+			clips[i].loop = true;
+		}
+	} else {
+		if (currentScene == 'splash') {
+			if (theme.paused) theme.play();
+			else theme.pause();
+		}
+		if (currentScene == 'exit' && gameSoundOn)
+			clips.forEach(clip => clip.pause());
+	}
+	gameSoundOn = !gameSoundOn;
+}
+
+function updateAudio(_x, _y) {
+	// console.log(_x, _y);
+	/* play audio in quadrant at 0.75 */
+	/* audio in adjoining quandrants at 0.25 */
+	let mainClip;
+	const adjClips = [];
+	for (let x = 0; x < 4; x++) {
+		for (let y = 0; y < 2; y++) {
+			if (_x > (x - 2) * 4 * 1024 && _x < (x - 1) * 4 * 1024 &&
+				_y > (y - 1) * 4 * 1024 && _y < y * 4 * 1024) {
+				mainClip = x + y * 4;
+				if (x < 3) adjClips.push(x + 1);
+				if (x > 0) adjClips.push(x - 1);
+				if (y == 0) adjClips.push(x + 4);
+				if (y == 1) adjClips.push(x - 4);
+			}
+		}
+	}
+	
+	if (mainClip) {
+		if (clips[mainClip].paused) clips[mainClip].play();
+		if (clips[mainClip].volume != 0.5) clips[mainClip].volume = 0.5;
+	}
+	for (let i = 0; i < clips.length; i++) {
+		if (adjClips.includes(i)) {
+			if (clips[i].paused) clips[i].play();
+			if (clips[i].volume != 0.25) clips[i].volume = 0.25;
+		}
+		else
+			if (!clips[i].paused) clips[i].pause();
+	}
+}
+
+/* weather */
+let weatherOn = false;
+const currentWeather = new Animation(undefined, true);
+currentWeather.randomFrames = true;
+currentWeather.prevFrameCheck = true;
+const weatherTime = 1000 * 60 * 5;
+let weatherInterval, zip; /* check weather updates?  10 mins? */
+
+function toggleWeather() {
+	if (weatherOn) {
+		weatherOn = false;
+		clearInterval(weatherInterval);
+	}
+	else {
+		weatherOn = true;
+		checkWeather();
+	}
+}
+
+function checkWeather() {
+	if (!zip) zip = prompt("Enter zip code.");
+	const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=915153355d273e3ff9959dd900a3834f`;
+	fetch(weatherURL)
+		.then(response => { return response.json() })
+		.then(data => {
+			const weather = data.weather[0].description;
+			currentWeather.src = undefined;
+			if (weather.includes('rain')) {
+				if (weather.includes('light') || weather.includes('drizzle'))
+					currentWeather.src = '/public/drawings/weather/rain-light.json';
+				else if (weather.includes('heavy') || weather.includes('shower') || weather.includes('extreme'))
+					currentWeather.src = '/public/drawings/weather/rain-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/rain.json';
+			} else if (weather.includes('snow')) {
+				if (weather.includes('light'))
+					currentWeather.src = '/public/drawings/weather/snow-light.json';
+				else if (weather.includes('heavy'))
+					currentWeather.src = '/public/drawings/weather/snow-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/snow.json';
+			} else if (weather.includes('clouds')) {
+				currentWeather.randomFrames = false;
+				if (weather.includes('few') || weather.includes('scattered'))
+					currentWeather.src = '/public/drawings/weather/clouds-light.json';
+				else if (weather.includes('overcast'))
+					currentWeather.src = '/public/drawings/weather/clouds-heavy.json';
+				else
+					currentWeather.src = '/public/drawings/weather/clouds.json';
+			} else if (data.wind.speed > 0) {
+				currentWeather.randomFrames = false;
+				if (data.wind.speed > 7)
+					currentWeather.src = '/public/drawings/weather/wind-heavy.json';
+				else if (data.wind.speed > 4)
+					currentWeather.src = '/public/drawings/weather/wind.json';
+				else if (data.wind.speed > 1)
+					currentWeather.src = '/public/drawings/weather/wind-light.json';
+			} else if (weather.includes('mist')) {
+				currentWeather.src = '/public/drawings/weather/mist.json';
+			} else if (weather.includes('fog')) {
+				currentWeather.src = '/public/drawings/weather/fog.json';
+			}
+			// currentWeather.src = '/public/drawings/weather/fog.json'
+			// currentWeather.randomFrames = false;
+			// console.log(currentWeather.src);
+			if (currentWeather.src) currentWeather.load(false);
+			weatherInterval = setInterval(checkWeather, weatherTime);
+		})
+		.catch(error => { console.log(error) });
+}
+
 function loadUI(data) {
 	console.log('%c splash loaded', 'color:white;background:lightblue;');
 
@@ -87,140 +218,6 @@ function loadUI(data) {
 
 	socket.emit('splash loaded');
 	assetsLoaded.splash = true;
-}
-
-/* sound */
-let theme;
-const clips = [];
-let gameSoundOn = false;
-
-/* weather */
-let weatherOn = false;
-const currentWeather = new Animation(undefined, true);
-currentWeather.randomFrames = true;
-currentWeather.prevFrameCheck = true;
-const weatherTime = 1000 * 60 * 5;
-let weatherInterval, zip; /* check weather updates?  10 mins? */
-
-function toggleSound() {
-	/* load audio if not loaded */
-	if (!theme) {
-		theme = new Audio('/public/audio/theme.mp3');
-		theme.volume = 0.5;
-		theme.loop = true;
-		if (currentScene == 'splash') theme.play();
-		for (let i = 0; i < 8; i++) {
-			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
-			clips[i].loop = true;
-		}
-	} else {
-		if (currentScene == 'splash') {
-			if (theme.paused) theme.play();
-			else theme.pause();
-		}
-		if (currentScene == 'exit') {
-			if (gameSoundOn) clips.forEach(clip => clip.pause());
-		}
-	}
-	gameSoundOn = !gameSoundOn;
-}
-
-function toggleWeather() {
-	if (weatherOn) {
-		weatherOn = false;
-		clearInterval(weatherInterval);
-	}
-	else {
-		weatherOn = true;
-		checkWeather();
-	}
-}
-
-function checkWeather() {
-	if (!zip) zip = prompt("Enter zip code.");
-	const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=915153355d273e3ff9959dd900a3834f`;
-	fetch(weatherURL)
-		.then(response => { return response.json() })
-		.then(data => {
-			console.log(data);
-			const weather = data.weather[0].description;
-			currentWeather.src = undefined;
-			console.log(weather);
-			if (weather.includes('rain')) {
-				if (weather.includes('light') || weather.includes('drizzle'))
-					currentWeather.src = '/public/drawings/weather/rain-light.json';
-				else if (weather.includes('heavy') || weather.includes('shower') || weather.includes('extreme'))
-					currentWeather.src = '/public/drawings/weather/rain-heavy.json';
-				else
-					currentWeather.src = '/public/drawings/weather/rain.json';
-			} else if (weather.includes('snow')) {
-				if (weather.includes('light'))
-					currentWeather.src = '/public/drawings/weather/snow-light.json';
-				else if (weather.includes('heavy'))
-					currentWeather.src = '/public/drawings/weather/snow-heavy.json';
-				else
-					currentWeather.src = '/public/drawings/weather/snow.json';
-			} else if (weather.includes('clouds')) {
-				currentWeather.randomFrames = false;
-				if (weather.includes('few') || weather.includes('scattered'))
-					currentWeather.src = '/public/drawings/weather/clouds-light.json';
-				else if (weather.includes('overcast'))
-					currentWeather.src = '/public/drawings/weather/clouds-heavy.json';
-				else
-					currentWeather.src = '/public/drawings/weather/clouds.json';
-			} else if (data.wind.speed > 0) {
-				currentWeather.randomFrames = false;
-				if (data.wind.speed > 7)
-					currentWeather.src = '/public/drawings/weather/wind-heavy.json';
-				else if (data.wind.speed > 4)
-					currentWeather.src = '/public/drawings/weather/wind.json';
-				else if (data.wind.speed > 1)
-					currentWeather.src = '/public/drawings/weather/wind-light.json';
-			} else if (weather.includes('mist')) {
-				currentWeather.src = '/public/drawings/weather/mist.json';
-			} else if (weather.includes('fog')) {
-				currentWeather.src = '/public/drawings/weather/fog.json';
-			}
-			// currentWeather.src = '/public/drawings/weather/fog.json'
-			// currentWeather.randomFrames = false;
-			// console.log(currentWeather.src);
-			if (currentWeather.src) currentWeather.load(false);
-			weatherInterval = setInterval(checkWeather, weatherTime);
-		})
-		.catch(error => { console.log(error) });
-}
-
-function updateAudio(_x, _y) {
-	// console.log(_x, _y);
-	/* play audio in quadrant at 0.75 */
-	/* audio in adjoining quandrants at 0.25 */
-	let mainClip;
-	const adjClips = [];
-	for (let x = 0; x < 4; x++) {
-		for (let y = 0; y < 2; y++) {
-			if (_x > (x - 2) * 4 * 1024 && _x < (x - 1) * 4 * 1024 &&
-				_y > (y - 1) * 4 * 1024 && _y < y * 4 * 1024) {
-				mainClip = x + y * 4;
-				if (x < 3) adjClips.push(x + 1);
-				if (x > 0) adjClips.push(x - 1);
-				if (y == 0) adjClips.push(x + 4);
-				if (y == 1) adjClips.push(x - 4);
-			}
-		}
-	}
-	
-	if (mainClip) {
-		if (clips[mainClip].paused) clips[mainClip].play();
-		if (clips[mainClip].volume != 0.5) clips[mainClip].volume = 0.5;
-	}
-	for (let i = 0; i < clips.length; i++) {
-		if (adjClips.includes(i)) {
-			if (clips[i].paused) clips[i].play();
-			if (clips[i].volume != 0.25) clips[i].volume = 0.25;
-		}
-		else
-			if (!clips[i].paused) clips[i].pause();
-	}
 }
 
 function loadMap(data) {
