@@ -26,15 +26,15 @@ function loadMap(data) {
 	// 		map.interactives[label] = new Interactive(item, false);
 	// 	}
 	// }
-	for (const key in data.pickups.flower.items) {
-		const item = data.pickups.flower.items[key];
-		item.state = 'idle';
-		item.states = { idle: { start: 0, end: 0 } };
-		// console.log(item.src);
-		map.interactives[key] = new Interactive(item, item.src, false);
-	}
+	// for (const key in data.pickups.flower.items) {
+	// 	const item = data.pickups.flower.items[key];
+	// 	item.state = 'idle';
+	// 	item.states = { idle: { start: 0, end: 0 } };
+	// 	// console.log(item.src);
+	// 	map.interactives[key] = new Interactive(item, item.src, false);
+	// }
 
-	const scenes = ['north-beach', 'south-beach', 'spine', 'river', 'palm', 'east-shore'];
+	const scenes = ['north-beach', 'south-beach', 'spine', 'river', 'east-shore', 'north-arm'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -43,7 +43,7 @@ function loadMap(data) {
 			for (let i = 0; i < set.length; i++) {
 				const item = new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false);
 				map.scenery[s].push(item);
-				item.label = set[i].src.split('/').pop().split('.')[0] + ` ${i}`;
+				item.label = set[i].src.split('/').pop().split('.')[0];
 			}
 		}
 	}

@@ -595,6 +595,8 @@ undoable
 	- or do weird spelling, verbs etc.
 - documentation - 
 - move punctuation to the right in letters - 
+- three voids - 
+- centered sprites are off dumbass - 
 
 void ntoes
 - animation rewards for resources
@@ -608,9 +610,10 @@ void ntoes
 	- randomized offering requirements
 
 - after indiecade submission
-	- three voids
 	- arms and legs
-	- centered sprites are off dumbass
+		- sand texture
+		
+	- game sound off when leaving game .... 
 	- another pass on character dialog
 		- multiple voids
 	- initLittering in game not implemented?
@@ -626,6 +629,7 @@ void ntoes
 	- i screen is wide add some random scene art
 	- fucking figure out where texts go
 	- east shore 9 - drawing that i forgot to use
+		- north arm 11
 	- full cactus redraw
 	- cursor over any ui
 	- fit all drawings
