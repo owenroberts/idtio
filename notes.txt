@@ -612,7 +612,7 @@ void ntoes
 - after indiecade submission
 	- arms and legs
 		- sand texture
-		
+
 	- game sound off when leaving game .... 
 	- another pass on character dialog
 		- multiple voids
@@ -630,6 +630,7 @@ void ntoes
 	- fucking figure out where texts go
 	- east shore 9 - drawing that i forgot to use
 		- north arm 11
+		- south arm 14
 	- full cactus redraw
 	- cursor over any ui
 	- fit all drawings
@@ -661,3 +662,4 @@ maybe
 lines 
 	- follow over missing first segment?
 	- offset doesn't work with xy frames
+	- brush pallettes
