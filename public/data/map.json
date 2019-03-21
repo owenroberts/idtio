@@ -667,7 +667,41 @@
 			{ "msg": "", "r": true, "src": "14.json", "x": 5548, "y": -9282 },
 			{ "msg": "", "r": true, "src": "12.json", "x": 5744, "y": -8767 },
 			{ "msg": "", "r": true, "src": "13.json", "x": 4626, "y": -9324 }
-
+		],
+		"north-leg": [
+			{ "msg": "", "r": true, "src":  "0.json", "x": -8700, "y": -4487 },
+			{ "msg": "", "r": true, "src":  "1.json", "x": -9566, "y": -5168 },
+			{ "msg": "", "r": true, "src":  "2.json", "x": -10517, "y": -5764 },
+			{ "msg": "", "r": true, "src":  "3.json", "x": -10104, "y": -1523 },
+			{ "msg": "", "r": true, "src":  "4.json", "x": -11122, "y": -2026 },
+			{ "msg": "", "r": true, "src":  "5.json", "x": -11487, "y": -5260 },
+			{ "msg": "", "r": true, "src":  "6.json", "x": -12550, "y": -4785 },
+			{ "msg": "", "r": true, "src":  "7.json", "x": -13521, "y": -4396 },
+			{ "msg": "", "r": true, "src":  "8.json", "x": -12138, "y": -1883 },
+			{ "msg": "", "r": true, "src":  "9.json", "x": -13140, "y": -1426 },
+			{ "msg": "", "r": true, "src": "10.json", "x": -14114, "y": -1064 },
+			{ "msg": "", "r": true, "src": "11.json", "x": -14474, "y": -3881 },
+			{ "msg": "", "r": true, "src": "12.json", "x": -15403, "y": -3413 },
+			{ "msg": "", "r": true, "src": "13.json", "x": -16217, "y": -2798 },
+			{ "msg": "", "r": true, "src": "14.json", "x": -16599, "y": -2093 },
+			{ "msg": "", "r": true, "src": "15.json", "x": -16988, "y": -1369 },
+			{ "msg": "", "r": true, "src": "16.json", "x": -17334, "y": -656 },
+			{ "msg": "", "r": true, "src": "17.json", "x": -17800, "y": 100 },
+			{ "msg": "", "r": true, "src": "18.json", "x": -18159, "y": 817 },
+			{ "msg": "", "r": true, "src": "19.json", "x": -18571, "y": 1606 },
+			{ "msg": "", "r": true, "src": "20.json", "x": -14977, "y": -450 },
+			{ "msg": "", "r": true, "src": "21.json", "x": -15632, "y": 241 },
+			{ "msg": "", "r": true, "src": "22.json", "x": -16073, "y": 969 },
+			{ "msg": "", "r": true, "src": "23.json", "x": -16236, "y": 1720 },
+			{ "msg": "", "r": true, "src": "24.json", "x": -16815, "y": 2437 },
+			{ "msg": "", "r": true, "src": "25.json", "x": -19158, "y": 2328 },
+			{ "msg": "", "r": true, "src": "26.json", "x": -20100, "y": 2996 },
+			{ "msg": "", "r": true, "src": "27.json", "x": -20441, "y": 3754 },
+			{ "msg": "", "r": true, "src": "29.json", "x": -16800, "y": 3852 },
+			{ "msg": "", "r": true, "src": "30.json", "x": -16783, "y": 3125 },
+			{ "msg": "", "r": true, "src": "31.json", "x": -19747, "y": 4442 },
+			{ "msg": "", "r": true, "src": "32.json", "x": -18906, "y": 4737 },
+			{ "msg": "", "r": true, "src": "33.json", "x": -17778, "y": 4431 }
 		],
 		"east-shore": [
 			{ "src": "0.json", "r": true, "x": 6019, "y": -4279 },
@@ -705,7 +739,6 @@
 			{ "msg": "", "r": true, "src": "12.json", "x": 11410, "y": 1949 },
 			{ "msg": "", "r": true, "src": "13.json", "x": 12385, "y": 2090 },
 			{ "msg": "", "r": true, "src": "15.json", "x": 12540, "y": 2880 }
-
 		],
 		"south-beach": [
 			{ "msg": "its", "r": true, "src": "12.json", "x": -7000, "y": 3950 },

@@ -34,7 +34,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['south-beach', 'spine', 'east-shore', 'south-arm'];
+	const scenes = ['spine', 'north-beach', 'south-beach', 'river', 'north-leg'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -163,21 +163,11 @@ function mouseDown(x, y, button) {
 }
 
 function mouseUp(x, y, button) {
-	if (button == 1)
-		offset.dragStart = null;
-	
-	if (button == 3) 
-		m.display = false;
+	if (button == 1) offset.dragStart = null;
+	if (button == 3) m.display = false;
 }
 
 Game.init({width: window.innerWidth, height: window.innerHeight, lps: 10, debug: false});
-
-document.addEventListener('mousedown', function(ev) {
-	if (ev.which == 3) {
-
-	}
-});
-
 document.oncontextmenu = function() { return false; }
 
 trackTransforms(Game.ctx);

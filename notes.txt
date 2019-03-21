@@ -631,6 +631,8 @@ void ntoes
 	- east shore 9 - drawing that i forgot to use
 		- north arm 11
 		- south arm 14
+		- north leg 28
+
 	- full cactus redraw
 	- cursor over any ui
 	- fit all drawings
@@ -663,3 +665,5 @@ lines
 	- follow over missing first segment?
 	- offset doesn't work with xy frames
 	- brush pallettes
+	- flex order for panels
+	- html color pickers
