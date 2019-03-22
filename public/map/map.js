@@ -116,9 +116,21 @@ function draw() {
 	}
 }
 
+
+  		
+
+
 function mouseClicked(x, y) {
 	const p = Game.ctx.transformedPoint(x, y);
-	console.log('"x": ' + Math.floor(p.x) + ', "y": ' + Math.floor(p.y));
+	console.log(`"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`);
+	
+	/* copy to clipboard */
+	const el = document.createElement('textarea');
+	el.value = `"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`;
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
 }
 
 const offset = {
