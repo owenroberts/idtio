@@ -34,7 +34,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'north-beach', 'south-beach', 'river', 'north-leg'];
+	const scenes = ['spine', 'south-beach', 'river', 'north-leg', 'south-leg'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {

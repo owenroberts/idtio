@@ -664,6 +664,5 @@ maybe
 lines 
 	- follow over missing first segment?
 	- offset doesn't work with xy frames
-	- brush pallettes
-	- flex order for panels
 	- html color pickers
+	- save palette order in settings
