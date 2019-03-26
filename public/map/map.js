@@ -34,7 +34,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'north-leg', 'south-leg'];
+	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -49,20 +49,24 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	// for (const t in ) {
-		map.scenery['waves'] = [];
-		const texture = data.textures.waves;
-		for (let j = 0; j < texture.length; j++) {
-			const set = texture[j];
-			for (let i = 0; i < set.position.length; i++) {
-				const item = new Item(set.position[i],`/public/drawings/scenery/waves/${set.src}`, false);
-				map.scenery['waves'].push(item);
-				item.label = set.src.split('/').pop().split('.')[0] + ` ${set.position[i].x}`;
-				if (set.tags.includes("r")) item.animation.randomFrames = true;
-				if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
+	const textures = ['waves', 'river']
+	for (const t in data.textures) {
+		if (textures.includes(t)) {
+			if (!map.scenery[t]) map.scenery[t] = [];
+			const texture = data.textures[t];
+			for (let j = 0; j < texture.length; j++) {
+				const set = texture[j];
+				console.log(t, set.position.length);
+				for (let i = 0; i < set.position.length; i++) {
+					const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
+					map.scenery[t].push(item);
+					item.label = set.src.split('/').pop().split('.')[0] + ` ${set.position[i].x}`;
+					if (set.tags.includes("r")) item.animation.randomFrames = true;
+					if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
+				}
 			}
 		}
-	// }
+	}
 }
 
 function start() {

@@ -612,7 +612,11 @@ void ntoes
 - after indiecade submission
 	- arms and legs
 		- sand texture
-
+		- fill in grass and sand in legs
+		- resize map, bounds
+		- redo music quadrants
+		- arm and leg messages
+		- update character positions
 	- game sound off when leaving game .... 
 	- another pass on character dialog
 		- multiple voids
@@ -647,6 +651,9 @@ void ntoes
 	- set vertical position of texts per label
 	- update sound quadrants
 & drawing notes
+
+- after after
+	- clean up ocean waves
 
 for later
 - no map edges ?

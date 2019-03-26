@@ -260,7 +260,7 @@ function loadMap(data) {
 	}
 
 	for (const t in data.textures) {
-		scenes.game.scenery[t] = [];
+		if (!scenes.game.scenery[t]) scenes.game.scenery[t] = [];
 		const texture = data.textures[t];
 		for (let j = 0; j < texture.length; j++) {
 			const set = texture[j];
