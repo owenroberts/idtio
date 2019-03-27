@@ -34,7 +34,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore'];
+	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -49,7 +49,7 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	const textures = ['waves', 'river']
+	const textures = ['grass', 'sand', 'waves']
 	for (const t in data.textures) {
 		if (textures.includes(t)) {
 			if (!map.scenery[t]) map.scenery[t] = [];
@@ -60,7 +60,7 @@ function loadMap(data) {
 				for (let i = 0; i < set.position.length; i++) {
 					const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
 					map.scenery[t].push(item);
-					item.label = set.src.split('/').pop().split('.')[0] + ` ${set.position[i].x}`;
+					item.label = set.src.split('/').pop().split('.')[0] + ` ${i} ${set.position[i].x}`;
 					if (set.tags.includes("r")) item.animation.randomFrames = true;
 					if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
 				}
@@ -88,7 +88,7 @@ function draw() {
 
 	Game.ctx.strokeStyle = '#bb11ff';
 	Game.ctx.lineWidth = 10;
-	Game.ctx.strokeRect(-9728, -4096, 17408, 8192);
+	Game.ctx.strokeRect(-22702, -10788, 37178, 24891);
 	Game.ctx.lineWidth = 1;
 
 	Game.ctx.font = '16px monaco';
@@ -119,9 +119,6 @@ function draw() {
 		Game.ctx.fillText(Math.floor(m.h), m.x - 20, m.y + m.h/2);
 	}
 }
-
-
-  		
 
 
 function mouseClicked(x, y) {

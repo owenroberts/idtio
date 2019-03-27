@@ -20,6 +20,7 @@ const colorPicker = document.getElementById('color-picker');
 /* sound */
 let theme;
 const clips = [];
+let prevClip;
 let gameSoundOn = false;
 
 function toggleSound() {
@@ -29,7 +30,7 @@ function toggleSound() {
 		theme.volume = 0.5;
 		theme.loop = true;
 		if (currentScene == 'splash') theme.play();
-		for (let i = 0; i < 8; i++) {
+		for (let i = 0; i < 18; i++) {
 			clips.push( new Audio(`/public/audio/clip_${i}.mp3`) );
 			clips[i].loop = true;
 		}
@@ -38,43 +39,60 @@ function toggleSound() {
 			if (theme.paused) theme.play();
 			else theme.pause();
 		}
-		if (currentScene == 'exit' && gameSoundOn)
-			clips.forEach(clip => clip.pause());
+		if (currentScene == 'exit' && gameSoundOn) clips.forEach(clip => clip.pause());
 	}
 	gameSoundOn = !gameSoundOn;
 }
 
 function updateAudio(_x, _y) {
-	// console.log(_x, _y);
 	/* play audio in quadrant at 0.75 */
 	/* audio in adjoining quandrants at 0.25 */
+	/* x -22702, y -10788, w 37178, h 24891 */
+	const c = 6; // columns
+	const r = 3; // rows
+	const w = 37178 / 6;
+	const h = 24891 / 3;
 	let mainClip;
 	const adjClips = [];
-	for (let x = 0; x < 4; x++) {
-		for (let y = 0; y < 2; y++) {
-			if (_x > (x - 2) * 4 * 1024 && _x < (x - 1) * 4 * 1024 &&
-				_y > (y - 1) * 4 * 1024 && _y < y * 4 * 1024) {
-				mainClip = x + y * 4;
-				if (x < 3) adjClips.push(x + 1);
-				if (x > 0) adjClips.push(x - 1);
-				if (y == 0) adjClips.push(x + 4);
-				if (y == 1) adjClips.push(x - 4);
+	for (let x = 0; x < c; x++) {
+		for (let y = 0; y < r; y++) {
+			if (_x > -22702 + x * w && _x < -22702 + w + x * w &&
+				_y > -10788 + y * h && _y < -10788 + h + y * h) {
+				mainClip = x + y * c;
+				
+				if (prevClip) adjClips.push(prevClip);
+				if (x > 0 && x < c - 1 && y > 0 && y < r - 1) {
+					function rand() { 
+						return Cool.random([ mainClip + 1, mainClip - 1, mainClip + c, mainClip - c]);
+					}
+					let rnd = rand();
+					while (rnd == prevClip) {
+						rnd = rand();
+					}
+					adjClips.push(rnd);
+				}
 			}
 		}
 	}
-	
-	if (mainClip) {
-		if (clips[mainClip].paused) clips[mainClip].play();
-		if (clips[mainClip].volume != 0.5) clips[mainClip].volume = 0.5;
-	}
-	for (let i = 0; i < clips.length; i++) {
-		if (adjClips.includes(i)) {
-			if (clips[i].paused) clips[i].play();
-			if (clips[i].volume != 0.25) clips[i].volume = 0.25;
+
+	if (mainClip != prevClip) {
+		console.log('update');
+		for (let i = 0; i < clips.length; i++) {
+			if (adjClips.includes(i)) {
+				if (clips[i].paused) clips[i].play();
+				if (clips[i].volume != 0.1) clips[i].volume = 0.1;
+			} else {
+				if (!clips[i].paused) clips[i].pause();
+			}
 		}
-		else
-			if (!clips[i].paused) clips[i].pause();
+		
+		if (mainClip) {
+			if (clips[mainClip].paused) clips[mainClip].play();
+			if (clips[mainClip].volume != 0.5) clips[mainClip].volume = 0.5;
+			prevClip = mainClip;
+		}
 	}
+
 }
 
 /* weather */

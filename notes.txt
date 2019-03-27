@@ -610,13 +610,15 @@ void ntoes
 	- randomized offering requirements
 
 - after indiecade submission
-	- arms and legs
-		- sand texture
-		- fill in grass and sand in legs
-		- resize map, bounds
+	- arms and legs - 
+		- sand texture - 
+		- fill in grass and sand in legs - 
+		- resize map, bounds - 
+		- fill in grass/sand
 		- redo music quadrants
-		- arm and leg messages
 		- update character positions
+		- arm and leg messages
+
 	- game sound off when leaving game .... 
 	- another pass on character dialog
 		- multiple voids
@@ -650,10 +652,16 @@ void ntoes
 	- void anims need to be long
 	- set vertical position of texts per label
 	- update sound quadrants
+	- anus void to close to graveyard
+	- probably better way to handle audio areas
 & drawing notes
 
 - after after
 	- clean up ocean waves
+	- loading progress counter?
+	- fill wave gaps
+	- more forest like areas
+
 
 for later
 - no map edges ?

@@ -7,7 +7,7 @@ class Player extends Entity {
 		socket.emit('id', socket.id);
 		this.joinedGame = false;
 		this.input = { right: false, up: false, left: false, down: false };
-		this.bounds = { top: -3596, bottom: 4026, left: -8192, right: 11166 };
+		this.bounds = { top: -10788, bottom: 14103, left: -22702, right: 14476 };
 		this.speed = 5;
 		this.animationState = 'idle';
 
@@ -45,10 +45,10 @@ class Player extends Entity {
 
 	setBounds(width, height) {
 		/* window width and height */
-		this.bounds.top -= height;
-		this.bounds.bottom += height;
-		this.bounds.left -= width;
-		this.bounds.right += width;
+		this.bounds.top += height;
+		this.bounds.bottom -= height;
+		this.bounds.left += width;
+		this.bounds.right -= width;
 	}
 
 	join(character, socket) {
