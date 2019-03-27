@@ -2,7 +2,7 @@
 	"cat": {
 		"src": "/public/drawings/characters/cat/cat.json",
 		"letters": "/public/drawings/characters/cat/letters.json",
-		"x": -7798, "y": -3397,
+		"x": -18250, "y": 3237,
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 8 },
@@ -26,7 +26,7 @@
 	"pig": {
 		"src": "/public/drawings/characters/pig/pig.json",
 		"letters": "/public/drawings/characters/pig/letters.json",
-		"x": -3764, "y": 2525,
+		"x": -11685, "y": 11252,
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 8 },
@@ -142,7 +142,7 @@
 	"cactus": {
 		"src": "/public/drawings/characters/cactus/cactus.json",
 		"letters": "/public/drawings/characters/cactus/letters.json",
-		"x": -8670, "y": 3816,
+		"x": -9900, "y": 3126,
 		"states": {
 			"idle": { "start": 0, "end": 4 },
 			"right": { "start": 4, "end": 6 },
