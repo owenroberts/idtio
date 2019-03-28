@@ -254,23 +254,12 @@ io.on('connection', function(socket) {
 		socket.emit('change scene', 'splash');
 	}
 
-	socket.on('exit game', () => {
-		exitGame(true);
-	});
-
-	socket.on('disconnect', () => {
-		exitGame(false);
-	});
-
-	/* chat */
-	socket.on('send-chat', function(msg) {
-		io.sockets.emit('get-chat', players[socket.id].character + ": " + msg);
-	});
+	socket.on('exit game', () => { exitGame(true); });
+	socket.on('disconnect', () => { exitGame(false); });
 
 	/* debug */
 	socket.on('send-eval', function(msg) {
-		if (!DEBUG)
-			return;
+		if (!DEBUG) return;
 		const res = eval(msg);
 		socket.emit('get-eval', res);
 	});

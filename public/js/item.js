@@ -17,6 +17,7 @@ class Item extends Sprite {
 			this.animation.state = params.state || 'idle';
 		}
 		if (params.r) this.animation.randomFrames = true;
+		this.textOffset = params.off ? params.off : { w: 0.5, h: 0.5 };
 	}
 
 	display() {
@@ -31,7 +32,8 @@ class Item extends Sprite {
 		this.position.x = this.x + offset.x;
 		this.position.y = this.y + offset.y;
 		this.center();
-		if (this.text) this.text.setPosition(this.position.x + this.width/2, this.position.y + this.height/4);
+		if (this.text) 
+			this.text.setPosition(this.position.x + this.width * this.textOffset.w, this.position.y + this.height * this.textOffset.h);
 	}
 
 	displayMessage(show, end) {

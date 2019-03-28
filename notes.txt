@@ -612,6 +612,8 @@ undoable
 - sound in east shore - 
 - update sound quadrants - 
 - anus void to close to graveyard - its close to everything
+- game sound off when leaving game .... -
+
 
 void ntoes
 - animation rewards for resources
@@ -625,7 +627,6 @@ void ntoes
 	- randomized offering requirements
 
 - after indiecade submission
-	- game sound off when leaving game .... 
 	- fucking figure out where texts go
 	- set vertical position of texts per label
 	- cursor over any ui
@@ -635,6 +636,7 @@ void ntoes
 		- one for each resource ... 
 	- what to do with rocks?
 	- void anims need to be long
+	- loading, then welcome
 & drawing notes
 
 - after after

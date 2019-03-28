@@ -23,6 +23,16 @@ const clips = [];
 let prevClip;
 let gameSoundOn = false;
 
+function sceneChangeSound() {
+	if (gameSoundOn) {
+		if (currentScene == 'splash') {
+			clips.forEach(clip => clip.pause());
+			if (theme.paused) theme.play();
+			prevClip = undefined;
+		}
+	}
+}
+
 function toggleSound() {
 	/* load audio if not loaded */
 	if (!theme) {
@@ -42,12 +52,13 @@ function toggleSound() {
 		if (currentScene == 'exit' && gameSoundOn) clips.forEach(clip => clip.pause());
 	}
 	gameSoundOn = !gameSoundOn;
+	prevClip = undefined;
 }
 
 function updateAudio(_x, _y) {
-	/* play audio in quadrant at 0.75 */
-	/* audio in adjoining quandrants at 0.25 */
-	/* x -22702, y -10788, w 37178, h 24891 */
+	/* play audio in area at 0.5
+		audio in prev area, random next area 0.1
+		x -22702, y -10788, w 37178, h 24891 */
 	const c = 6; // columns
 	const r = 3; // rows
 	const w = 37178 / 6;
@@ -59,7 +70,6 @@ function updateAudio(_x, _y) {
 			if (_x > -22702 + x * w && _x < -22702 + w + x * w &&
 				_y > -10788 + y * h && _y < -10788 + h + y * h) {
 				mainClip = x + y * c;
-				
 				if (prevClip) adjClips.push(prevClip);
 				if (x > 0 && x < c - 1 && y > 0 && y < r - 1) {
 					function rand() { 
@@ -76,7 +86,6 @@ function updateAudio(_x, _y) {
 	}
 
 	if (mainClip != prevClip) {
-		console.log('update');
 		for (let i = 0; i < clips.length; i++) {
 			if (adjClips.includes(i)) {
 				if (clips[i].paused) clips[i].play();
@@ -92,7 +101,6 @@ function updateAudio(_x, _y) {
 			prevClip = mainClip;
 		}
 	}
-
 }
 
 /* weather */
@@ -539,6 +547,7 @@ socket.on('change scene', scene => {
 	delete scenes[currentScene].texts.msg;
 	currentScene = scene;
 	colorPicker.style.display = currentScene == 'splash' ? 'block' : 'none';
+	sceneChangeSound();
 });
 
 /* recieve player position from server 

@@ -1182,8 +1182,8 @@
 			{ "src": "west.json",  "x": -9098, "y": -2050 }
 		],
 		"apple-tree": [
-			{ "msg": "idiot idito idtio the grave yard the dead the flowers and nothing more.", "src": "0.json", "x": 4200, "y": -2400 },
-			{ "msg": "itdio tidio idiot the rot rots the decay decays.", "src": "1.json", "x": 4200, "y": 2400 	}
+			{ "msg": "idiot idito idtio the grave yard the dead the flowers and nothing more.", "src": "0.json", "x": 4200, "y": -2400, "off": { "w": 0.5, "h": 1 } },
+			{ "msg": "itdio tidio idiot the rot rots the decay decays.", "src": "1.json", "x": 4200, "y": 2400, "off": { "w": 0.5, "h": 0.75 } }
 		],
 		"spine": [
 			{ "msg": "bollow bones", "src": "7.json", "x": -4096, "y": 0 },
