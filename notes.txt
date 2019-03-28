@@ -628,6 +628,7 @@ void ntoes
 
 - after indiecade submission
 	- fucking figure out where texts go
+		- test other texts position
 	- set vertical position of texts per label
 	- cursor over any ui
 	- arm and leg messages
