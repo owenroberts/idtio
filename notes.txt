@@ -613,7 +613,19 @@ undoable
 - update sound quadrants - 
 - anus void to close to graveyard - its close to everything
 - game sound off when leaving game .... -
-
+- fucking figure out where texts go - 
+		- test other texts position 
+		- "off": { "w": 0.5, "h": 1 }
+		- fix order
+	- set vertical position of texts per label
+- arm and leg messages - 
+- what to do with rocks? - 
+	- change message to be more ambiguous
+- characters need void anim, maybe use a already existing one for now
+	- void animation should not restart ... 
+- loading, then welcome - 
+- classes - 
+- move graveyard - 
 
 void ntoes
 - animation rewards for resources
@@ -627,20 +639,14 @@ void ntoes
 	- randomized offering requirements
 
 - after indiecade submission
-	- fucking figure out where texts go
-		- test other texts position
-	- set vertical position of texts per label
-	- cursor over any ui
-	- arm and leg messages
 	- another pass on character dialog
-	- characters need void anim, maybe use a already existing one for now
-		- one for each resource ... 
-	- what to do with rocks?
-	- void anims need to be long
-	- loading, then welcome
-& drawing notes
+	- cursor over any ui
+	
 
 - after after
+	- void anim for each resource
+	- more waves
+	- more void anims, longer
 	- resources timeout?
 	- player timeout?
 	- clean up ocean waves

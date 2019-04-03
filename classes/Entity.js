@@ -13,17 +13,11 @@ class Entity {
 		const playerIndex = this.playersInRange.indexOf(player.id);
 		const wasInRange = playerIndex != -1;
 		const isInRange = Math.sqrt(_x * _x + _y * _y) < this.distance * (wasInRange ? 2 : 1);
-		if (debug) {
-			console.log(_x, _y);
-			console.log(this.distance);
-			console.log(isInRange);
-		}
 		if (isInRange && !wasInRange)
 			this.playersInRange.push(player.id);
 		if (wasInRange && !isInRange)
 			this.playersInRange.splice(playerIndex, 1);
 		callback(isInRange, wasInRange);
-
 	}
 
 	removePlayer(id) {

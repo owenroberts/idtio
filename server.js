@@ -11,10 +11,10 @@ const io = socketIO(server);
 const mapData = require('./public/data/map.json');
 const characterData = require('./public/data/character.json');
 const script = require('./public/data/script.json');
-const Entity = require('./Entity.js'); 
-const Interactive = require('./Interactive.js'); 
-const Pickup = require('./Pickup.js');
-const Player = require('./Player.js');
+const Entity = require('./classes/Entity.js'); 
+const Interactive = require('./classes/Interactive.js'); 
+const Pickup = require('./classes/Pickup.js');
+const Player = require('./classes/Player.js');
 
 const port = process.env.PORT || 5001;
 app.set('port', port);
@@ -34,7 +34,7 @@ server.listen(port, function() {
 });
 
 // console.clear();
-const DEBUG = true;
+const DEBUG = false;
 let gameIsPlaying = false;
 let gameInterval;
 const inGame = [];
@@ -113,7 +113,7 @@ function gameUpdate() {
 
 			for (const label in interactives) {
 				const interactive = interactives[label];
-				if (!interactive.picked) { 
+				if (!interactive.picked && !interactive.isInteracting) { 
 					interactive.checkInRange(player, (isInRange, wasInRange) => {
 						if (isInRange && !wasInRange) { // entered
 							if (interactive.isPickup && !interactive.picked) {
@@ -128,7 +128,10 @@ function gameUpdate() {
 							} else { /* currently just voids */
 								if (player.resources[interactive.resource].length > 0) {
 									io.sockets.emit('play interact animation', label);
+									io.sockets.emit('play character animation', player.character, 'flower'); // general update ? 
 									player.usedResources[interactive.resource].push(player.resources[interactive.resource].shift()); /* move to used resources */
+									// set void/interactive to "interacting"
+									interactive.isInteracting = true;
 								} else {
 									io.sockets.emit('display item message', label);
 								}
@@ -189,7 +192,7 @@ io.on('connection', function(socket) {
 
 	/* select a character (need access to characters obj) 
 		adding "join" */
-	socket.on('character join', (character) => {
+	socket.on('character join', character => {
 		if (inGame.indexOf(character) == -1) {
 			players[socket.id].character = character;
 			players[socket.id].x = characterData[character].x;
@@ -210,8 +213,12 @@ io.on('connection', function(socket) {
 		}
 	});
 
-	socket.on('change scene', (scene) => {
+	socket.on('change scene', scene => {
 		socket.emit('change scene', scene);
+	});
+
+	socket.on('interact animation end', label => {
+		interactives[label].isInteracting = false;
 	});
 
 	/* player leaves */

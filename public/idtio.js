@@ -269,7 +269,7 @@ function loadMap(data) {
 					};
 				}
 				scenes.game.interactives[label] = new Interactive(
-					{ ...pickup, wrap: data.pickups[type].wrap, states: states }, 
+					{ ...pickup, wrap: data.pickups[type].wrap, states: states, off: group.off  }, 
 					true, false);
 			}, 1);
 		}
@@ -305,11 +305,19 @@ function loadMap(data) {
 function start() {
 
 	scenes.loading.sprites.loading = new Sprite(window.innerWidth/2, window.innerHeight/2);
+	scenes.loading.sprites.welcome = new Sprite(window.innerWidth/2, window.innerHeight/2 - 100);
 	scenes.loading.sprites.loading.addAnimation('/public/drawings/ui/loading.json', () => {
 		scenes.loading.sprites.loading.center();
-		scenes.loading.sprites.loading.animation.onPlayedState = function() {
-			assetsLoaded.loading = true;
-		};
+		scenes.loading.sprites.loading.animation.playOnce(() => {
+			scenes.loading.sprites.loading.animation.onPlayedState = undefined;
+			scenes.loading.sprites.loading.animation.stop();
+			scenes.loading.sprites.welcome.addAnimation('/public/drawings/ui/welcome.json', () => {
+				scenes.loading.sprites.welcome.center();
+				scenes.loading.sprites.welcome.animation.playOnce(() => {
+					assetsLoaded.loading = true;
+				});
+			});
+		});
 	});
 	// assetsLoaded.loading = true; // remove to play full loading anim
 
@@ -610,8 +618,11 @@ socket.on('update', data => {
 
 /* things not handlged in update ... */
 function playInteractiveAnimation(label) {
-	if (currentScene == 'game') /* necessary? */
-		scenes[currentScene].interactives[label].playInteractState();
+	if (currentScene == 'game') {/* necessary if? */
+		scenes[currentScene].interactives[label].playInteractState(() => {
+			socket.emit('interact animation end', label);
+		});
+	}
 }
 
 function displayItemMessage(label, index) {
@@ -627,6 +638,7 @@ function hideItemMessage(label, index) {
 }
 
 function playCharacterAnimation(character, type) {
+	console.log(character, type);
 	scenes.game.characters[character].playAnimation(type);
 }
 

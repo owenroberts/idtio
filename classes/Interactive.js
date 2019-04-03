@@ -7,6 +7,7 @@ class Interactive extends Entity {
 		this.label = params.label;
 		this.type = params.type || 'interactive';
 		this.resource = params.resource;
+		this.isInteracting = false;
 
 		/* not sure this is the best way to do it */
 		this.isPickup = false;

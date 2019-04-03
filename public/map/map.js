@@ -17,15 +17,15 @@ function loadMap(data) {
 	// 	map.interactives[label] = new Interactive(data.interactives[label], false);
 	// }
 
-	// for (const type in data.pickups) {
-	// 	const set = data.pickups[type].items;
-	// 	for (const label in set) {
-	// 		const item = set[label];
-	// 		item.state = 'idle';
-	// 		item.states = { idle: { start: 0, end: 0 } };
-	// 		map.interactives[label] = new Interactive(item, false);
-	// 	}
-	// }
+	for (const type in data.pickups) {
+		const set = data.pickups[type].items;
+		for (const label in set) {
+			const item = set[label];
+			item.state = 'idle';
+			item.states = { idle: { start: 0, end: 0 } };
+			map.interactives[label] = new Interactive(item, false);
+		}
+	}
 	// for (const key in data.pickups.flower.items) {
 	// 	const item = data.pickups.flower.items[key];
 	// 	item.state = 'idle';
@@ -34,7 +34,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg'];
+	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'graveyard', 'grave-fence'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -49,7 +49,7 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	const textures = ['grass', 'sand', 'waves']
+	const textures = ['grass', 'sand']
 	for (const t in data.textures) {
 		if (textures.includes(t)) {
 			if (!map.scenery[t]) map.scenery[t] = [];
