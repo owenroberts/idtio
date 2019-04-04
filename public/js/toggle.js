@@ -12,11 +12,11 @@ class Toggle extends UI {
 	over(x, y) {
 		if (this.tap(x,y)) {
 			this.animation.setState('over');
-			document.body.style.cursor = 'pointer';
+			return true;
 		} else {
 			this.setOnOff();
-			document.body.style.cursor = 'default';
 			this.clickStart = false;
+			return false;
 		}
 	}
 	down(x, y) {

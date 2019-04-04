@@ -56,7 +56,6 @@ function loadMap(data) {
 			const texture = data.textures[t];
 			for (let j = 0; j < texture.length; j++) {
 				const set = texture[j];
-				console.log(t, set.position.length);
 				for (let i = 0; i < set.position.length; i++) {
 					const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
 					map.scenery[t].push(item);

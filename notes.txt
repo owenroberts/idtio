@@ -626,6 +626,8 @@ undoable
 - loading, then welcome - 
 - classes - 
 - move graveyard - 
+- another pass on character dialog - 
+- cursor over any ui - 
 
 void ntoes
 - animation rewards for resources
@@ -638,9 +640,7 @@ void ntoes
 	- new anims/sceneries 
 	- randomized offering requirements
 
-- after indiecade submission
-	- another pass on character dialog
-	- cursor over any ui
+
 	
 
 - after after

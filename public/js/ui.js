@@ -19,11 +19,11 @@ class UI extends Sprite {
 		if (!this.selected) {
 			if (this.tap(x,y)) {
 				this.animation.setState('over');
-				document.body.style.cursor = 'pointer'; /* maybe make this a game or UI method? */
+				return true;
 			} else {
 				this.animation.setState('idle');
-				document.body.style.cursor = 'default';
 				this.clickStart = false;
+				return false;
 			}
 		}
 	}

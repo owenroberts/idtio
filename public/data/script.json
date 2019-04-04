@@ -2,21 +2,21 @@
 	"order": [ "origin", "origin", "goal", "goal", "obstacle", "obstacle", "reward", "reward" ],
 	"cat": {
 		"origin": {
-			"a": "I was born like really far away, farther than the distance between my feelings about you and your about me.",
-			"b": "My home was the meeting point of many winds, they carried me to no land I wanted to stay.",
-			"c": "Nothing happened where I grew up, I couldn't even have imagined a party with so many different creatures." },
+			"a": "I was born like really far away, farther than the distance bewteen my emotions and your emotions.",
+			"b": "My home was the meeting point of many aimless winds.",
+			"c": "Where I grew up nothing happened.  I only dreamed of parties and creatures so unlike me." },
 		"goal": {
-			"a": "What are you supposed even do at a party?  I liked hanging out with the television.",
+			"a": "The party was fun.  I liked the television.",
 			"b": "It seems like there's a contest to be the most lonely creature in idtio.",
-			"c": "In this mirror world or whatever is everyone just like more chill?  Because I would be into that." },
+			"c": "The mirror world that everyone talks about, is it the same as idtio, but like more chill?" },
 		"obstacle": {
-			"a": "I heard that the smell is really fowl, like the farting trees in the east but worse.",
-			"b": "It was a good party, but like, I don't know, am I going to have to feel bad about who I talk to every time these idiots are in one place?",
+			"a": "I heard that the smell is really fowl, like the farting trees in the east but even worse.",
+			"b": "When all the creatures are together I always get in trouble for talking to someone and not someone else.",
 			"c": "If we were friends for one thousandth of one second or a thousand years, what's the difference?" },
 		"reward": {
 			"a": "If I have to look for something, I guess I'd like to find myself.",
-			"b": "The pig keeps talking about this land under idtio that's like the veins under our skin, which is gross.",
-			"c": "And the birds just talk about the meaning of life or whatever being like bowels.  I don't know if it's supposed to be funny." },
+			"b": "The pig keeps talking about this land under idtio that's like the veins under our skin, its so gross.",
+			"c": "The birds say the meaning of life or whatever is in the bowels of the earth.  I don't know if it's supposed to be funny." },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "ac" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "ab" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
@@ -28,20 +28,20 @@
 	},
 	"pig": {
 		"origin": {
-			"a": "The earth is dry and acidic in my home land, a neglected, boring place.",
+			"a": "In my home land, a boring, neglected place, the earth is dry and the sea is acidic.",
 			"b": "As an child I swam in the yellow waters of the south, and I dreamed to swim around the world to the north but I don't know if it works like that.",
 			"c": "I came from a big litter of pigs and I was the biggest of all." },
 		"goal": {
-			"a": "I have suffered long in my search for beauty, in the form of both creature and thoughts, like thoughts about beauty.",
-			"b": "There's no more confounding creature than the television, with whom the cat is always whispering.  I lose sleep wondering what they discuss.",
-			"c": "Of course, I've communed with all the creatures in this land, I've listened to their tales and related my own." },
+			"a": "I have suffered long searching for beauty, beauty in both creatures and thoughts, like thoughts about beauty.",
+			"b": "To be honest, I often lay restless at night wondering what it is the cat and television discuss so frequently in hushed tones.",
+			"c": "If a creature has a tale I will listen, and if they have ears I will tell my own." },
 		"obstacle": {
-			"a": "Is true love real? It's the question that no one in this land can satisfy with an answer.",
-			"b": "Another mystery, over which I have cried for days: why does everyone act like they don't remember me?",
-			"c": "Love is like the void myth.  It smells like falsehood." },
+			"a": "No one in this land can answer my most pressing concern, is it real, true love? Is true love real?",
+			"b": "I have cried for days pondering the mystery of why no one remembers me.",
+			"c": "Like love, I believe the void is a myth, reeking of falsehood." },
 		"reward": {
-			"a": "I'll go to the void only if it will reveal to me the thoughts of the most famous mystery, the cat.",
-			"b": "I should convene and converse with the fruit, who I haven't seen since the party.",
+			"a": "The most famous mystery of this land is the creature called cat, I would only go into the void if it would reveal the nature of the cat.",
+			"b": "I haven't seen the fruit since the party.  Once we were great friends, but I fear, no longer.",
 			"c": "Is it noble to be alone? Can one find love without first knowing isolation?" },
 		"cat": { "origin": "abc", "goal": "c", "obstacle": "abc",  "reward": "bc" },
 		"birds": { "origin": "abc", "goal": "c", "obstacle": "ab",  "reward": "c" },
@@ -56,15 +56,15 @@
 		"origin": {
 			"a": "I grew up in the dense forest in the east.",
 			"b": "I'm from the east, where trees begin and the desert ends.",
-			"c": "I was happy living in the forest when I was younger, I felt I belonged." },
+			"c": "I was happy living in the forest among the birds, I felt like I belonged." },
 		"goal": {
-			"a": "I left the forest, following a beautiful and filthy creature across the rock path and into the hills, I thought that it was love.",
-			"b": "I heard myths of an emotion called love in the whirring sounds of the bugs in the forest.",
+			"a": "I left the forest, thinking I was in love, following a beautiful and filthy creature across the rock path and into the hills.",
+			"b": "I heard myths of an emotion called love in the whirring sounds of the bugs in the trees.",
 			"c": "One day I will build a nest." },
 		"obstacle": {
 			"a": "Do you know what love is?  Is it like the illuminating sunrise?  Is like the endless ocean?",
-			"b": "It was like we were two boats at sea going toward each other and then the cat just feel asleep and drifted away.",
-			"c": "I could fly across the sea but I'm held back by some nameless emotion rooted in my bowels." },
+			"b": "It was like we were two boats at sea going toward each other before the cat just fell asleep and drifted away.",
+			"c": "I could fly across the sea but there's something in my bowels, some nameless feeling, that holds me back." },
 		"reward": {
 			"a": "The void sounds like a lonely place to me.",
 			"b": "What if I get to the void and there's no one else there? What if I can't leave?",
@@ -80,21 +80,21 @@
 	},
 	"fruit": {
 		"origin": {
-			"a": "I was born in the south in the shadow of the oldest tree in idtio.",
+			"a": "I was born in the south in the shadow of idtio's oldest tree.",
 			"b": "In that curve of land the young become old.",
-			"c": "My home is a smelly place, it reeks of age and decay." },
+			"c": "My smelly home reeks of age and decay." },
 		"goal": {
-			"a": "The party was like a lot of staring, like thousands of eyes cast in shadow, their gaze taking up any space where you could move.",
-			"b": "I heard the cat wouldn't talk to anyone which doesn't surprise me the cat wants everyone to feel like they have to be the one to approach but like no one cares.",
-			"c": "The pig, he waved at me, from literally the same room, like he was making nautical signs from a distance vessel." },
+			"a": "The party was like a lot of staring, like thousands of eyes cast in shadow, their gaze covering any space where creatures might move.",
+			"b": "The cat waits to be approached.  Some creatures find it mysterious.  Some creatures don't care.",
+			"c": "The pig, he waved at me, like he was making nautical signs from a distant vessel, but from the same room, like, literally ten feet away." },
 		"obstacle": {
 			"a": "I feel I would be fine like not knowing where everyone is from and where they're going, every creature is from somewhere and we're all going nowhere.",
-			"b": "I know we have to talk because there's nothing else to do but we could talk about the waves in the ocean, or the colors in the sunset or even the breeze that scatters leaves around the trees instead a stupid smelly void.",
+			"b": "I know we have to talk because there's nothing else to do but we could talk about the waves in the ocean, or the colors in the sunset or even the breeze that scatters leaves around the trees instead of some stupid smelly void the doesn't even exist.",
 			"c": "Sorry I didn't see you waving." },
 		"reward": {
 			"a": "If the void is real the pig will find it and I'd rather continue wandering the desert than be stuck in made up mythical mirror world with that pig.",
 			"b": "I'll wait here. I'll see you later.",
-			"c": "It's a lie made up by a devious creature, and that's what I will continue to say even if it's not true." },
+			"c": "It's a lie made up by a devious creature, and that's what I will continue to believe even if it's not true." },
 		"cat": { "origin": "abc", "goal": "ac", "obstacle": "abc", "reward": "ab" },
 		"pig": { "origin": "abc", "goal": "ab", "obstacle": "abc", "reward": "bc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
@@ -106,17 +106,17 @@
 	},
 	"worm": {
 		"origin": {
-			"a": "I was born probably in the dark dirt.",
+			"a": "I was born probably in some dark dirt.",
 			"b": "I could have come from anywhere, I emerged from dirt and then I was blinded by the endless sun.",
-			"c": "I had to study for years under the wisest of worms to escape the dark dirt." },
+			"c": "I had to study for years under the wisest of worms to escape the endless dirt." },
 		"goal": {
-			"a": "The party with all the creatures was a wonderful achievement of camaraderie which I captured with my pen of the darkest ink on the most delicate of plant based papers.",
+			"a": "With my pen of darkest ink I captured that party of all varieties of creature, that wonderful achievement of camaraderie, on the most delicate of papers.",
 			"b": "Through my lifetime of suffering in squalor I learned to appreciate the beauty of limbful creatures in their world.",
-			"c": "Through art and through seeing I capture the secrets of the creatures of this land." },
+			"c": "My art is a record of all the many creatures I have seen in this land." },
 		"obstacle": {
 			"a": "And the creatures look down at me and I see them thinking, 'Oh you're a worm.'",
 			"b": "I can see it in the eyes of my beloved, 'You're disgusting.'",
-			"c": "My insides are visible through my translucent skin, it distracts the creatures of this world, the stare at me as though I were a nauseating entertainment." },
+			"c": "My insides are visible through my translucent skin, it distracts the creatures of this world, the stare at me like a nauseating entertainment." },
 		"reward": {
 			"a": "I can enter the world below the surface, I can dig through graves and unearth secrets.",
 			"b": "I've seen death, I've tasted it and painted it.",
@@ -136,9 +136,9 @@
 			"b": "The house was good for parties, I didn't really know where everyone else went otherwise.",
 			"c": "The house was burned down so I guess I'm not from anywhere anymore." },
 		"goal": {
-			"a": "It was not long ago that I was the source of light in darkness, where the creatures gathered to be together.",
-			"b": "Everyone is searching for some mythic void, a portal, a inversion of light and dark, because my home was burned down.",
-			"c": "I feel lonely outside in the changeless air, in search of some stinking hole." },
+			"a": "Not long ago I was the source of light in darkness, where the creatures gathered to be together.",
+			"b": "Everyone is searching for some mythic void, a portal, a inversion of light and dark, to fill the void of my burned down home, the home of parties.",
+			"c": "I feel lonely outside in the changeless air, in search of some stinking hole, the true hole, not the hole of flowers or the hole of hearts, but the hole of skulls, the hole of death." },
 		"obstacle": {
 			"a": "How was I to know the pig was so obsessed with those creatures?  I wanted only to entertain my guests like a good host.",
 			"b": "The era of hanging out with everyone has passed and so I pass my days walking back and forth across the stones dividing the land of idtio, waiting for them to give up searching for the endless darkness, the inverted light.",
@@ -159,18 +159,18 @@
 	"cactus": {
 		"origin": {
 			"a": "I'm from the deserted lands beyond the house and two hills.",
-			"b": "As a child, nothing happened, so I learned to entertain myself with verses, what became the endless verse.",
+			"b": "I was a child poet, author of an endless verse, about the endlessness of the desert.",
 			"c": "The endless heat of the son was my parent and the endless darkness of night was my other parent." },
 		"goal": {
-			"a": "I used every word that exists to describe the sun, and the heat, and the night, and the cold.  I seek more words in the mirror world.",
+			"a": "I described the heat, the sun, the cold, the moon.",
 			"b": "I will write a new verse in the inverted void.",
-			"c": "I'm the prickly poet, have you heard my famous verse, the song of the pricked creatures?" },
+			"c": "In the myth there is a true void hidden in the shadows, while false voids pierce the appendages of our land." },
 		"obstacle": {
-			"a": "I've written on anything that can be seen and anything that can be imagined.  Is there anything that can't be seen and can't be imagined?",
-			"b": "My endless verse is my endless companion, no creature could compare.",
-			"c": "I have been asked what is the point of a poem." },
+			"a": "My poem is about everything that has ever been imagined, every creature who has ever lived, every possibility that could be introduced in the inverted world.",
+			"b": "No creature could compare to my endless companion, my endless poem.",
+			"c": "It's true that no one understands the point of writing a poem." },
 		"reward": {
-			"a": "Of the birds I would write a verse of aloofity, about waiting behind a wall of stagnation, waiting for any other creature to cross that turbulent river of desolation.",
+			"a": "Of the birds I would write a verse of aloofity, about waiting behind a wall of quiescence, waiting for any other creature to cross that turbulent river of desolation.",
 			"b": "Of the pig a bombastic ballad, a rueful lyric, a stupid haiku, on a pig eating poop.",
 			"c": "Of the cat a quatrain of sadness, subtract one line for the words never spoken, and another for the looks unreturned, so a couplet like the couplets refused with creatures far and wide and especially, fantasticly far." },
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
@@ -194,11 +194,11 @@
 		"obstacle": {
 			"a": "My heart is pulled between sorrow and joy like the waves push and pull and break on the land.",
 			"b": "Even if I wanted to I couldn't stop caring about the feelings of every creature.",
-			"c": "If I wonder about if ever should have left the sea, which I do, I won't be able to go on." },
+			"c": "If I wondered should I have ever left the sea wouldn't be able to go on." },
 		"reward": {
 			"a": "If they find death before the void these creatures will continue to wallow in their stupid sorrow, but they don't know death and the void are one and the same.",
 			"b": "The land is so dry.  The sun is so hot.  Why doesn't anyone love me?",
-			"c": "I know I can't find love in the sea.  But there's supposed to be love on land." },
+			"c": "I know I can't find love in the sea. But where is the love on land?" },
 		"cat": { "origin": "abc", "goal": "ab", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
@@ -215,7 +215,7 @@
 			"c": "I remember the hunger of childhood like the hunger I feel now.  Have you eaten?" },
 		"goal": {
 			"a": "I've lived through worse than the party fire, and I keep on living for whatever reason.",
-			"b": "Like the worm I've lived in dirt and worse, but I didn't become a pretentious turd.",
+			"b": "Like the worm I've lived in dirt and worse, but I didn't become an annoying turd.",
 			"c": "My memories rot like garbage in the sun, if I found the void I wouldn't even remember if I was in the void or outside of it." },
 		"obstacle": {
 			"a": "The legless fish sees the legless worm and thinks they are the same but the fish doesn't understand what it means to come from dirt like me.",
@@ -229,7 +229,7 @@
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"fruit": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
-		"worm": { "origin": "abc", "goal": "ac", "obstacle": "abc", "reward": "abc" },
+		"worm": { "origin": "abc", "goal": "ac", "obstacle": "bc", "reward": "abc" },
 		"tv": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"cactus": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"fish": { "origin": "abc", "goal": "abc", "obstacle": "bc", "reward": "abc" }

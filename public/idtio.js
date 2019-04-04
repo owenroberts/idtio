@@ -175,7 +175,7 @@ function checkWeather() {
 }
 
 function loadUI(data) {
-	console.log('%c splash loaded', 'color:white;background:lightblue;');
+	console.log('%csplash loaded', 'color:white;background:lightblue;');
 
 	Game.letters = new Animation("/public/drawings/ui/letters.json");
 	Game.letters.load(false);
@@ -247,7 +247,7 @@ function loadUI(data) {
 }
 
 function loadMap(data) {
-	console.log('%c map loaded', 'color:white;background:pink;');
+	console.log('%cmap loaded', 'color:white;background:pink;');
 	for (const label in data.interactives) {
 		setTimeout(() => {
 			scenes.game.interactives[label] = new Interactive(data.interactives[label], false, false);
@@ -333,7 +333,7 @@ function start() {
 	fetch('/public/data/character.json')
 		.then(response => { return response.json() })
 		.then(json => {
-			console.log('%c characters loaded', 'color:white;background:lightgreen;');
+			console.log('%ccharacters loaded', 'color:white;background:lightgreen;');
 			characterData = json;
 			assetsLoaded.characters = true;
 		});
@@ -341,7 +341,7 @@ function start() {
 	fetch('/public/data/script.json')
 		.then(response => { return response.json() })
 		.then(json => {
-			console.log('%c stories loaded', 'color:white;background:gold;');
+			console.log('%cstories loaded', 'color:white;background:gold;');
 			storyData = json;
 			assetsLoaded.stories = true;
 		});
@@ -471,9 +471,15 @@ function mouseClicked(x, y) {
 }
 
 function mouseMoved(x, y) {
+	let pointer = false;
 	for (const ui in scenes[currentScene].ui) {
-		scenes[currentScene].ui[ui].over(x, y);
+		if (scenes[currentScene].ui[ui].over(x, y)) {
+			pointer = true;
+		}
 	}
+	if (pointer) document.body.style.cursor = 'pointer';
+	else document.body.style.cursor = 'default';
+	/* make this part of library ? */
 }
 
 function mouseDown(x, y) {
