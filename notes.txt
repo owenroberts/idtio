@@ -645,14 +645,14 @@ void ntoes
 
 - after after
 	- void anim for each resource
-	- more waves
+	- more waves (ocean)
 	- more void anims, longer
 	- resources timeout?
 	- player timeout?
 	- clean up ocean waves
 	- loading progress counter?
 	- fill wave gaps
-	- more forest like areas
+	- more forest like areas, (stones, bushes etc)
 	- initLittering in game not implemented?
 	- ui class also added to lines/game but not implemented
 	- figure out ui and toggle

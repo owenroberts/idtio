@@ -644,7 +644,6 @@ function hideItemMessage(label, index) {
 }
 
 function playCharacterAnimation(character, type) {
-	console.log(character, type);
 	scenes.game.characters[character].playAnimation(type);
 }
 
