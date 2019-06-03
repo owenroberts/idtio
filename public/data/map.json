@@ -1013,8 +1013,8 @@
 		"rock": [
 			{ "msg": "welcome to the land of idtio.", "src": "north-west.json", "x": -8384, "y": -3698 },
 			{ "msg": "welcome to the land of idtios.", "src": "north-east.json", "x": 5043, "y": -4080 },
-			{ "msg": "welcome to idtio, where the party meets death.", "src": "south-east.json", "x": 6601, "y": 3536 },
-			{ "msg": "welcome to idtio, crossroads of death.", "src": "south-west.json", "x": -8604, "y": 3780 }
+			{ "msg": "welcome to the party is dead.", "src": "south-east.json", "x": 6601, "y": 3536 },
+			{ "msg": "welcome to the crossroads of death.", "src": "south-west.json", "x": -8604, "y": 3780 }
 		],
 		"tree": [
 			{ "msg": "keep walking.  it will be okay.  at least like as okay as things go.", "src": "0.json", "x": 5295, "y": 1208 , "off": { "w": 0, "h": 0.5 } },

@@ -640,29 +640,29 @@ void ntoes
 	- new anims/sceneries 
 	- randomized offering requirements
 
-
-	
-
 - after after
 	- void anim for each resource
-	- more waves (ocean)
-	- more void anims, longer
-	- resources timeout?
-	- player timeout?
-	- clean up ocean waves
-	- loading progress counter?
-	- fill wave gaps
 	- more forest like areas, (stones, bushes etc)
+	- more waves (ocean)
+		- clean up ocean waves
+		- fill wave gaps
+	- more void anims, longer
+	- direction rocks?
+	- splash screen is wide add some random scene art
+	- full cactus redraw
 	- initLittering in game not implemented?
 	- ui class also added to lines/game but not implemented
 	- figure out ui and toggle
 	- remove unused jsons
-	- splash screen is wide add some random scene art
-	- full cactus redraw
 	- fit all drawings
-	- clean up scenery, items, interactives etc.
-	- server classes folder
+	- clean up scenery, items, interactives etc. (classes)
 	- lines sprites around color changing things
+	- waving instructions
+	- resources timeout?
+	- player timeout?
+	- loading progress counter?
+		- take out ugly timeouts?
+	- rewrite everything
 
 for later
 - jig animations and stuff (try making weird anim effects)
