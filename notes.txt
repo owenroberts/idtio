@@ -663,6 +663,7 @@ void ntoes
 	- loading progress counter?
 		- take out ugly timeouts?
 	- rewrite everything
+		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
 
 for later
 - jig animations and stuff (try making weird anim effects)

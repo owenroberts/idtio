@@ -1016,6 +1016,14 @@
 			{ "msg": "welcome to the party is dead.", "src": "south-east.json", "x": 6601, "y": 3536 },
 			{ "msg": "welcome to the crossroads of death.", "src": "south-west.json", "x": -8604, "y": 3780 }
 		],
+		"stones": [
+			{ "msg": "I love being with the other stones.", "src": "0.json", "x": -15999, "y": -1729 },
+			{ "msg": "I hate the sun.", "src": "1.json", "x": -15974, "y": -2027 },
+			{ "msg": "I am so happy being by the sea shore.", "src": "2.json", "x": -15864, "y": -2246 },
+			{ "msg": "I never wanted to stay by the sea shore.", "src": "3.json", "x": -15999, "y": -2438 },
+			{ "msg": "I love the sun.", "src": "4.json", "x": -16322, "y": -1990 },
+			{ "msg": "I hate all the other stones.", "src": "5.json", "x": -16389, "y": -1586 }
+		],
 		"tree": [
 			{ "msg": "keep walking.  it will be okay.  at least like as okay as things go.", "src": "0.json", "x": 5295, "y": 1208 , "off": { "w": 0, "h": 0.5 } },
 			{ "msg": "you're not lost.", "src": "1.json", "x": 4091, "y": -321 , "off": { "w": 0, "h": 0.5 } },
