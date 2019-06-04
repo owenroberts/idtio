@@ -13,7 +13,10 @@
 			"skull": { "start": 19, "end": 23 },
 			"apple-x": { "start": 23, "end": 27 },
 			"heart": { "start": 27, "end": 32 },
-			"wave": { "start": 32, "end": 36 }
+			"wave": { "start": 32, "end": 36 },
+			"drop-heart": { "start": 36, "end": 40 },
+			"drop-flower": { "start": 40, "end": 43 },
+			"drop-skull": { "start": 43, "end": 46 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/cat/bubble.json",

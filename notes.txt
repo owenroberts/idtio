@@ -642,6 +642,7 @@ void ntoes
 
 - after after
 	- void anim for each resource
+		- void bounces around during anim .... 
 	- more forest like areas, (stones, bushes etc)
 	- more waves (ocean)
 		- clean up ocean waves
@@ -664,6 +665,7 @@ void ntoes
 		- take out ugly timeouts?
 	- rewrite everything
 		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
+		- two words for sand dunes
 
 for later
 - jig animations and stuff (try making weird anim effects)

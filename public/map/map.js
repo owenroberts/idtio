@@ -35,7 +35,7 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'graveyard', 'grave-fence', 'stones'];
+	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'graveyard', 'grave-fence', 'stones', 'fish'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {

@@ -624,7 +624,7 @@ socket.on('update', data => {
 
 /* things not handlged in update ... */
 function playInteractiveAnimation(label) {
-	if (currentScene == 'game') {/* necessary if? */
+	if (currentScene == 'game') { /* necessary if? */
 		scenes[currentScene].interactives[label].playInteractState(() => {
 			socket.emit('interact animation end', label);
 		});

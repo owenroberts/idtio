@@ -62,12 +62,11 @@ for (const label in mapData.scenery) {
 	items[label] = [];
 	for (let i = 0; i < set.length; i++) {
 		if (set[i].msg) {
-			set[i].distance = 512;
+			set[i].distance = 256;
 			items[label].push(new Entity(set[i]));
 		}
 	}
 }
-
 
 function randomType() {
 	const types = ['flower', 'heart', 'skull'];
@@ -128,7 +127,7 @@ function gameUpdate() {
 							} else { /* currently just voids */
 								if (player.resources[interactive.resource].length > 0) {
 									io.sockets.emit('play interact animation', label);
-									io.sockets.emit('play character animation', player.character, 'flower'); // general update ? 
+									io.sockets.emit('play character animation', player.character, `drop-${interactive.resource}`); // general update ? 
 									player.usedResources[interactive.resource].push(player.resources[interactive.resource].shift()); /* move to used resources */
 									// set void/interactive to "interacting"
 									interactive.isInteracting = true;

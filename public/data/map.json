@@ -283,7 +283,7 @@
 		"skull void": {
 			"src": "/public/drawings/interactives/void_0.json",
 			"x": -7144, "y": 0,
-			"distance": 300,
+			"distance": 100,
 			"random": true,
 			"msg": "i require an offering of one skull.",
 			"resource": "skull",
@@ -298,7 +298,7 @@
 		"heart void": {
 			"src": "/public/drawings/interactives/void_1.json",
 			"x": 11788, "y": 2477,
-			"distance": 300,
+			"distance": 100,
 			"random": true,
 			"msg": "i require an offering of one heart.",
 			"resource": "heart",
@@ -314,7 +314,7 @@
 		"flower void": {
 			"src": "/public/drawings/interactives/void_2.json",
 			"x": 4912, "y": -8897,
-			"distance": 300,
+			"distance": 100,
 			"random": true,
 			"msg": "i require an offering of one flower.",
 			"resource": "flower",
@@ -1017,12 +1017,20 @@
 			{ "msg": "welcome to the crossroads of death.", "src": "south-west.json", "x": -8604, "y": 3780 }
 		],
 		"stones": [
-			{ "msg": "I love being with the other stones.", "src": "0.json", "x": -15999, "y": -1729 },
-			{ "msg": "I hate the sun.", "src": "1.json", "x": -15974, "y": -2027 },
-			{ "msg": "I am so happy being by the sea shore.", "src": "2.json", "x": -15864, "y": -2246 },
-			{ "msg": "I never wanted to stay by the sea shore.", "src": "3.json", "x": -15999, "y": -2438 },
-			{ "msg": "I love the sun.", "src": "4.json", "x": -16322, "y": -1990 },
-			{ "msg": "I hate all the other stones.", "src": "5.json", "x": -16389, "y": -1586 }
+			{ "msg": "I love", "src": "0.json", "x": -15999, "y": -1729 },
+			{ "msg": "I hate", "src": "1.json", "x": -15974, "y": -2027 },
+			{ "msg": "the sea shore", "src": "2.json", "x": -15864, "y": -2246 },
+			{ "msg": "the sun", "src": "3.json", "x": -15999, "y": -2438 },
+			{ "msg": "the other stones", "src": "4.json", "x": -16322, "y": -1990 },
+			{ "msg": "the wind", "src": "5.json", "x": -16389, "y": -1586 }
+		],
+		"fish": [
+			{ "msg": "I love", "src": "0.json", "x": -11896, "y": -491 },
+			{ "msg": "the water", "src": "1.json", "x": -11951, "y": -722 },
+			{ "msg": "the fish", "src": "2.json", "x": -11420, "y": 44 },
+			{ "msg": "the seaweed", "src": "3.json", "x": -12076, "y": 749 },
+			{ "msg": "the algae", "src": "4.json", "x": -12561, "y": -622 },
+			{ "msg": "I hate", "src": "5.json", "x": -12736, "y": 299 }
 		],
 		"tree": [
 			{ "msg": "keep walking.  it will be okay.  at least like as okay as things go.", "src": "0.json", "x": 5295, "y": 1208 , "off": { "w": 0, "h": 0.5 } },
