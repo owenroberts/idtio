@@ -63,7 +63,10 @@
 			"flower": { "start": 12, "end": 15 },
 			"skull": { "start": 15, "end": 19 },
 			"heart": { "start": 19, "end": 22 },
-			"wave": { "start": 22, "end": 26 }
+			"wave": { "start": 22, "end": 26 },
+			"drop-heart": { "start": 26, "end": 29 },
+			"drop-skull": { "start": 29, "end": 32 },
+			"drop-flower": { "start": 32, "end": 35 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/birds/bubble.json",

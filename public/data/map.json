@@ -1024,11 +1024,11 @@
 			{ "msg": "the other stones", "src": "4.json", "x": -16322, "y": -1990 },
 			{ "msg": "the wind", "src": "5.json", "x": -16389, "y": -1586 }
 		],
-		"fish": [
-			{ "msg": "I love", "src": "0.json", "x": -11896, "y": -491 },
+		"seaweed": [
+			{ "msg": "I love", "src": "0.json", "x": -12496, "y": -191 },
 			{ "msg": "the water", "src": "1.json", "x": -11951, "y": -722 },
-			{ "msg": "the fish", "src": "2.json", "x": -11420, "y": 44 },
-			{ "msg": "the seaweed", "src": "3.json", "x": -12076, "y": 749 },
+			{ "msg": "the fish", "src": "2.json", "x": -11620, "y": -144 },
+			{ "msg": "the seaweed", "src": "3.json", "x": -12076, "y": 149 },
 			{ "msg": "the algae", "src": "4.json", "x": -12561, "y": -622 },
 			{ "msg": "I hate", "src": "5.json", "x": -12736, "y": 299 }
 		],
