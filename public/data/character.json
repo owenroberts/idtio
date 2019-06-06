@@ -40,7 +40,10 @@
 			"skull": { "start": 19, "end": 23 },
 			"apple-x": { "start": 23, "end": 28 },
 			"heart": { "start": 28, "end": 33 },
-			"wave": { "start": 33, "end": 37 }
+			"wave": { "start": 33, "end": 37 },
+			"drop-heart": { "start": 37, "end": 40 },
+			"drop-flower": { "start": 40, "end": 43 },
+			"drop-skull": { "start": 43, "end": 46 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/pig/bubble.json",
@@ -89,7 +92,10 @@
 			"flower": { "start": 23, "end": 26 },
 			"skull": { "start": 26, "end": 29 },
 			"heart": { "start": 29, "end": 32 },
-			"wave": { "start": 32, "end": 35 }
+			"wave": { "start": 32, "end": 35 },
+			"drop-heart": { "start": 35, "end": 38 },
+			"drop-skull": { "start": 38, "end": 41 },
+			"drop-flower": { "start": 41, "end": 44 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/fruit/bubble.json",

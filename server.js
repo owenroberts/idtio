@@ -25,6 +25,11 @@ app.get('/', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
+app.get('/test', function(request, response){
+	response.sendFile(path.join(__dirname, 'public/test.html'));
+});
+
+
 app.get('/map', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/map/index.html'));
 });
@@ -34,7 +39,7 @@ server.listen(port, function() {
 });
 
 // console.clear();
-const DEBUG = false;
+const DEBUG = true;
 let gameIsPlaying = false;
 let gameInterval;
 const inGame = [];

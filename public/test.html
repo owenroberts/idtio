@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>idtio</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		html, body { width: 100%; height: 100%; }
+		canvas { display: block; }
+	</style>
+	<link rel="icon" href="/public/favicon.gif">
+</head>
+<body>
+	<canvas id="lines">
+		How old is your dang computer???
+	</canvas>
+
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/public/lines/lib/cool/cool.js"></script>
+	<script src="/public/lines/game/classes/sprite.js"></script>
+	<script src="/public/lines/game/classes/animation.js"></script>
+	<script src="/public/lines/game/events.js"></script>
+	<script src="/public/lines/game/game.js"></script>
+	<script src="/public/js/item.js"></script>
+	<script src="/public/js/character.js"></script>
+	<script src="/public/js/interactive.js"></script>
+	<script src="/public/js/ui.js"></script>
+	<script src="/public/js/toggle.js"></script>
+	<script src="/public/js/text.js"></script>
+	<script>
+		let test;
+
+		Game.init({
+			width: window.innerWidth, 
+			height: window.innerHeight, 
+			lps: 10, 
+			stats: false,
+			debug: false,
+			mixedColors: false
+		});
+
+		
+
+		function start() {
+			test = new Sprite(100, 100);
+			test.addAnimation('public/drawings/interactives/void_0.json');
+		}
+
+		function draw() {
+			test.display();
+		}
+
+
+	</script>
+</body>
+</html>
