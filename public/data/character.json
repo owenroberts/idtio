@@ -118,7 +118,10 @@
 			"flower": { "start": 12, "end": 15 },
 			"skull": { "start": 15, "end": 19 },
 			"heart": { "start": 19, "end": 22 },
-			"wave": { "start": 22, "end": 25 }
+			"wave": { "start": 22, "end": 25 },
+			"drop-heart": { "start": 25, "end": 28 },
+			"drop-skull": { "start": 28, "end": 31 },
+			"drop-flower": { "start": 31, "end": 34 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/worm/bubble.json",
@@ -141,7 +144,10 @@
 			"flower": { "start": 16, "end": 19 },
 			"skull": { "start": 19, "end": 22 },
 			"heart": { "start": 22, "end": 25 },
-			"wave": { "start": 25, "end": 29 }
+			"wave": { "start": 25, "end": 29 },
+			"drop-heart": { "start": 29, "end": 32 },
+			"drop-skull": { "start": 32, "end": 35 },
+			"drop-flower": { "start": 35, "end": 38 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/tv/bubble.json",
@@ -156,15 +162,18 @@
 		"letters": "/public/drawings/characters/cactus/letters.json",
 		"x": -9900, "y": 3126,
 		"states": {
-			"idle": { "start": 0, "end": 4 },
-			"right": { "start": 4, "end": 6 },
-			"left": { "start": 6, "end": 8 },
-			"up": { "start": 8, "end": 10 },
-			"down": { "start": 10, "end": 12 },
-			"flower": { "start": 12, "end": 15 },
-			"skull": { "start": 15, "end": 18 },
-			"heart": { "start": 18, "end": 21 },
-			"wave": { "start": 21, "end": 25 }
+			"idle": { "start": 0, "end": 0 },
+			"right": { "start": 1, "end": 3 },
+			"left": { "start": 3, "end": 5 },
+			"up": { "start": 5, "end": 7 },
+			"down": { "start": 7, "end": 9 },
+			"flower": { "start": 9, "end": 12 },
+			"skull": { "start": 12, "end": 15 },
+			"heart": { "start": 15, "end": 18 },
+			"wave": { "start": 18, "end": 22 },
+			"drop-heart": { "start": 22, "end": 25 },
+			"drop-skull": { "start": 25, "end": 28 },
+			"drop-flower": { "start": 28, "end": 31 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/cactus/bubble.json",
