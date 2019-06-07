@@ -196,7 +196,10 @@
 			"flower": { "start": 22, "end": 27 },
 			"skull": { "start": 27, "end": 33 },
 			"heart": { "start": 33, "end": 38 },
-			"wave": { "start": 38, "end": 42 }
+			"wave": { "start": 38, "end": 42 },
+			"drop-heart": { "start": 42, "end": 45 },
+			"drop-skull": { "start": 45, "end": 48 },
+			"drop-flower": { "start": 48, "end": 51 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/fish/bubble.json",
@@ -219,7 +222,10 @@
 			"flower": { "start": 20, "end": 24 },
 			"skull": { "start": 24, "end": 28 },
 			"heart": { "start": 28, "end": 32 },
-			"wave": { "start": 32, "end": 37 }
+			"wave": { "start": 32, "end": 37 },
+			"drop-heart": { "start": 37, "end": 40 },
+			"drop-skull": { "start": 40, "end": 43 },
+			"drop-flower": { "start": 43, "end": 46 }
 		},
 		"bubble": {
 			"src": "/public/drawings/characters/bug/bubble.json",
