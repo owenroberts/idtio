@@ -1,3 +1,5 @@
+/* trying this zoom: http://www.cs.colostate.edu/~anderson/newsite/javascript-zoom.html*/
+
 const map = { interactives: {}, pickups: {}, scenery: {} };
 Game.map = true;
 const m = {
@@ -6,7 +8,30 @@ const m = {
 	y: 0,
 	w: 0,
 	h: 0
-}
+};
+
+const zoom = {
+	canvas: {
+		width: undefined,
+		height: undefined
+	},
+	view: {
+		x: 0,
+		y: 0,
+		width: 1.0,
+		height: 1.0,
+		original: {
+			width: 1.0,
+			height: 1.0
+		}
+	},
+	previous: {
+		x: undefined,
+		y: undefined
+	},
+	mouseDown: false,
+
+};
 
 window.addEventListener('keydown', ev => {
 	if (Cool.keys[ev.which] == 'r') location.reload();
@@ -35,7 +60,8 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'bush'];
+	// const scenes = ['south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'spine'];
+	const scenes = ['spine'];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -50,7 +76,7 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	const textures = ['grass', 'sand']
+	const textures = [/*'waves'*/];
 	for (const t in data.textures) {
 		if (textures.includes(t)) {
 			if (!map.scenery[t]) map.scenery[t] = [];
@@ -70,26 +96,22 @@ function loadMap(data) {
 }
 
 function start() {
+	zoom.canvas.width = zoom.view.width = Game.width;
+	zoom.canvas.height = zoom.view.height = Game.height;
 	fetch('/public/data/map.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadMap(json));
-
-	offset.px = Game.canvas.width/2;
-	offset.py = Game.canvas.height/2;
 }
 
 function update() { /* for stats */}
 
 function draw() {
-	/* clear  */
-	const p1 = Game.ctx.transformedPoint(0,0);
-	const p2 = Game.ctx.transformedPoint(Game.canvas.width, Game.canvas.height);
-	Game.ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
 
-	Game.ctx.strokeStyle = '#bb11ff';
-	Game.ctx.lineWidth = 10;
-	Game.ctx.strokeRect(-22702, -10788, 37178, 24891);
-	Game.ctx.lineWidth = 1;
+	Game.ctx.setTransform(1,0,0,1,0,0);
+   	// Game.ctx.scale(zoom.canvas.width / zoom.view.width, zoom.canvas.height / zoom.view.height);
+    Game.ctx.translate(-zoom.view.x, -zoom.view.y);
+
+    Game.ctx.clearRect(zoom.view.x, zoom.view.y, zoom.view.width, zoom.view.height);
 
 	Game.ctx.font = '16px monaco';
 	Game.ctx.fillStyle = '#bb11ff';
@@ -120,143 +142,81 @@ function draw() {
 	}
 }
 
-
 function mouseClicked(x, y) {
-	const p = Game.ctx.transformedPoint(x, y);
-	console.log(`"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`);
+
+	// const p = Game.ctx.transformedPoint(x, y);
+	// console.log(`"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`);
 	
 	/* copy to clipboard */
 	const el = document.createElement('textarea');
-	el.value = `"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`;
+	// el.value = `"x": ${Math.floor(p.x)}, "y": ${Math.floor(p.y)}`;
 	document.body.appendChild(el);
 	el.select();
 	document.execCommand('copy');
 	document.body.removeChild(el);
 }
 
-const offset = {
-	px: 0,
-	py: 0,
-	dragged: false,
-	dragStart: null
-}
-
 function mouseMoved(x, y, button) {
+	
 	if (button == 1) {
-		offset.px = x;
-		offset.py = y;
-		offset.dragged = true;
-		if (offset.dragStart) {
-			const pt = Game.ctx.transformedPoint(offset.px, offset.py);
-			Game.ctx.translate(pt.x - offset.dragStart.x, pt.y - offset.dragStart.y);
-			draw();
+		if (mouseDown) {
+			const dx = (x - zoom.previous.x) / zoom.canvas.width * zoom.view.width;
+			const dy = (y - zoom.previous.y) / zoom.canvas.height * zoom.view.height;
+			zoom.view.x -= dx;
+			zoom.view.y -= dy;
 		}
 	}
+	zoom.previous.x = x;
+	zoom.previous.y = y;
 
 	if (button == 3) {
-		const p = Game.ctx.transformedPoint(x, y);
-		m.w = p.x - m.x;
-		m.h = p.y - m.y;
+		// const p = Game.ctx.transformedPoint(x, y);
+		// m.w = p.x - m.x;
+		// m.h = p.y - m.y;
 	}
 }
 
 function mouseDown(x, y, button) {
 	if (button == 1) {
-		offset.px = x;
-		offset.py = y;
-		offset.dragged = false;
-		offset.dragStart = Game.ctx.transformedPoint(offset.px, offset.py);
+		zoom.mouseDown = true;
+		if (!zoom.previous.x) zoom.previous.x = x;
+		if (!zoom.previous.y) zoom.previous.y = y;
 	}
 	if (button == 3) {
-		const p = Game.ctx.transformedPoint(x, y);
-		m.x = p.x;
-		m.y = p.y;
+		// const p = Game.ctx.transformedPoint(x, y);
+		// m.x = p.x;
+		// m.y = p.y;
 		m.display = true;
 	}
 }
 
 function mouseUp(x, y, button) {
-	if (button == 1) offset.dragStart = null;
+	if (button == 1) zoom.mouseDown = false;
 	if (button == 3) m.display = false;
 }
 
-Game.init({width: window.innerWidth, height: window.innerHeight, lps: 10, debug: false});
+Game.init({ width: window.innerWidth, height: window.innerHeight, lps: 10, debug: false, stats: false });
+// Game.clearBg =
 document.oncontextmenu = function() { return false; }
 
-trackTransforms(Game.ctx);
-const scaleFactor = 1.05;
-function zoom(clicks) {
-	const pt = Game.ctx.transformedPoint(offset.px, offset.py);
-	Game.ctx.translate(pt.x, pt.y);
-	const factor = Math.pow(scaleFactor, clicks);
-	Game.ctx.scale(factor, factor);
-	Game.ctx.translate(-pt.x, -pt.y);
-	Game.ctx.miterLimit = 1;
-	draw();
-}
-
 function handleWheel(ev) {
-	const delta = ev.wheelDelta ? ev.wheelDelta/40 : ev.detail ? -ev.detail : 0;
-	if (delta) zoom(delta);
-	return ev.preventDefault() && false;
-}
+	const x = zoom.view.width / 2 + zoom.view.x;  // View coordinates
+	const y = zoom.view.height / 2 + zoom.view.y;
 
-function trackTransforms(ctx) {
-	var svg = document.createElementNS("http://www.w3.org/2000/svg",'svg');
-	var xform = svg.createSVGMatrix();
-	ctx.getTransform = function(){ return xform; };
+	const scale = (event.wheelDelta < 0 || event.detail > 0) ? 1.1 : 0.9;
+	zoom.view.width *= scale;
+	zoom.view.height *= scale;
 
-	var savedTransforms = [];
-	var save = ctx.save;
-	ctx.save = function(){
-		savedTransforms.push(xform.translate(0,0));
-		return save.call(ctx);
-	};
-	var restore = ctx.restore;
-	ctx.restore = function(){
-		xform = savedTransforms.pop();
-		return restore.call(ctx);
-	};
+	// scale about center of view, rather than mouse position. This is different than dblclick behavior.
+	zoom.view.x = x - zoom.view.width / 2;
+	zoom.view.y = y - zoom.view.height / 2;
 
-	var scale = ctx.scale;
-	ctx.scale = function(sx,sy){
-		xform = xform.scaleNonUniform(sx,sy);
-		return scale.call(ctx,sx,sy);
-	};
-	var rotate = ctx.rotate;
-	ctx.rotate = function(radians){
-		xform = xform.rotate(radians*180/Math.PI);
-		return rotate.call(ctx,radians);
-	};
-	var translate = ctx.translate;
-	ctx.translate = function(dx,dy){
-		xform = xform.translate(dx,dy);
-		return translate.call(ctx,dx,dy);
-	};
-	var transform = ctx.transform;
-	ctx.transform = function(a,b,c,d,e,f){
-		var m2 = svg.createSVGMatrix();
-		m2.a=a; m2.b=b; m2.c=c; m2.d=d; m2.e=e; m2.f=f;
-		xform = xform.multiply(m2);
-		return transform.call(ctx,a,b,c,d,e,f);
-	};
-	var setTransform = ctx.setTransform;
-	ctx.setTransform = function(a,b,c,d,e,f){
-		xform.a = a;
-		xform.b = b;
-		xform.c = c;
-		xform.d = d;
-		xform.e = e;
-		xform.f = f;
-		return setTransform.call(ctx,a,b,c,d,e,f);
-	};
-	var pt  = svg.createSVGPoint();
-	ctx.transformedPoint = function(x,y){
-		pt.x=x; pt.y=y;
-		return pt.matrixTransform(xform.inverse());
-	}
 }
 
 Game.canvas.addEventListener("mousewheel", handleWheel, false);
 
 /* view-source:http://phrogz.net/tmp/canvas_zoom_to_cursor.html */
+
+window.addEventListener("beforeunload", function(ev) {
+	
+});

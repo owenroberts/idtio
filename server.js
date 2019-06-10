@@ -33,6 +33,9 @@ app.get('/test', function(request, response){
 app.get('/map', function(request, response){
 	response.sendFile(path.join(__dirname, 'public/map/index.html'));
 });
+app.get('/map/test', function(request, response){
+	response.sendFile(path.join(__dirname, 'public/map/test.html'));
+});
 
 server.listen(port, function() {
 	console.log('Starting server on port ' + port);
