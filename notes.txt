@@ -636,6 +636,8 @@ undoable
 		- decide on dialogs
 		- no animals, weird if they're not moving
 		- cactuses, bushes
+- full cactus redraw - 
+
 
 void ntoes
 - animation rewards for resources
@@ -654,27 +656,27 @@ void ntoes
 		- fill wave gaps
 		* canvas zooming in map.js
 			- second canvas for stats?
-			
+
 	- more void anims, longer
-	- direction rocks?
 	- splash screen is wide add some random scene art
-	- full cactus redraw
-	- initLittering in game not implemented?
-	- ui class also added to lines/game but not implemented
-	- figure out ui and toggle
-	- remove unused jsons
 	- fit all drawings
-	- clean up scenery, items, interactives etc. (classes)
 	- lines sprites around color changing things
 	- waving instructions
-	- resources timeout?
-	- player timeout?
+	- resources / player timeout?
 	- loading progress counter?
 		- take out ugly timeouts?
 	- rewrite everything
 		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
 		- two words for sand dunes
+
+- game engine / programming updates
 	- resize window
+	- initLittering in game not implemented?
+	- ui class also added to lines/game but not implemented
+	- figure out ui and toggle
+	- remove unused jsons
+	- clean up scenery, items, interactives etc. (classes)
+	
 
 for later
 - jig animations and stuff (try making weird anim effects)

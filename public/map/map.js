@@ -35,7 +35,8 @@ function loadMap(data) {
 	// 	map.interactives[key] = new Interactive(item, item.src, false);
 	// }
 
-	const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg', 'bush'];
+	// const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg'];
+	const scenes = [ 'spine', 'north-leg', 'north-beach' ];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
@@ -44,13 +45,13 @@ function loadMap(data) {
 			for (let i = 0; i < set.length; i++) {
 				const item = new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false);
 				map.scenery[s].push(item);
-				item.label = set[i].src.split('/').pop().split('.')[0];
+				item.label = `${s} - ${i} - ${set[i].src.split('/').pop().split('.')[0]}`;
 			}
 		}
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	const textures = ['grass', 'sand']
+	const textures = [ 'waves', 'river' ];
 	for (const t in data.textures) {
 		if (textures.includes(t)) {
 			if (!map.scenery[t]) map.scenery[t] = [];
@@ -60,7 +61,7 @@ function loadMap(data) {
 				for (let i = 0; i < set.position.length; i++) {
 					const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
 					map.scenery[t].push(item);
-					item.label = set.src.split('/').pop().split('.')[0] + ` ${i} ${set.position[i].x}`;
+					item.label = `${t} - ${i} - ${set.position[i].x}`;
 					if (set.tags.includes("r")) item.animation.randomFrames = true;
 					if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
 				}
@@ -76,6 +77,10 @@ function start() {
 
 	offset.px = Game.canvas.width/2;
 	offset.py = Game.canvas.height/2;
+
+	const t = JSON.parse(localStorage.getItem('transform'));
+	// if (t) Game.ctx.setTransform(t.a, t.b, t.c, t.d, t.e, t.f);
+
 }
 
 function update() { /* for stats */}
@@ -105,7 +110,7 @@ function draw() {
 			const item = map.scenery[s][i];
 			Game.ctx.strokeStyle = '#000000';
 			item.display();
-			Game.ctx.fillText(`${s} ${item.label}`, item.position.x, item.position.y);
+			Game.ctx.fillText(item.label, item.position.x, item.position.y);
 		}
 	}
 
@@ -181,6 +186,7 @@ function mouseUp(x, y, button) {
 }
 
 Game.init({width: window.innerWidth, height: window.innerHeight, lps: 10, debug: false});
+
 document.oncontextmenu = function() { return false; }
 
 trackTransforms(Game.ctx);
@@ -260,3 +266,13 @@ function trackTransforms(ctx) {
 Game.canvas.addEventListener("mousewheel", handleWheel, false);
 
 /* view-source:http://phrogz.net/tmp/canvas_zoom_to_cursor.html */
+
+// window.addEventListener("beforeunload", function(ev) {
+// 	const mat = Game.ctx.getTransform()
+// 	const o = {};
+// 	for (const k in mat) {
+// 		o[k] = mat[k];
+// 	}
+// 	localStorage.setItem('transform', JSON.stringify(o));
+// 	ev.returnValue = 'Did you save dumbhole?';
+// });
