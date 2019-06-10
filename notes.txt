@@ -630,6 +630,12 @@ undoable
 - cursor over any ui - 
 - void anim for each resource - 
 		- void bounces around during anim .... -
+- more forest like areas, (stones, bushes etc) - 
+		- stones
+		- seaweed
+		- decide on dialogs
+		- no animals, weird if they're not moving
+		- cactuses, bushes
 
 void ntoes
 - animation rewards for resources
@@ -643,15 +649,12 @@ void ntoes
 	- randomized offering requirements
 
 - after after
-	- more forest like areas, (stones, bushes etc)
-		- stones
-		- seaweed
-		- decide on dialogs
-		- no animals, weird if they're not moving
-		- cactuses, bushes
 	- more waves (ocean)
 		- clean up ocean waves
 		- fill wave gaps
+		* canvas zooming in map.js
+			- second canvas for stats?
+			
 	- more void anims, longer
 	- direction rocks?
 	- splash screen is wide add some random scene art
