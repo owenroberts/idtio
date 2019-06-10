@@ -628,6 +628,8 @@ undoable
 - move graveyard - 
 - another pass on character dialog - 
 - cursor over any ui - 
+- void anim for each resource - 
+		- void bounces around during anim .... -
 
 void ntoes
 - animation rewards for resources
@@ -641,9 +643,12 @@ void ntoes
 	- randomized offering requirements
 
 - after after
-	- void anim for each resource
-		- void bounces around during anim .... 
 	- more forest like areas, (stones, bushes etc)
+		- stones
+		- seaweed
+		- decide on dialogs
+		- no animals, weird if they're not moving
+		- cactuses, bushes
 	- more waves (ocean)
 		- clean up ocean waves
 		- fill wave gaps
@@ -666,6 +671,7 @@ void ntoes
 	- rewrite everything
 		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
 		- two words for sand dunes
+	- resize window
 
 for later
 - jig animations and stuff (try making weird anim effects)

@@ -321,7 +321,6 @@ function start() {
 	});
 	// assetsLoaded.loading = true; // remove to play full loading anim
 
-
 	fetch('/public/data/ui.json')
 		.then(response =>  { return response.json() })
 		.then(json => loadUI(json));
