@@ -36,7 +36,7 @@ function loadMap(data) {
 	// }
 
 	// const scenes = ['spine', 'south-beach', 'river', 'south-arm', 'east-shore', 'north-beach', 'north-arm', 'south-arm', 'north-leg', 'south-leg'];
-	const scenes = [ 'spine', 'north-leg', 'north-beach' ];
+	const scenes = [ 'spine', 'north-arm' ];
 
 	for (const s in data.scenery) {
 		if (scenes.includes(s)) {
