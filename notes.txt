@@ -637,7 +637,9 @@ undoable
 		- no animals, weird if they're not moving
 		- cactuses, bushes
 - full cactus redraw - 
-
+- more waves (ocean)
+	- clean up ocean waves
+	- fill wave gaps
 
 void ntoes
 - animation rewards for resources
@@ -651,13 +653,6 @@ void ntoes
 	- randomized offering requirements
 
 - after after
-	- more waves (ocean)
-		- clean up ocean waves
-		- fill wave gaps
-		* canvas zooming in map.js
-			- second canvas for stats?
-
-	- more void anims, longer
 	- splash screen is wide add some random scene art
 	- fit all drawings
 	- lines sprites around color changing things
@@ -676,9 +671,19 @@ void ntoes
 	- figure out ui and toggle
 	- remove unused jsons
 	- clean up scenery, items, interactives etc. (classes)
+	* canvas zooming in map.js
+		- second canvas for stats?
+	- render module
+	- fix onion skin lightness
+	- delete up to last "end"
+	- explode to set length
+	- explode doesn't push frames
+	- 
 	
 
 for later
+- more void anims
+	- should prob just do separate sprites ... draw in same place ...
 - jig animations and stuff (try making weird anim effects)
 - no map edges ?
 - drawing that aren't used
@@ -689,6 +694,7 @@ for later
 - remove redundant data, unnecessary file paths
 - probably better way to handle audio areas
 	- checking if main clip is the same essentially does this
+
 
 maybe
 -  weather offset one but not others

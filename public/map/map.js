@@ -51,7 +51,7 @@ function loadMap(data) {
 	}
 
 	/* textures tags r is random, a is animate, i is index */
-	const textures = [ 'waves', 'river' ];
+	const textures = [ 'waves', 'sand' ];
 	for (const t in data.textures) {
 		if (textures.includes(t)) {
 			if (!map.scenery[t]) map.scenery[t] = [];
