@@ -647,6 +647,9 @@ undoable
 - lines sprites around color changing things - 
 - waving instructions - 
 - resources / player timeout? - 
+- loading progress counter?
+	- take out ugly timeouts?
+	- test load of just json files
 
 void ntoes
 - animation rewards for resources
@@ -660,15 +663,12 @@ void ntoes
 	- randomized offering requirements
 
 - after after
-	- loading progress counter?
-		- take out ugly timeouts?
-		- test load of just json files
-		- need some title logo so it doesn't look broken
+	- need some loading logo so it doesn't look broken
+	- server not deleting players
 	- rewrite everything
 		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
 		- two words for sand dunes
 		- cactus/tv lines too long
-	- server not deleting players
 
 - game engine / programming updates
 	- resize window
