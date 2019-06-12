@@ -3,9 +3,7 @@
 		"logo": {
 			"src": "/public/drawings/ui/idiot.json",
 			"x": 20, "y": 20,
-			"scenes": [
-				"splash"
-			],
+			"scenes": [ "splash" ],
 			"alive": true
 		},
 		"logo-vertical": {
@@ -103,6 +101,12 @@
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
 			"alive": false
+		},
+		"colors": {
+			"src": "/public/drawings/ui/colors.json",
+			"x": -420, "y": 50,
+			"scenes": [ "splash" ],
+			"alive": true
 		}
 	},
 	"texts": {

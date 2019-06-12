@@ -21,6 +21,8 @@ class Player extends Entity {
 		/* not implemented */
 		this.updateAnimation = false;
 		this.updatePosition = false;
+
+		this.timeoutCount = 0;
 	}
 
 	reset() {
@@ -30,6 +32,7 @@ class Player extends Entity {
 		this.isInteracting = false;
 		this.x = 0;
 		this.y = 768;
+		this.timeoutCount = 0;
 	}
 
 	returnResources() {
@@ -64,19 +67,13 @@ class Player extends Entity {
 	init(socket) {
 		/* handle key input from player */
 		socket.on('key movement', (key) => {
-			this.input[key.input] = key.state;	
-		});
-
-		socket.on('key interact', state => {
-			//  this.act.withItem = state;
+			this.input[key.input] = key.state;
+			this.timeoutCount = 0;
 		});
 
 		socket.on('key wave', (state) => {
 			this.waving = true;
-		});
-
-		socket.on('key choose dialog', (key) => {
-			// if (this.hasResource(key)) this.act.inputStoryType = this.getResourceType(key);
+			this.timeoutCount = 0;
 		});
 
 		socket.on('done interacting', () => {

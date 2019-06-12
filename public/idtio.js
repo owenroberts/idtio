@@ -5,8 +5,9 @@ const scenes = {
 	game:  { ui: {}, characters: {}, texts: {}, interactives: {}, scenery: {}, sprites: {} },
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
-const assetsLoaded = { splash: false, map: false, characters: false, stories: false, loading: false };
-let currentScene = 'splash';
+const assetsLoaded = { splash: false, map: false, characters: false, stories: false, loading: false, textures: {} };
+let socketsInitialized = false;
+let currentScene = 'loading';
 let characterData, storyData;
 let user = {
 	interacting: {
@@ -245,17 +246,12 @@ function loadUI(data) {
 
 	socket.emit('splash loaded');
 	assetsLoaded.splash = true;
-
-	scenes.splash.sprites.instructions.debug = true;
-	scenes.splash.sprites.instructions.animation.debug = true;
 }
 
 function loadMap(data) {
 	console.log('%cmap loaded', 'color:white;background:pink;');
 	for (const label in data.interactives) {
-		setTimeout(() => {
-			scenes.game.interactives[label] = new Interactive(data.interactives[label], false, false);
-		}, 1);
+		scenes.game.interactives[label] = new Interactive(data.interactives[label], false, false);
 	}
 
 	for (const type in data.pickups) {
@@ -263,19 +259,17 @@ function loadMap(data) {
 		const items = data.pickups[type].items;
 		for (const label in items) {
 			const pickup = items[label];
-			setTimeout(() => {
-				let states = {}; 
-				let s = pickup.states || group.states;
-				for (const state in group['state_index']) {
-					states[state] = { 
-						start: s[group['state_index'][state].start],
-						end: s[group['state_index'][state].end],
-					};
-				}
-				scenes.game.interactives[label] = new Interactive(
-					{ ...pickup, wrap: data.pickups[type].wrap, states: states, off: group.off  }, 
-					true, false);
-			}, 1);
+			let states = {}; 
+			let s = pickup.states || group.states;
+			for (const state in group['state_index']) {
+				states[state] = { 
+					start: s[group['state_index'][state].start],
+					end: s[group['state_index'][state].end],
+				};
+			}
+			scenes.game.interactives[label] = new Interactive(
+				{ ...pickup, wrap: data.pickups[type].wrap, states: states, off: group.off  }, 
+				true, false);
 		}
 	}
 
@@ -283,24 +277,31 @@ function loadMap(data) {
 		const set = data.scenery[s];
 		scenes.game.scenery[s] = [];
 		for (let i = 0; i < set.length; i++) {
-			setTimeout(() => {
-				scenes.game.scenery[s].push(new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false));
-			}, 1);
+			scenes.game.scenery[s].push(new Item(set[i], `/public/drawings/scenery/${s}/${set[i].src}`, false));
 		}
 	}
 
 	for (const t in data.textures) {
-		if (!scenes.game.scenery[t]) scenes.game.scenery[t] = [];
 		const texture = data.textures[t];
-		for (let j = 0; j < texture.length; j++) {
-			const set = texture[j];
-			for (let i = 0; i < set.position.length; i++) {
-				const item = new Item(set.position[i],`/public/drawings/scenery/${t}/${set.src}`, false);
-				scenes.game.scenery[t].push(item);
-				if (set.tags.includes("r")) item.animation.randomFrames = true;
-				if (set.tags.includes("i")) item.animation.createNewState("still", i, i);
-			}
-		}
+		if (!scenes.game.scenery[t]) scenes.game.scenery[t] = [];
+		assetsLoaded.textures[t] = false;
+		fetch(`/public/drawings/scenery/${t}/${texture.src}`)
+			.then(response =>  { return response.json() })
+			.then(json => {
+				assetsLoaded.textures[t] = true;
+				for (let i = 0; i < texture.position.length; i++) {
+					const pos = texture.position[i];
+					const item = new Item(pos, undefined, undefined);
+					item.animation.loadJSON(json, false, (w, h) => {
+						item.width = w;
+						item.height = h;
+					});
+					item.center();
+					scenes.game.scenery[t].push(item);
+					if (texture.tags.includes("r")) item.animation.randomFrames = true;
+					if (texture.tags.includes("i")) item.animation.createNewState("still", i, i);
+				}
+			});
 	}
 
 	assetsLoaded.map = true;
@@ -308,20 +309,10 @@ function loadMap(data) {
 
 function start() {
 
-	scenes.loading.sprites.loading = new Sprite(window.innerWidth/2, window.innerHeight/2);
+	scenes.loading.sprites.loading = new Sprite(window.innerWidth/2, window.innerHeight/2 + 100);
 	scenes.loading.sprites.welcome = new Sprite(window.innerWidth/2, window.innerHeight/2 - 100);
 	scenes.loading.sprites.loading.addAnimation('/public/drawings/ui/loading.json', () => {
 		scenes.loading.sprites.loading.center();
-		scenes.loading.sprites.loading.animation.playOnce(() => {
-			scenes.loading.sprites.loading.animation.onPlayedState = undefined;
-			scenes.loading.sprites.loading.animation.stop();
-			scenes.loading.sprites.welcome.addAnimation('/public/drawings/ui/welcome.json', () => {
-				scenes.loading.sprites.welcome.center();
-				scenes.loading.sprites.welcome.animation.playOnce(() => {
-					assetsLoaded.loading = true;
-				});
-			});
-		});
 	});
 	// assetsLoaded.loading = true; // remove to play full loading anim
 
@@ -329,9 +320,9 @@ function start() {
 		.then(response =>  { return response.json() })
 		.then(json => loadUI(json));
 
-	// fetch('/public/data/map.json')
-	// 	.then(response =>  { return response.json() })
-	// 	.then(json => loadMap(json));
+	fetch('/public/data/map.json')
+		.then(response =>  { return response.json() })
+		.then(json => loadMap(json));
 
 	fetch('/public/data/character.json')
 		.then(response => { return response.json() })
@@ -350,11 +341,25 @@ function start() {
 		});
 }
 
+function allTrue(obj) {
+	for (const o in obj)
+		if (!obj[o]) return false;
+	return true;
+}
+
 function draw() {
 	if (currentScene == 'loading') {
-		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading) {
-			currentScene = 'splash';
-			colorPicker.style.display = 'block';
+		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && allTrue(assetsLoaded.textures)) {
+			if (!scenes.loading.sprites.welcome.animation) {
+				scenes.loading.sprites.loading.animation.stop();
+				scenes.loading.sprites.welcome.addAnimation('/public/drawings/ui/welcome.json', () => {
+					scenes.loading.sprites.welcome.center();
+					scenes.loading.sprites.welcome.animation.playOnce(() => {
+						currentScene = 'splash';
+						colorPicker.style.display = 'block';
+					});
+				});
+			}
 		}
 	}
 
@@ -465,13 +470,6 @@ function keyUp(key) {
 	}
 }
 
-function mouseClicked(x, y) {
-	for (const ui in scenes[currentScene].ui) {
-		const sprite = scenes[currentScene].ui[ui];
-		// sprite.event(x, y);
-	}
-	// console.log('"x": ' + x + ', "y": ' + y); // not the right coords
-}
 
 function mouseMoved(x, y) {
 	let pointer = false;
@@ -542,7 +540,7 @@ socket.on('join game', data => {
 	currentScene = 'game';
 	if (theme) if (!theme.paused) theme.pause();
 	colorPicker.style.display = 'none';
-	initGameSockets();
+	if (!socketsInitialized) initGameSockets();
 });
 
 /* hide/show available characters */
@@ -678,6 +676,7 @@ function endStory(character) {
 
 /* prevent these updates during loading.... */
 function initGameSockets() {
+	socketsInitalized = true;
 	socket.on('play interact animation', playInteractiveAnimation);
 	socket.on('display item message', displayItemMessage);
 	socket.on('hide item message', hideItemMessage);

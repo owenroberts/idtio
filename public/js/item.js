@@ -4,20 +4,24 @@ class Item extends Sprite {
 		this.x = params.x;
 		this.y = params.y;
 		this.debug = debug;
-		this.addAnimation(src, () => {
-			this.center();
-			if (params.msg) {
-				this.displayText = false;
-				this.endText = true;
-				this.text = new Text(this.x, this.y, params.msg.toLowerCase(), params.wrap, Game.letters);
+		if (src) {
+			this.addAnimation(src, () => {
+				this.center();
+				if (params.msg) {
+					this.displayText = false;
+					this.endText = true;
+					this.text = new Text(this.x, this.y, params.msg.toLowerCase(), params.wrap, Game.letters);
+				}
+			});
+			if (params.states) {
+				this.animation.states = params.states;
+				this.animation.state = params.state || 'idle';
 			}
-		});
-		if (params.states) {
-			this.animation.states = params.states;
-			this.animation.state = params.state || 'idle';
+			if (params.r) this.animation.randomFrames = true;
+			this.textOffset = params.off ? params.off : { w: 0.5, h: 0.5 };
+		} else {
+			this.animation = new Animation('texture', false);
 		}
-		if (params.r) this.animation.randomFrames = true;
-		this.textOffset = params.off ? params.off : { w: 0.5, h: 0.5 };
 	}
 
 	display() {

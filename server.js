@@ -42,6 +42,7 @@ server.listen(port, function() {
 const DEBUG = true;
 let gameIsPlaying = false;
 let gameInterval;
+const playerTimeout = 60 * 60 * 10;
 const inGame = [];
 const players = {};
 const interactives = {};
@@ -157,6 +158,11 @@ function gameUpdate() {
 					}
 				}
 			}
+
+			/* check timeout */
+			player.timeoutCount++;
+			if (player.timeoutCount > playerTimeout)
+				exit(player.id, true);
 		}
 	}
 	io.sockets.emit('update', data);
@@ -180,6 +186,43 @@ function getItemData() {
 			data.interactives[label] = interactives[label].getUpdate();
 	}
 	return data;
+}
+
+function exit(id, socketLive) {
+	if (players[id]) {
+		const p = players[id];
+		if (p.character) {
+			inGame.splice(inGame.indexOf(p.character), 1);
+			io.sockets.emit('remove character', p.character);
+		}
+
+		/* restore players resources */
+		const resources = p.returnResources();
+		for (let i = 0; i < resources.length; i++) {
+			const item = resources[i];
+			interactives[item].picked = false;
+			interactives[item].removePlayer(p.id);
+			io.sockets.emit('return resource', interactives[item].label);
+		}
+
+		/* end in progress dialogs */
+		for (let i = 0; i < p.playersInRange.length; i++) {
+			const pid = p.playersInRange[i]; /* player id */
+			players[pid].endDialog();
+			players[pid].removePlayer(p.id);
+			io.sockets.emit('end story', players[pid].character);
+		}
+
+		console.log('live', socketLive);
+		if (!socketLive) delete players[id];
+		else  players[id].reset();
+	}
+	/* if all players are gone stop gameInterval */
+	if (Object.keys(players).length == 0) {
+		clearInterval(gameInterval);
+		gameIsPlaying = false;
+	}
+	io.to(id).emit('change scene', 'splash');
 }
 
 io.on('connection', function(socket) {
@@ -226,47 +269,8 @@ io.on('connection', function(socket) {
 	});
 
 	/* player leaves */
-	function exitGame(socketLive) {
-		if (players[socket.id]) {
-			const p = players[socket.id];
-			if (p.character) {
-				inGame.splice(inGame.indexOf(p.character), 1);
-				io.sockets.emit('remove character', p.character);
-			}
-
-			/* restore players resources */
-			const resources = p.returnResources();
-			for (let i = 0; i < resources.length; i++) {
-				const item = resources[i];
-				interactives[item].picked = false;
-				interactives[item].removePlayer(p.id);
-				io.sockets.emit('return resource', interactives[item].label);
-			}
-
-			/* end in progress dialogs */
-			for (let i = 0; i < p.playersInRange.length; i++) {
-				const pid = p.playersInRange[i]; /* player id */
-				players[pid].endDialog();
-				players[pid].removePlayer(p.id);
-				io.sockets.emit('end story', players[pid].character);
-			}
-
-			if (!socketLive)
-				delete players[socket.id];
-			else {
-				players[socket.id].reset();
-			}
-		}
-		/* if all players are gone stop gameInterval */
-		if (Object.keys(players).length == 0) {
-			clearInterval(gameInterval);
-			gameIsPlaying = false;
-		}
-		socket.emit('change scene', 'splash');
-	}
-
-	socket.on('exit game', () => { exitGame(true); });
-	socket.on('disconnect', () => { exitGame(false); });
+	socket.on('exit game', () => { exit(true); });
+	socket.on('disconnect', () => { exit(false); });
 
 	/* debug */
 	socket.on('send-eval', function(msg) {
