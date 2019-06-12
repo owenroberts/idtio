@@ -16,20 +16,38 @@
 		},
 		"instructions": {
 			"src": "/public/drawings/ui/instructions/instructions.json",
-			"x": -300, "y": -230,
+			"x": -550, "y": -300,
 			"scenes": [ "splash", "exit" ],
 			"alive": true
 		},
 		"walk": {
 			"src": "/public/drawings/ui/instructions/walk.json",
-			"x": -500, "y": -150,
+			"x": -200, "y": -350,
 			"scenes": [ "splash", "exit" ],
 			"alive": true
 		},
 		"wave": {
 			"src": "/public/drawings/ui/instructions/wave.json",
-			"x": -200, "y": -125,
+			"x": -550, "y": -150,
 			"scenes": [ "splash", "exit" ],
+			"alive": true
+		},
+		"splash-shore-1": {
+			"src": "/public/drawings/scenery/south-beach/0.json",
+			"x": 0, "y": -100,
+			"scenes": [ "splash" ],
+			"alive": true
+		},
+		"splash-shore-2": {
+			"src": "/public/drawings/scenery/south-beach/1.json",
+			"x": 1024, "y": -100,
+			"scenes": [ "splash" ],
+			"alive": true
+		},
+		"apple-tree": {
+			"src": "/public/drawings/scenery/apple-tree/1.json",
+			"x": 900, "y": 150,
+			"scenes": [ "splash" ],
 			"alive": true
 		},
 		"cat-wave": {

@@ -6,7 +6,7 @@ const scenes = {
 	exit: { ui: {}, sprites: {}, texts: {} }
 };
 const assetsLoaded = { splash: false, map: false, characters: false, stories: false, loading: false };
-let currentScene = 'loading';
+let currentScene = 'splash';
 let characterData, storyData;
 let user = {
 	interacting: {
@@ -16,6 +16,7 @@ let user = {
 	}
 };
 const colorPicker = document.getElementById('color-picker');
+// colorPicker.style.display = 'block';
 
 /* sound */
 let theme;
@@ -244,6 +245,9 @@ function loadUI(data) {
 
 	socket.emit('splash loaded');
 	assetsLoaded.splash = true;
+
+	scenes.splash.sprites.instructions.debug = true;
+	scenes.splash.sprites.instructions.animation.debug = true;
 }
 
 function loadMap(data) {
@@ -325,9 +329,9 @@ function start() {
 		.then(response =>  { return response.json() })
 		.then(json => loadUI(json));
 
-	fetch('/public/data/map.json')
-		.then(response =>  { return response.json() })
-		.then(json => loadMap(json));
+	// fetch('/public/data/map.json')
+	// 	.then(response =>  { return response.json() })
+	// 	.then(json => loadMap(json));
 
 	fetch('/public/data/character.json')
 		.then(response => { return response.json() })
