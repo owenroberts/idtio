@@ -152,8 +152,8 @@
 		"bubble": {
 			"src": "/public/drawings/characters/tv/bubble.json",
 			"states": {
-				"forward": { "start": 0, "end": 7 },
-				"reverse": { "start": 7, "end": 13 }
+				"forward": { "start": 0, "end": 15 },
+				"reverse": { "start": 15, "end": 28 }
 			}
 		}
 	},
