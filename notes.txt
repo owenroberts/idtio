@@ -650,6 +650,8 @@ undoable
 - loading progress counter?
 	- take out ugly timeouts?
 	- test load of just json files
+- need some loading logo so it doesn't look broken - 
+- server not deleting players - 
 
 void ntoes
 - animation rewards for resources
@@ -663,8 +665,6 @@ void ntoes
 	- randomized offering requirements
 
 - after after
-	- need some loading logo so it doesn't look broken
-	- server not deleting players
 	- rewrite everything
 		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
 		- two words for sand dunes
@@ -684,7 +684,6 @@ void ntoes
 	- delete up to last "end"
 	- explode to set length
 	- explode doesn't push frames
-	- 
 	
 
 for later

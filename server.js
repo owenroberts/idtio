@@ -189,6 +189,7 @@ function getItemData() {
 }
 
 function exit(id, socketLive) {
+	console.log('exit', id);
 	if (players[id]) {
 		const p = players[id];
 		if (p.character) {
@@ -213,7 +214,6 @@ function exit(id, socketLive) {
 			io.sockets.emit('end story', players[pid].character);
 		}
 
-		console.log('live', socketLive);
 		if (!socketLive) delete players[id];
 		else  players[id].reset();
 	}
@@ -269,8 +269,8 @@ io.on('connection', function(socket) {
 	});
 
 	/* player leaves */
-	socket.on('exit game', () => { exit(true); });
-	socket.on('disconnect', () => { exit(false); });
+	socket.on('exit game', () => { exit(socket.id, true); });
+	socket.on('disconnect', () => { exit(socket.id, false); });
 
 	/* debug */
 	socket.on('send-eval', function(msg) {
