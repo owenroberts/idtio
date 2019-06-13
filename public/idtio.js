@@ -190,9 +190,7 @@ function loadUI(data) {
 
 	for (const key in data.sprites) {
 		const s = data.sprites[key];
-		const sprite = new Sprite(s.x >= 0 ? s.x : Game.width + s.x, s.y >= 0 ? s.y : Game.height + s.y);
-		sprite.alive = s.alive;
-		sprite.addAnimation(s.src);
+		const sprite = new UI(s);
 		for (let i = 0; i < s.scenes.length; i++) {
 			scenes[s.scenes[i]].sprites[key] = sprite;
 		}
@@ -309,10 +307,18 @@ function loadMap(data) {
 
 function start() {
 
-	scenes.loading.sprites.loading = new Sprite(window.innerWidth/2, window.innerHeight/2 + 100);
-	scenes.loading.sprites.welcome = new Sprite(window.innerWidth/2, window.innerHeight/2 - 100);
+	scenes.loading.sprites.loading = new Sprite(Game.width / 2, Game.height / 2 + 100);
+	scenes.loading.sprites.title = new Sprite(Game.width / 2, Game.height - 50);
+	scenes.loading.sprites.welcome = new Sprite(Game.width / 2, Game.height / 2 - 100);
 	scenes.loading.sprites.loading.addAnimation('/public/drawings/ui/loading.json', () => {
 		scenes.loading.sprites.loading.center();
+		scenes.loading.sprites.loading.animation.playOnce(() => {
+			assetsLoaded.loading = true;
+		});
+	});
+
+	scenes.loading.sprites.title.addAnimation('/public/drawings/ui/title.json', () => {
+		scenes.loading.sprites.title.center();
 	});
 	// assetsLoaded.loading = true; // remove to play full loading anim
 
@@ -349,9 +355,10 @@ function allTrue(obj) {
 
 function draw() {
 	if (currentScene == 'loading') {
-		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && allTrue(assetsLoaded.textures)) {
+		if (assetsLoaded.splash && assetsLoaded.map && assetsLoaded.characters && assetsLoaded.stories && assetsLoaded.loading && allTrue(assetsLoaded.textures)) {
 			if (!scenes.loading.sprites.welcome.animation) {
 				scenes.loading.sprites.loading.animation.stop();
+				scenes.loading.sprites.title.animation.stop();
 				scenes.loading.sprites.welcome.addAnimation('/public/drawings/ui/welcome.json', () => {
 					scenes.loading.sprites.welcome.center();
 					scenes.loading.sprites.welcome.animation.playOnce(() => {

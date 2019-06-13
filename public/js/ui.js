@@ -1,13 +1,22 @@
 class UI extends Sprite {
 	constructor(params, debug) {
-		super(params.x, params.y);
+		let x = params.x;
+		let y = params.y;
+		if (x % 1 != 0) x = Game.width * x;
+		if (x < 0) x = Game.width + x;
+		if (y % 1 != 0) y = Game.height * y;
+		if (y < 0) y = Game.height + y;
+		super(x, y);
 		this.debug = debug;
+		if (params.hidden) this.alive = false;
 		this.addAnimation(params.src, () => {
 			if (params.state) this.animation.setState(params.state);
 		});
 		this.selected = params.selected || false;
-		this.animation.states = params.states;
-		this.animation.state = 'idle';
+		if (params.states) {
+			this.animation.states = params.states;
+			this.animation.state = 'idle';
+		}
 		this.clickStart = false;
 		if (params.func) this.func = window[params.func];
 	}

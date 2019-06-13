@@ -3,110 +3,101 @@
 		"logo": {
 			"src": "/public/drawings/ui/idiot.json",
 			"x": 20, "y": 20,
-			"scenes": [ "splash" ],
-			"alive": true
+			"scenes": [ "splash" ]
 		},
 		"logo-vertical": {
 			"src": "/public/drawings/ui/logo-vertical.json",
 			"x": -50, "y": 10,
-			"scenes": [ "splash", "exit" ],
-			"alive": true
+			"scenes": [ "splash", "exit" ]
 		},
 		"instructions": {
 			"src": "/public/drawings/ui/instructions/instructions.json",
 			"x": -550, "y": -300,
-			"scenes": [ "splash", "exit" ],
-			"alive": true
+			"scenes": [ "splash", "exit" ]
 		},
 		"walk": {
 			"src": "/public/drawings/ui/instructions/walk.json",
 			"x": -200, "y": -350,
-			"scenes": [ "splash", "exit" ],
-			"alive": true
+			"scenes": [ "splash", "exit" ]
 		},
 		"wave": {
 			"src": "/public/drawings/ui/instructions/wave.json",
 			"x": -550, "y": -150,
-			"scenes": [ "splash", "exit" ],
-			"alive": true
+			"scenes": [ "splash", "exit" ]
 		},
 		"splash-shore-1": {
 			"src": "/public/drawings/scenery/south-beach/0.json",
 			"x": 0, "y": -100,
-			"scenes": [ "splash" ],
-			"alive": true
+			"scenes": [ "splash" ]
 		},
 		"splash-shore-2": {
 			"src": "/public/drawings/scenery/south-beach/1.json",
 			"x": 1024, "y": -100,
-			"scenes": [ "splash" ],
-			"alive": true
+			"scenes": [ "splash" ]
 		},
 		"apple-tree": {
 			"src": "/public/drawings/scenery/apple-tree/1.json",
 			"x": 900, "y": 150,
-			"scenes": [ "splash" ],
-			"alive": true
+			"scenes": [ "splash" ]
 		},
 		"cat-wave": {
 			"src": "/public/drawings/characters/cat/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"pig-wave": {
 			"src": "/public/drawings/characters/pig/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"birds-wave": {
 			"src": "/public/drawings/characters/birds/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"worm-wave": {
 			"src": "/public/drawings/characters/worm/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"tv-wave": {
 			"src": "/public/drawings/characters/tv/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"cactus-wave": {
 			"src": "/public/drawings/characters/cactus/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"fruit-wave": {
 			"src": "/public/drawings/characters/fruit/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"fish-wave": {
 			"src": "/public/drawings/characters/fish/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"bug-wave": {
 			"src": "/public/drawings/characters/bug/wave.json",
 			"x": 0, "y": 0,
 			"scenes": [ "game" ],
-			"alive": false
+			"hidden": true
 		},
 		"colors": {
 			"src": "/public/drawings/ui/colors.json",
 			"x": -420, "y": 50,
-			"scenes": [ "splash" ],
-			"alive": true
+			"scenes": [ "splash" ]
 		}
 	},
 	"texts": {

@@ -666,8 +666,8 @@ void ntoes
 
 - after after
 	- rewrite everything
-		- silly sentences for all the beaches and stuff? - unlikely people will read all of it
-		- two words for sand dunes
+		- silly sentences for all the beaches and stuff? - unlikely people will read all of it -
+		- two words for sand dunes -
 		- cactus/tv lines too long
 
 - game engine / programming updates
