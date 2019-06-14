@@ -679,12 +679,6 @@ void ntoes
 	- clean up scenery, items, interactives etc. (classes)
 	* canvas zooming in map.js
 		- second canvas for stats?
-	- render module
-	- fix onion skin lightness
-	- delete up to last "end"
-	- explode to set length
-	- explode doesn't push frames
-	
 
 for later
 - more void anims
@@ -711,7 +705,12 @@ maybe
 - gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
 
 lines 
-	- follow over missing first segment?
-	- offset doesn't work with xy frames
-	- html color pickers
-	- save palette order in settings
+- render module
+- follow over missing first segment?
+- offset doesn't work with xy frames
+- html color pickers
+- save palette order in settings
+- fix onion skin lightness
+- delete up to last "end" - also clean up cut segment 
+- explode to set length (maybe wait for layers)
+- explode doesn't push frames (also wait for layers)

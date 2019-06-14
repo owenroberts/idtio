@@ -159,20 +159,20 @@
 	"cactus": {
 		"origin": {
 			"a": "I'm from the deserted lands beyond the house and two hills.",
-			"b": "I was a child poet, author of an endless verse, about the endlessness of the desert.",
-			"c": "The endless heat of the son was my parent and the endless darkness of night was my other parent." },
+			"b": "When I was younger I thought the desert was endless so I tried to write an endless poem.",
+			"c": "My parents were the endless heat and the endless darkness of night." },
 		"goal": {
-			"a": "I described the heat, the sun, the cold, the moon.",
-			"b": "I will write a new verse in the inverted void.",
-			"c": "In the myth there is a true void hidden in the shadows, while false voids pierce the appendages of our land." },
+			"a": "We talked about the heat, the sun, the cold, the moon.",
+			"b": "Does heat become cold in the inverted world?",
+			"c": "The void is hidden in smelly shadows." },
 		"obstacle": {
-			"a": "My poem is about everything that has ever been imagined, every creature who has ever lived, every possibility that could be introduced in the inverted world.",
-			"b": "No creature could compare to my endless companion, my endless poem.",
-			"c": "It's true that no one understands the point of writing a poem." },
+			"a": "I can write a poem about the inverted world.",
+			"b": "I started a poem because no one would talk to me.",
+			"c": "No one understands poetry." },
 		"reward": {
-			"a": "Of the birds I would write a verse of aloofity, about waiting behind a wall of quiescence, waiting for any other creature to cross that turbulent river of desolation.",
-			"b": "Of the pig a bombastic ballad, a rueful lyric, a stupid haiku, on a pig eating poop.",
-			"c": "Of the cat a quatrain of sadness, subtract one line for the words never spoken, and another for the looks unreturned, so a couplet like the couplets refused with creatures far and wide and especially, fantasticly far." },
+			"a": "On the birds, a verse of aloofity, waiting for any other creature to cross the turbulent river of desolation.",
+			"b": "On the pig, a bombastic ballad, a rueful lyric, a stupid haiku, a poop eater.",
+			"c": "On the cat, a quatrain of sadness, minus two unspoken lines, a couplet refused by creatures far and wide, and especially, fantasticly far." },
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "bc" },
@@ -184,21 +184,21 @@
 	},
 	"fish": {
 		"origin": {
-			"a": "I spawned in the North Sea ten years before the ten year party.",
-			"b": "For years the other fish told me that no one would come to the sea so reluctantly I made my way to the land.",
-			"c": "In childhood I was too busy swimming for my life to make friends." },
+			"a": "I spawned in the North Sea ten years before the ten years we partied.",
+			"b": "No one would come to the sea so reluctantly I made my way to the land.",
+			"c": "As a child I was too busy swimming for my life to make friends." },
 		"goal": {
 			"a": "I only really hate one creature, a vile, slimy, legless worm.",
-			"b": "I know that my time with the television was the most comfortable for me but I also know the television will never be happy with just the fish.",
-			"c": "I don't want to talk about the party.  I'm over it.  We live in a vast land of mystery and sadness and that party ended ten years ago." },
+			"b": "I loved the television but I don't think the television would be happy with just fish.",
+			"c": "We live in a vast land of mystery and sadness and that party ended ten years ago." },
 		"obstacle": {
 			"a": "My heart is pulled between sorrow and joy like the waves push and pull and break on the land.",
-			"b": "Even if I wanted to I couldn't stop caring about the feelings of every creature.",
-			"c": "If I wondered should I have ever left the sea wouldn't be able to go on." },
+			"b": "I think too much about their feelings.",
+			"c": "I can't wonder if I should have never left the sea.  I can't think about it." },
 		"reward": {
-			"a": "If they find death before the void these creatures will continue to wallow in their stupid sorrow, but they don't know death and the void are one and the same.",
+			"a": "They don't know death and the void are one and the same.",
 			"b": "The land is so dry.  The sun is so hot.  Why doesn't anyone love me?",
-			"c": "I know I can't find love in the sea. But where is the love on land?" },
+			"c": "I can't find love in the sea. I can't find love on land." },
 		"cat": { "origin": "abc", "goal": "ab", "obstacle": "abc", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
@@ -210,21 +210,21 @@
 	},
 	"bug": {
 		"origin": {
-			"a": "I think I grew up in a pile of garbage for a while, I don't know where it was.  My parents didn't really talk about our family history.",
-			"b": "I don't really remember anything that happened before yesterday, or today.",
-			"c": "I remember the hunger of childhood like the hunger I feel now.  Have you eaten?" },
+			"a": "I think I grew up in a pile of garbage.",
+			"b": "My parents didn't really talk about our family history.",
+			"c": "My hunger is not just a childhood memory." },
 		"goal": {
-			"a": "I've lived through worse than the party fire, and I keep on living for whatever reason.",
-			"b": "Like the worm I've lived in dirt and worse, but I didn't become an annoying turd.",
-			"c": "My memories rot like garbage in the sun, if I found the void I wouldn't even remember if I was in the void or outside of it." },
+			"a": "I lived through the fire and I keep on living for whatever reason.",
+			"b": "I've lived in worse the worm and I didn't become an annoying turd.",
+			"c": "My memories rot like garbage in the sun, I wouldn't even remember if I was in the void or outside." },
 		"obstacle": {
 			"a": "The legless fish sees the legless worm and thinks they are the same but the fish doesn't understand what it means to come from dirt like me.",
-			"b": "I was pummeled and buffeted by the mysterious blank eyed cat before the house was over taken by flames.",
-			"c": "To reach the party I walked for years across desert, grass and mud.  I took up residence in the bodies of decaying animals that never made it to survive the cold nights and devastating days." },
+			"b": "I was pummeled by the blank eyed cat before the house was over taken by flames.",
+			"c": "To the party I traveled for years, took residence in the bodies of decaying animals, to survive the cold nights, the devastating days." },
 		"reward": {
 			"a": "When I die and the sun bakes away my flesh my skull will point in the direction of the void.",
 			"b": "If I die alone, unburied, I will fulfill the prophesy made by my parents in their home of garbage.",
-			"c": "Is there a more noble quest than to just hang out and forget what has come before and ignore what will come after?" },
+			"c": "My quest is to forget what has come before and ignore what will come after." },
 		"cat": { "origin": "abc", "goal": "abc", "obstacle": "ac", "reward": "abc" },
 		"pig": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
 		"birds": { "origin": "abc", "goal": "abc", "obstacle": "abc", "reward": "abc" },
