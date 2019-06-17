@@ -652,6 +652,10 @@ undoable
 	- test load of just json files
 - need some loading logo so it doesn't look broken - 
 - server not deleting players - 
+- rewrite everything -
+	- silly sentences for all the beaches and stuff? - unlikely people will read all of it -
+	- two words for sand dunes -
+	- cactus/tv lines too long -
 
 void ntoes
 - animation rewards for resources
@@ -663,12 +667,6 @@ void ntoes
 	- void ?  what happens!!!
 	- new anims/sceneries 
 	- randomized offering requirements
-
-- after after
-	- rewrite everything
-		- silly sentences for all the beaches and stuff? - unlikely people will read all of it -
-		- two words for sand dunes -
-		- cactus/tv lines too long
 
 - game engine / programming updates
 	- resize window
