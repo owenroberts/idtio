@@ -668,6 +668,18 @@ void ntoes
 	- new anims/sceneries 
 	- randomized offering requirements
 
+
+lines 
+- render module
+- follow over missing first segment? -
+- offset doesn't work with xy frames -
+- html color pickers -
+- save palette order in settings - 
+- fix onion skin lightness -
+- delete up to last "end" - also clean up cut segment -
+- explode to set length (maybe wait for layers) -
+- explode doesn't push frames (also wait for layers) - 
+
 - game engine / programming updates
 	- resize window
 	- initLittering in game not implemented?
@@ -701,14 +713,3 @@ maybe
 	- https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 	- http://www.mikechambers.com/blog/2011/03/21/javascript-quadtree-implementation/
 - gzip json files? https://www.gnu.org/software/gzip/manual/gzip.html
-
-lines 
-- render module
-- follow over missing first segment?
-- offset doesn't work with xy frames
-- html color pickers
-- save palette order in settings
-- fix onion skin lightness
-- delete up to last "end" - also clean up cut segment 
-- explode to set length (maybe wait for layers)
-- explode doesn't push frames (also wait for layers)
