@@ -513,6 +513,20 @@ Game.init({
 	mixedColors: false
 });
 
+function sizeCanvas() {
+
+	const dpr = window.devicePixelRatio;
+	const w = window.innerWidth;
+	const h = window.innerHeight;
+
+	Game.canvas.width = w * dpr;
+	Game.canvas.height =  h * dpr;
+	Game.ctx.scale(dpr, dpr);
+	Game.canvas.style.zoom = 1 / dpr;
+	Game.ctx.miterLimit = 1;
+	Game.ctxStrokeColor = undefined;
+}
+
 /* color selectors */
 document.getElementById('line-color').addEventListener('change', ev => {
 	Game.ctx.strokeStyle = ev.currentTarget.value;
